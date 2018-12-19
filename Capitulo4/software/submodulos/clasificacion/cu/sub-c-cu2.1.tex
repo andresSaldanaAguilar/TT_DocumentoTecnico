@@ -1,0 +1,69 @@
+\subsubsection{SUB-C-CU2.1-Realizar recorrido}\label{SUB-C-CU2.1}
+El actor puede seleccionar una gasolinera, y el sistema le mostrará una ruta que pueda seguir para llegar hasta ella.
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del caso de uso} &
+		SUB-C-CU2.1-Realizar recorrido \\ \hline
+	\textbf{Objetivo} &
+		Guiar al actor hasta una gasolinera que el haya seleccionado \\ \hline
+	\textbf{Actores} &
+		\begin{itemize}
+			\item Cliente.
+			\item Usuario no registrado.
+		\end{itemize}
+		 \\ \hline 
+	\textbf{Disparador} & 
+		El actor presiona el icono \textit{¿Cómo llegar?}. \\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Gasolinera seleccionada.
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+			\item Ruta.
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		Deben existir gasolineras en el sistema.\\ \hline
+	\textbf{Postcondiciones} & Ninguna.
+		% \begin{itemize}
+		% 	\item Nin
+		% \end{itemize} 
+		\\ \hline
+	\textbf{Condiciones de término} & 
+		\begin{itemize}
+			\item Se le muestra al actor la ruta trazada en el mapa.
+		\end{itemize} \\ \hline 
+	\textbf{Prioridad} & 
+		Media. \\ \hline
+	\textbf{Errores} & Ninguno.
+		% \begin{itemize}
+		% 	\item \label{SUB-M-CU1:Error1} Error 1: .
+		% \end{itemize} 
+		\\ \hline
+	\textbf{Reglas de negocio} & Ninguna.
+		% \begin{itemize}
+		% 	\item \ref{RN1}.
+		% \end{itemize}
+		 \\ \hline
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria principal}
+	\begin{enumerate}
+		\item {[Actor]} Presiona el icono \textit{Realizar recorrido} en la pantalla \hyperref[fig:sub-c-iu2]{SUB-C-IU2-Consultar mapa}.
+		\item {[Actor]} Selecciona una gasolinera.
+		\item {[Sistema]} Obtiene del api de Google Maps la ruta para llegar a la gasolinera seleccionada.
+		\item {[Sistema]} Muestra la ruta en la pantalla \hyperref[fig:sub-c-iu2.1]{SUB-C-IU2.1-Realizar recorrido}.
+	\end{enumerate}
+	Fin del caso de uso.
+
+% \paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.1:TA}
+% 	El actor no se encuentra usando la aplicación móvil.
+% 	\begin{enumerate}[label=A\arabic*.]
+% 		\item {[Sistema]} Muestra una notificación al actor como la que se observa en la pantalla \hyperref[fig:sub-m-iu1.1.a]{SUB-M-IU1.1-Confirmar medición (a)}.
+% 		\item {[Actor]} Presiona la notificación.
+% 		\item {[Sistema]} Continúa en el paso \ref{SUB-M-CU1.1:Pantalla} de la Trayectoria Principal.
+% 	\end{enumerate}
+% 	Fin de la trayectoria alternativa.
