@@ -447,7 +447,7 @@
 
     	% Tipo de trabajo
 	    \makebox[6cm][s]{\huge Trabajo Terminal I}\\[6pt]
-	    2018-A041\\[5pt]
+	    2018-B042\\[5pt]
     	\textbf{{\@degree}}\\[30pt]
 
 	    % Título del trabajo
