@@ -5,14 +5,12 @@
 \section{Objetivos}
 
 \subsection{Objetivo general}
-Este trabajo tiene por objetivo desarrollar un prototipo de aplicación móvil para el sistema operativo Android en su versión 5 o posteriores, la cual permita consultar una clasificación de las gasolineras de la CDMX, elaborada mediante la comparación de la cantidad de gasolina que fue cargada a un automóvil con la cantidad de gasolina que el conductor del mismo solicitó.
+Este trabajo tiene por objetivo desarrollar un prototipo de sistema que permita monitorear el voltaje y la corriente de los usuarios de módulos de generación de energía fotovoltaica usando un sistema embebido para la recepción de la información recaudada por el sensor y el envió de estas para que la aplicación pueda desplegarla al usuario.
+
 \subsection{Objetivos específicos}
 \begin{enumerate}[label=\arabic*.]
-    \item Desarrollar una aplicación móvil que permita la recepción a través del puerto Bluetooth del celular, de los datos provenientes de un sensor que mida el flujo de gasolina que entra a un tanque de un automóvil.
-	\item Desarrollar una aplicación móvil que permita la comunicación con un servidor web a través de un API basada en la arquitectura REST.
-	\item Desarrollar un servidor web que permita realizar la clasificación de las gasolineras registradas en el sistema con base en los datos recibidos a través de una aplicación móvil.
-	\item Desarrollar una aplicación móvil que permita el registro de usuarios en el sistema, así como la asociación de estos con sus respectivos sensores.
-	\item Desarrollar una aplicación móvil que indique las gasolineras más cercanas y con las mejores clasificaciones de acuerdo con la geolocalización de los usuarios.
-	\item Implementar un dispositivo electrónico el cual permita medir el flujo de gasolina que entra al tanque de un automóvil al momento de recargar gasolina.
-	\item Implementar un dispositivo electrónico que transmita información a una aplicación móvil a través de un módulo Bluetooth.
+    \item Implementar un nodo sensor que permita monitorear una fuente de energía fotovoltaica.
+    \item Implementar el módulo para la transmisión de datos obtenidos por el sensor hacia el servidor, haciendo uso de un microcontrolador con módulo WiFi. 
+    \item Desarrollar una aplicación que permita al usuario visualizar los datos obtenidos, resultado del monitoreo de la fuente de energía fotovoltaica.
+    \item Documentar el trabajo realizado.
 \end{enumerate}
