@@ -2,68 +2,26 @@
 %                           Estado del arte                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Estado del arte}
-El problema de la exactitud al momento de suministrar combustible en una gasolinera ya ha sido abordado anteriormente por diversas instituciones tanto públicas como privadas.\\
+Actualmente, existen interfaces que permiten la conexión e incorporación de diversas fuentes de generación de energía a la red eléctrica, a tales interfaces se les conoce con el nombre de microrredes \citep{Microrredes}. Este nuevo esquema de generación se caracteriza por la flexibilidad y autonomía con la que operan estas microrredes. Es decir, que, en caso de fallos de la red de distribución, estas puedan proporcionar energía directamente al usuario, siendo con esto más flexibles que los esquemas de distribución de energía ya existentes.\\
 
-Actualmente, existen 3 proyectos que tienen una funcionalidad similar a la propuesta en el presente Trabajo Terminal:
+Para realizar el monitoreo de las microrredes se pueden emplear tecnologías de comunicación alámbricas e inalámbricas. En la división de tecnologías inalámbricas se encuentran las redes de sensores inalámbricas (WSN – Wireless Sensor Network).\\
+
+Una WSN consiste en nodos de sensores autónomos implementados en zonas de interés que tienen en común características como:
 \begin{itemize}
-	\item Full Me
-	\item Zenzzer
+	\item Procesamiento de datos
+	\item Capacidad de almacenamiento
+	\item Interfaces de comunicación inalámbrica
+	\item Consumo de energía limitada
 \end{itemize}
 
-La Tabla \ref{tabla_estado_arte} muestra un resumen de las características y precio de los sistemas mencionados.
-\begin{longtable}{|M{1.7cm}|M{4cm}|M{4.2cm}|M{1.6cm}|M{2.3cm}|}
-	\hline
-	\textbf{Producto o sistema} & \textbf{Descripción} & \textbf{Características} & \textbf{Precio}& \textbf{Estado actual}  \\ \hline
-	Full Me & Dispositivo electrónico que mide el flujo de combustible entrante en un tanque de gasolina de un automóvil, los resultados de la medición se pueden consultar mediante una aplicación móvil y la misma permite compartir los resultados en redes sociales. & 
-	%Caracteristicas
-	\begin{itemize}
-		\item Dispositivo electromecánico de medición de flujo
-		\item Interfaz de comunicación bluetooth
-		\item Aplicación Android
-		\item Compartes el resultado de la medición en redes sociales
-		\item Sensor: Dispositivo cilíndrico de 12 cm de largo
-	\end{itemize}
-	& Sin información
-	& Desarrollado como un prototipo de emprendimiento, no se encuentra en venta actualmente. \\ \hline
-	Zenzzer & Aplicación móvil que funciona como una red social para automovilistas, donde los mismos pueden consultar y compartir información sobre las gasolineras que visitan. La información es desplegada a los usuarios en un mapa interactivo. Además de la aplicación, es posible comprar un dispositivo llamado ZenzMetter el cual se conecta a la computadora del automóvil para obtener información sobre el mismo, la cual es mostrada en una aplicación móvil.
-	&
-	\begin{itemize}
-		\item Aplicación móvil disponible para Android 5.0 y posteriores
-		\item Conexión al puerto OBD2 del automóvil
-		\item Clasificación de las gasolineras por medio del precio de la gasolina
-		\item Permite visualizar en la aplicación la cantidad de litros cargados en tiempo real
-		\item Permite dejar comentarios de las gasolineras visitadas
-		\item Compatible con solo 20 modelos de vehículos
-	\end{itemize}
-	& Aplicación móvil: Gratuita. ZenzMetter: 1000 pesos.
-	& La empresa sigue en el mercado actualmente aunque solo es posible descargar la aplicación. El sensor ya no esta a la venta.
-	\\ \hline
-	Propuesta de sistema para medición de volumen de gasolina vía bluetooth &
-	El trabajo consta de un sensor de flujo que recauda la información en bruto del flujo de gasolina que pasa, una placa “Arduino Uno” que procesa los datos para enviarlos a el modulo Bluetooth y una aplicación Android, la cual muestra la información de la medición.
-	&
-	\begin{itemize}
-	\item Sensor de flujo modelo YF-S201
-	\item Aplicación móvil disponible para Android.
-	\item Módulo Bluetooth ZS-040
-	\item Microcontrolador Arduino Uno
-	\item Muestra los datos del volumen leído por el sensor en la aplicación Android
-	\end{itemize}
-	&
-	320 pesos
-	&
-	Solo fue desarrollado como un proyecto de académico en el año 2016.
-	\\ \hline
-	Trabajo Terminal 2018-A041 (Solución Propuesta) & Aplicación móvil que muestre la clasificación de gasolineras elaborada mediante la información obtenida de un sensor conectado al tanque de gasolina de un automóvil, esta clasificación se muestra en un mapa el cual se ajusta a la ubicación del usuario para así solo mostrar las gasolineras que se encuentren cercanas a él. 
-	&%Caracteristicas
-	\begin{itemize}
-		\item Aplicación móvil disponible para Android 5.0 y versiones posteriores
-		\item Mapa interactivo que muestra las gasolineras mejor calificadas según la precisión de carga de combustible.
-		\item Sensor de flujo de gasolina modelo FS400A-G.
-		\item Visualización de la cantidad de combustible cargado en la aplicación.
-		\item Uso de geolocalización para mostrar las gasolineras mejor calificadas cerca de la ubicación del usuario.
-	\end{itemize}
-	& Sensor: 700 pesos. Aplicación móvil: Gratuita.&
-	Actualmente se encuentra en desarrollo. \\ \hline
-	\caption{Estado del arte}
-	\label{tabla_estado_arte}
-\end{longtable}
+Estos nodos sensores son un sistema computacional diseñado con hardware y software especialmente para realizar tareas específicas logrando así obtener beneficios en desempeño, costo y usabilidad del sistema, por lo que se le denomina un sistema embebido \citep{SistemaEmbebido}. A continuación, se hace mención de algunos de los trabajos de investigación que hacen referencia al uso de estas tecnologías:\\
+
+\begin{itemize}
+	\item En \citep{EstadoDelArte1} se propone el monitoreo autónomo de voltaje y corriente con el propósito de alertar fallas de cortocircuito, descargas o sobrealimentación de voltaje, también tiene la capacidad de controlar circuitos de protección cuando estas fallas acontezcan, esto es logrado colocando transductores (en este caso, sensores de efecto Hall) en las áreas de interés de la microrred , el acondicionamiento de la señal y procesamiento están a cargo de un microcontrolador, el envío de los datos adquiridos por medio de un arduino uno y un módulo de internet y finalmente enviando los datos a la plataforma de IoT Ubidots. 
+
+    \item En \citep{EstadoDelArte2} se propone el monitoreo y control de una microrred simulada, donde el modelo de microrred es simulado por medio de MATLAB en una computadora que solo tendrá esa tarea, se ocupa un DAQ (Acondicionador de señales  y convertidor Analógico-Digital) para obtener los datos generados y son enviadas a un PLC (Controlador Lógico Programable) que está conectado al DAQ, este se encarga de guardar y escanear continuamente las variables de la microrred para ser monitoreadas en el sistema SCADA (Supervisión, Control y Adquisición de Datos) Honeywell Experion PKS.
+
+    \item En \citep{EstadoDelArte3} se propone un sistema de gestión de microrredes basado en WiFi, donde el sistema de control y sensado de la microrred es manejado por un software ya existente y sensores de potencia eléctrica (En conjunto denominado como Dispositivo de control) que está conectado por medio de un cable ethernet a un módulo inalámbrico que enviará los datos a un Router que se encargará de capturar los datos de los módulos conectados a la WLAN (Red de Área Local Inalámbrica) para que el servidor los almacene en la base de datos y puedan ser accedidos posteriormente. 
+
+    \item En \citep{EstadoDelArte4} el sistema de control y monitoreo propuesto, está conformado por un subsistema capaz de monitorear hasta 18 circuitos sobre un rango de voltajes y corrientes, y es capaz de almacenar la información de manera interna o bien cargarla a un servidor remoto. Cabe señalar que el almacenamiento de la información se realiza en intervalos de 5 minutos en un archivo CSV, el cual es enviado a través de HTTP Push a una Raspberry Pi la cual tiene la función de controlador principal. A su vez, en la Raspberry Pi se ejecuta Tornado, un programa de servidor web que implementa la API Restful, de esta forma es como se acepta la información recolectada de los sensores, así como hacer llamadas RESTful para comunicarse con el resto de la arquitectura.
+\end{itemize}
