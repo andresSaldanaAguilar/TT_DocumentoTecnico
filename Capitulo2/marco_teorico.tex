@@ -7,10 +7,110 @@ El presente Trabajo Terminal tiene como objetivo el desarrollo de un prototipo d
 \paragraph{}
 Dado que este trabajo terminal emplea conceptos de diversas áreas de la Ingeniería en Sistemas Computacionales, resulta fundamental dar una serie de definiciones previas que permitan un mejor entendimiento del documento.
 
-\section{Gasolineras y su funcionamiento}
-Primeramente, es necesario conocer los conceptos relacionados con una gasolinera, así como el estado actual de estos establecimientos en nuestro país.
+\section{Sistema Fotovoltaico}
+Un sistema fotovoltaico es un conjunto de dispositivos que aprovechan la energía producida por el sol y la convierten en energía eléctrica \citep{MarcoTeorico1}. Un sistema fotovoltaico puede ser “interconectado” para residencias o negocios con acceso a la red eléctrica de la CFE. 
 \paragraph{}
-Comenzaremos con la definición de gasolinera o estación de servicio. En el español general, la voz más usual para referirse al ‘depósito de gasolina para la venta al público’ o al ‘establecimiento donde se vende gasolina’ es gasolinera \citep{MarcoTeorico1}. 
+Con este sistema la energía generada se inyecta a la red eléctrica, disminuyendo así el consumo de energía de la compañía de luz. La otra opción es un sistema “isla” que permite el suministro de energía eléctrica en lugares inaccesibles para la red eléctrica. Estos sistemas son usados principalmente en casas de campo o en antenas de telecomunicación.
+\paragraph{}
+La particularidad de la corriente eléctrica generada por el efecto fotovoltaico es que esta corriente es continua, por lo cual el inversor transforma la corriente continua en alterna al estándar de la Norma Oficial Mexicana NOM-001-SEDE-2012 de Instalaciones Eléctricas (127 Volts a 60 Hertz) \citep{NORMA-Electrica} para poder ser alimentada a la red eléctrica, a continuación se muestra un diagrama de una instalación de un sistema fotovoltaico:
+
+\paragraph{Panel fotovoltaico}
+Los paneles fotovoltaicos, llamados comúnmente paneles solares, están formados por un conjunto de células fotovoltaicas que producen electricidad a partir de la luz que incide sobre ellos mediante el efecto fotoeléctrico.
+\paragraph{}
+El efecto consiste en la capacidad de algunos materiales (llamados semiconductores) de captar una parte de la energía de la luz para generar corriente eléctrica. En concreto, son los fotones los cuales transmiten una parte de su energía a ciertos electrones del material semiconductor. Estos electrones se “excitan”, y empiezan a fluir debido a la diferencia de potencial creando así corriente eléctrica \citep{MarcoTeorico2}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.50]{Capitulo2/images/celula-fotovoltaica.jpg}
+	\caption{Ilustración del Efecto Fotoeléctrico}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+
+\paragraph{}
+Los paneles fotovoltaicos se clasifican en función del tipo de célula que los forman, hay células cristalinas y amorfas, las células cristalinas se dividen de la siguiente forma :
+
+\begin{itemize}
+	\item Monocristalinas: se componen de secciones de un único cristal de silicio reconocibles por su forma circular u octogonal.
+	\item Policristalinas: cuando están formadas por pequeñas partículas cristalizadas.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.50]{Capitulo2/images/tipospaneles.jpg}
+	\caption{De izquierda a derecha, célula monocristalina y célula policristalina}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+
+El costo de los paneles fotovoltaicos se ha reducido de forma constante desde que se fabricaron las primeras células solares comerciales y su coste medio de generación eléctrica ya es competitivo con las fuentes de energía convencionales en un creciente número de regiones geográficas.
+Los paneles fotovoltaicos pueden llegar a generar gran cantidad de energía ya que en un día soleado el Sol puede irradiar alrededor de 1kw por metro cuadrado a la superficie de la tierra, que sumado a la eficacia de estos paneles puede llegar a generar entre 120 y 250 w de manera constante por metro cuadrado, siempre dependiendo del tipo de panel y de su nivel de eficiencia.
+
+\paragraph{Módulo Fotovoltaico 250W Policristalino IUSA}
+Módulo fotovoltaico con 60 celdas en silicio policristalino, vidrio templado anti reflejante de 3.2 mm, caja de conexión IP67 con 3 diodos bypass y conectores compatibles con MC4.
+Tiene una potencia máxima de 250W y un voltaje máximo de 30.6V, con una eficiencia del 15.1 porciento y temperatura de operación entre los -40ºC a los 85ºC. \citep{MarcoTeorico3}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo2/images/panel.png}
+	\caption{Esquema del Panel Fotovoltaico, A: 166 cm, B: 99 cm. C: 4.6 cm}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+
+\paragraph{Microinversor de corriente CC/CA para módulo fotovoltaico M1-01-250}
+Diseñado específicamente para interconexiones en el sistema de distribución mexicano, con una salida de 127 V a 60 Hz CA y conector MC4 para conectar el panel solar \citep{MarcoTeorico3}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo2/images/microinversor.png}
+	\caption{Esquema del Panel Fotovoltaico, A: 166 cm, B: 99 cm. C: 4.6 cm}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+ 
+\section{MIKROE-2542}
+
+MIKROE-2542 es una placa con un adaptador tipo mikroBUS que integra el modulo ESP-WROOM-02, este último esta compuesto por una antena PCB y el chip ESP8266EX \citep{MarcoTeorico5}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo2/images/mikroe.png}
+	\caption{Placa MIKROE-2542}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+\paragraph{}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo2/images/wroom.png}
+	\caption{Modulo ESP-WROOM-02}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+
+
+\paragraph{MikroBUS}
+Es un estándar de distribución de los pines para la conexión y comunicación entre un microcontrolador o microprocesador con circuitos integrados o módulos, permitiendo así extender las capacidades de los mismos, este estándar incluye los pines requeridos por las tarjetas de desarrollo más actuales \citep{MarcoTeorico5}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo2/images/mikrobus.png}
+	\caption{Distribucion de pines tipo Mikrobus}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+\paragraph{}
+
+\paragraph{ESP8266}
+El ESP8266 es un SoC Wi-Fi \citep{MarcoTeorico7} (System on Chip: integra todos o gran parte de los módulos que componen un sistema electrónico en un único circuito integrado) compuesto por una pila TCP/IP y un microcontrolador \citep{MarcoTeorico8}.
+\paragraph{}
+
+Este módulo permite a otros microcontroladores conectarse a un red inalámbrica Wi-Fi y realizar conexiones simples con TCP/IP haciendo uso eficiente de energía, lo cual lo hace ideal para proyectos de IoT.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo2/images/esp8266.png}
+	\caption{Diagrama esquemático del chip esp8266}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+\paragraph{}
+
+\section{Demonio / Servicio}
+Un demonio o servicio es un programa que se ejecuta en segundo plano, fuera del control interactivo de los usuarios del sistema ya que carecen de interfaz con estos. El término demonio se usa fundamentalmente en sistemas UNIX y basados en UNIX, como GNU/Linux o Mac OS X \citep{MarcoTeorico4}.
 
 Una vez que se ha identificado el concepto de gasolinera podemos empezar a citar datos estadísticos que concuerden con estos establecimientos, a continuación, se citan algunas cifras importantes que nos dan un panorama del número de gasolineras en el país y su relación con respecto al número de automóviles en circulación. En el año 2017 se registraron más de 12,000 gasolineras en todo México, estos establecimientos dan servicio a aproximadamente 43 millones de vehículos en circulación, es decir,  que cada gasolinera debe abastecer a cerca de 3,652 vehículos.  Traducido de otra forma, hay en promedio una gasolinera por cada 10 mil 514 habitantes, de acuerdo a la Comisión Reguladora de Energía (CRE)\citep{MarcoTeorico2}.
 \paragraph{}
