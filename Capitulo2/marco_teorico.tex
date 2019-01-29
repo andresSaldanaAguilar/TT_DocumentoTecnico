@@ -12,7 +12,14 @@ Un sistema fotovoltaico es un conjunto de dispositivos que aprovechan la energí
 \paragraph{}
 Con este sistema la energía generada se inyecta a la red eléctrica, disminuyendo así el consumo de energía de la compañía de luz. La otra opción es un sistema “isla” que permite el suministro de energía eléctrica en lugares inaccesibles para la red eléctrica. Estos sistemas son usados principalmente en casas de campo o en antenas de telecomunicación.
 \paragraph{}
-La particularidad de la corriente eléctrica generada por el efecto fotovoltaico es que esta corriente es continua, por lo cual el inversor transforma la corriente continua en alterna al estándar de la Norma Oficial Mexicana NOM-001-SEDE-2012 de Instalaciones Eléctricas (127 Volts a 60 Hertz) \citep{NORMA-Electrica} para poder ser alimentada a la red eléctrica, a continuación se muestra un diagrama de una instalación de un sistema fotovoltaico:
+La particularidad de la corriente eléctrica generada por el efecto fotovoltaico es que esta corriente es continua, por lo cual el inversor transforma la corriente continua en alterna al estándar de la Norma Oficial Mexicana NOM-001-SEDE-2012 de Instalaciones Eléctricas (127 Volts a 60 Hertz) \citep{NORMA-Electrica} para poder ser alimentada a la red eléctrica, a continuación se muestra el diagrama de una instalación de un sistema fotovoltaico:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.1]{Capitulo2/images/sistema-fotovoltaico.jpg}
+	\caption{Sistema Fotovoltaico Propuesto por el Fabricante IUSA}
+	\label{fig:diagrama_dispensador}
+\end{figure}
 
 \paragraph{Panel fotovoltaico}
 Los paneles fotovoltaicos, llamados comúnmente paneles solares, están formados por un conjunto de células fotovoltaicas que producen electricidad a partir de la luz que incide sobre ellos mediante el efecto fotoeléctrico.
@@ -113,11 +120,51 @@ Es un estándar de distribución de los pines para la conexión y comunicación 
 \end{figure}
 \paragraph{}
 
+\paragraph{IIC}
+IIC es una interfaz serial síncrona de comunicación, la cual es útil para comunicarse  con otros periféricos y microcontroladores, fue desarrollada por Philips Semiconductors.
+Estos periféricos pueden ser: Memorias seriales EEPROMS, registros de corrimiento, expansores de puerto, ADC's, DAC's entre otros \citep{MarcoTeorico17}.
+\paragraph{}
+Solo se utilizan dos lineas para comunicación:
+\begin{itemize}
+	\item Una linea de datos serial (SDA)
+    \item Una línea de reloj serial (SCL), que siempre es generada por el maestro.
+\end{itemize}
+
+Cada dispositivo conectado al bus es reconocido por una única dirección, el bus maneja una arquitectura maestro-esclavo, el maestro trabaja como transmisor o receptor donde el maestro inicia y termina la transferencia de información.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.35]{Capitulo2/images/I2C-Interface.png}
+	\caption{Diagrama ejemplificativo de interfaz IIC}
+	\label{fig:}
+\end{figure}
+
+Entre las características principales están:
+\begin{itemize}
+	\item Se pueden realizar transferencias seriales bidireccionales de 8 bits.
+    \item Se proporciona filtrado en Chip para eliminar picos en la linea de datos y preservar integridad de datos.
+    \item El número de circuitos integrados que pueden ser conectados al bus esta limitado a la capacitancia máxima del bus.
+    \item Modo estándar de operación (Standard Mode). Con velocidad de hasta 100 kbps.
+    \item Modo rápido de operación  (Fast mode). Con velocidad de hasta 400 kbps.3. \item Modo rápido más de operación (Fast mode plus). Con velocidad de hasta 1 Mbps.
+\end{itemize}
+
+Para que la transferencia de información pueda ser iniciada el bus debe estar libre. Todas las transacciones comienzan con START y pueden ser terminadas por un STOP.
+Una transición de alto a bajo en la linea SDA mientras SCL es alto define una condición de START.
+Una transición de bajo a alto en la linea SDA mientras SCL es alto define una condición de STOP.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo2/images/startstop.png}
+	\caption{Protocolo de START y STOP}
+	\label{fig:}
+\end{figure}
+
+
 \paragraph{ESP8266}
 El ESP8266 es un SoC Wi-Fi \citep{MarcoTeorico7} (System on Chip: integra todos o gran parte de los módulos que componen un sistema electrónico en un único circuito integrado) compuesto por una pila TCP/IP y un microcontrolador \citep{MarcoTeorico8}.
 \paragraph{}
 
-Este módulo permite a otros microcontroladores conectarse a un red inalámbrica Wi-Fi y realizar conexiones simples con TCP/IP haciendo uso eficiente de energía, lo cual lo hace ideal para proyectos de IoT. A continuación se muestra un a comparativa con otros módulos WiFi, la elección de este modulo es debido a que tiene solamente las características de comunicación de WiFi necesarias y  suficientes para la aplicación a desarrollar, además de un costo promedio:
+Este módulo permite a otros microcontroladores conectarse a un red inalámbrica Wi-Fi y realizar conexiones simples con TCP/IP haciendo uso eficiente de energía, lo cual lo hace ideal para proyectos de IoT. A continuación se muestra un a comparativa con otros módulos WiFi, la elección de este modulo es debido a que tiene solamente las características de comunicación WiFi e IIC necesarias y suficientes para la aplicación a desarrollar, además de un costo promedio:
 
 \begin{figure}[H]
 	\centering
@@ -165,12 +212,12 @@ Este módulo permite a otros microcontroladores conectarse a un red inalámbrica
 	
 	Hardware &
     \newline  -CPU Tensilica L106 32-bit processor
-    \newline  -Interfaz Periférica UART/SDIO/SPI/I2C/I2S/IR Control Remoto
+    \newline  -Interfaz Periférica UART/SDIO/SPI/IIC/I2S/IR Control Remoto
     \newline  -Intefaces GPIO/ADC/PWM/LED Light
     \newline  -Voltaje de operación entre 2.5V ~ 3.6V
     &
     \newline  -CPU ESP32-PICO-D4
-    \newline  -Interfaz Periférica ADC, DAC, sensor touch, SD/SDIO/MMC Host Controller, SPI, SDIO/SPI Controlador Esclavo, EMAC, motor PWM, LED PWM, UART, I2C, I2S, Control Remoto Infrarojo 
+    \newline  -Interfaz Periférica ADC, DAC, sensor touch, SD/SDIO/MMC Host Controller, SPI, SDIO/SPI Controlador Esclavo, EMAC, motor PWM, LED PWM, UART, IIC, I2S, Control Remoto Infrarojo 
     \newline  -Voltaje de operación entre 2.5V ~ 3.6V
     \newline  -Sensor Hall integrado
     \newline  -Cristal de 40 MHz
@@ -193,6 +240,8 @@ Este módulo permite a otros microcontroladores conectarse a un red inalámbrica
 \end{longtable}
 
 \pagebreak
+
+\paragraph{}
 
 \section{Demonio / Servicio}
 Un demonio o servicio es un programa que se ejecuta en segundo plano, fuera del control interactivo de los usuarios del sistema ya que carecen de interfaz con estos. El término demonio se usa fundamentalmente en sistemas UNIX y basados en UNIX, como GNU/Linux o Mac OS X \citep{MarcoTeorico4}.
