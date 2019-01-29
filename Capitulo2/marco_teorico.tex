@@ -302,9 +302,81 @@ Por lo general, los sistemas embebidos al ofrecer como ventaja la realización d
 \paragraph{}
 Los sistemas embebidos suelen tener en una de sus partes una computadora con características especiales conocida como microcontrolador que viene a ser el cerebro del sistema, el cual incluye interfaces de entrada/salida en el mismo chip. Normalmente estos sistemas poseen un interfaz externo para efectuar un monitoreo del estado y hacer un diagnóstico del sistema.\citep{MarcoTeorico15}
 \paragraph{}
-Los sistemas embebidos se encuentran implementados en placas únicas (SBC como una Raspberry) y sobre estas se encuentran integrados los recursos de hardware como el microprocesador, la memoria RAM, controladores ethernet, etc.\citep{MarcoTeorico14}
+Los sistemas embebidos pueden ser implementados en placas únicas (SBC) y sobre estas se encuentran integrados los recursos de hardware como el microprocesador, la memoria RAM, controladores ethernet, etc.\citep{MarcoTeorico14}
+\paragraph{SBC}
+SBC por sus siglas en inglés, Single Board Computer es, como su nombre lo indica, una Computadora de Placa Única, lo cual implica que tiene la totalidad o cumple con la mayoría de las características que tienen las computadoras personales pero en una placa de circuito; sin embargo al tratarse de una placa, es de menores dimensiones así como de un precio relativamente más bajo.
+\paragraph{}
+Dependiendo el tipo de SBC, pueden llegar a ejecutar como Sistema Operativo Linux, Android o Windows. También cuentan con puertos de Entrada/Salida de propósito general, los cuales permiten la comunicación con otros dispositivos.\citep{MarcoTeorico18}  
+\paragraph{}
+Algunos ejemplos de SBC son la Raspberry Pi, Banana Pi, BeagleBone Black, PcDuino, entre otros.
+\paragraph{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.8]{Capitulo2/images/bananaPi.jpg}
+	\caption{Banana Pi}
+	\label{fig:diagrama_dispMonitoreo}
+\end{figure}
 
+\paragraph{}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.26]{Capitulo2/images/raspberry.png}
+	\caption{Raspberry Pi}
+	\label{fig:diagrama_dispMonitoreo}
+\end{figure}
 
+%\pagebreak
+%\begin{table}{|M{3.0cm}|M{4.5cm}|M{4.5cm}}
+\begin{table}[!hbt]
+	% \centering
+	 \begin{tabular}{|M{3.0cm}|M{4.5cm}|M{4.5cm}|}
+	\hline
+	\textbf{Característica} & \textbf{Banana Pi} & \textbf{Raspberry Pi} \\ 
+	\hline
+ 	Procesador & ARM Cortex A7 Dual Core & ARM Cortex-A7 Quad Core \\
+ 	\hline
+    GPU & Dual Core Mali-400 MP2 & VideCore IV Dual-Core\\
+    \hline
+    RAM & 1GB & 1GB SDRAM LPDDR2 \\
+	\hline
+	Tarjeta de Red & 10/100/1000 & 10/100\\
+	\hline
+	Almacenamiento & SD, HDD Sata 2.5''5V & Micro SD\\
+	\hline
+	Salida Video & HDMI, RCA, Conector LVDS en placa & HDMI\\
+    \hline
+    Salida Audio 
+    & 
+    \newline - HDMI 
+    \newline - Jack 3.5 estéreo
+    \newline - Entrada micrófono en placa 
+    & 
+    \newline - HDMI
+    \newline - Jack 3.5 estéreo \\
+    \hline
+    USB & 
+    \newline - 2x USB 2.0 
+    \newline - 1x micro USB OTG
+    \newline - 1x micro USB alimentación 
+    & 
+    \newline - 4x USB 2.0
+    \newline - 1x micro USB alimentación \\
+    \hline
+    Sistema Operativo 
+    & 
+    \newline - Raspbian
+    \newline - NetBSD
+    \newline - Android
+    \newline - Debian 
+    &
+    \newline - Linux
+    \newline - Raspbian
+    \newline - Pidora \\
+    \hline
+	\end{tabular}
+	\caption{Comparativa Banana Pi contra Raspberry Pi}
+	%\label{tabla_riesgos}
+\end{table}
 
 \section{Microcontroladores}
 Hoy en día, los conteos de producción de microcontroladores son de miles de millones por año, y los controladores están integrados en muchos dispositivos a los que nos hemos acostumbrado, como electrodomésticos (microondas, lavadora, cafetera, etc.), telecomunicaciones (teléfonos móviles), industria automotriz (inyección de combustible, frenado ABS, etc.), industria aeroespacial, automatización industrial, entre otros.
