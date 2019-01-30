@@ -8,7 +8,7 @@ El presente Trabajo Terminal tiene como objetivo el desarrollo de un prototipo d
 Dado que este trabajo terminal emplea conceptos de diversas áreas de la Ingeniería en Sistemas Computacionales, resulta fundamental dar una serie de definiciones previas que permitan un mejor entendimiento del documento.
 
 \section{Sistema Fotovoltaico}
-Un sistema fotovoltaico es un conjunto de dispositivos que aprovechan la energía producida por el sol y la convierten en energía eléctrica \citep{MarcoTeorico1}. Un sistema fotovoltaico puede ser “interconectado” para residencias o negocios con acceso a la red eléctrica de la CFE. 
+Un sistema fotovoltaico es un conjunto de dispositivos que aprovechan la energía producida por el Sol y la convierten en energía eléctrica \citep{MarcoTeorico1}. Un sistema fotovoltaico puede ser “interconectado” para residencias o negocios con acceso a la red eléctrica de la CFE. 
 \paragraph{}
 Con este sistema la energía generada se inyecta a la red eléctrica, disminuyendo así el consumo de energía de la compañía de luz. La otra opción es un sistema “isla” que permite el suministro de energía eléctrica en lugares inaccesibles para la red eléctrica. Estos sistemas son usados principalmente en casas de campo o en antenas de telecomunicación.
 \paragraph{}
@@ -49,7 +49,7 @@ Los paneles fotovoltaicos se clasifican en función del tipo de célula que los 
 \end{figure}
 
 El costo de los paneles fotovoltaicos se ha reducido de forma constante desde que se fabricaron las primeras células solares comerciales y su coste medio de generación eléctrica ya es competitivo con las fuentes de energía convencionales en un creciente número de regiones geográficas.
-Los paneles fotovoltaicos pueden llegar a generar gran cantidad de energía ya que en un día soleado el Sol puede irradiar alrededor de 1kw por metro cuadrado a la superficie de la tierra, que sumado a la eficacia de estos paneles puede llegar a generar entre 120 y 250 w de manera constante por metro cuadrado, siempre dependiendo del tipo de panel y de su nivel de eficiencia.
+Los paneles fotovoltaicos pueden llegar a generar gran cantidad de energía ya que en un día soleado, el Sol puede irradiar alrededor de 1kw por metro cuadrado a la superficie de la tierra, que sumado a la eficacia de estos paneles puede llegar a generar entre 120 y 250 w de manera constante por metro cuadrado, siempre dependiendo del tipo de panel y de su nivel de eficiencia.
 
 \paragraph{Módulo Fotovoltaico 250W Policristalino IUSA}
 Módulo fotovoltaico con 60 celdas en silicio policristalino, vidrio templado anti reflejante de 3.2 mm, caja de conexión IP67 con 3 diodos bypass y conectores compatibles con MC4.
@@ -68,7 +68,7 @@ Diseñado específicamente para interconexiones en el sistema de distribución m
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.25]{Capitulo2/images/microinversor.png}
-	\caption{Esquema del Panel Fotovoltaico, A: 166 cm, B: 99 cm. C: 4.6 cm}
+	\caption{Microinversor M1-01-250}
 	\label{fig:diagrama_dispensador}
 \end{figure}
  
@@ -81,18 +81,18 @@ Diseñado específicamente para interconexiones en el sistema de distribución m
  \paragraph{}
  Los estándares inalámbricos son la base de muchos productos inalámbricos, lo que asegura su interoperabilidad y su usabilidad por parte de los que desarrollan, instalan y gestionan redes inalámbricas. Los estándares usados en la mayoría de las redes fueron establecidos por los grupos de trabajo 802 del IEEE. Los equipos de la familia de estándares 802.11 son, con mucho, los más fabricados e instalados para enlaces inalámbricos tanto de interiores como de exteriores. Las interfaces inalámbricas deben concordar en un canal común. Si un dispositivo está sintonizado en el canal 2, mientras que otra lo está en el canal 11, los radios no se podrán comunicar; de esto es lo que se encarga la familia de estándares 802.11 \citep{MarcoTeoricoWifi}.
 \paragraph{}
-Las redes wifi poseen una serie de ventajas, entre las cuales podemos destacar:
+Las redes Wi-Fi poseen una serie de ventajas, entre las cuales podemos destacar:
 \begin{itemize}
 	\item Al ser redes inalámbricas, la comodidad que ofrecen es muy superior a las redes cableadas porque cualquiera que tenga acceso a la red puede conectarse desde distintos puntos dentro de un espacio lo bastante amplio.
-    \item Una vez configuradas, las redes wifi permiten el acceso de múltiples dispositivos sin ningún problema ni gasto en infraestructura, ni gran cantidad de cables.
-    \item Asegura que la compatibilidad entre dispositivos es total, con lo que en cualquier parte del mundo podremos utilizar la tecnología wifi con una compatibilidad absoluta. 
+    \item Una vez configuradas, las redes Wi-Fi permiten el acceso de múltiples dispositivos sin ningún problema ni gasto en infraestructura, ni gran cantidad de cables.
+    \item Asegura que la compatibilidad entre dispositivos es total, con lo que en cualquier parte del mundo podremos utilizar la tecnología Wi-Fi con una compatibilidad absoluta. 
 \end{itemize}
  
  
  
-\section{MIKROE-2542}
+\section{Módulo Wi-Fi MIKROE-2542}
 
-MIKROE-2542 es una placa con un adaptador tipo mikroBUS que integra el modulo ESP-WROOM-02, este último esta compuesto por una antena PCB y el chip ESP8266EX \citep{MarcoTeorico5}.
+MIKROE-2542 es una placa con un adaptador tipo mikroBUS que integra el módulo ESP-WROOM-02, este último está compuesto por una antena PCB y el chip ESP8266EX \citep{MarcoTeorico5}.
 
 \begin{figure}[H]
 	\centering
@@ -105,7 +105,7 @@ MIKROE-2542 es una placa con un adaptador tipo mikroBUS que integra el modulo ES
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.25]{Capitulo2/images/wroom.png}
-	\caption{Modulo ESP-WROOM-02}
+	\caption{Módulo ESP-WROOM-02}
 	\label{fig:diagrama_dispensador}
 \end{figure}
 
@@ -115,22 +115,22 @@ Es un estándar de distribución de los pines para la conexión y comunicación 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.25]{Capitulo2/images/mikrobus.png}
-	\caption{Distribucion de pines tipo Mikrobus}
+	\caption{Distribución de pines tipo MikroBUS}
 	\label{fig:diagrama_dispensador}
 \end{figure}
 \paragraph{}
 
 \paragraph{IIC}
 IIC es una interfaz serial síncrona de comunicación, la cual es útil para comunicarse  con otros periféricos y microcontroladores, fue desarrollada por Philips Semiconductors.
-Estos periféricos pueden ser: Memorias seriales EEPROMS, registros de corrimiento, expansores de puerto, ADC's, DAC's entre otros \citep{MarcoTeorico17}.
+Estos periféricos pueden ser: Memorias seriales EEPROMS, registros de corrimiento, expansores de puerto, ADC's, DAC's, entre otros \citep{MarcoTeorico17}.
 \paragraph{}
-Solo se utilizan dos lineas para comunicación:
+Sólo se utilizan dos líneas para comunicación:
 \begin{itemize}
-	\item Una linea de datos serial (SDA)
+	\item Una línea de datos serial (SDA)
     \item Una línea de reloj serial (SCL), que siempre es generada por el maestro.
 \end{itemize}
 
-Cada dispositivo conectado al bus es reconocido por una única dirección, el bus maneja una arquitectura maestro-esclavo, el maestro trabaja como transmisor o receptor donde el maestro inicia y termina la transferencia de información.
+Cada dispositivo conectado al bus es reconocido por una única dirección, el bus maneja una arquitectura maestro-esclavo, el maestro trabaja como transmisor o receptor, donde el maestro inicia y termina la transferencia de información.
 
 \begin{figure}[H]
 	\centering
@@ -142,15 +142,15 @@ Cada dispositivo conectado al bus es reconocido por una única dirección, el bu
 Entre las características principales están:
 \begin{itemize}
 	\item Se pueden realizar transferencias seriales bidireccionales de 8 bits.
-    \item Se proporciona filtrado en Chip para eliminar picos en la linea de datos y preservar integridad de datos.
-    \item El número de circuitos integrados que pueden ser conectados al bus esta limitado a la capacitancia máxima del bus.
+    \item Se proporciona filtrado en Chip para eliminar picos en la línea de datos y preservar integridad de datos.
+    \item El número de circuitos integrados que pueden ser conectados al bus está limitado a la capacitancia máxima del bus.
     \item Modo estándar de operación (Standard Mode). Con velocidad de hasta 100 kbps.
-    \item Modo rápido de operación  (Fast mode). Con velocidad de hasta 400 kbps.3. \item Modo rápido más de operación (Fast mode plus). Con velocidad de hasta 1 Mbps.
+    \item Modo rápido de operación  (Fast mode). Con velocidad de hasta 400 kbps. \item Modo más rápido de operación (Fast mode plus). Con velocidad de hasta 1 Mbps.
 \end{itemize}
 
-Para que la transferencia de información pueda ser iniciada el bus debe estar libre. Todas las transacciones comienzan con START y pueden ser terminadas por un STOP.
-Una transición de alto a bajo en la linea SDA mientras SCL es alto define una condición de START.
-Una transición de bajo a alto en la linea SDA mientras SCL es alto define una condición de STOP.
+Para que la transferencia de información pueda ser iniciada, el bus debe estar libre. Todas las transacciones comienzan con START y pueden ser terminadas por un STOP.
+Una transición de alto a bajo en la línea SDA mientras SCL es alto, define una condición de START.
+Una transición de bajo a alto en la línea SDA mientras SCL es alto, define una condición de STOP.
 
 \begin{figure}[H]
 	\centering
@@ -164,12 +164,12 @@ Una transición de bajo a alto en la linea SDA mientras SCL es alto define una c
 El ESP8266 es un SoC Wi-Fi \citep{MarcoTeorico7} (System on Chip: integra todos o gran parte de los módulos que componen un sistema electrónico en un único circuito integrado) compuesto por una pila TCP/IP y un microcontrolador \citep{MarcoTeorico8}.
 \paragraph{}
 
-Este módulo permite a otros microcontroladores conectarse a un red inalámbrica Wi-Fi y realizar conexiones simples con TCP/IP haciendo uso eficiente de energía, lo cual lo hace ideal para proyectos de IoT. A continuación se muestra un a comparativa con otros módulos WiFi, la elección de este modulo es debido a que tiene solamente las características de comunicación WiFi e IIC necesarias y suficientes para la aplicación a desarrollar, además de un costo promedio:
+Este módulo permite a otros microcontroladores conectarse a un red inalámbrica Wi-Fi y realizar conexiones simples con TCP/IP haciendo uso eficiente de energía, lo cual lo hace ideal para proyectos de IoT. A continuación, se muestra una comparativa con otros módulos WiFi, la elección de este módulo es debido a que tiene solamente las características de comunicación WiFi necesarias y suficientes para la aplicación a desarrollar, además de un costo promedio:
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.25]{Capitulo2/images/esp8266.png}
-	\caption{Diagrama esquemático del chip esp8266}
+	\includegraphics[scale=.4]{Capitulo2/images/esp8266.png}
+	\caption{Diagrama esquemático del chip ESP8266}
 	\label{fig:diagrama_dispensador}
 \end{figure}
 
@@ -244,16 +244,16 @@ Este módulo permite a otros microcontroladores conectarse a un red inalámbrica
 \paragraph{}
 
 \section{Demonio / Servicio}
-Un demonio o servicio es un programa que se ejecuta en segundo plano, fuera del control interactivo de los usuarios del sistema ya que carecen de interfaz con estos. El término demonio se usa fundamentalmente en sistemas UNIX y basados en UNIX, como GNU/Linux o Mac OS X \citep{MarcoTeorico4}.
+Un demonio o servicio es un programa que se ejecuta en segundo plano, fuera del control interactivo de los usuarios del sistema, ya que carecen de interfaz con estos. El término demonio se usa fundamentalmente en sistemas UNIX y basados en UNIX, como GNU/Linux o Mac OS X \citep{MarcoTeorico4}.
 
 \section{Yocto}
 Yocto Project (YP) es un proyecto de colaboración de código abierto que ayuda a los desarrolladores a crear sistemas personalizados basados en Linux, independientemente de la arquitectura del hardware.
 \paragraph{}
-El proyecto proporciona un conjunto flexible de herramientas y un espacio donde desarrolladores de todo el mundo pueden compartir tecnologías, pilas de software, configuraciones y mejores prácticas que se pueden usar para crear imágenes de Linux personalizadas para dispositivos IOT e integrados, o en cualquier lugar donde se necesite un sistema operativo Linux personalizado \citep{MarcoTeoricoYocto}.
+El proyecto proporciona un conjunto flexible de herramientas y un espacio donde desarrolladores de todo el mundo pueden compartir tecnologías, pilas de software, configuraciones y mejores prácticas que se pueden usar para crear imágenes de Linux personalizadas para dispositivos IoT e integrados, o en cualquier lugar donde se necesite un sistema operativo Linux personalizado \citep{MarcoTeoricoYocto}.
 \paragraph{}
 De igual manera proporciona un estándar para entregar soporte de hardware y pilas de software, permitiendo el intercambio de configuraciones y compilaciones de software. Las herramientas permiten a los usuarios crear y admitir personalizaciones para múltiples plataformas de hardware y pilas de software de una manera mantenible y escalable.
 \paragraph{}
-Un conjunto de herramientas integradas para que el trabajo con Linux incorporado sea exitoso, que incluye herramientas para la creación y prueba automatizadas, procesos para el soporte de la placa y el cumplimiento de licencias, e información de componentes para sistemas operativos integrados basados en Linux personalizados.
+Un conjunto de herramientas integradas para que el trabajo con Linux incorporado sea exitoso, que incluye herramientas para la creación y prueba automatizadas, procesos para el soporte de la placa y el cumplimiento de licencias e información de componentes para sistemas operativos integrados basados en Linux personalizados.
 \paragraph{}
 El sistema de compilación OpenEmbedded, mantenido conjuntamente con el proyecto OpenEmbedded, que es donde se derivan el sistema de compilación y algunos de los metadatos, los cuales se usan para construir una distribución de Linux, contenida en los archivos que el sistema de compilación analiza al crear una imagen. En general, los metadatos incluyen archivos de configuración y otra información relacionada con las propias instrucciones de compilación, así como los datos utilizados para controlar qué cosas se construyen y cómo se construyen. Los metadatos también incluyen comandos y datos utilizados para indicar qué versiones de software se utilizan y de dónde se obtienen, así como cambios o adiciones al software en sí (parches o archivos auxiliares) que se utilizan para corregir errores o personalizarlos.
 \paragraph{}
@@ -266,13 +266,13 @@ A continuación, mencionamos algunas de las características de Yocto Project:
     \item El Proyecto Yocto se valida constantemente al probar todas las versiones con la distribución de referencia (Poky) en cada arquitectura compatible.
 \end{itemize}
 \paragraph{}
-Yocto Project tiene un modelo de desarrollo IOT de Linux que lo distingue de otros sistemas de compilación simple. Se llama el modelo de capa.
+Yocto Project tiene un modelo de desarrollo IoT de Linux que lo distingue de otros sistemas de compilación simple. Se llama el modelo de capa.
 \paragraph{}
 El modelo de capa está diseñado para admitir la colaboración y la personalización al mismo tiempo. Las capas son repositorios que contienen conjuntos de instrucciones relacionados que le indican al sistema de compilación qué hacer. Los usuarios pueden colaborar, compartir y reutilizar capas. Las capas pueden contener cambios a las instrucciones o configuraciones anteriores en cualquier momento \citep{MarcoTeoricoYocto2}.
 
 
 \section{Dispositivo de monitoreo de energía}
-En este trabajo se plantea el uso de un dispositivo de monitoreo de energía que permita supervisar de manera constante la energía producida por las celdas fotovoltaicas; es por ello que a continuación definiremos algunos conceptos importantes.
+En este trabajo se plantea el uso de un dispositivo de monitoreo de energía que permita supervisar de manera constante la energía producida por un sistema fotovoltaico; es por ello que a continuación definiremos algunos conceptos importantes.
 \paragraph{}
 Inicialmente, un dispositivo puede ser definido como un mecanismo dispuesto para obtener un resultado automático\citep{MarcoTeorico11}; es decir, un conjunto de elementos bien definidos, que entre sí, realizan acciones conforme la información recibida (entrada) para poder transformarla (salida).
 Existe una amplia gama de clasificación de dispositivos de acuerdo al propósito para el que es empleado, sin embargo, para fines de este trabajo, el dispositivo de interés entra en la categoría de aquellos que se encargan de monitorear. 
@@ -300,9 +300,9 @@ Algunas de las características principales de los sistemas embebidos son: que t
 \paragraph{}
 Por lo general, los sistemas embebidos al ofrecer como ventaja la realización de operaciones en tiempo real, suelen ser empleados en ambientes físicos donde se hace uso de sensores y actuadores. Se dice que son sistemas reactivos, pues están en interacción continua con su entorno y el ritmo de su ejecución está coordinada con dicho entorno. 
 \paragraph{}
-Los sistemas embebidos suelen tener en una de sus partes una computadora con características especiales conocida como microcontrolador que viene a ser el cerebro del sistema, el cual incluye interfaces de entrada/salida en el mismo chip. Normalmente estos sistemas poseen un interfaz externo para efectuar un monitoreo del estado y hacer un diagnóstico del sistema.\citep{MarcoTeorico15}
+Los sistemas embebidos suelen tener en una de sus partes una computadora con características especiales conocida como microcontrolador que viene a ser el cerebro del sistema, el cual incluye interfaces de entrada/salida en el mismo chip. Normalmente estos sistemas poseen una interfaz externo para efectuar un monitoreo del estado y hacer un diagnóstico del sistema.\citep{MarcoTeorico15}
 \paragraph{}
-Los sistemas embebidos pueden ser implementados en placas únicas (SBC) y sobre estas se encuentran integrados los recursos de hardware como el microprocesador, la memoria RAM, controladores ethernet, etc.\citep{MarcoTeorico14}
+Los sistemas embebidos pueden ser implementados en placas únicas (SBC) y sobre estas se encuentran integrados los recursos de hardware como el microprocesador, la memoria RAM, controladores Ethernet, etc.\citep{MarcoTeorico14}
 \paragraph{SBC}
 SBC por sus siglas en inglés, Single Board Computer es, como su nombre lo indica, una Computadora de Placa Única, lo cual implica que tiene la totalidad o cumple con la mayoría de las características que tienen las computadoras personales pero en una placa de circuito; sin embargo al tratarse de una placa, es de menores dimensiones así como de un precio relativamente más bajo.
 \paragraph{}
@@ -325,7 +325,7 @@ Algunos ejemplos de SBC son la Raspberry Pi, Banana Pi, BeagleBone Black, PcDuin
 	\label{fig:diagrama_dispMonitoreo}
 \end{figure}
 
-%\pagebreak
+\pagebreak
 %\begin{table}{|M{3.0cm}|M{4.5cm}|M{4.5cm}}
 \begin{table}[!hbt]
 	% \centering
@@ -384,7 +384,7 @@ Hoy en día, los conteos de producción de microcontroladores son de miles de mi
 Un Microcontrolador es un circuito integrado que es el componente principal de una aplicación embebida. Es como una pequeña computadora que incluye sistemas para controlar elementos de entrada/salida. También incluye a un procesador y por supuesto memoria que puede guardar el programa y sus variables (flash y RAM).  Funciona como una mini PC. Su función es la de automatizar procesos y procesar información.
 El microcontrolador se aplica en toda clase de inventos y productos donde se requiere seguir un proceso automático dependiendo de las condiciones de distintas entradas.
 \paragraph{}
-Los diseños internos básicos de los microcontroladores son bastante similares. La figura 1.4 muestra el esquema de un microcontrolador típico. Todos los componentes están conectados a través de un bus interno y son todos Integrados en un chip. Los módulos están conectados al mundo exterior a través de pines de E/S.
+Los diseños internos básicos de los microcontroladores son bastante similares. La figura 2.15 muestra el esquema de un microcontrolador típico. Todos los componentes están conectados a través de un bus interno y son todos Integrados en un chip. Los módulos están conectados al mundo exterior a través de pines de E/S.
 \paragraph{}
 \begin{figure}[H]
 	\centering
