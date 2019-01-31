@@ -8,7 +8,8 @@ El presente Trabajo Terminal tiene como objetivo el desarrollo de un prototipo d
 Dado que este trabajo terminal emplea conceptos de diversas áreas de la Ingeniería en Sistemas Computacionales, resulta fundamental dar una serie de definiciones previas que permitan un mejor entendimiento del documento.
 
 \section{Sistema Fotovoltaico}
-Un sistema fotovoltaico es un conjunto de dispositivos que aprovechan la energía producida por el Sol y la convierten en energía eléctrica \citep{MarcoTeorico1}. Un sistema fotovoltaico puede ser “interconectado” para residencias o negocios con acceso a la red eléctrica de la CFE. 
+Un sistema fotovoltaico es un conjunto de dispositivos que aprovechan la energía producida por el Sol y la convierten en energía eléctrica \citep{MarcoTeorico1}. Un sistema fotovoltaico puede ser “interconectado” para residencias o negocios con acceso a la red eléctrica \citep{NMX-J-643/1}. 
+
 \paragraph{}
 Con este sistema la energía generada se inyecta a la red eléctrica, disminuyendo así el consumo de energía de la compañía de luz. La otra opción es un sistema “isla” que permite el suministro de energía eléctrica en lugares inaccesibles para la red eléctrica. Estos sistemas son usados principalmente en casas de campo o en antenas de telecomunicación.
 \paragraph{}
@@ -20,6 +21,36 @@ La particularidad de la corriente eléctrica generada por el efecto fotovoltaico
 	\caption{Sistema Fotovoltaico Propuesto por el Fabricante IUSA}
 	\label{fig:diagrama_dispensador}
 \end{figure}
+
+\paragraph{Ley para el Aprovechamiento de Energías Renovables}
+Las fuentes de energía renovables y las tecnologías limpias para generar electricidad se convierten en parte medular de un proceso de transición energética con la publicación de la
+Ley para el Aprovechamiento de Energías Renovables, el Financiamiento de la Transición
+Energética el 28 de noviembre de 2008 y el Reglamento de la citada Ley el 2 de septiembre de 2009, además se resalta la importancia de establecer un programa de normalización en la
+materia, que provea de las regulaciones y normas necesarias.
+\citep{LeyAprovechamiento}
+\paragraph{}
+El 20 de mayo de 2011 se publicó en el
+Diario Oficial de la Federación la declaratoria de vigencia de la serie de normas mexicanas
+NMX-J-643-ANCE \citep{NMX-J-643/1}.
+Estas establecen los procedimientos para la medición de las
+características corriente-tensión de dispositivos fotovoltaicos,
+con luz solar natural o con un simulador solar. Estos
+procedimientos son aplicables a una celda solar fotovoltaica
+individual o un conjunto ensamblado de celdas solares
+fotovoltaicas que forman un módulo fotovoltaico.
+
+\paragraph{Contrato de interconexión para paneles solares}
+
+Una vez que instalas tu sistema solar en tu casa o negocio es necesario realizar un contrato de interconexión con CFE. La finalidad del contrato de interconexión es que CFE reconozca tu sistema solar y te acredite los kWh generados y enviados a la red eléctrica. CFE no te pagará de forma directa por la energía generada por tu sistema solar fotovoltaico. En su lugar, te darán un medidor bidireccional que registra tanto la energía consumida en tu casa habitación como la energía generada por tu sistema solar \citep{ContratoSolar}.
+\paragraph{}
+Realizar un contrato de interconexión en el cual CFE te autoriza utilizar la red eléctrica y darte crédito por los kWh generados por tu sistema solar suena complicado y hasta improbable. Sin embargo, CFE ha realizado un serie de cambios administrativos y realizar el contrato de interconexión resulta muy sencillo. A continuación explicamos algunos de los requisitos para concretar dicho contrato.
+\paragraph{}
+El primero paso es llenar la solicitud de conexión, la información solicitada incluye la dirección donde se instala el sistema solar, la tarifa de consumo eléctrica actual y el RPU que es el número de cliente del contrato actual. También piden información más técnica en referencia al sistema solar tales como tamaño del sistema, la marcas y capacidades de los equipos, etc.
+\paragraph{}
+El contrato tiene costo que incluye el cambio de tu medidor actual a un medidor bidireccional. Es importante destacar que este no es el costo del medidor, ni tampoco está usted comprando el medidor. Este le pertenece siempre a CFE y el monto a pagar solo incluye la programación e instalación del mismo.
+\paragraph{}
+Unos de los requisitos más importantes de la instalación que cabe mencionar aquí es que la conexión del sistema solar debe hacerse a baja tensión. Además, en el caso de instalaciones residenciales, el sistema fotovoltaico no puede exceder los 10kW de potencia pico. Para servicio de uso general o sistemas comerciales, el sistema solar puede ser de hasta 30kW de potencia.
+\paragraph{}
 
 \paragraph{Panel fotovoltaico}
 Los paneles fotovoltaicos, llamados comúnmente paneles solares, están formados por un conjunto de células fotovoltaicas que producen electricidad a partir de la luz que incide sobre ellos mediante el efecto fotoeléctrico.
@@ -52,7 +83,7 @@ El costo de los paneles fotovoltaicos se ha reducido de forma constante desde qu
 Los paneles fotovoltaicos pueden llegar a generar gran cantidad de energía ya que en un día soleado, el Sol puede irradiar alrededor de 1kw por metro cuadrado a la superficie de la tierra, que sumado a la eficacia de estos paneles puede llegar a generar entre 120 y 250 w de manera constante por metro cuadrado, siempre dependiendo del tipo de panel y de su nivel de eficiencia.
 
 \paragraph{Módulo Fotovoltaico 250W Policristalino IUSA}
-Módulo fotovoltaico con 60 celdas en silicio policristalino, vidrio templado anti reflejante de 3.2 mm, caja de conexión IP67 con 3 diodos bypass y conectores compatibles con MC4.
+Módulo fotovoltaico al estándar de las normas mexicanas con 60 celdas en silicio policristalino, vidrio templado anti reflejante de 3.2 mm, caja de conexión IP67 con 3 diodos bypass y conectores compatibles con MC4.
 Tiene una potencia máxima de 250W y un voltaje máximo de 30.6V, con una eficiencia del 15.1 porciento y temperatura de operación entre los -40ºC a los 85ºC. \citep{MarcoTeorico3}.
 
 \begin{figure}[H]
