@@ -45,11 +45,11 @@ Establece los requisitos de construcción para módulos fotovoltaicos (FV), con 
 
 Una vez que instalas tu sistema solar en tu casa o negocio es necesario realizar un contrato de interconexión con CFE. La finalidad del contrato de interconexión es que CFE reconozca tu sistema solar y te acredite los kWh generados y enviados a la red eléctrica. CFE no te pagará de forma directa por la energía generada por tu sistema solar fotovoltaico. En su lugar, te darán un medidor bidireccional que registra tanto la energía consumida en tu casa habitación como la energía generada por tu sistema solar \citep{ContratoSolar}.
 \paragraph{}
-Realizar un contrato de interconexión en el cual CFE te autoriza utilizar la red eléctrica y darte crédito por los kWh generados por tu sistema solar suena complicado y hasta improbable. Sin embargo, CFE ha realizado un serie de cambios administrativos y realizar el contrato de interconexión resulta muy sencillo. A continuación explicamos algunos de los requisitos para concretar dicho contrato.
+Realizar un contrato de interconexión en el cual CFE te autoriza utilizar la red eléctrica y darte crédito por los kWh generados por tu sistema solar suena complicado y hasta improbable. Sin embargo, CFE ha realizado un serie de cambios administrativos y realizar el contrato de interconexión resulta muy sencillo. A continuación, explicamos algunos de los requisitos para concretar dicho contrato.
 \paragraph{}
 El primero paso es llenar la solicitud de conexión, la información solicitada incluye la dirección donde se instala el sistema solar, la tarifa de consumo eléctrica actual y el RPU que es el número de cliente del contrato actual. También piden información más técnica en referencia al sistema solar tales como tamaño del sistema, la marcas y capacidades de los equipos, etc.
 \paragraph{}
-El contrato tiene costo que incluye el cambio de tu medidor actual a un medidor bidireccional. Es importante destacar que este no es el costo del medidor, ni tampoco está usted comprando el medidor. Este le pertenece siempre a CFE y el monto a pagar solo incluye la programación e instalación del mismo.
+El contrato tiene costo que incluye el cambio de tu medidor actual a un medidor bidireccional. Es importante destacar que este no es el costo del medidor, ni tampoco se está comprando el medidor. Este le pertenece siempre a CFE y el monto a pagar solo incluye la programación e instalación del mismo.
 \paragraph{}
 Unos de los requisitos más importantes de la instalación que cabe mencionar aquí es que la conexión del sistema solar debe hacerse a baja tensión. Además, en el caso de instalaciones residenciales, el sistema fotovoltaico no puede exceder los 10kW de potencia pico. Para servicio de uso general o sistemas comerciales, el sistema solar puede ser de hasta 30kW de potencia.
 \paragraph{}
@@ -278,7 +278,7 @@ De acuerdo a la Real Academia Española, la palabra monitorear, se define como l
 \paragraph{}
 Teniendo en cuenta los 2 conceptos anteriores, podemos definir a un dispositivo de monitoreo de energía como: un mecanismo que recibe como entrada energía e internamente procesa dicha información para finalmente arrojar datos de monitoreo.
 \paragraph{MCP39F521}
-El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC de una velocidad de reloj de hasta 400 kHz\citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el resto del sistema. 
+El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC de una velocidad de reloj de hasta 400 kHz\citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el microcontrolador. 
 \paragraph{}
 \begin{figure}[H]
 	\centering
@@ -425,7 +425,7 @@ Hoy en día, los conteos de producción de microcontroladores son de miles de mi
 Un Microcontrolador es un circuito integrado que es el componente principal de una aplicación embebida. Es como una pequeña computadora que incluye sistemas para controlar elementos de entrada/salida. También incluye a un procesador y por supuesto memoria que puede guardar el programa y sus variables (flash y RAM).  Funciona como una mini PC. Su función es la de automatizar procesos y procesar información.
 El microcontrolador se aplica en toda clase de inventos y productos donde se requiere seguir un proceso automático dependiendo de las condiciones de distintas entradas.
 \paragraph{}
-Los diseños internos básicos de los microcontroladores son bastante similares. La figura 2.15 muestra el esquema de un microcontrolador típico. Todos los componentes están conectados a través de un bus interno y son todos Integrados en un chip. Los módulos están conectados al mundo exterior a través de pines de E/S.
+Los diseños internos básicos de los microcontroladores son bastante similares. La figura 2.15 muestra el esquema de un microcontrolador típico. Todos los componentes están conectados a través de un bus interno y son todos integrados en un chip. Los módulos están conectados al mundo exterior a través de pines de E/S.
 \paragraph{}
 \begin{figure}[H]
 	\centering
@@ -437,14 +437,14 @@ Los diseños internos básicos de los microcontroladores son bastante similares.
 En la siguiente lista mostramos los módulos que normalmente se encuentran en un microcontrolador \citep{MarcoTeoricoMicrocontrolador}:
 \begin{itemize}
 	\item Procesador Core: La CPU del controlador. Contiene la unidad lógica aritmética, la unidad de control y los registros (puntero de pila, contador de programa, registro de acumulador, archivo de registro, ...).
-    \item Memoria: la memoria a veces se divide en memoria de programa y memoria de datos. En los controladores más grandes, un controlador DMA maneja las transferencias de datos entre los componentes periféricos y la memoria.
-    \item Controlador de interrupciones: las interrupciones son útiles para interrumpir el flujo normal del programa en caso de (importantes) eventos externos o internos. En conjunción con los modos de sueño, ayudan a conservar energia.
-    \item Temporizador o contador: la mayoría de los controladores tienen al menos uno o más de 2-3 temporizadores o contadores, que se pueden usar para marcar la hora de eventos, medir intervalos o contar eventos.
-    \item E / S digital: los puertos de E / S digitales paralelos son una de las características principales de los microcontroladores. La cantidad de pines de E / S varía de 3-4 a más de 90.
-    \item E / S analógicas: aparte de unos pocos controladores pequeños, la mayoría de los microcontroladores tienen integrado convertidores analógico - digital, que difieren en el número de canales (2-16). 
-    \item Interfaces: los controladores generalmente tienen al menos una interfaz en serie que se puede utilizar para descargar el programa y para la comunicación con la PC de desarrollo en general. Dado que las interfaces seriales también pueden usarse para comunicarse con dispositivos periféricos externos, la mayoría de los controladores ofrecen varias y variadas interfaces como SPI y SCI.
-    \item Temporizador de vigilancia: dado que los sistemas críticos para la seguridad forman un área importante de aplicación de los microcontroladores, es importante protegerse contra errores en el programa y / o el hardware. El temporizador de vigilancia se usa para reiniciar el controlador en caso de que el software se "bloquee".
-    \item Unidad de depuración: algunos controladores están equipados con hardware adicional para permitir la depuración remota del chip desde la PC. Así que no hay necesidad de descargar un software especial de depuración.
+    \item Memoria: La memoria a veces se divide en memoria de programa y memoria de datos. En los controladores más grandes, un controlador DMA maneja las transferencias de datos entre los componentes periféricos y la memoria.
+    \item Controlador de interrupciones: Las interrupciones son útiles para interrumpir el flujo normal del programa en caso de (importantes) eventos externos o internos. En conjunción con los modos de sueño, ayudan a conservar energía.
+    \item Temporizador o contador: La mayoría de los controladores tienen entre uno y tres temporizadores o contadores, que se pueden usar para marcar la hora de eventos, medir intervalos o contar eventos.
+    \item E / S digital: Los puertos de E / S digitales paralelos son una de las características principales de los microcontroladores. La cantidad de pines de E / S varía de 3 a más de 90.
+    \item E / S analógicas: Aparte de unos pocos controladores pequeños, la mayoría de los microcontroladores tienen integrado convertidores analógico - digital, que difieren en el número de canales (2-16). 
+    \item Interfaces: Los controladores generalmente tienen al menos una interfaz en serie que se puede utilizar para descargar el programa y para la comunicación con la PC de desarrollo en general. Dado que las interfaces seriales también pueden usarse para comunicarse con dispositivos periféricos externos, la mayoría de los controladores ofrecen varias y variadas interfaces como SPI y SCI.
+    \item Temporizador de vigilancia: Dado que los sistemas críticos para la seguridad forman un área importante de aplicación de los microcontroladores, es importante protegerse contra errores en el programa y / o el hardware. El temporizador de vigilancia se usa para reiniciar el controlador en caso de que el software se "bloquee".
+    \item Unidad de depuración: Algunos controladores están equipados con hardware adicional para permitir la depuración remota del chip desde la PC. Así que no hay necesidad de descargar un software especial de depuración.
 \end{itemize}
 
 
@@ -458,7 +458,7 @@ El propósito de una red de sensores es el de recolectar información de interé
 Dado que existen una gran cantidad de dispositivos sensores implica que pueden implementarse diferentes tipos de redes de sensores de acuerdo al uso o aplicación que se le quiera dar, como por ejemplo: fenómenos meteorológicos, sistemas de emergencia o de cuidados médicos, por mencionar algunos.\citep{MarcoTeorico16}
 
 \paragraph{Sensores}
-Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal eléctrica, la cual está en función de la variable medida.\citep{MarcoTeorico20} 
+Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal de salida transducible a una señal eléctrica.\citep{MarcoTeorico20} 
 \paragraph{}
 Existe una variedad de sensores, y pueden ser clasificados bajo diferentes criterios (principio de funcionamiento, señal de salida, rango de valores, nivel de integración, variable física de entrada).
 
