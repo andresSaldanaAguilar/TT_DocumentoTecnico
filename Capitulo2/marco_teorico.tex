@@ -106,7 +106,7 @@ Diseñado específicamente para interconexiones en el sistema de distribución m
 \end{figure}
  
  
- \section{Wi-fi}
+ \section{Wi-Fi}
  \paragraph{}
  Según la Real Academia Española es un sistema de conexión inalámbrica, dentro de un área determinada, entre dispositivos electrónicos, y frecuentemente para acceso a internet. En un sentido literal Wi-Fi no significa nada, es una marca comercial que también es usada para designar a las tecnologías de red sin cable.
  \paragraph{}
@@ -152,46 +152,6 @@ Es un estándar de distribución de los pines para la conexión y comunicación 
 	\label{fig:diagrama_dispensador}
 \end{figure}
 \paragraph{}
-
-\paragraph{IIC}
-IIC es una interfaz serial síncrona de comunicación, la cual es útil para comunicarse  con otros periféricos y microcontroladores, fue desarrollada por Philips Semiconductors.
-Estos periféricos pueden ser: Memorias seriales EEPROMS, registros de corrimiento, expansores de puerto, ADC's, DAC's, entre otros \citep{MarcoTeorico17}.
-\paragraph{}
-Sólo se utilizan dos líneas para comunicación:
-\begin{itemize}
-	\item Una línea de datos serial (SDA)
-    \item Una línea de reloj serial (SCL), que siempre es generada por el maestro.
-\end{itemize}
-
-Cada dispositivo conectado al bus es reconocido por una única dirección, el bus maneja una arquitectura maestro-esclavo, el maestro trabaja como transmisor o receptor, donde el maestro inicia y termina la transferencia de información.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.35]{Capitulo2/images/I2C-Interface.png}
-	\caption{Diagrama ejemplificativo de interfaz IIC}
-	\label{fig:}
-\end{figure}
-
-Entre las características principales están:
-\begin{itemize}
-	\item Se pueden realizar transferencias seriales bidireccionales de 8 bits.
-    \item Se proporciona filtrado en Chip para eliminar picos en la línea de datos y preservar integridad de datos.
-    \item El número de circuitos integrados que pueden ser conectados al bus está limitado a la capacitancia máxima del bus.
-    \item Modo estándar de operación (Standard Mode). Con velocidad de hasta 100 kbps.
-    \item Modo rápido de operación  (Fast mode). Con velocidad de hasta 400 kbps. \item Modo más rápido de operación (Fast mode plus). Con velocidad de hasta 1 Mbps.
-\end{itemize}
-
-Para que la transferencia de información pueda ser iniciada, el bus debe estar libre. Todas las transacciones comienzan con START y pueden ser terminadas por un STOP.
-Una transición de alto a bajo en la línea SDA mientras SCL es alto, define una condición de START.
-Una transición de bajo a alto en la línea SDA mientras SCL es alto, define una condición de STOP.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.25]{Capitulo2/images/startstop.png}
-	\caption{Protocolo de START y STOP}
-	\label{fig:}
-\end{figure}
-
 
 \paragraph{ESP8266}
 El ESP8266 es un SoC Wi-Fi \citep{MarcoTeorico7} (System on Chip: integra todos o gran parte de los módulos que componen un sistema electrónico en un único circuito integrado) compuesto por una pila TCP/IP y un microcontrolador \citep{MarcoTeorico8}.
@@ -276,6 +236,10 @@ Este módulo permite a otros microcontroladores conectarse a un red inalámbrica
 
 \paragraph{}
 
+
+
+
+
 \section{Demonio / Servicio}
 Un demonio o servicio es un programa que se ejecuta en segundo plano, fuera del control interactivo de los usuarios del sistema, ya que carecen de interfaz con estos. El término demonio se usa fundamentalmente en sistemas UNIX y basados en UNIX, como GNU/Linux o Mac OS X \citep{MarcoTeorico4}.
 
@@ -313,8 +277,8 @@ Existe una amplia gama de clasificación de dispositivos de acuerdo al propósit
 De acuerdo a la Real Academia Española, la palabra monitorear, se define como la acción de observar, supervisar o controlar mediante aparatos especiales, el curso de uno o varios parámetros fisiológicos o de otra naturaleza para detectar posibles anomalías.\citep{MarcoTeorico12}
 \paragraph{}
 Teniendo en cuenta los 2 conceptos anteriores, podemos definir a un dispositivo de monitoreo de energía como: un mecanismo que recibe como entrada energía e internamente procesa dicha información para finalmente arrojar datos de monitoreo.
-\paragraph{}
-El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales.\citep{MarcoTeorico13}
+\paragraph{MCP39F521}
+El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC de una velocidad de reloj de hasta 400 kHz\citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el resto del sistema. 
 \paragraph{}
 \begin{figure}[H]
 	\centering
@@ -322,6 +286,46 @@ El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation
 	\caption{Diagrama a bloques del MCP39F521}
 	\label{fig:diagrama_dispMonitoreo}
 \end{figure}
+
+\paragraph{IIC}
+IIC es una interfaz serial síncrona de comunicación, la cual es útil para comunicarse  con otros periféricos y microcontroladores, fue desarrollada por Philips Semiconductors.
+Estos periféricos pueden ser: Memorias seriales EEPROMS, registros de corrimiento, expansores de puerto, ADC's, DAC's, entre otros \citep{MarcoTeorico17}.
+\paragraph{}
+Sólo se utilizan dos líneas para comunicación:
+\begin{itemize}
+	\item Una línea de datos serial (SDA)
+    \item Una línea de reloj serial (SCL), que siempre es generada por el maestro.
+\end{itemize}
+
+Cada dispositivo conectado al bus es reconocido por una única dirección, el bus maneja una arquitectura maestro-esclavo, el maestro trabaja como transmisor o receptor, donde el maestro inicia y termina la transferencia de información.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.35]{Capitulo2/images/I2C-Interface.png}
+	\caption{Diagrama ejemplificativo de interfaz IIC}
+	\label{fig:}
+\end{figure}
+
+Entre las características principales están:
+\begin{itemize}
+	\item Se pueden realizar transferencias seriales bidireccionales de 8 bits.
+    \item Se proporciona filtrado en Chip para eliminar picos en la línea de datos y preservar integridad de datos.
+    \item El número de circuitos integrados que pueden ser conectados al bus está limitado a la capacitancia máxima del bus.
+    \item Modo estándar de operación (Standard Mode). Con velocidad de hasta 100 kbps.
+    \item Modo rápido de operación  (Fast mode). Con velocidad de hasta 400 kbps. \item Modo más rápido de operación (Fast mode plus). Con velocidad de hasta 1 Mbps.
+\end{itemize}
+
+Para que la transferencia de información pueda ser iniciada, el bus debe estar libre. Todas las transacciones comienzan con START y pueden ser terminadas por un STOP.
+Una transición de alto a bajo en la línea SDA mientras SCL es alto, define una condición de START.
+Una transición de bajo a alto en la línea SDA mientras SCL es alto, define una condición de STOP.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo2/images/startstop.png}
+	\caption{Protocolo de START y STOP}
+	\label{fig:}
+\end{figure}
+
 
 
 \section{Sistema Embebido}
@@ -342,7 +346,11 @@ SBC por sus siglas en inglés, Single Board Computer es, como su nombre lo indic
 Dependiendo el tipo de SBC, pueden llegar a ejecutar como Sistema Operativo Linux, Android o Windows. También cuentan con puertos de Entrada/Salida de propósito general, los cuales permiten la comunicación con otros dispositivos.\citep{MarcoTeorico18}  
 \paragraph{}
 Algunos ejemplos de SBC son la Raspberry Pi, Banana Pi, BeagleBone Black, PcDuino, entre otros.
-\paragraph{}
+\paragraph{Raspberry Pi}
+En este trabajo, haremos uso de la Raspberry Pi. Como se menciona en el párrafo anterior, es una SBC. Fue desarrollada en el Reino Unido por la fundación Raspberry Pi con el propósito de promover la educación informática en las escuelas. Algunas de sus principales características son: corre en el sistema operativo Linux así como en Raspbian y Pidora, las cuales son distribuciones de Linux; además tiene conexión a monitor, teclado y mouse.\citep{MarcoTeorico19}   
+
+A continuación, se muestra una comparativa entre la Raspberry Pi y la Banana Pi.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.8]{Capitulo2/images/bananaPi.jpg}
@@ -359,10 +367,10 @@ Algunos ejemplos de SBC son la Raspberry Pi, Banana Pi, BeagleBone Black, PcDuin
 \end{figure}
 
 \pagebreak
-%\begin{table}{|M{3.0cm}|M{4.5cm}|M{4.5cm}}
-\begin{table}[!hbt]
+\begin{longtable}{|M{3.0cm}|M{4.5cm}|M{4.5cm}|}
+%\begin{table}[!hbt]
 	% \centering
-	 \begin{tabular}{|M{3.0cm}|M{4.5cm}|M{4.5cm}|}
+	 %\begin{tabular}{|M{3.0cm}|M{4.5cm}|M{4.5cm}|}
 	\hline
 	\textbf{Característica} & \textbf{Banana Pi} & \textbf{Raspberry Pi} \\ 
 	\hline
@@ -406,10 +414,10 @@ Algunos ejemplos de SBC son la Raspberry Pi, Banana Pi, BeagleBone Black, PcDuin
     \newline - Raspbian
     \newline - Pidora \\
     \hline
-	\end{tabular}
+	%\end{tabular}
 	\caption{Comparativa Banana Pi contra Raspberry Pi}
 	%\label{tabla_riesgos}
-\end{table}
+\end{longtable}
 
 \section{Microcontroladores}
 Hoy en día, los conteos de producción de microcontroladores son de miles de millones por año, y los controladores están integrados en muchos dispositivos a los que nos hemos acostumbrado, como electrodomésticos (microondas, lavadora, cafetera, etc.), telecomunicaciones (teléfonos móviles), industria automotriz (inyección de combustible, frenado ABS, etc.), industria aeroespacial, automatización industrial, entre otros.
@@ -448,4 +456,9 @@ Una red de sensores consiste en un conjunto de dispositivos denominados sensores
 El propósito de una red de sensores es el de recolectar información de interés, es decir, la variable física sensada o monitoreada, para posteriormente transmitir dicha información con el objeto de ser procesada y analizada. 
 \paragraph{}
 Dado que existen una gran cantidad de dispositivos sensores implica que pueden implementarse diferentes tipos de redes de sensores de acuerdo al uso o aplicación que se le quiera dar, como por ejemplo: fenómenos meteorológicos, sistemas de emergencia o de cuidados médicos, por mencionar algunos.\citep{MarcoTeorico16}
+
+\paragraph{Sensores}
+Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal eléctrica, la cual está en función de la variable medida.\citep{MarcoTeorico20} 
+\paragraph{}
+Existe una variedad de sensores, y pueden ser clasificados bajo diferentes criterios (principio de funcionamiento, señal de salida, rango de valores, nivel de integración, variable física de entrada).
 
