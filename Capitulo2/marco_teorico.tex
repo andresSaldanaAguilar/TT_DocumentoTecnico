@@ -349,12 +349,12 @@ Algunos ejemplos de SBC son la Raspberry Pi, Banana Pi, BeagleBone Black, PcDuin
 \paragraph{Raspberry Pi}
 En este trabajo, haremos uso de la Raspberry Pi. Como se menciona en el párrafo anterior, es una SBC. Fue desarrollada en el Reino Unido por la fundación Raspberry Pi con el propósito de promover la educación informática en las escuelas. Algunas de sus principales características son: corre en el sistema operativo Linux así como en Raspbian y Pidora, las cuales son distribuciones de Linux; además tiene conexión a monitor, teclado y mouse.\citep{MarcoTeorico19}   
 
-A continuación, se muestra una comparativa entre la Raspberry Pi y la Banana Pi.
+A continuación, se muestra una comparativa entre la Raspberry Pi 3B y la Banana Pi M2 Berry.\citep{MarcoTeorico21}\citep{MarcoTeorico22}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.8]{Capitulo2/images/bananaPi.jpg}
-	\caption{Banana Pi}
+	\caption{Banana Pi M2 Berry}
 	\label{fig:diagrama_dispMonitoreo}
 \end{figure}
 
@@ -362,7 +362,7 @@ A continuación, se muestra una comparativa entre la Raspberry Pi y la Banana Pi
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.26]{Capitulo2/images/raspberry.png}
-	\caption{Raspberry Pi}
+	\caption{Raspberry Pi 3B}
 	\label{fig:diagrama_dispMonitoreo}
 \end{figure}
 
@@ -372,33 +372,31 @@ A continuación, se muestra una comparativa entre la Raspberry Pi y la Banana Pi
 	% \centering
 	 %\begin{tabular}{|M{3.0cm}|M{4.5cm}|M{4.5cm}|}
 	\hline
-	\textbf{Característica} & \textbf{Banana Pi} & \textbf{Raspberry Pi} \\ 
+	\textbf{Característica} & \textbf{Banana Pi M2 Berry} & \textbf{Raspberry Pi 3B} \\ 
 	\hline
- 	Procesador & ARM Cortex A7 Dual Core & ARM Cortex-A7 Quad Core \\
+ 	Procesador & Quad Core ARM Cortex A7 V40 & Quad Core 64bit ARM Cortex A53 1.2GHz \\
  	\hline
-    GPU & Dual Core Mali-400 MP2 & VideCore IV Dual-Core\\
+    GPU & 500 MHz Mali-400 MP2 & 400 MHz VideoCore IV multimedia\\
     \hline
-    RAM & 1GB & 1GB SDRAM LPDDR2 \\
+    RAM & 1GB DDR3 SDRAM & 1GB LPDDR2-900 SDRAM \\
 	\hline
-	Tarjeta de Red & 10/100/1000 & 10/100\\
+	Tarjeta de Red & 10/100/1000 Mbps Ethernet y 802.11 b/g/n & 10/100 Mbps Ethernet y 802.11n Wireless LAN\\
 	\hline
-	Almacenamiento & SD, HDD Sata 2.5''5V & Micro SD\\
+	Almacenamiento & Micro SD (hasta 64 GB) & Micro SD\\
 	\hline
-	Salida Video & HDMI, RCA, Conector LVDS en placa & HDMI\\
+	Salida Video & HDMI, MIPI DSI para paneles LCD & HDMI\\
     \hline
     Salida Audio 
     & 
     \newline - HDMI 
-    \newline - Jack 3.5 estéreo
-    \newline - Entrada micrófono en placa 
+    \newline - Jack 3.5 mm 
     & 
     \newline - HDMI
     \newline - Jack 3.5 estéreo \\
     \hline
     USB & 
-    \newline - 2x USB 2.0 
-    \newline - 1x micro USB OTG
-    \newline - 1x micro USB alimentación 
+    \newline - 4x USB 2.0 
+    \newline - USB OTG(Micro USB) 
     & 
     \newline - 4x USB 2.0
     \newline - 1x micro USB alimentación \\
@@ -415,7 +413,7 @@ A continuación, se muestra una comparativa entre la Raspberry Pi y la Banana Pi
     \newline - Pidora \\
     \hline
 	%\end{tabular}
-	\caption{Comparativa Banana Pi contra Raspberry Pi}
+	\caption{Comparativa Banana Pi M2 Berry contra Raspberry Pi 3B}
 	%\label{tabla_riesgos}
 \end{longtable}
 
@@ -457,7 +455,7 @@ El propósito de una red de sensores es el de recolectar información de interé
 \paragraph{}
 Dado que existen una gran cantidad de dispositivos sensores implica que pueden implementarse diferentes tipos de redes de sensores de acuerdo al uso o aplicación que se le quiera dar, como por ejemplo: fenómenos meteorológicos, sistemas de emergencia o de cuidados médicos, por mencionar algunos.\citep{MarcoTeorico16}
 
-\paragraph{Sensores}
+\paragraph{Sensor}
 Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal de salida transducible a una señal eléctrica.\citep{MarcoTeorico20} 
 \paragraph{}
 Existe una variedad de sensores, y pueden ser clasificados bajo diferentes criterios (principio de funcionamiento, señal de salida, rango de valores, nivel de integración, variable física de entrada).
