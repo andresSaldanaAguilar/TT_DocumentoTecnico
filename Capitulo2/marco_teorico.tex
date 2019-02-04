@@ -236,7 +236,14 @@ Este módulo permite a otros microcontroladores conectarse a un red inalámbrica
 
 \paragraph{}
 
-
+\section{IoT (Internet de las cosas)}
+De acuerdo con la definición otorgada por la IEEE, el internet de las cosas o IoT, es un dominio de aplicación que integra diferentes tecnologías y campos sociales, a pesar de la diversidad de las investigaciones sobre IoT \citep{MarcoTeoricoIoT}. El Internet de las cosas (IoT) se está convirtiendo en un tema de conversación cada vez más creciente tanto en el lugar de trabajo como fuera de él. Es un concepto que no solo tiene el potencial de impactar cómo vivimos, sino también cómo trabajamos. 
+\paragraph{}
+El Internet de banda ancha está cada vez más disponible, el costo de la conexión está disminuyendo, se están creando más dispositivos con capacidades Wi-Fi y sensores integrados, los costos de la tecnología están disminuyendo y la penetración de los teléfonos inteligentes se está disparando. En pocas palabras, este es el concepto de conectar básicamente cualquier dispositivo con un interruptor de encendido y apagado a Internet. Esto incluye todo, desde teléfonos celulares, cafeteras, lavadoras, audífonos, lámparas, dispositivos portátiles y casi cualquier otra cosa que se pueda imaginar. Esto también se aplica a los componentes de las máquinas. La firma de analistas Gartner dice que para 2020 habrá más de 26 mil millones de dispositivos conectados. El IoT es una red gigante de "cosas" conectadas (que también incluye a las personas). La relación será entre personas-personas, personas-cosas y cosas-cosas.
+\paragraph{}
+". Hay muchos ejemplos de cómo podría verse esto o cuál podría ser el valor potencial. Digamos, por ejemplose está en camino a una reunión; El automóvil podría tener acceso a su calendario y ya sabe cuál es la mejor ruta a seguir. Si el tráfico es intenso, el automóvil podría enviar un mensaje de texto a la otra parte notificándole que llegará tarde. 
+\paragraph{}
+La realidad es que el IoT permite oportunidades y conexiones virtualmente infinitas, muchas de las cuales ni siquiera podemos pensar o entender completamente el impacto de hoy. Ciertamente abre la puerta a muchas oportunidades pero también a muchos desafíos. La seguridad es un gran problema que a menudo se plantea. Luego tenemos el tema de la privacidad y el intercambio de datos. Este es un tema candente incluso hoy en día, por lo que solo se puede imaginar cómo la conversación y las preocupaciones aumentarán cuando se habla de la conexión de muchos miles de millones de dispositivos \citep{MarcoTeoricoIoT2}. 
 
 
 
@@ -251,7 +258,7 @@ El proyecto proporciona un conjunto flexible de herramientas y un espacio donde 
 De igual manera proporciona un estándar para entregar soporte de hardware y pilas de software, permitiendo el intercambio de configuraciones y compilaciones de software. Las herramientas permiten a los usuarios crear y admitir personalizaciones para múltiples plataformas de hardware y pilas de software de una manera mantenible y escalable.
 \paragraph{}
 Un conjunto de herramientas integradas para que el trabajo con Linux incorporado sea exitoso, que incluye herramientas para la creación y prueba automatizadas, procesos para el soporte de la placa y el cumplimiento de licencias e información de componentes para sistemas operativos integrados basados en Linux personalizados.
-\paragraph{}
+\paragraph{OpenEmbedded}
 El sistema de compilación OpenEmbedded, mantenido conjuntamente con el proyecto OpenEmbedded, que es donde se derivan el sistema de compilación y algunos de los metadatos, los cuales se usan para construir una distribución de Linux, contenida en los archivos que el sistema de compilación analiza al crear una imagen. En general, los metadatos incluyen archivos de configuración y otra información relacionada con las propias instrucciones de compilación, así como los datos utilizados para controlar qué cosas se construyen y cómo se construyen. Los metadatos también incluyen comandos y datos utilizados para indicar qué versiones de software se utilizan y de dónde se obtienen, así como cambios o adiciones al software en sí (parches o archivos auxiliares) que se utilizan para corregir errores o personalizarlos.
 \paragraph{}
 A continuación, mencionamos algunas de las características de Yocto Project:
@@ -444,6 +451,69 @@ En la siguiente lista mostramos los módulos que normalmente se encuentran en un
     \item Temporizador de vigilancia: Dado que los sistemas críticos para la seguridad forman un área importante de aplicación de los microcontroladores, es importante protegerse contra errores en el programa y / o el hardware. El temporizador de vigilancia se usa para reiniciar el controlador en caso de que el software se "bloquee".
     \item Unidad de depuración: Algunos controladores están equipados con hardware adicional para permitir la depuración remota del chip desde la PC. Así que no hay necesidad de descargar un software especial de depuración.
 \end{itemize}
+
+\pagebreak
+\begin{longtable}{|M{2.2cm}|M{6.0cm}|M{6.0cm}|M{0.0cm}|}
+	% \centering
+	% \begin{tabular}
+	\hline
+	\textbf{ Parámetro } & \textbf{Microcontrolador} & \textbf{Microcontrolador} \\ \hline
+	
+ 	- & dsPIC30F3014/4013 & dsPIC30F1010/202X \\\hline
+ 	 
+ 	Conjunto de instrucciones  &
+    84 & 83 \\ \hline
+    Arquitectura   &
+    Harvard & Harvard \\ \hline
+    Bits en formato de instrucción  &
+    24 & 24 \\ \hline
+    Bits en la ruta de datos  &
+    16 & 16 \\ \hline
+    MIPS  &
+    30 & 30 \\ \hline
+    Fuentes de instrucción  &
+    33 & 32 \\ \hline
+    
+ 	 
+    Características especiales del microcontrolador
+    &
+    -Memoria del programa Flash mejorada: 10.000 ciclos de borrado / escritura (min.) Para rango de temperatura industrial, 100k (usualmente)
+    \newline-Auto-reprogramable bajo control de software
+    \newline-Reinicio de encendido (POR), temporizador de encendido (PWRT) y temporizador de arranque del oscilador (OST)
+    \newline-Temporizador de vigilancia flexible (WDT) con bajo en chip
+    \newline-Oscilador de potencia RC para un funcionamiento confiable
+    \newline-Operación de monitor de reloj a prueba de fallos
+    \newline-Detecta fallas de reloj y cambia a bajo en chip oscilador de potencia RC
+    \newline-Código de protección programable
+    \newline-Programación Serial en Circuito (ICSP)
+    \newline-Modos de gestión de energía seleccionables
+    \newline-Modos Sleep, Idle y Alternate Clock
+	& 
+    -Memoria del programa Flash mejorada: 10.000 ciclos de borrado / escritura (min.) Para rango de temperatura industrial, 100K (usualmente)
+    \newline-Memoria de datos EEPROM: 100.000 ciclos de borrado / escritura (min.) Para rango de temperatura industrial, 1M (usualmente)
+    \newline-Auto-reprogramable bajo control de software
+    \newline-Reinicio de encendido (POR), temporizador de encendido (PWRT) y temporizador de arranque del oscilador (OST)
+    \newline-Temporizador de vigilancia flexible (WDT) 
+    \newline-Detecta fallas de reloj y cambia a chip
+    \newline-Oscilador RC de baja potencia
+
+	Características periféricas  
+    &
+	-Hasta cinco temporizadores/contadores de 16 bits; temporizadores de 16 bits opcionalmente emparejados en módulos temporizadores de 32 bits
+	\newline-Una función de entrada de captura de 16 bits
+	\newline-Dos funciones de salida de comparación / PWM de 16 bits
+    &
+	-Tres temporizadores/contadores de 16 bits; temporizadores de 16 bits opcionalmente emparejados en módulos temporizadores de 32 bits
+	\newline-Hasta cuatro funciones de entrada de captura de 16 bits
+	\newline-Hasta cuatro funciones de salida de 16 bits de comparación / PWM
+	
+	% \end{tabular}
+	\caption{Comparativa con otro microcontrolador}
+	\label{tabla_riesgos}
+\end{longtable}
+
+\pagebreak
+
 
 
 \section{Red de sensores}
