@@ -1,29 +1,19 @@
 \section{Requerimientos funcionales}
 A continuación, se presenta un listado con los requerimientos funcionales que se obtuvieron.
-El listado de requerimientos funcionales se encuentra divido de acuerdo con los submódulos que se identificaron:
+El listado de requerimientos funcionales se encuentra divido de acuerdo con los módulos que se identificaron:
 \begin{itemize}
-	\item Submódulo de Uusarios.
-	\item Submódulo de Mediciones.
-	\item Submódulo de Clasificación.
+	\item Módulo de Microcontrolador.
+	\item Módulo de Servidor.
+	\item Módulo de Aplicación de usuario.
 \end{itemize}
 
-\paragraph{Submódulo de Usuarios}
+\paragraph{Módulo de Microcontrolador}
 \begin{enumerate}[label=RF\arabic*.]
-	\item Proporcionar una interfaz que permita registrar, editar, consultar y eliminar los datos personales de un usuario en la plataforma.
-	\item Proporcionar un mecanismo de autenticación para el usuario.
-	\item Proporcionar un mecanismo de recuperación de credenciales para el usuario.
-	\item Proporcionar una interfaz que permita, registrar, editar, consultar y eliminar los automóviles de un usuario.
-	\item Asociar un caudalímetro con un automóvil para una medición.
-	\item Proporcionar un mecanismo para la generación de reportes de problemas con el sensor o la aplicación.
-	\item Consultar las mediciones realizadas por el usuario.
-	\item Proporcionar un mecanismo para la geolocalización de un usuario a través de un dispositivo móvil.
-	\item Proporcionar un mecanismo de obtención de los datos de las gasolineras cercanas a un usuario, según su geolocalización.
-	\item Proporcionar un mecanismo para la asignación de insignias a un usuario.
-	\item Consultar las insignias obtenidas por el usuario.
-	\item Compartir las mediciones o insignias obtenidas en redes sociales.
+	\item Proporcionar un mecanismo de comunicación vía IIC entre el transductor MCP39F521 y el microcontrolador DSPIC30F4013.
+	\item Proporcionar un mecanismo de comunicación vía UART entre el microcontrolador y el módulo Wi-Fi MIKROE-2542.
 \end{enumerate}
 
-\paragraph{Submódulo de Mediciones}
+\paragraph{Módulo de Servidor.}
 \begin{enumerate}[label=RF\arabic*.]
 	\setcounter{enumi}{12}
 	\item Proporcionar una interfaz para registrar los datos usados por el usuario durante el suministro de gasolina como, la cantidad de litros de gasolina cargados y el precio por litro.
@@ -32,7 +22,7 @@ El listado de requerimientos funcionales se encuentra divido de acuerdo con los 
 	\item Proporcionar un mecanismo que permita la comunicación vía HTTP entre una aplicación móvil y un servidor que reciba los datos de las mediciones recabadas por el dispositivo electrónico.
 \end{enumerate}
 
-\paragraph{Submódulo de Clasificación}
+\paragraph{Módulo de Aplicación de usuario.}
 \begin{enumerate}[label=RF\arabic*.]
 	\setcounter{enumi}{16}
 	\item Proporcionar un algoritmo para la clasificación de las gasolineras de acuerdo con las mediciones recabadas.
