@@ -1,6 +1,6 @@
 \section{Requerimientos funcionales}
 A continuación, se presenta un listado con los requerimientos funcionales que se obtuvieron.
-El listado de requerimientos funcionales se encuentra divido de acuerdo con los módulos que se identificaron:
+El listado de requerimientos funcionales se encuentra dividido de acuerdo con los módulos que se identificaron:
 \begin{itemize}
 	\item Módulo de Microcontrolador.
 	\item Módulo de Servidor.
@@ -9,24 +9,26 @@ El listado de requerimientos funcionales se encuentra divido de acuerdo con los 
 
 \paragraph{Módulo de Microcontrolador}
 \begin{enumerate}[label=RF\arabic*.]
-	\item Proporcionar un mecanismo de comunicación vía IIC entre el transductor MCP39F521 y el microcontrolador DSPIC30F4013.
-	\item Proporcionar un mecanismo de comunicación vía UART entre el microcontrolador y el módulo Wi-Fi MIKROE-2542.
+	\item Proporcionar un mecanismo de comunicación vía IIC desde el transductor MCP39F521 hacia el microcontrolador DSPIC30F4013.
+	\item Proporcionar un mecanismo de comunicación vía UART desde el microcontrolador DSPIC30F4013 hacia el módulo Wi-Fi MIKROE-2542.
 \end{enumerate}
 
 \paragraph{Módulo de Servidor.}
 \begin{enumerate}[label=RF\arabic*.]
 	\setcounter{enumi}{12}
-	\item Proporcionar una interfaz para registrar los datos usados por el usuario durante el suministro de gasolina como, la cantidad de litros de gasolina cargados y el precio por litro.
-	\item Proporcionar un dispositivo electrónico que permita la medición de los litros de gasolina ingresados al automóvil.
-	\item Proporcionar un mecanismo que permita la comunicación vía Bluetooth entre el dispositivo electrónico y una aplicación móvil,
-	\item Proporcionar un mecanismo que permita la comunicación vía HTTP entre una aplicación móvil y un servidor que reciba los datos de las mediciones recabadas por el dispositivo electrónico.
+	\item Proporcionar un servicio para la recepción de los paquetes enviados por el módulo Wi-Fi MIKROE-2542 y su almacenamiento.
+	
+	%\item una interfaz para registrar los datos usados por el usuario durante el suministro de gasolina como, la cantidad de litros de gasolina cargados y el precio por litro.
+	%\item Proporcionar un dispositivo electrónico que permita la medición de los litros de gasolina ingresados al automóvil.
+	%\item Proporcionar un mecanismo que permita la comunicación vía Bluetooth entre el dispositivo electrónico y una aplicación móvil,
+	%\item Proporcionar un mecanismo que permita la comunicación vía HTTP entre una aplicación móvil y un servidor que reciba los datos de las mediciones recabadas por el dispositivo electrónico.
 \end{enumerate}
 
 \paragraph{Módulo de Aplicación de usuario.}
 \begin{enumerate}[label=RF\arabic*.]
 	\setcounter{enumi}{16}
-	\item Proporcionar un algoritmo para la clasificación de las gasolineras de acuerdo con las mediciones recabadas.
-	\item Proporcionar un mecanismo para el registro, edición, consulta y eliminación de los datos de una gasolinera.
-	\item Proporcionar un mecanismo para la asignación de insignias a una gasolinera.
-	\item Consultar las insignias obtenidas por una gasolinera.
+	%recepcion de info
+	\item Proporcionar un mecanismo para la visualización en tiempo real de la generación  de la energía producida por el sistema fotovoltaico.
+	\item Proporcionar un mecanismo para la generación de estadísticas de la producción de energía por el sistema fotovoltaico.
+	\item Informar por medio de notificaciones cuando el sistema fotovoltaico dejó de producir energía, así como al final del día notificar si se produjo más o menos energía que el promedio diario de producción.  
 \end{enumerate}
