@@ -25,8 +25,8 @@ La particularidad de la corriente eléctrica generada por el efecto fotovoltaico
 Las fuentes de energía renovables y las tecnologías limpias para generar electricidad se convierten en parte medular de un proceso de transición energética con la publicación de la
 Ley para el Aprovechamiento de Energías Renovables y el Financiamiento de la Transición
 Energética el 28 de noviembre de 2008, así como el Reglamento de la citada Ley el 2 de septiembre de 2009, además se resalta la importancia de establecer un programa de normalización en la
-materia, que provea de las regulaciones y normas necesarias.
-\citep{LeyAprovechamiento}
+materia, que provea de las regulaciones y normas necesarias \citep{LeyAprovechamiento}.
+
 
 
 \paragraph{NMX-J-643/1}
@@ -277,14 +277,14 @@ El modelo de capa está diseñado para admitir la colaboración y la personaliza
 \section{Dispositivo de monitoreo de energía}
 En este trabajo se plantea el uso de un dispositivo de monitoreo de energía que permita supervisar de manera constante la energía producida por un sistema fotovoltaico; es por ello que a continuación definiremos algunos conceptos importantes.
 \paragraph{}
-Inicialmente, un dispositivo puede ser definido como un mecanismo dispuesto para obtener un resultado automático\citep{MarcoTeorico11}; es decir, un conjunto de elementos bien definidos, que entre sí, realizan acciones conforme la información recibida (entrada) para poder transformarla (salida).
+Inicialmente, un dispositivo puede ser definido como un mecanismo dispuesto para obtener un resultado automático \citep{MarcoTeorico11}; es decir, un conjunto de elementos bien definidos, que entre sí, realizan acciones conforme la información recibida (entrada) para poder transformarla (salida).
 Existe una amplia gama de clasificación de dispositivos de acuerdo al propósito para el que es empleado, sin embargo, para fines de este trabajo, el dispositivo de interés entra en la categoría de aquellos que se encargan de monitorear. 
 \paragraph{}
-De acuerdo a la Real Academia Española, la palabra monitorear, se define como la acción de observar, supervisar o controlar mediante aparatos especiales, el curso de uno o varios parámetros fisiológicos o de otra naturaleza para detectar posibles anomalías.\citep{MarcoTeorico12}
+De acuerdo a la Real Academia Española, la palabra monitorear, se define como la acción de observar, supervisar o controlar mediante aparatos especiales, el curso de uno o varios parámetros fisiológicos o de otra naturaleza para detectar posibles anomalías \citep{MarcoTeorico12}.
 \paragraph{}
 Teniendo en cuenta los 2 conceptos anteriores, podemos definir a un dispositivo de monitoreo de energía como: un mecanismo que recibe como entrada energía e internamente procesa dicha información para finalmente arrojar datos de monitoreo.
 \paragraph{MCP39F521}
-El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC de una velocidad de reloj de hasta 400 kHz\citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el microcontrolador. 
+El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC de una velocidad de reloj de hasta 400 kHz \citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el microcontrolador. 
 \paragraph{}
 \begin{figure}[H]
 	\centering
@@ -339,23 +339,23 @@ Un sistema embebido es un dispositivo diseñado para un propósito en específic
 \paragraph{}
 El uso de los sistemas embebidos ha cobrado gran importancia debido a los usos y aplicaciones que se le han dado, como son: hornos de microondas, máquinas expendedoras, routers, cámaras digitales, reproductores MP3, entre otros. 
 \paragraph{}
-Algunas de las características principales de los sistemas embebidos son: que tienden a ser de dimensiones pequeñas, son considerados económicos o de bajo costo, su nivel de consumo eléctrico es bajo, poseen recursos limitados de memoria así como de dispositivos de entrada/salida.\citep{MarcoTeorico14}
+Algunas de las características principales de los sistemas embebidos son: que tienden a ser de dimensiones pequeñas, son considerados económicos o de bajo costo, su nivel de consumo eléctrico es bajo, poseen recursos limitados de memoria así como de dispositivos de entrada/salida \citep{MarcoTeorico14}.
 \paragraph{}
 Por lo general, los sistemas embebidos al ofrecer como ventaja la realización de operaciones en tiempo real, suelen ser empleados en ambientes físicos donde se hace uso de sensores y actuadores. Se dice que son sistemas reactivos, pues están en interacción continua con su entorno y el ritmo de su ejecución está coordinada con dicho entorno. 
 \paragraph{}
-Los sistemas embebidos suelen tener en una de sus partes una computadora con características especiales conocida como microcontrolador que viene a ser el cerebro del sistema, el cual incluye interfaces de entrada/salida en el mismo chip. Normalmente estos sistemas poseen una interfaz externo para efectuar un monitoreo del estado y hacer un diagnóstico del sistema.\citep{MarcoTeorico15}
+Los sistemas embebidos suelen tener en una de sus partes una computadora con características especiales conocida como microcontrolador que viene a ser el cerebro del sistema, el cual incluye interfaces de entrada/salida en el mismo chip. Normalmente estos sistemas poseen una interfaz externo para efectuar un monitoreo del estado y hacer un diagnóstico del sistema \citep{MarcoTeorico15}.
 \paragraph{}
-Los sistemas embebidos pueden ser implementados en placas únicas (SBC) y sobre estas se encuentran integrados los recursos de hardware como el microprocesador, la memoria RAM, controladores Ethernet, etc.\citep{MarcoTeorico14}
+Los sistemas embebidos pueden ser implementados en placas únicas (SBC) y sobre estas se encuentran integrados los recursos de hardware como el microprocesador, la memoria RAM, controladores Ethernet, etc \citep{MarcoTeorico14}.
 \paragraph{SBC}
 SBC por sus siglas en inglés, Single Board Computer es, como su nombre lo indica, una Computadora de Placa Única, lo cual implica que tiene la totalidad o cumple con la mayoría de las características que tienen las computadoras personales pero en una placa de circuito; sin embargo al tratarse de una placa, es de menores dimensiones así como de un precio relativamente más bajo.
 \paragraph{}
-Dependiendo el tipo de SBC, pueden llegar a ejecutar como Sistema Operativo Linux, Android o Windows. También cuentan con puertos de Entrada/Salida de propósito general, los cuales permiten la comunicación con otros dispositivos.\citep{MarcoTeorico18}  
+Dependiendo el tipo de SBC, pueden llegar a ejecutar como Sistema Operativo Linux, Android o Windows. También cuentan con puertos de Entrada/Salida de propósito general, los cuales permiten la comunicación con otros dispositivos \citep{MarcoTeorico18}. 
 \paragraph{}
 Algunos ejemplos de SBC son la Raspberry Pi, Banana Pi, BeagleBone Black, PcDuino, entre otros.
 \paragraph{Raspberry Pi}
-En este trabajo, haremos uso de la Raspberry Pi. Como se menciona en el párrafo anterior, es una SBC. Fue desarrollada en el Reino Unido por la fundación Raspberry Pi con el propósito de promover la educación informática en las escuelas. Algunas de sus principales características son: corre en el sistema operativo Linux así como en Raspbian y Pidora, las cuales son distribuciones de Linux; además tiene conexión a monitor, teclado y mouse.\citep{MarcoTeorico19}   
+En este trabajo, haremos uso de la Raspberry Pi. Como se menciona en el párrafo anterior, es una SBC. Fue desarrollada en el Reino Unido por la fundación Raspberry Pi con el propósito de promover la educación informática en las escuelas. Algunas de sus principales características son: corre en el sistema operativo Linux así como en Raspbian y Pidora, las cuales son distribuciones de Linux; además tiene conexión a monitor, teclado y mouse \citep{MarcoTeorico19}.   
 
-A continuación, se muestra una comparativa entre la Raspberry Pi 3B y la Banana Pi M2 Berry.\citep{MarcoTeorico21}\citep{MarcoTeorico22}
+A continuación, se muestra una comparativa entre la Raspberry Pi 3B y la Banana Pi M2 Berry \citep{MarcoTeorico21}\citep{MarcoTeorico22}.
 
 \begin{figure}[H]
 	\centering
@@ -367,7 +367,7 @@ A continuación, se muestra una comparativa entre la Raspberry Pi 3B y la Banana
 \paragraph{}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.26]{Capitulo2/images/raspberry.png}
+	\includegraphics[scale=.23]{Capitulo2/images/raspberry.png}
 	\caption{Raspberry Pi 3B}
 	\label{fig:diagrama_dispMonitoreo}
 \end{figure}
@@ -522,10 +522,10 @@ Una red de sensores consiste en un conjunto de dispositivos denominados sensores
 \paragraph{}
 El propósito de una red de sensores es el de recolectar información de interés, es decir, la variable física sensada o monitoreada, para posteriormente transmitir dicha información con el objeto de ser procesada y analizada. 
 \paragraph{}
-Dado que existen una gran cantidad de dispositivos sensores implica que pueden implementarse diferentes tipos de redes de sensores de acuerdo al uso o aplicación que se le quiera dar, como por ejemplo: fenómenos meteorológicos, sistemas de emergencia o de cuidados médicos, por mencionar algunos.\citep{MarcoTeorico16}
+Dado que existen una gran cantidad de dispositivos sensores implica que pueden implementarse diferentes tipos de redes de sensores de acuerdo al uso o aplicación que se le quiera dar, como por ejemplo: fenómenos meteorológicos, sistemas de emergencia o de cuidados médicos, por mencionar algunos \citep{MarcoTeorico16}.
 
 \paragraph{Sensor}
-Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal de salida transducible a una señal eléctrica.\citep{MarcoTeorico20} 
+Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal de salida transducible a una señal eléctrica \citep{MarcoTeorico20} .
 \paragraph{}
 Existe una variedad de sensores, y pueden ser clasificados bajo diferentes criterios (principio de funcionamiento, señal de salida, rango de valores, nivel de integración, variable física de entrada).
 
