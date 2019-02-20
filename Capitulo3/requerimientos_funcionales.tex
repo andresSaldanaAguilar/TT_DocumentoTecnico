@@ -16,18 +16,15 @@ El listado de requerimientos funcionales se encuentra dividido de acuerdo con lo
 \paragraph{Módulo de Servidor.}
 \begin{enumerate}[label=RF\arabic*.]
 	\setcounter{enumi}{12}
-	\item Proporcionar un servicio para la recepción de los paquetes enviados por el módulo Wi-Fi MIKROE-2542 y su almacenamiento.
-	
-	%\item una interfaz para registrar los datos usados por el usuario durante el suministro de gasolina como, la cantidad de litros de gasolina cargados y el precio por litro.
-	%\item Proporcionar un dispositivo electrónico que permita la medición de los litros de gasolina ingresados al automóvil.
-	%\item Proporcionar un mecanismo que permita la comunicación vía Bluetooth entre el dispositivo electrónico y una aplicación móvil,
-	%\item Proporcionar un mecanismo que permita la comunicación vía HTTP entre una aplicación móvil y un servidor que reciba los datos de las mediciones recabadas por el dispositivo electrónico.
+	\item Proporcionar un servicio para la recepción de los paquetes enviados por el módulo Wi-Fi MIKROE-2542 y su almacenamiento en un archivo de formato de texto.
+	\item Proporcionar un servicio de comunicación vía HTTP para el envío de la información almacenada para dar respuesta a las peticiones realizadas por el usuario desde la aplicación móvil.  
 \end{enumerate}
 
 \paragraph{Módulo de Aplicación de usuario.}
 \begin{enumerate}[label=RF\arabic*.]
 	\setcounter{enumi}{16}
-	%recepcion de info
+	\item Proporcionar un mecanismo para la vinculación entre la aplicación y el servidor.
+	\item Proporcionar un servicio de comunicación vía HTTP para la generación de peticiones al servidor.
 	\item Proporcionar un mecanismo para la visualización en tiempo real de la generación  de la energía producida por el sistema fotovoltaico.
 	\item Proporcionar un mecanismo para la generación de estadísticas de la producción de energía por el sistema fotovoltaico.
 	\item Informar por medio de notificaciones cuando el sistema fotovoltaico dejó de producir energía, así como al final del día notificar si se produjo más o menos energía que el promedio diario de producción.  
