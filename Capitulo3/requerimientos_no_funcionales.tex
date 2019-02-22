@@ -1,10 +1,14 @@
 \section{Requerimientos no funcionales}
 A continuación, se presenta un listado con los requerimientos no funcionales que fueron identificados para el sistema:
 \begin{enumerate}[label=RNF\arabic*.]
-	\item Escalabilidad: La arquitectura bajo la que es construido el sistema permite que este sea escalable y pueda extenderse hacia más usuarios y más funcionalidades.
-	\item Seguridad: La información de los usuarios será cifrada y todos los usuarios que se registren deberán de activar sus cuentas vía correo electrónico.
-	\item Usabilidad: La interfaz de usuario del sistema es intuitiva de tal forma que un usuario pueda usar las funcionalidades descritas en los requerimientos funcionales, sin entrenamiento previo en no más de dos horas.
-	\item Tiempo de ejecución: Cuando se envíe una petición al servidor para mostrar la información de la clasificación de las gasolineras este debe responder en un tiempo máximo de 5 segundos.
-	\item Tolerancia a fallos: Cuando se presente un error en el sistema, este no tardará más de 5 minutos en restaurarse a un estado válido.
-	\item Concurrencia: El sistema debe soportar 1000 peticiones sin que el tiempo de respuesta para todas ellas sea mayor a 10 segundos.
+    \item Eficiencia: El sistema debe ser capaz de operar adecuadamente y responder a través de la aplicación móvil al usuario en a lo más 7 segundos.
+	\item Escalabilidad: La arquitectura bajo la que es construido el sistema permite que este sea escalable y pueda expandirse hacia más funcionalidades.
+	\item Seguridad: Los datos almacenados en el archivo de formato de texto correspondiente serán cifrados utilizando el algoritmo AES. **
+	\item Usabilidad: La aplicación móvil cuenta con un diseño ergonómico y de fácil comprensión de tal forma que un usuario pueda utilizarla sin complicaciones, y a su vez con un tiempo de aprendizaje de a lo más dos horas.
+	\item Tiempo de ejecución: Cuando se envíe una petición al servidor por parte de la aplicación móvil para mostrar la información de la energía censada, este debe responder en un tiempo máximo de 5 segundos. **
+	\item Versiones de android: La aplicación móvil será desarrollada para versiones android igual o mayores a la versión 5.0.
+	\item Tamaño: La aplicación móvil no podrá ocupar más de 700 mb de espacio en memoria interna del teléfono celular.
+	\item Disponibilidad: El sistema debe tener una disponibilidad del 99,99\% de las veces en que un usuario intente hacer uso de las funcionalidades a través de la aplicación móvil. **
+	\item Tolerancia a fallos: La probabilidad de falla del sistema no podrá ser mayor a 0,05\% y cuando se presente un error, este no tardará más de 15 minutos en restaurarse a un estado válido. **
+	\item Concurrencia: La aplicación móvil debe soportar 1000 peticiones sin que el tiempo de respuesta por parte del servidor para todas ellas sea mayor a 10 segundos. **
 \end{enumerate}
