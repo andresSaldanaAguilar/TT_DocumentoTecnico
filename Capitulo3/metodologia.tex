@@ -1,17 +1,51 @@
 \section{Metodología}
-Es difícil encontrar una definición estándar para una metodología de desarrollo de software, Centers for medicare \& medicaid services o CMS (2017), definen una metodología de desarrollo de software como “un marco de trabajo que es usado para estructurar, planificar y controlar el proceso de desarrollo de un sistema de información”\cite{metodologia}.
+
+\textbf{Metodología en V}\\
+Para el desarrollo del sistema se tomará en cuenta la metodología en V para el desarrollo de software, partiendo de la definición de requerimientos funcionales y no funcionales, trazando un plan para el modelado del sistema mediante casos de uso, comprendiendo las limitaciones, identificando el impacto del mismo y previendo posibles cambios. Se hace un diseño del sistema con la ayuda de toda la información recogida sobre requisitos y análisis, donde veremos el sistema de manera modular, teniendo la ventaja de identificar los errores en una sección específica de este. Posteriormente el diseño es implementado con el lenguaje de programación elegido, obteniendo programas ejecutables capaces de ofrecer la funcionalidad esperada. A su vez cada etapa va a ser sometida a pruebas unitarias, integradoras y finalmente, del sistema para validar el análisis y diseño previamente hecho de manera ascendente.
+
+Las pruebas de cada nivel son descritas a continuación:
+
+Donde:
+\begin{itemize}
+
+    \item Pruebas unitarias/modulares: estas pruebas comprueban que todas las funcionalidades especificadas en el diseño del componente sean correctas y cubiertas.
+    
+    \item Pruebas de integración/interfaz:
+    Conforme los módulos son implementados y probados de manera unitaria, se procede a probar su funcionalidad de manera conjunta, estas pruebas están enfocadas a:
+    
+    \begin{itemize}
+        \item Que espera un componente de otro componente, en termino de servicios.
+        \item Como es que estos servicios serán solicitados.
+        \item Como es que estos servicios serán entregados.
+        \item El manejo de errores por condiciones inesperadas.
+    \end{itemize}
+    
+    Las pruebas deben probar el correcto funcionamiento de todas las interfaces entre componentes, al tener todos los componentes y sus interfaces terminadas tendremos como resultado el sistema completo.
+    
+    
+Una ves el sistema ha sido construido, debe ser probado contra las especificaciones del sistema para comprobar que cubra las funcionalidades requeridas.
+En esta parte se enfoca en probar el sistema de manera monolítica .
+Esta parte debe incluir las siguientes pruebas:
+Desempeño de la aplicacion
+Volumen - El manejo volumenes grandes de informacion
+
+
+System testing can involve a number of specialist types of test to see if all the functional and non-functional requirements have been met. In addition to functional requirements these may include the following types of testing for the non-functional requirements:
+
+Performance - Are the performance criteria met?
+Volume - Can large volumes of information be handled?
+Stress - Can peak volumes of information be handled?
+Documentation - Is the documentation usable for the system?
+Robustness - Does the system remain stable under adverse circumstances?
+There are many others, the needs for which are dictated by how the system is supposed to perform.    
+    
+\end{itemize}
+
 \\
-\textbf{Modelo Incremental}\\
-El modelo incremental combina elementos de los flujos de proceso lineal y paralelo, el modelo incremental aplica secuencias lineales en forma escalonada a medida que avanza el calendario de actividades. Cada secuencia lineal produce “incrementos” de software susceptibles de entregarse.\\
-Cuando se utiliza un modelo incremental, es frecuente que el primer incremento sea el producto fundamental. Es decir, se abordan los requerimientos básicos, pero no se proporcionan muchas características suplementarias. El modelo de proceso incremental se centra en que en cada incremento se entrega un producto que ya opera. Los primeros incrementos son versiones desnudas del producto final, pero proporcionan capacidad que sirve al usuario y también le dan una plataforma de evaluación.\\
-El desarrollo incremental es útil en particular cuando no se dispone de personal para la implementación completa del proyecto en el plazo establecido por el negocio. Los primeros incrementos se desarrollan con pocos trabajadores. Si el producto básico es bien recibido, entonces
-se agrega más personal (si se requiere) para que labore en el siguiente incremento. Además, los incrementos se planean para administrar riesgos técnicos.\cite{Pressman}.
-\\
-En la imagen \ref{fig:ModeloIncremental} se muestra el modelo incremental.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{Capitulo3/img/ModeloIncremental}
-	\caption{Modelo Incremental}
+	\includegraphics[width=1\textwidth]{Capitulo3/img/vmodel.png}
+	\caption{Metodología en V}
 	\label{fig:ModeloIncremental}
 \end{figure}
 
