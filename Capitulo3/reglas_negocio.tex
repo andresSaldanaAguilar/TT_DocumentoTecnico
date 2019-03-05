@@ -1,6 +1,35 @@
 \section{Reglas de negocio}
 En la presente sección, se muestran las reglas de negocio del sistema.
 \begin{enumerate}[label=RN\arabic*.]
+    \item \label{RN1}
+		\begin{description}
+			\item[Nombre] RN1-Monitorizar el sistema fotovoltaico en tiempo real.
+			\item[Tipo] Regla de operación.
+			\item[Objetivo] La obtención de mediciones del sistema fotovoltaico se realizará en tiempo real.
+			\item[Descripción] La obtención de mediciones del sistema fotovoltaico dependerá del dispositivo de monitoreo empleado, en este caso, se trada del MCP39F521, y está determinada por la frecuencia de reloj de IIC de 400 Khz. 
+    		\end{description}
+    		
+    \item \label{RN2}
+		\begin{description}
+			\item[Nombre] RN2-Creación de alertas cuando se detecta que el sistema fotovoltaico dejó de producir energía.
+			\item[Tipo] Regla de estímulo y respuesta.
+			\item[Objetivo] Crear alertas que le informen al usuario el momento exacto en que el sistema fotovoltaico ha dejado de producir energía.
+			\item[Descripción] La alerta será creada y enviada como notificación al usuario de forma inmediata si y sólo si en el proceso de monitoreo se ha detectado que la medición de energía producida es de 0 volts.  
+    		\end{description}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%___________________-RN's Elioth
 	\item \label{RN1}
 		\begin{description}
 			\item[Nombre] RN1-Calcular cantidad de combustible recargado.
