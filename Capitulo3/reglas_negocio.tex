@@ -6,22 +6,31 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN1-Obtención de muestras del sistema fotovoltaico en tiempo real.
 			\item[Tipo] Regla de operación.
 			\item[Objetivo] La obtención de mediciones del sistema fotovoltaico se realizará en tiempo real.
-			\item[Descripción] La obtención de mediciones del sistema fotovoltaico dependerá del dispositivo de monitoreo empleado, en este caso, se trata del MCP39F521, y está determinada por la frecuencia de reloj de IIC de 400 Khz. 
+			\item[Descripción] La obtención de mediciones del sistema fotovoltaico dependerá del dispositivo de monitoreo empleado, en este caso, se trata del MCP39F521, y está determinada por la frecuencia de reloj de IIC de 400 Khz.
     		\end{description}
     		
-    \item \label{RN2}
+\item \label{RN2}
+	\begin{description}
+		\item[Nombre] RN2-Envío de muestras del sistema fotovoltaico en tiempo real.
+		\item[Tipo] Regla de operación.
+		\item[Objetivo] El envío de mediciones del microcontrolador por medio del módulo Wi-Fi se realizará en tiempo real.
+		\item[Descripción] El envío de muestras del microcontrolador por medio del módulo Wi-Fi dependerá de la velocidad de transmisión UART entre el microcontrolador y el módulo, que es de 115200 baudios. Un baudio es el número de unidades de información transmitidas por segundo que, dependiendo de la configuración, puede estar entre los 9600 a 11520 Bytes/seg.
+		\end{description}	
+		
+    \item \label{RN3}
 		\begin{description}
-			\item[Nombre] RN2-Creación de alertas cuando se detecta que el sistema fotovoltaico dejó de producir energía.
+			\item[Nombre] RN3-Creación de alertas cuando se detecta que el sistema fotovoltaico dejó de producir energía.
 			\item[Tipo] Regla de estímulo y respuesta.
 			\item[Objetivo] Crear alertas que le informen al usuario el momento exacto en que el sistema fotovoltaico ha dejado de producir energía.
 			\item[Descripción] La alerta será creada y enviada como notificación al usuario de forma inmediata si y sólo si en el proceso de monitoreo se ha detectado que la medición de energía producida es de 0 volts.  
     		\end{description}
-\item \label{RN3}
+    		
+\item \label{RN4}
 		\begin{description}
-			\item[Nombre] RN3-Calcular promedio de energía sensada bimestralmente.
+			\item[Nombre] RN4-Calcular promedio de energía sensada bimestralmente.
 			\item[Tipo] Derivadora.
 			\item[Objetivo] Calcular promedio bimestral de la energía sensada
-			\item[Descipción] El informe que se notifica al usuario mediante la aplicación móvil será el promedio de la energía promedio sensada diariamente, la cual se calcula con los registros de los últimos 2 meses, únicamente se realizará el cálculo de este promedio durante los siguientes periodos:
+			\item[Descripción] El informe que se notifica al usuario mediante la aplicación móvil será el promedio de la energía promedio sensada diariamente, la cual se calcula con los registros de los últimos 2 meses, únicamente se realizará el cálculo de este promedio con los siguientes periodos:
 			\begin{itemize}
 				\item 1 de Enero al 28 o 29 de Febrero (dependiendo de si el año es bisiesto)
 				\item 1 de Marzo al 30 de Abril
@@ -32,114 +41,64 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\end{itemize}
 		\end{description}
 
-\item \label{RN4}
-		\begin{description}
-			\item[Nombre] RN4-Calcular promedio de energía sensada diariamente.
-			\item[Tipo] Derivadora.
-			\item[Objetivo] Calcular promedio de energía sensada diariamente
-			\item[Descripción] La cantidad promedio de las 120 muestras tomadas diariamente como lo especifica la regla de negocios "Periodo de toma de muestras para cálculo de promedio diario de energía sensada".
-			\item[Descripción] Se realizará el promedio de los últimos 60 promedios diarios para el calculo bimestral
-		\end{description}
-
 \item \label{RN5}
 		\begin{description}
-			\item[Nombre] RN5-Periodo de toma de muestras para cálculo de promedio diario de energía sensada.
+			\item[Nombre] RN5-Calcular promedio de energía sensada diariamente.
+			\item[Tipo] Derivadora.
+			\item[Objetivo] Calcular promedio de energía sensada diariamente
+			\item[Descripción] La cantidad promedio de las 120 muestras tomadas diariamente como lo especifica la regla de negocio RN5.
+		\end{description}
+
+\item \label{RN6}
+		\begin{description}
+			\item[Nombre] RN6-Periodo de toma de muestras para cálculo de promedio diario de energía sensada.
 			\item[Tipo] Operacional.
 			\item[Objetivo] Establecer el periodo de tiempo en el que las muestras para cálculo de promedio diario de energía sensada serán tomadas.
 			\item[Descripción] Las muestras comenzarán a tomarse y serán almacenadas a partir de las 8:00 a.m. hasta las 6:00 p.m. cada 5 minutos.
-			\item[Descripción] Se realizará el promedio de los últimos 60 promedios diarios para el calculo bimestral
 		\end{description}
-
-
-
-
-
-
-
-
-
-
-
-
-
-%___________________-RN's Elioth
-	\item \label{RN1}
+		
+%Checar tipo
+\item \label{RN7}
 		\begin{description}
-			\item[Nombre] RN1-Calcular cantidad de combustible recargado.
-			\item[Tipo] Derivadora.
-			\item[Objetivo] La cantidad de combustible recargado a un automóvil se calcula con una fórmula especifica dependiente del sensor de hardware usado.
-			\item[Descripción] La cantidad de combustible recargado a un automóvil, se calcula con la fórmula: $$L=(F/4.8)*T$$
-			Donde:
-				\begin{itemize}
-					\item L=Total de litros recargados
-					\item F=Frecuencia de la señal (tren de impulsos) enviada por el sensor de hardware, se calcula por la cantidad de impulsos (voltaje en alta) que se reciban en un segundo.
-					\item T= Es el tiempo durante el que se recibió la señal, el tiempo se calcula al establecer una marca de tiempo en la cual se recibió el primer impulso, y establecer otra marca de tiempo en el momento en que se han dejado de recibir. Restando al segundo el primero.\cite{FS400A-G1}
-				\end{itemize}
-			% \item[Ejemplo]
+			\item[Nombre] RN7-Estándar de comunicación.
+			\item[Tipo] Derivación.
+			\item[Objetivo] Establecer el estándar de comunicación entre microcontrolador-servidor y servidor-aplicación de usuario.
+			\item[Descripción] El estándar de comunicación es el IEEE 802.11 que proporciona la base para los productos con redes inalámbricas que hacen uso de la marca Wi-Fi.
+		\end{description}
+		
+%Checar tipo		
+\item \label{RN8}
+		\begin{description}
+			\item[Nombre] RN8-Patrón de intercambio de mensajes.
+			\item[Tipo] Derivación.
+			\item[Objetivo] Establecer el patrón de intercambio de información entre módulos.
+			\item[Descripción] El patrón de intercambio de información a utilizar entre módulos será petición-respuesta.
+		\end{description}
+		
+%Después definir los datos exactos? o en req técnicos		
+\item \label{RN9}
+		\begin{description}
+			\item[Nombre] RN9-Almacenamiento de datos de monitoreo.
+			\item[Tipo] Regla de operación.
+			\item[Objetivo] Establecer el método de almacenamiento de la información.
+			\item[Descripción] El almacenamiento en el servidor está limitado por la memoria externa que le es agregada, por lo que usaremos una herramienta que trabaja con una cantidad de datos fija, definida en el momento de crear la base de datos, y un puntero al elemento actual ocupando siempre un constante de almacenamiento.
 		\end{description}
 
-	\item \label{RN2}
+%Preguntar request-reply si es RN8?
+
+%Definí como tipo, preguntar si otra regla debemos poner el formato (bien conformado con un xsd)?
+%Checar si será XML o JSON
+\item \label{RN10}
 		\begin{description}
-			\item[Nombre] RN2-Tiempo posterior a la carga de combustible.
-			\item[Tipo] Controladora.
-			\item[Objetivo] Especificar la cantidad de tiempo, en la que pasado este se considera que la recarga de combustible en el automóvil haya culminado.
-			\item[Descripción] Se considera que se ha dejado de cargar gasolina a un automóvil sí ha pasado más de un segundo sin que el sensor de flujo envíe ningún impulso.
-			% \item[Ejemplo]
+			\item[Nombre] RN10-Formato de datos almacenados.
+			\item[Tipo] Regla de restricción.
+			\item[Objetivo] Definir el formato en que serán almacenados los datos sensados.
+			\item[Descripción] El formato en que serán almacenados los datos sensados está definido por un archivo con extensión XML/JSON. 
 		\end{description}
-	\item \label{RN3}
-		\begin{description}
-			\item[Nombre] RN3-Otorgar insignia a actor.
-			\item[Tipo] Derivadora.
-			\item[Objetivo] Determinar las condiciones bajo las cuales un actor recibe una insignia.
-			\item[Descripción] Un actor recibe una insignia cada vez que acumula cien mediciones.
-			% \item[Ejemplo]
-		\end{description}
-	\item \label{RN4}
-		\begin{description}
-			\item[Nombre] RN4-Registrar precio gasolina.
-			\item[Tipo] Controladora.
-			\item[Objetivo] Determinar que actores pueden registrar el precio de la gasolina después de haber cargado.
-			\item[Descripción] Solamente un actor con insignias puede registrar el precio de la gasolina.
-			% \item[Ejemplo]
-		\end{description}
-	\item \label{RN5}
-		\begin{description}
-			\item[Nombre] RN5-Asignar insignia a gasolinera.
-			\item[Tipo] Controladora.
-			\item[Objetivo] Determinar que actores pueden asignarle una insignia a una gasolinera.
-			\item[Descripción] Solamente un actor con insignias puede asignarle insignias a una gasolinera después de carga gasolina en la misma.
-			% \item[Ejemplo]
-		\end{description}
-	\item \label{RN6}
-		\begin{description}
-			\item[Nombre] RN6-Especificar bomba.
-			\item[Tipo] Controladora.
-			\item[Objetivo] Determinar que actores pueden especificar en que bomba cargaron gasolina.
-			\item[Descripción] Solamente un actor con al menos una insignia puede especificar en que bomba cargó gasolina.
-			% \item[Ejemplo]
-		\end{description}
-	\item \label{RN7}
-		\begin{description}
-			\item[Nombre] RN7-Actualizar clasificación de gasolineras.
-			\item[Tipo] Controladora.
-			\item[Objetivo] Determinar el tiempo que debe pasar entre cada actualización de la clasificación de gasolineras.
-			\item[Descripción] La clasificación de gasolineras se actualiza cada sesenta minutos.
-			% \item[Ejemplo]
-		\end{description}
-	\item \label{RN8}
-		\begin{description}
-			\item[Nombre] RN8-Algoritmo de clasificación.
-			\item[Tipo] Derivadora.
-			\item[Objetivo] Especificar el algoritmo que es usado para clasificar a las gasolineras con base en las mediciones registradas para cada una.
-			\item[Descripción] El algoritmo de clasificación usado es descrito en está parte.
-			% \item[Ejemplo]
-		\end{description}
-	\item \label{RN9}
-		\begin{description}
-			\item[Nombre] RN9-Radio cercano al actor para obtener gasolineras.
-			\item[Tipo] Derivadora.
-			\item[Objetivo] Especificar en que radio se obtendrán las gasolineras cercanas al actor al abrir la aplicación móvil.
-			\item[Descripción] El radio es de quinientos metros a partir de la ubicación del actor.
-			% \item[Ejemplo]
-		\end{description}
+
+		
+%Estipular cuantas muestras se tomaran por dia y bimestralmente y si se deshecharán,
+
+%Tipo de archivo en el que se almacenarán los datos
+
 \end{enumerate}
