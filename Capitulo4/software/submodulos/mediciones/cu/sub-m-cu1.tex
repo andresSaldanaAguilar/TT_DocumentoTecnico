@@ -1,5 +1,5 @@
 \subsubsection{SUB-M-CU1-Calcular promedio de energía sensada diariamente}\label{SUB-M-CU1}
-La cantidad promedio de energía que es sensada diariamente es calculado tomando en cuenta las especificaciones de la Regla de Negocio \ref{RN5}, este cálculo se realiza diariamente cuando el periodo diario de toma de muestras especificado en la Regla de Negocio \ref{RN6} culmina.
+El promedio de energía que es sensada diariamente es calculado tomando en cuenta las especificaciones de la Regla de Negocio \ref{RN5}, este cálculo se realiza diariamente cuando el periodo diario de toma de muestras especificado en la Regla de Negocio \ref{RN6} culmina.
 % \begin{description}
 % 	\item[Nombre del Caso de Uso] SUB-M-CU1-Calcular cantidad de combustible recargado.
 % 	\item[Objetivo] Obtener las señales enviadas por el sensor y a partir de estas, calcular la cantidad de combustible que fue cargado al automóvil.
@@ -70,13 +70,13 @@ La cantidad promedio de energía que es sensada diariamente es calculado tomando
 		Alta. \\ \hline
 	\textbf{Errores} & 
 		\begin{itemize}
-			\item \label{SUB-M-CU1:Error1} Error 1: No se puede establecer una conexión inalámbrica entre el módulo Bluetooth y el dispositivo móvil, termina el caso de uso.
+			\item \label{SUB-M-CU1:Error1} Error 1: No se puede establecer una conexión WiFi inalámbrica entre el módulo del sensor y el servidor embebido, termina el caso de uso.
 		\end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
-		    \item \ref{RN1}.
-			\item \ref{RN4}.
-			\item \ref{RN6}.
+		    \item \ref{RN1}
+			\item \ref{RN4}
+			\item \ref{RN6}
 		\end{itemize} \\ \hline
 
 	% \caption{}
@@ -85,21 +85,22 @@ La cantidad promedio de energía que es sensada diariamente es calculado tomando
 
 \paragraph{Trayectoria principal}
 	\begin{enumerate}
-		\item {[Sensor]} Detecta un cambio de voltaje en la salida del sensor y envía una trama indicando un pulso de voltaje en alta. \hyperref[SUB-M-CU1:Error1]{Error 1}
-		\item {[Sistema]} Recibe la trama e inicializa el contador de impulsos en cero.
-		\item \label{SUB-M-CU1:MarcaInicio} {[Sistema]} Crea una marca de tiempo de inicio de la recarga de combustible.
-		\item \label{SUB-M-CU1:IncrementaContador} {[Sistema]} Incrementa el contador de impulsos en uno.
-		\item {[Sistema]} Verifica que no se reciban más tramas durante más de un segundo, con base en la regla de negocio \ref{RN2}.\hyperref[SUB-M-CU1:TA]{[Trayectoria Alternativa A]}
-		\item {[Sistema]} Crea una marca de tiempo indicando el fin de la carga de combustible.
-		\item {[Sistema]} Calcula la cantidad de combustible cargado con base en la regla de negocio \ref{RN1}.
-		\item {[Sistema]} Obtiene la fecha y hora actuales.
-		\item {[Sistema]} Incluye el caso de uso \hyperref[SUB-M-CU1.1]{SUB-M-CU1.1-Confirmar medición}.
+		\item {[Sensor]} Hace una lectura del voltaje y la corriente a la última hora que especifica la regla de negocio \ref{RN6} y envía una trama indicando las cantidades medidas.\hyperref[SUB-M-CU1:Error1]{Error 1}
+		\item {[Sistema]} Recibe la trama con los datos de la medición, y al ser la última muestra del día, inicia el proceso para calcular el promedio diario de energía sensada diariamente.
+		\item  {[Sistema]} Consulta de la base de datos las últimas 119 muestras, ya que son las que obtuvo durante el transcurso del día actual.
+		\item {[Sistema]} Habiendo obtenido las 119 muestras de la base de datos y la muestra que conserva actualmente de la última medición, realiza el promedio con las 120 muestras.
+		\item {[Sistema]} El sistema obtiene la fecha actual
+		\item {[Sistema]} Almacena tanto el promedio, como la fecha actual y un estado de éxito.
+		%\item {[Sistema]} Incluye el caso de uso \hyperref[SUB-M-CU1.1]{SUB-M-CU1.1-Confirmar medición}.
 	\end{enumerate}
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-M-CU1:TA}
-	Se reciben al menos una trama antes de los cinco segundos.
+	No se puede establecer conexión WiFi inalámbrica entre el módulo del sensor y el servidor embebido.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Sistema]} Continúa en el paso \ref{SUB-M-CU1:IncrementaContador} de la Trayectoria Principal.
+		\item {[Sistema]} Toma un 0 como última medición. 
+		\item {[Sistema]} Habiendo obtenido las 119 muestras de la base de datos y el 0 como última medición, realiza el promedio con las 120 muestras.
+		\item {[Sistema]} El sistema obtiene la fecha actual
+		\item {[Sistema]} Almacena tanto el promedio, la fecha actual y un estado de fallo.
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
