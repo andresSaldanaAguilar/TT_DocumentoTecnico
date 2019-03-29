@@ -1,0 +1,84 @@
+\subsubsection{SUB-M-CU1.5.-Envío de muestras de monitoreo del servidor a la aplicación de usuario}\label{SUB-M-CU1.5}
+El envió de muestras se realizara en el momento que haya una petición entrante del cliente y se enviara mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11}. 
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del caso de uso} &
+		CU5-Envío de muestras de monitoreo desde el servidor a la aplicación de usuario \\ \hline
+	\textbf{Objetivo} &
+		Enviar muestras del monitoreo para que la aplicación de usuario pueda construir una gráfica en tiempo real. \\ \hline
+	\textbf{Actores} &
+		\begin{itemize}
+			\item Servidor embebido
+			\item Aplicación de Usuario
+		\end{itemize} \\ \hline
+	\textbf{Disparador} & 
+		La aplicación de usuario envía una petición de muestra al servidor de acuerdo al tiempo establecido en la Regla de Negocio \ref{}\\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Marca de tiempo
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+			\item Valor de la muestra
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+			\item Existencia de una muestra acorde al tiempo de la petición.
+		\end{itemize}\\ \hline
+	\textbf{Postcondiciones} &
+		Ninguna.\\ \hline
+	\textbf{Condiciones de término} & 
+		\begin{itemize}
+			\item El cliente recibe el valor de la marca de tiempo.
+		\end{itemize} \\ \hline 
+	\textbf{Prioridad} & 
+		Alta. \\ \hline
+	\textbf{Errores} & 
+		\begin{itemize}
+		    \item \label{CU5:Error1} Error 1: Sin conexión con el servidor.
+			\item \label{CU5:Error2} Error 2: La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
+		    \item \label{CU5:Error3} Error 3: Sin conexión con el cliente.
+			
+		\end{itemize} \\ \hline
+	\textbf{Reglas de negocio} & 
+		\begin{itemize}
+		    \item \ref{RN8}
+			\item \ref{RN11}
+			\item \ref{}
+		\end{itemize} \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria principal}
+	\begin{enumerate}
+		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{} y envía la marca de tiempo como petición al servidor. \hyperref[CU5:Error1]{Error 1}
+		\item {[Servidor]} Recibe la petición, busca en sus registros por el valor correspondiente a la marca de tiempo. \hyperref[CU5:Error2]{Error 2} 
+		\item  {[Servidor]} Envía el valor al cliente en el formato de la Regla de Negocio \ref{RN11}. \hyperref[CU5:Error3]{Error 3}
+        \item {[Aplicación de Usuario]} Recibe la respuesta en el formato de la Regla de Negocio \ref{RN11}.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria alternativa A} \label{SUB-M-CU5:TA}
+	Sin conexión con el servidor.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Aplicación de usuario]} Asigna valor "-1" como valor de generación.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria alternativa B} \label{SUB-M-CU5:TB}
+	La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Servidor]} Asigna el valor "-2" a la respuesta para el cliente.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria alternativa C} \label{SUB-M-CU5:TC}
+	Sin conexión con el cliente.
+	\begin{enumerate}[label=C\arabic*.]
+		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
+		\item {[Aplicacion de usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{} una vez mas y al no recibir respuesta del servidor asigna el valor "-1" como valor de generación.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
