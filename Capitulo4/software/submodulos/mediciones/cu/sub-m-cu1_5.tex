@@ -39,7 +39,8 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 		    \item \label{CU5:Error1} Error 1: Sin conexión con el servidor.
 			\item \label{CU5:Error2} Error 2: La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
 		    \item \label{CU5:Error3} Error 3: Sin conexión con el cliente.
-		    \item \label{CU5:Error3} Error 4: El valor de generación es -1
+		    \item \label{CU5:Error4} Error 4: El valor de generación es -1
+		    \item \label{CU5:Error5} Error 5: El valor de generación es 0
 		\end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
@@ -86,7 +87,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 \paragraph{Trayectoria alternativa C} \label{SUB-M-CU5:TC}
 	La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
 	\begin{enumerate}[label=C\arabic*.]
-		\item {[Servidor]} Asigna el valor -1 a la respuesta para la aplicacion de usuario.
+		\item {[Servidor]} Asigna el valor -1 a la respuesta para la aplicación de usuario.
 		\item {[Aplicación de usuario]} Regresa al punto 4 de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -101,7 +102,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 	Fin de la trayectoria alternativa.
 	
 \paragraph{Trayectoria alternativa E} \label{SUB-M-CU5:TE}
-	El valor de generación es -1
+	El valor de respuesta es -1
 	\begin{enumerate}[label=E\arabic*.]
 		\item {[Aplicación de usuario]} Muestra la pantalla emergente \ref{}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
@@ -129,6 +130,14 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 	El valor de generación es -1
 	\begin{enumerate}[label=H\arabic*.]
 		\item {[Aplicación de usuario]} Asigna como valor de generación 0, actualiza la pantalla de usuario \ref{} y genera la notificación \ref{}.
+		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+	
+\paragraph{Trayectoria alternativa I} \label{SUB-M-CU5:TI}
+	El valor de generación es 0
+	\begin{enumerate}[label=I\arabic*.]
+		\item {[Aplicación de usuario]}  Actualiza la pantalla de usuario \ref{} y genera la notificación \ref{}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
