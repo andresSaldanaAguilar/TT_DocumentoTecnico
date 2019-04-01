@@ -1,36 +1,36 @@
-\subsubsection{SUB-M-CU1.5-Envío de muestras de monitoreo del servidor a la aplicación de usuario}\label{SUB-M-CU1.5}
-El envió de muestras se realizara en el momento que haya una petición entrante del cliente y se enviara mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11}. 
+\subsubsection{SUB-M-CU1.5-Ver Monitoreo en Tiempo Real}\label{SUB-M-CU1.5}
+El monitoreo en tiempo real se realizará haciendo una petición de los valores del día actual que el servidor tiene almacenado para graficarlos en la aplicación de usuario y posteriormente actualizar la gráfica de lineas por medio de peticiones al servidor en el tiempo establecido en la Regla de Negocio \ref{RN6} .
+\\ La comunicación se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11}. 
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-M-CU1.5-Envío de muestras de monitoreo desde el servidor a la aplicación de usuario \\ \hline
+		SUB-M-CU1.5-Ver monitoreo en Tiempo Real \\ \hline
 	\textbf{Objetivo} &
-		Enviar muestras del monitoreo para que la aplicación de usuario pueda construir una gráfica en tiempo real. \\ \hline
+		Enviar y recibir muestras del monitoreo para que la aplicación de usuario pueda construir una gráfica de lineas en tiempo real. \\ \hline
 	\textbf{Actores} &
 		\begin{itemize}
+		    \item Usuario
 			\item Servidor embebido
 			\item Aplicación de Usuario
 		\end{itemize} \\ \hline
 	\textbf{Disparador} & 
-		La aplicación de usuario envía una petición de muestra al servidor de acuerdo al tiempo establecido en la Regla de Negocio \ref{RN6}\\ \hline 
+	    El usuario inicia la aplicación de usuario dando clic en el icono \\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-				\item Marca de tiempo
+				\item{[Servidor]} Marca de tiempo
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
-			\item Valor de la muestra
+			\item{[Servidor]} Valor de la muestra
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
-		\begin{itemize}
-			\item Existencia de una muestra acorde al tiempo de la petición.
-		\end{itemize}\\ \hline
+		Ninguna. \\ \hline
 	\textbf{Postcondiciones} &
 		Ninguna.\\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-			\item El cliente recibe el valor de la marca de tiempo.
+			\item La aplicación de usuario recibe el valor o valores y construye la gráfica de lineas correspondiente.
 		\end{itemize} \\ \hline 
 	\textbf{Prioridad} & 
 		Alta. \\ \hline
@@ -39,7 +39,7 @@ El envió de muestras se realizara en el momento que haya una petición entrante
 		    \item \label{CU5:Error1} Error 1: Sin conexión con el servidor.
 			\item \label{CU5:Error2} Error 2: La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
 		    \item \label{CU5:Error3} Error 3: Sin conexión con el cliente.
-			
+		    \item \label{CU5:Error3} Error 4: El valor de generación es -1
 		\end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
@@ -55,34 +55,80 @@ El envió de muestras se realizara en el momento que haya una petición entrante
 \paragraph{Trayectoria principal}
     \label{SUB-M-CU1.5:TP}
 	\begin{enumerate}
-		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo como petición al servidor. \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
-		\item {[Servidor]} Recibe la petición, busca en sus registros por el valor correspondiente a la marca de tiempo. \hyperref[SUB-M-CU5:TB]{[Trayectoria alternativa B]} 
-		\item  {[Servidor]} Envía el valor al cliente en el formato de la Regla de Negocio \ref{RN11}. \hyperref[SUB-M-CU5:TC]{[Trayectoria alternativa C]}
-        \item {[Aplicación de Usuario]} Recibe la respuesta en el formato de la Regla de Negocio \ref{RN11}. 
+	    \item {[Usuario]} Inicia la aplicación de usuario dando clic en el icono. \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
+	    \item {[Aplicación de Usuario]} Envía la marca de tiempo actual. \hyperref[SUB-M-CU5:TB]{[Trayectoria alternativa B]} 
+	    \item {[Servidor]} Recibe la petición, busca los valores almacenados hasta el momento del día de la marca de tiempo. \hyperref[SUB-M-CU5:TC]{[Trayectoria alternativa C]}
+	    \item {[Servidor]} Envía los valores correspondientes \hyperref[SUB-M-CU5:TD]{[Trayectoria alternativa D]} 
+	    \item {[Aplicación de Usuario]} Recibe los valores de monitoreo, muestra la pantalla de usuario \ref{} con los datos obtenidos. \hyperref[SUB-M-CU5:TE]{[Trayectoria alternativa E]}
 	\end{enumerate}
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-M-CU5:TA}
-	Sin conexión con el servidor.
+	El usuario ya esta en la pantalla de usuario \ref{} 
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Aplicación de usuario]} Asigna valor "-1" como valor de generación.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
+		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo como petición al servidor. \hyperref[SUB-M-CU5:TF]{[Trayectoria alternativa F]} 
+		\item {[Servidor]} Recibe la petición, busca en sus registros por el valor correspondiente a la marca de tiempo. \hyperref[SUB-M-CU5:TC]{[Trayectoria alternativa C]} 
+		\item  {[Servidor]} Envía el valor correspondiente \hyperref[SUB-M-CU5:TG]{[Trayectoria alternativa G]}
+        \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la pantalla de usuario \ref{} con el dato obtenido.
+        \hyperref[SUB-M-CU5:TH]{[Trayectoria alternativa H]}
+        \item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
 
 \paragraph{Trayectoria alternativa B} \label{SUB-M-CU5:TB}
-	La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
+	Sin conexión con el servidor.
 	\begin{enumerate}[label=B\arabic*.]
-		\item {[Servidor]} Asigna el valor "-2" a la respuesta para el cliente.
-		\item {[Aplicación de usuario]} Regresa al punto 3 de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
+		\item {[Aplicación de usuario]} Muestra la pantalla emergente \ref{}.
+		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
 
 \paragraph{Trayectoria alternativa C} \label{SUB-M-CU5:TC}
-	Sin conexión con el cliente.
+	La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
 	\begin{enumerate}[label=C\arabic*.]
+		\item {[Servidor]} Asigna el valor -1 a la respuesta para la aplicacion de usuario.
+		\item {[Aplicación de usuario]} Regresa al punto 4 de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria alternativa D} \label{SUB-M-CU5:TD}
+	Sin conexión con el cliente.
+	\begin{enumerate}[label=D\arabic*.]
 		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y al no recibir respuesta del servidor en ese intervalo, asigna el valor "-1" como valor de generación.
+		\item {[Aplicación de usuario]} Al no recibir respuesta del servidor en ese intervalo, muestra la pantalla emergente \ref{}
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+	
+\paragraph{Trayectoria alternativa E} \label{SUB-M-CU5:TE}
+	El valor de generación es -1
+	\begin{enumerate}[label=E\arabic*.]
+		\item {[Aplicación de usuario]} Muestra la pantalla emergente \ref{}.
+		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+	
+\paragraph{Trayectoria alternativa F} \label{SUB-M-CU5:TF}
+	Sin conexión con el servidor.
+	\begin{enumerate}[label=F\arabic*.]
+		\item {[Aplicación de usuario]} Asigna 0 como valor de monitoreo, actualiza la pantalla de usuario \ref{}  y genera la notificación \ref{}.
+		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+	
+\paragraph{Trayectoria alternativa G} \label{SUB-M-CU5:TG}
+	Sin conexión con el cliente.
+	\begin{enumerate}[label=G\arabic*.]
+		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
+		\item {[Aplicación de usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y al no recibir respuesta del servidor en ese intervalo, asigna 0 como valor de generación de esa marca de tiempo, actualiza la pantalla de usuario \ref{} y genera la notificación \ref{}.
+		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+	
+\paragraph{Trayectoria alternativa H} \label{SUB-M-CU5:TH}
+	El valor de generación es -1
+	\begin{enumerate}[label=H\arabic*.]
+		\item {[Aplicación de usuario]} Asigna como valor de generación 0, actualiza la pantalla de usuario \ref{} y genera la notificación \ref{}.
+		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
