@@ -60,17 +60,17 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 	    \item {[Aplicación de Usuario]} Envía la marca de tiempo actual. \hyperref[SUB-M-CU5:TB]{[Trayectoria alternativa B]} 
 	    \item {[Servidor]} Recibe la petición, busca los valores almacenados hasta el momento del día de la marca de tiempo. \hyperref[SUB-M-CU5:TC]{[Trayectoria alternativa C]}
 	    \item {[Servidor]} Envía los valores correspondientes \hyperref[SUB-M-CU5:TD]{[Trayectoria alternativa D]} 
-	    \item {[Aplicación de Usuario]} Recibe los valores de monitoreo, muestra la pantalla de usuario \ref{fig:monitoreo} con los datos obtenidos. \hyperref[SUB-M-CU5:TE]{[Trayectoria alternativa E]}
+	    \item {[Aplicación de Usuario]} Recibe los valores de monitoreo, muestra la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} con los datos obtenidos. \hyperref[SUB-M-CU5:TE]{[Trayectoria alternativa E]}
 	\end{enumerate}
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-M-CU5:TA}
-	El usuario ya esta en la pantalla de usuario \ref{} 
+	El usuario ya esta en la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]}
 	\begin{enumerate}[label=A\arabic*.]
 		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo como petición al servidor. \hyperref[SUB-M-CU5:TF]{[Trayectoria alternativa F]} 
 		\item {[Servidor]} Recibe la petición, busca en sus registros por el valor correspondiente a la marca de tiempo. \hyperref[SUB-M-CU5:TC]{[Trayectoria alternativa C]} 
 		\item  {[Servidor]} Envía el valor correspondiente \hyperref[SUB-M-CU5:TG]{[Trayectoria alternativa G]}
-        \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la pantalla de usuario \ref{} con el dato obtenido.
+        \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} con el dato obtenido.
         \hyperref[SUB-M-CU5:TH]{[Trayectoria alternativa H]}
         \item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
@@ -79,7 +79,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 \paragraph{Trayectoria alternativa B} \label{SUB-M-CU5:TB}
 	Sin conexión con el servidor.
 	\begin{enumerate}[label=B\arabic*.]
-		\item {[Aplicación de usuario]} Muestra la pantalla emergente \ref{}.
+		\item {[Aplicación de usuario]} Muestra la pantalla emergente \hyperref[fig:Error de Conexion]{[PE1-Error de Conexión]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -96,7 +96,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 	Sin conexión con el cliente.
 	\begin{enumerate}[label=D\arabic*.]
 		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Al no recibir respuesta del servidor en ese intervalo, muestra la pantalla emergente \ref{}
+		\item {[Aplicación de usuario]} Al no recibir respuesta del servidor en ese intervalo, muestra la pantalla emergente \hyperref[fig:Error de Conexion]{[PE1-Error de Conexión]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -104,7 +104,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 \paragraph{Trayectoria alternativa E} \label{SUB-M-CU5:TE}
 	El valor de respuesta es -1
 	\begin{enumerate}[label=E\arabic*.]
-		\item {[Aplicación de usuario]} Muestra la pantalla emergente \ref{}.
+		\item {[Aplicación de usuario]} Muestra la pantalla emergente \hyperref[fig:Error en el Servidor]{[PE2-Error en el Servidor]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -112,7 +112,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 \paragraph{Trayectoria alternativa F} \label{SUB-M-CU5:TF}
 	Sin conexión con el servidor.
 	\begin{enumerate}[label=F\arabic*.]
-		\item {[Aplicación de usuario]} Asigna 0 como valor de monitoreo, actualiza la pantalla de usuario \ref{}  y genera la notificación \ref{}.
+		\item {[Aplicación de usuario]} Asigna 0 como valor de monitoreo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]}  y genera la notificación \hyperref[fig:Alerta Conexion]{[N1-Alerta de Conexión]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -121,7 +121,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 	Sin conexión con el cliente.
 	\begin{enumerate}[label=G\arabic*.]
 		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y al no recibir respuesta del servidor en ese intervalo, asigna 0 como valor de generación de esa marca de tiempo, actualiza la pantalla de usuario \ref{} y genera la notificación \ref{}.
+		\item {[Aplicación de usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y al no recibir respuesta del servidor en ese intervalo, asigna 0 como valor de generación de esa marca de tiempo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta Conexion]{[N1-Alerta de Conexión]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -129,7 +129,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 \paragraph{Trayectoria alternativa H} \label{SUB-M-CU5:TH}
 	El valor de generación es -1
 	\begin{enumerate}[label=H\arabic*.]
-		\item {[Aplicación de usuario]} Asigna como valor de generación 0, actualiza la pantalla de usuario \ref{} y genera la notificación \ref{}.
+		\item {[Aplicación de usuario]} Asigna como valor de generación 0, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta de Servidor]{[N3-Alerta de Servidor]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -137,7 +137,7 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 \paragraph{Trayectoria alternativa I} \label{SUB-M-CU5:TI}
 	El valor de generación es 0
 	\begin{enumerate}[label=I\arabic*.]
-		\item {[Aplicación de usuario]}  Actualiza la pantalla de usuario \ref{} y genera la notificación \ref{}.
+		\item {[Aplicación de usuario]}  Actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta Generacion]{[N2-Alerta de Generación]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.

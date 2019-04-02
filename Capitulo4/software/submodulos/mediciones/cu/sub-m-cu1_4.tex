@@ -1,0 +1,90 @@
+%Dudas:
+%   *Condición de término
+%   *Regla de negocio de RS232?
+%
+\subsubsection{SUB-M-CU1.4-Enviar muestras del microcontrolador al Servidor embebido}\label{SUB-M-CU1.4}
+El microcontrolador DSPIC30F4013 enviará las muestras obtenidas del Sistema fotovoltaico al Servidor embebido.
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del caso de uso} &
+		SUB-M-CU1.4-Enviar muestras del microcontrolador al Servidor embebido \\ \hline
+	\textbf{Objetivo} &
+		Enviar las muestras obtenidas por el  microcontrolador al Servidor embebido para su posterior procesamiento. \\ \hline
+	\textbf{Actores} &
+	    \begin{itemize}
+		    \item Microcontrolador
+		    \item Servidor embebido
+		\end{itemize}\\ \hline 
+	\textbf{Disparador} & 
+		El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.\\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Periodo de toma de muestras especificado en la \ref{RN6}
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} & 
+	    \begin{itemize}
+	        \item Trama WiFi.
+	    \end{itemize}\\ \hline
+	\textbf{Precondiciones} & 
+		\begin{itemize}
+		    \item El microcontrolador obtiene una medición del sensor por medio de IIC.
+		    \item El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.
+		\end{itemize}\\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item La trama WiFi por el Servidor embebido.
+		\end{itemize} \\ \hline
+	\textbf{Condiciones de término} & 
+		\begin{itemize}
+		    \item El microcontrolador recibe por WiFi una trama de acuse de recibo por parte del Servidor embebido.
+		\end{itemize} 
+		\\ \hline 
+	\textbf{Prioridad} & 
+		Alta. \\ \hline
+	\textbf{Errores} & Pendiente Checar
+		 %\begin{itemize}
+		 	%\item \label{SUB-M-CU1.3:Error1} Error 1: El checksum de la trama que contiene la instrucción de lectura de medición del sensor no es válido.
+		 	%\item \label{SUB-M-CU1.3:Error2} Error 2: La trama de respuesta de lectura de medición del sensor no fue recibida por el microcontrolador en el tiempo establecido.
+		 	%\item \label{SUB-M-CU1.3:Error3} Error 3: El checksum de la trama de respuesta de lectura de medición del sensor no es válido.
+		 %\end{itemize} \\ \hline
+	\textbf{Reglas de negocio} & 
+	    \begin{itemize}
+	      \item  \ref{RN2}
+	      \item  \ref{RN6}
+		 \end{itemize}%\\ \hline
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria principal}
+\label{SUB-M-CU1.4:TP}
+	\begin{enumerate}
+	    \item {[Microcontrolador]} Envía la muestra de medición del módulo UART al módulo WiFi del microcontrolador por medio del estándar RS232.
+	    \item {[Módulo WiFi Microcontrolador]} Recibe la trama por medio del estándar RS232.
+	    \item {[Módulo WiFi Microcontrolador]} Envía la trama al módulo WiFi del Servidor embebido.
+	    \item {[Módulo WiFi Servidor embebido]} Recibe la trama por medio del estándar RS232.
+	    \item {[Módulo WiFi Servidor embebido]} Valida que la trama sea correcta. %\hyperref[SUB-M-CU1.3:TA]{[Trayectoria Alternativa A]} %Error1
+	\end{enumerate}
+	Fin del caso de uso.
+
+%TRAYECTORIAS PENDIENTES
+\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.3:TA}
+	El checksum de la trama que contiene la instrucción de lectura de medición del sensor no es válido.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sensor]} Envía una trama de respuesta con el error CSFAIL de 0x51  
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria alternativa B} \label{SUB-M-CU1.3:TB}
+	La trama de respuesta de lectura de medición del sensor no fue recibida por el microcontrolador en el tiempo establecido.
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Microcontrolador]} Reenvía una trama que contiene la instrucción de lectura de medición del sensor por medio del protocolo IIC.  
+	\end{enumerate}
+	Fin de la trayectoria alternativa. Regresa al paso 2 de \hyperref[SUB-M-CU1.3:TP]{[Trayectoria Principal]}  
+	
+\paragraph{Trayectoria alternativa C} \label{SUB-M-CU1.3:TC}
+	El checksum de la trama de respuesta de lectura de medición del sensor no es válido.
+	\begin{enumerate}[label=C\arabic*.]
+		\item {[Microcontrolador]} Reenvía una trama que contiene la instrucción de lectura de medición del sensor por medio del protocolo IIC.  
+	\end{enumerate}
+	Fin de la trayectoria alternativa. Regresa al paso 2 de \hyperref[SUB-M-CU1.3:TP]{[Trayectoria Principal]} 
