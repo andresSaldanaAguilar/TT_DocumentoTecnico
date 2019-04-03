@@ -1,7 +1,8 @@
 %Dudas:
 %   *Condición de término
 %   *Regla de negocio de RS232?
-%
+%   *RN de envío de muestras en tiempo real?
+%   *Checar los errores
 \subsubsection{SUB-M-CU1.4-Enviar muestras del microcontrolador al Servidor embebido}\label{SUB-M-CU1.4}
 El microcontrolador DSPIC30F4013 enviará las muestras obtenidas del Sistema fotovoltaico al Servidor embebido.
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
@@ -9,13 +10,14 @@ El microcontrolador DSPIC30F4013 enviará las muestras obtenidas del Sistema fot
 	\textbf{Nombre del caso de uso} &
 		SUB-M-CU1.4-Enviar muestras del microcontrolador al Servidor embebido \\ \hline
 	\textbf{Objetivo} &
-		Enviar las muestras obtenidas por el  microcontrolador al Servidor embebido para su posterior procesamiento. \\ \hline
+		Enviar las muestras obtenidas por el microcontrolador al Servidor embebido para su posterior procesamiento. \\ \hline
 	\textbf{Actores} &
 	    \begin{itemize}
 		    \item Microcontrolador
 		    \item Servidor embebido
 		\end{itemize}\\ \hline 
 	\textbf{Disparador} & 
+	%Si se crea la RN de envío de muestras en tiempo real?
 		El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.\\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
