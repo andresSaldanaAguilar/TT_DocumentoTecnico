@@ -1,44 +1,50 @@
 %DUDAS:
-%
-%
-%
-%
+% Especificar que intervalo de notificaciones al inicio.
+% Definir RN de número de notificaciones máximas a conservar?
+% Agregar que extiende del CU de Ver Menú
+% Entradas? ninguna
+% Tprincipal cuando lo hace desde el menu y TAlternativa cuando lo hace desde la barra superior de notificaciones del celular?
+%Poner las referencias a las pantallas que falten en las trauectorias
+% Poner referencia de la trayectoria alternativa 
 
-\subsubsection{SUB-U-CU6-Consultar medición}\label{SUB-U-CU6}
-El Cliente puede consultar la información de una medición en especifico.
+\subsubsection{SUB-U-CU1.9-Ver notificaciones}\label{SUB-U-CU1.9}
+El usuario puede consultar las notificaciones que ha recibido.%especificar cuantas
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-U-CU6-Consultar medición \\ \hline
+		SUB-U-CU1.9-Ver notificaciones \\ \hline
 	\textbf{Objetivo} &
-		Permitir al actor consultar información sobre una medición que haya realizado. \\ \hline
+		Permitirle al usuario consultar las notificaciones que ha recibido. \\ \hline
 	\textbf{Actores} &
-		Cliente. \\ \hline 
+		Usuario. \\ \hline 
 	\textbf{Disparador} & 
-		El actor requiere obtener información especifica sobre una medición.\\ \hline 
-	\textbf{Entradas} & Medición seleccionada.
+		%\begin{itemize}
+		 El usuario quiere ver la información de las notificaciones recibidas.
+		 %\end{itemize}
+		 \\ \hline 
+	\textbf{Entradas} & Ninguna.
 		% \begin{itemize}
 		% 		\item Nombre.
 		% 		\item Imagen de perfil.
 		% \end{itemize}
 		\\ \hline 
 	\textbf{Salidas} & 
+	    Registros de notificaciones:
 		\begin{itemize}
-			\item Gasolinera en la que fue realizada la medición.
-			\item Fecha y hora de la medición.
-			\item Cantidad de litros cargados.
-			\item Cantidad de litro pedidos.
+			\item Descripción de la notificación.
+			\item Fecha y hora de la notificación.
+			\item Dirección IP del dispositivo que notificó.
 		\end{itemize} 
 		\\ \hline
 	\textbf{Precondiciones} &
-		El actor debe haber realizado al menos una medición.\\ \hline
+		El actor debe haber recibido al menos una notificación.\\ \hline
 	\textbf{Postcondiciones} & Ninguna.
 		% \begin{itemize}
 		% 	\item El nombre e imagen de perfil son actualizados.
 		% \end{itemize} 
 		\\ \hline
-	\textbf{Condiciones de término} & Se muestra la información de la medición al actor.
+	\textbf{Condiciones de término} & Se muestran los registros de las notificaciones recibidas.
 		% \begin{itemize}
 		% 	\item Se muestra el mensaje de éxito al actor.
 		% \end{itemize} 
@@ -61,19 +67,18 @@ El Cliente puede consultar la información de una medición en especifico.
 
 \paragraph{Trayectoria principal}
 	\begin{enumerate}
-		\item {[Actor]} Presiona una medición de la pantalla \hyperref[fig:sub-u-iu3]{SUB-U-IU3-Consultar panel de control}.
-		\item {[Sistema]} Obtiene la información de la medición seleccionada.
-		\item {[Sistema]} Muestra la información obtenida en la pantalla \hyperref[fig:sub-u-iu6]{SUB-U-IU6-Consultar medición}.
-		\item {[Actor]} Presiona el botón \textit{Aceptar}.
-		\item {[Sistema]} Muestra la pantalla \hyperref[fig:sub-u-iu3]{SUB-U-IU3-Consultar panel de control}.
+		\item {[Usuario]} Selecciona la opción de \textit{Notificaciones} que se muestra en la pantalla Ver menú% \hyperref[fig:sub-u-iu3]{SUB-U-IU3-Consultar panel de control}. AQUI PONER TRAYECTORIA ALTERNATIVA ?
+		\item {[Sistema]} Obtiene los registros de notificaciones enviadas al dispositivo.
+		\item {[Sistema]} Muestra la pantalla ver notificaciones %\hyperref[fig:sub-u-iu6]{SUB-U-IU6-Consultar medición}.
+		%\item {[Actor]} Presiona el botón \textit{Aceptar}.
+		%\item {[Sistema]} Muestra la pantalla \hyperref[fig:sub-u-iu3]{SUB-U-IU3-Consultar panel de control}.
 	\end{enumerate}
 	Fin del caso de uso.
 
-% \paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.1:TA}
-% 	El actor no se encuentra usando la aplicación móvil.
-% 	\begin{enumerate}[label=A\arabic*.]
-% 		\item {[Sistema]} Muestra una notificación al actor como la que se observa en la pantalla \hyperref[fig:sub-m-iu1.1.a]{SUB-M-IU1.1-Confirmar medición (a)}.
-% 		\item {[Actor]} Presiona la notificación.
-% 		\item {[Sistema]} Continúa en el paso \ref{SUB-M-CU1.1:Pantalla} de la Trayectoria Principal.
-% 	\end{enumerate}
-% 	Fin de la trayectoria alternativa.
+\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.9:TA}
+ 	El usuario abre el centro de notificaciones de su dispositivo móvil.
+ 	\begin{enumerate}[label=A\arabic*.]
+ 	    \item {[Usuario]} Selecciona la notificación que recibió del Sistema desde el centro de notificaciones de su dispositivo móvil.
+ 		\item {[Sistema]} Continúa en el paso 2 de la Trayectoria Principal. %\ref{SUB-M-CU1.1:Pantalla} 
+ 	\end{enumerate}
+ 	Fin de la trayectoria alternativa.
