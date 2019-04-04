@@ -90,7 +90,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN9-Almacenamiento de datos de monitoreo.
 			\item[Tipo] Regla de operación.
 			\item[Objetivo] Establecer el método de almacenamiento de la información.
-			\item[Descripción] El almacenamiento en el servidor está limitado por la memoria externa con capacidad de N gb de espacio que le es agregada, por lo que usaremos una herramienta que trabaja con una cantidad de datos fija, definida en el momento de crear el archivo contenedor, y un puntero al elemento actual.
+			\item[Descripción] El almacenamiento en el servidor está limitado por la memoria externa con capacidad de N GB de espacio que le es agregada, por lo que usaremos una herramienta que trabaja con una cantidad de datos fija, definida en el momento de crear el archivo contenedor, y un puntero al elemento actual.
 		\end{description}
 
 %Preguntar request-reply si es RN8?
@@ -119,10 +119,15 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Tipo] Regla de operación.
 			\item[Objetivo] Definir los umbrales de generación de energía de acuerdo a la generación en tiempo real y los intervalos definidos 
 			\item[Descripción] Los umbrales se dividirán en todos los casos en tres, generación óptima, intermedia y baja.
-			Tiempo real: el criterio comparar sera el valor de generación obtenido contra el valor de generación esperado por un panel solar, que es de 250 Watts, donde la proporción nos dirá lo siguiente:
-			80\% - 100\% Generación Óptima
-			50\% - 79\% Generación Intermedia
-			0\% - 49\% Generación Baja
+			El criterio comparar sera el valor de generación obtenido contra el valor de generación esperado por un panel solar, que es de 250 Watts Hora, donde el porcentaje obtenido por la relación nos dirá los siguiente:
+			\begin{itemize}
+			    \item 80\% - 100\% Generación Óptima, representado con el color verde.
+			    \item 50\% - 79\% Generación Intermedia, representado con el color amarillo.
+			    \item 0\% - 49\% Generación Baja, representado con el color rojo.
+			\end{itemize}
+
+	
+			
 		\end{description}
 		
 %Estipular cuantas muestras se tomaran por dia y bimestralmente y si se deshecharán,
