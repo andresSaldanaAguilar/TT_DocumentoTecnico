@@ -17,7 +17,7 @@ La particularidad de la corriente eléctrica generada por el efecto fotovoltaico
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.1]{Capitulo2/images/sistema-fotovoltaico.jpg}
+	\includegraphics[scale=.4]{Capitulo2/images/sistema-fotovoltaico.png}
 	\caption{Sistema Fotovoltaico Propuesto por el Fabricante IUSA}
 	\label{fig:sistema fotovoltaicoa IUSA}
 \end{figure}
@@ -303,13 +303,13 @@ De acuerdo a la Real Academia Española, la palabra monitorear, se define como l
 \paragraph{}
 Teniendo en cuenta los 2 conceptos anteriores, podemos definir a un dispositivo de monitoreo de energía como: un mecanismo que recibe como entrada energía e internamente procesa dicha información para finalmente arrojar datos de monitoreo.
 \paragraph{MCP39F521}
-El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC, como se puede observar en el siguiente diagrama, dicha interfaz tiene una velocidad de reloj de hasta 400 kHz \citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el microcontrolador. 
+El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC, como se puede observar en la figura \ref{fig:Diagrama a bloques del MCP39F521}, dicha interfaz tiene una velocidad de reloj de hasta 400 kHz \citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el microcontrolador. 
 \paragraph{}
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.9]{Capitulo2/images/DiagramaDispMonitoreo.JPG}
 	\caption{Diagrama a bloques del MCP39F521}
-	\label{fig:}
+	\label{fig:Diagrama a bloques del MCP39F521}
 \end{figure}
 
 \paragraph{IIC}
