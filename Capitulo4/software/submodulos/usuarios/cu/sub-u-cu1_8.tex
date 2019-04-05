@@ -1,10 +1,6 @@
 %DUDAS:
-%Hace falta pantalka principal, poner referencia en el primer paso 
-% Salidas: poner las pantallas? De ser así colocar las referencias de las imágenes
-% Condiciones de término: colocar referencia a pantalla
-% Trayectoria principal poner referencia de pantalla
-% Poner las referencias de los CU's a los que extiende
-% Primer paso poner imagen de pantalla principal y hacer la referencia
+%Hace falta pantalla principal, poner referencia en el primer paso de trayectoria principal
+% Poner las referencias de los CU's a los que extiende, modificarles el número cuando ya estén comppletos!!
 \subsubsection{SUB-U-CU1.8-Ver menú}\label{SUB-U-CU1.8}
 El usuario puede ver el menú de la aplicación, desde el cual puede acceder de manera rápida a las secciones de monitoreo en tiempo real, históricos de mediciones, notificaciones y configuración de dispositivo.
 
@@ -15,7 +11,10 @@ El usuario puede ver el menú de la aplicación, desde el cual puede acceder de 
 	\textbf{Objetivo} &
 		Permitirle al usuario consultar el monitoreo en tiempo real, el histórico de mediciones, las notificaciones recibidas y realizar la configuración del dispositivo. \\ \hline
 	\textbf{Actores} &
-		Usuario. \\ \hline 
+	    \begin{itemize}
+		    \item Usuario
+		    \item Aplicación de Usuario
+		\end{itemize}\\ \hline
 	\textbf{Disparador} & 
 		El usuario requiere consultar el monitoreo en tiempo real o el histórico de mediciones o las notificaciones o bien realizar la configuración del dispositivo.\\ \hline 
 	\textbf{Entradas} & Ninguna.
@@ -35,7 +34,7 @@ El usuario puede ver el menú de la aplicación, desde el cual puede acceder de 
 		% 	\item El nombre e imagen de perfil son actualizados.
 		% \end{itemize} 
 		\\ \hline
-	\textbf{Condiciones de término} & Se muestra la pantalla de \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}
+	\textbf{Condiciones de término} & Se muestra la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}
 		% \begin{itemize}
 		% 	\item Se muestra el mensaje de éxito al actor.
 		% \end{itemize} 
@@ -62,7 +61,7 @@ El usuario puede ver el menú de la aplicación, desde el cual puede acceder de 
 		\item {[Aplicación]} Muestra la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}.
 	\end{enumerate}
 	Fin del caso de uso.\\
-	El paso 2 extiende a los Casos de Uso: \hyperref[]{}
+	El paso 2 extiende a los Casos de Uso: \hyperref[SUB-U-CU1.5]{SUB-U-CU1.5}, \hyperref[SUB-U-CU1.6]{SUB-U-CU1.6}, \hyperref[SUB-U-CU1.7]{SUB-U-CU1.7}, \hyperref[SUB-U-CU1.9]{SUB-U-CU1.9}.
 	
 	
 
