@@ -33,7 +33,7 @@ periodos culmina y el promedio de energía sensada diariamente del día en curso
 		\end{itemize}\\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-			\item Se obtiene un número flotante que representa el promedio diario de energía que ha sido sensada.
+			\item Se obtiene un número flotante que representa el promedio bimestral de energía que ha sido sensada.
 			\item Se obtiene la fecha del día en curso del cual se realiza el promedio.
 		\end{itemize} \\ \hline 
 	\textbf{Prioridad} & 
@@ -44,7 +44,6 @@ periodos culmina y el promedio de energía sensada diariamente del día en curso
 		\end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
-		    \item \ref{RN1}
 			\item \ref{RN4}
 			\item \ref{RN6}
 		\end{itemize} \\ \hline
@@ -55,22 +54,12 @@ periodos culmina y el promedio de energía sensada diariamente del día en curso
 
 \paragraph{Trayectoria principal}
 	\begin{enumerate}
-		\item {[Sensor]} Hace una lectura del voltaje y la corriente a la última hora que especifica la regla de negocio \ref{RN6} y envía una trama indicando las cantidades medidas.\hyperref[SUB-M-CU1:Error1]{Error 1}
-		\item {[Sistema]} Recibe la trama con los datos de la medición, y al ser la última muestra del día, inicia el proceso para calcular el promedio diario de energía sensada diariamente.
-		\item  {[Sistema]} Consulta de la base de datos las últimas 119 muestras, ya que son las que obtuvo durante el transcurso del día actual.
-		\item {[Sistema]} Habiendo obtenido las 119 muestras de la base de datos y la muestra que conserva actualmente de la última medición, realiza el promedio con las 120 muestras.
+		\item {[Sensor]} El promedio diario del ultimo día de uno de los periodos especificado en la regla de negocios \ref{RN4} es calculado como lo indica el caso de uso Calcular promedio de energía sensada diariamente y es almacenado.
+		\item {[Sistema]} Valida si el d ́ıa en curso es alguno de los días indicados como fin de periodo en la Regla de Negocios \ref{RN4} y la validación se cumple.
+		\item  {[Sistema]} Consulta de la base de datos los promedios diarios de los días que abarca el periodo en curso, por ejemplo, si el día actual es 30 de Abril, se recuperarán los promedios diarios del 1 de Marzo al 30 de Abril.
+		\item {[Sistema]} Habiendo obtenido los promedios diarios necesarios de la base de datos, realiza el promedio con las muestras.
 		\item {[Sistema]} El sistema obtiene la fecha actual
-		\item {[Sistema]} Almacena tanto el promedio, como la fecha actual y un estado de éxito.
+		\item {[Sistema]} Almacena tanto el promedio como la fecha actual.
 		%\item {[Sistema]} Incluye el caso de uso \hyperref[SUB-M-CU1.1]{SUB-M-CU1.1-Confirmar medición}.
 	\end{enumerate}
 	Fin del caso de uso.
-
-\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1:TA}
-	No se puede establecer conexión WiFi inalámbrica entre el módulo del sensor y el servidor embebido.
-	\begin{enumerate}[label=A\arabic*.]
-		\item {[Sistema]} Toma un 0 como última medición. 
-		\item {[Sistema]} Habiendo obtenido las 119 muestras de la base de datos y el 0 como última medición, realiza el promedio con las 120 muestras.
-		\item {[Sistema]} El sistema obtiene la fecha actual
-		\item {[Sistema]} Almacena tanto el promedio, la fecha actual y un estado de fallo.
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
