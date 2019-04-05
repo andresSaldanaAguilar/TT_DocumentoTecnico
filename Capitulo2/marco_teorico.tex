@@ -293,17 +293,20 @@ Yocto Project tiene un modelo de desarrollo IoT de Linux que lo distingue de otr
 El modelo de capa está diseñado para admitir la colaboración y la personalización al mismo tiempo. Las capas son repositorios que contienen conjuntos de instrucciones relacionados que le indican al sistema de compilación qué hacer. Los usuarios pueden colaborar, compartir y reutilizar capas. Las capas pueden contener cambios a las instrucciones o configuraciones anteriores en cualquier momento \citep{MarcoTeoricoYocto2}.
 
 
-\section{Dispositivo de monitoreo de energía}
-En este trabajo se plantea el uso de un dispositivo de monitoreo de energía que permita supervisar de manera constante la energía producida por un sistema fotovoltaico; es por ello que a continuación definiremos algunos conceptos importantes.
+\section{Red de sensores}
+Una red de sensores consiste en un conjunto de dispositivos denominados sensores que están conectados entre sí, para el monitoreo y sensado de condiciones físicas y/o ambientales en áreas remotas; dichos sensores pueden estar distribuidos físicamente y para referirnos a un sensor en específico como parte de la red, se le denomina nodo sensor. 
 \paragraph{}
-Inicialmente, un dispositivo puede ser definido como un mecanismo dispuesto para obtener un resultado automático \citep{MarcoTeorico11}; es decir, un conjunto de elementos bien definidos, que entre sí, realizan acciones conforme la información recibida (entrada) para poder transformarla (salida).
-Existe una amplia gama de clasificación de dispositivos de acuerdo al propósito para el que es empleado, sin embargo, para fines de este trabajo, el dispositivo de interés entra en la categoría de aquellos que se encargan de monitorear. 
+El propósito de una red de sensores es el de recolectar información de interés, es decir, la variable física sensada o monitoreada, para posteriormente transmitir dicha información con el objeto de ser procesada y analizada. 
 \paragraph{}
-De acuerdo a la Real Academia Española, la palabra monitorear, se define como la acción de observar, supervisar o controlar mediante aparatos especiales, el curso de uno o varios parámetros fisiológicos o de otra naturaleza para detectar posibles anomalías \citep{MarcoTeorico12}.
+Dado que existen una gran cantidad de dispositivos sensores implica que pueden implementarse diferentes tipos de redes de sensores de acuerdo al uso o aplicación que se le quiera dar, como por ejemplo: fenómenos meteorológicos, sistemas de emergencia o de cuidados médicos, por mencionar algunos \citep{MarcoTeorico16}.
+
+\paragraph{Sensor}
+Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal de salida transducible a una señal eléctrica \citep{MarcoTeorico20} .
 \paragraph{}
-Teniendo en cuenta los 2 conceptos anteriores, podemos definir a un dispositivo de monitoreo de energía como: un mecanismo que recibe como entrada energía e internamente procesa dicha información para finalmente arrojar datos de monitoreo.
+Existe una variedad de sensores, y pueden ser clasificados bajo diferentes criterios (principio de funcionamiento, señal de salida, rango de valores, nivel de integración, variable física de entrada).
+
 \paragraph{MCP39F521}
-El dispositivo que se usará es el MCP39F521 (I2C Power Monitor with Calculation and Energy Accumulation), el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC, como se puede observar en la figura \ref{fig:Diagrama a bloques del MCP39F521}, dicha interfaz tiene una velocidad de reloj de hasta 400 kHz \citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el microcontrolador. 
+Este sensor, el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC, como se puede observar en la figura \ref{fig:Diagrama a bloques del MCP39F521}, dicha interfaz tiene una velocidad de reloj de hasta 400 kHz \citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el microcontrolador. 
 \paragraph{}
 \begin{figure}[H]
 	\centering
@@ -351,6 +354,18 @@ Una transición de bajo a alto en la línea SDA mientras SCL es alto, define una
 	\label{fig:}
 \end{figure}
 
+
+
+
+\section{Dispositivo de monitoreo de energía}
+En este trabajo se plantea el uso de un dispositivo de monitoreo de energía que permita supervisar de manera constante la energía producida por un sistema fotovoltaico; es por ello que a continuación definiremos algunos conceptos importantes.
+\paragraph{}
+Inicialmente, un dispositivo puede ser definido como un mecanismo dispuesto para obtener un resultado automático \citep{MarcoTeorico11}; es decir, un conjunto de elementos bien definidos, que entre sí, realizan acciones conforme la información recibida (entrada) para poder transformarla (salida).
+Existe una amplia gama de clasificación de dispositivos de acuerdo al propósito para el que es empleado, sin embargo, para fines de este trabajo, el dispositivo de interés entra en la categoría de aquellos que se encargan de monitorear. 
+\paragraph{}
+De acuerdo a la Real Academia Española, la palabra monitorear, se define como la acción de observar, supervisar o controlar mediante aparatos especiales, el curso de uno o varios parámetros fisiológicos o de otra naturaleza para detectar posibles anomalías \citep{MarcoTeorico12}.
+\paragraph{}
+Teniendo en cuenta los 2 conceptos anteriores, podemos definir a un dispositivo de monitoreo de energía como: un mecanismo que recibe como entrada energía e internamente procesa dicha información para finalmente arrojar datos de monitoreo.
 
 
 \section{Sistema Embebido}
@@ -542,17 +557,4 @@ En la siguiente tabla, se muestra una comparativa entre los microcontroladores d
 
 \pagebreak
 
-
-
-\section{Red de sensores}
-Una red de sensores consiste en un conjunto de dispositivos denominados sensores que están conectados entre sí, para el monitoreo y sensado de condiciones físicas y/o ambientales en áreas remotas; dichos sensores pueden estar distribuidos físicamente y para referirnos a un sensor en específico como parte de la red, se le denomina nodo sensor. 
-\paragraph{}
-El propósito de una red de sensores es el de recolectar información de interés, es decir, la variable física sensada o monitoreada, para posteriormente transmitir dicha información con el objeto de ser procesada y analizada. 
-\paragraph{}
-Dado que existen una gran cantidad de dispositivos sensores implica que pueden implementarse diferentes tipos de redes de sensores de acuerdo al uso o aplicación que se le quiera dar, como por ejemplo: fenómenos meteorológicos, sistemas de emergencia o de cuidados médicos, por mencionar algunos \citep{MarcoTeorico16}.
-
-\paragraph{Sensor}
-Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal de salida transducible a una señal eléctrica \citep{MarcoTeorico20} .
-\paragraph{}
-Existe una variedad de sensores, y pueden ser clasificados bajo diferentes criterios (principio de funcionamiento, señal de salida, rango de valores, nivel de integración, variable física de entrada).
 
