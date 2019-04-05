@@ -125,11 +125,42 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			    \item 50\% - 79\% Generación Intermedia, representado con el color amarillo.
 			    \item 0\% - 49\% Generación Baja, representado con el color rojo.
 			\end{itemize}
-
+		\end{description}
 	
-			
+\item \label{RN13}
+		\begin{description}
+			\item[Nombre] RN13-Número de registros de notificaciones.
+			\item[Tipo] Regla de restricción.
+			\item[Objetivo] Definir la cantidad máxima de registros de notificaciones a conservar en la aplicación móvil.
+			\item[Descripción] El número máximo de registros de notificaciones que se permitirán conservar en la aplicación móvil tiene que ser menor o igual a 30 notificaciones. El criterio para conservar las notificaciones dependerá únicamente del tiempo de llegada, es decir, se conservarán las notificaciones más recientes.   
 		\end{description}
 		
+\item \label{RN14}
+		\begin{description}
+			\item[Nombre] RN14-Formato de fecha de notificaciones.
+			\item[Tipo] Regla de estructura.
+			\item[Objetivo] Definir el formato de fecha de las notificaciones para la aplicación móvil.
+			\item[Descripción] El formato de fecha en que serán almacenadas las notificaciones del sistema en la aplicación móvil es: dd/mm/aaaa.
+			Donde:
+			\begin{itemize}
+		 		\item dd = Corresponde al número de día del mes.
+		 		\item mm = Corresponde al número de mes del año.
+		 		\item aaaa = Corresponde al año
+		    \end{itemize}
+		\end{description}
+		
+\item \label{RN15}
+		\begin{description}
+			\item[Nombre] RN15-Formato de hora de notificaciones.
+			\item[Tipo] Regla de estructura.
+			\item[Objetivo] Definir el formato de hora de las notificaciones para la aplicación móvil.
+			\item[Descripción] El formato de hora en que serán almacenadas las notificaciones del sistema en la aplicación móvil es: hh:mm.
+			Donde:
+			\begin{itemize}
+		 		\item hh = Corresponde a la hora del día en formato de 24 horas.
+		 		\item mm = Corresponde al minuto de la hora.
+		    \end{itemize}
+		\end{description}
 %Estipular cuantas muestras se tomaran por dia y bimestralmente y si se deshecharán,
 
 %Tipo de archivo en el que se almacenarán los datos

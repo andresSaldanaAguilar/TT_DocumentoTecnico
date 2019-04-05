@@ -1,14 +1,7 @@
 %DUDAS:
-% Especificar que intervalo de notificaciones al inicio.
-% Definir RN de número de notificaciones máximas a conservar?
-% Agregar que extiende del CU de Ver Menú
-% Entradas? ninguna
-% Tprincipal cuando lo hace desde el menu y TAlternativa cuando lo hace desde la barra superior de notificaciones del celular?
-%Poner las referencias a las pantallas que falten en las trauectorias
-% Poner referencia de la trayectoria alternativa 
 
 \subsubsection{SUB-U-CU1.9-Ver notificaciones}\label{SUB-U-CU1.9}
-El usuario puede consultar las notificaciones que ha recibido.%especificar cuantas
+El usuario puede consultar las notificaciones que ha recibido del sistema. Las notificaciones que puede visualizar deben cumplir con la \ref{RN13}, \ref{RN14} y \ref{RN15}.
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
@@ -17,11 +10,16 @@ El usuario puede consultar las notificaciones que ha recibido.%especificar cuant
 	\textbf{Objetivo} &
 		Permitirle al usuario consultar las notificaciones que ha recibido. \\ \hline
 	\textbf{Actores} &
-		Usuario. \\ \hline 
+	    \begin{itemize}
+		    \item Usuario. 
+		    \item Aplicación de Usuario.
+		\end{itemize}
+		    \\ \hline 
 	\textbf{Disparador} & 
-		%\begin{itemize}
-		 El usuario quiere ver la información de las notificaciones recibidas.
-		 %\end{itemize}
+		\begin{itemize}
+		    \item El usuario selecciona la opción \textit{Notificaciones} de la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}.
+		    \item El usuario selecciona una notificación del centro de notificaciones de su dispositivo móvil.
+		 \end{itemize}
 		 \\ \hline 
 	\textbf{Entradas} & Ninguna.
 		% \begin{itemize}
@@ -33,18 +31,21 @@ El usuario puede consultar las notificaciones que ha recibido.%especificar cuant
 	    Registros de notificaciones:
 		\begin{itemize}
 			\item Descripción de la notificación.
-			\item Fecha y hora de la notificación.
+			\item Fecha y hora de la notificación con base a la \ref{RN14} y \ref{RN15}
 			\item Dirección IP del dispositivo que notificó.
 		\end{itemize} 
 		\\ \hline
 	\textbf{Precondiciones} &
-		El actor debe haber recibido al menos una notificación.\\ \hline
+	    \begin{itemize}
+		    \item El actor debe haber recibido al menos una notificación.
+		\end{itemize}
+		\\ \hline
 	\textbf{Postcondiciones} & Ninguna.
 		% \begin{itemize}
 		% 	\item El nombre e imagen de perfil son actualizados.
 		% \end{itemize} 
 		\\ \hline
-	\textbf{Condiciones de término} & Se muestran los registros de las notificaciones recibidas.
+	\textbf{Condiciones de término} & Se muestran los registros de las notificaciones recibidas en la pantalla \hyperref[fig:Lista de Notificaciones]{[IU4-Lista de Notificaciones]}.
 		% \begin{itemize}
 		% 	\item Se muestra el mensaje de éxito al actor.
 		% \end{itemize} 
@@ -56,29 +57,29 @@ El usuario puede consultar las notificaciones que ha recibido.%especificar cuant
 		% 	\item \label{SUB-M-CU1:Error1} Error 1: .
 		% \end{itemize} 
 		\\ \hline
-	\textbf{Reglas de negocio} & Ninguna.
-		% \begin{itemize}
-		% 	\item \ref{RN1}.
-		% \end{itemize}
+	\textbf{Reglas de negocio} & 
+		\begin{itemize}
+		 	\item \ref{RN13}
+		 	\item \ref{RN14}
+		 	\item \ref{RN15}
+		\end{itemize}
 		 \\ \hline
 	% \caption{}
 	%\label{desc:SUB-M-CU1}
 \end{longtable}
 
-\paragraph{Trayectoria principal}
+\paragraph{Trayectoria principal} \label{SUB-U-CU1.9:TP}
 	\begin{enumerate}
-		\item {[Usuario]} Selecciona la opción de \textit{Notificaciones} que se muestra en la pantalla Ver menú% \hyperref[fig:sub-u-iu3]{SUB-U-IU3-Consultar panel de control}. AQUI PONER TRAYECTORIA ALTERNATIVA ?
+		\item {[Usuario]} Selecciona la opción de \textit{Notificaciones} que se muestra en la pantalla  \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}. \hyperref[SUB-U-CU1.9:TA]{[Trayectoria Alternativa A]}
 		\item {[Sistema]} Obtiene los registros de notificaciones enviadas al dispositivo.
-		\item {[Sistema]} Muestra la pantalla ver notificaciones %\hyperref[fig:sub-u-iu6]{SUB-U-IU6-Consultar medición}.
-		%\item {[Actor]} Presiona el botón \textit{Aceptar}.
-		%\item {[Sistema]} Muestra la pantalla \hyperref[fig:sub-u-iu3]{SUB-U-IU3-Consultar panel de control}.
+		\item {[Sistema]} Muestra la pantalla \hyperref[fig:Lista de Notificaciones]{[IU4-Lista de Notificaciones]}.
 	\end{enumerate}
 	Fin del caso de uso.
 
-\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.9:TA}
+\paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.9:TA}
  	El usuario abre el centro de notificaciones de su dispositivo móvil.
  	\begin{enumerate}[label=A\arabic*.]
  	    \item {[Usuario]} Selecciona la notificación que recibió del Sistema desde el centro de notificaciones de su dispositivo móvil.
- 		\item {[Sistema]} Continúa en el paso 2 de la Trayectoria Principal. %\ref{SUB-M-CU1.1:Pantalla} 
+ 		\item {[Sistema]} Continúa en el paso 2 de la \hyperref[SUB-U-CU1.9:TP]{[Trayectoria Principal]}
  	\end{enumerate}
  	Fin de la trayectoria alternativa.
