@@ -1,5 +1,5 @@
 %ESTE LO TENGO QUE MODIFICAR
-\subsubsection{SUB-M-CU1.1-Calcular promedio de energía sensada bimestralmente}\label{SUB-M-CU1.1}
+\subsubsection{SUB-M-CU1.2-Calcular promedio de energía sensada bimestralmente}\label{SUB-M-CU1.2}
 El  promedio  de  energíıa  que  es  sensada  bimestralmente  es  calculado  tomando  en  cuenta  las especificaciones de la Regla de Negocio \ref{RN4}, este cálculo se realiza bimestralmente con los promedios diarios calculados en los días que abarca el periodo especificado, cuando alguno de estos
 periodos culmina y el promedio de energía sensada diariamente del día en curso ha sido calculado como se especifica en el caso de uso Calcular promedio de energíıa sensada diariamente.
 
@@ -54,8 +54,8 @@ periodos culmina y el promedio de energía sensada diariamente del día en curso
 
 \paragraph{Trayectoria principal}
 	\begin{enumerate}
-		\item {[Sensor]} El promedio diario del ultimo día de uno de los periodos especificado en la regla de negocios \ref{RN4} es calculado como lo indica el caso de uso Calcular promedio de energía sensada diariamente y es almacenado.
-		\item {[Sistema]} Valida si el d ́ıa en curso es alguno de los días indicados como fin de periodo en la Regla de Negocios \ref{RN4} y la validación se cumple.
+		\item {[Sensor]} El promedio diario del ultimo día de uno de los periodos especificado en la regla de negocios \ref{RN4} es calculado como lo indica el caso de uso \hyperref[SUB-M-CU1.1]{SUB-M-CU1.1} y es almacenado.
+		\item {[Sistema]} Valida si el día en curso es alguno de los días indicados como fin de periodo en la Regla de Negocios \ref{RN4} y la validación se cumple.
 		\item  {[Sistema]} Consulta de la base de datos los promedios diarios de los días que abarca el periodo en curso, por ejemplo, si el día actual es 30 de Abril, se recuperarán los promedios diarios del 1 de Marzo al 30 de Abril.
 		\item {[Sistema]} Habiendo obtenido los promedios diarios necesarios de la base de datos, realiza el promedio con las muestras.
 		\item {[Sistema]} El sistema obtiene la fecha actual
