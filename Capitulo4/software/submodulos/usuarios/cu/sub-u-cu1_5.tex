@@ -1,13 +1,13 @@
 \subsubsection{SUB-U-CU1.5-Ver Gráfica de Generación de Energía en Tiempo Real}\label{SUB-U-CU1.5}
-La gráfica de generación en tiempo real se realizará haciendo una petición de los valores del día actual que el servidor tiene almacenado para graficarlos en la aplicación de usuario y posteriormente actualizar la gráfica de lineas por medio de peticiones al servidor en el tiempo establecido en la Regla de Negocio \ref{RN6}.
-\\ La comunicación se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11}. 
+La gráfica de generación en tiempo real es un componente de la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} y se realizará haciendo una petición de los valores del día actual que el servidor tiene almacenado para graficarlos en la aplicación de usuario y posteriormente actualizar la gráfica de lineas por medio de peticiones al servidor en el tiempo establecido en la Regla de Negocio \ref{RN6}.
+\\ La comunicación se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11}  
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
 		SUB-U-CU1.5-Ver Gráfica de Generación en Tiempo Real \\ \hline
 	\textbf{Objetivo} &
-		Conseguir los valores del monitoreo para que la aplicación de usuario pueda construir una gráfica de lineas en tiempo real. \\ \hline
+		Conseguir los valores de Generacion de energía del día actual para que la aplicación de usuario pueda construir una gráfica de lineas en tiempo real. \\ \hline
 	\textbf{Actores} &
 		\begin{itemize}
 		    \item Usuario
@@ -15,7 +15,7 @@ La gráfica de generación en tiempo real se realizará haciendo una petición d
 			\item Aplicación de Usuario
 		\end{itemize} \\ \hline
 	\textbf{Disparador} & 
-	    El usuario inicia la aplicación de usuario, dando clic en el icono correspondiente a la aplicacion\\ \hline 
+	    El usuario inicia la aplicación de usuario, dando clic en el icono correspondiente a la aplicación\\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
 				\item{[Servidor]} Marca de tiempo
@@ -25,7 +25,7 @@ La gráfica de generación en tiempo real se realizará haciendo una petición d
 			\item{[Servidor]} Valor/Valores de generacion de energia acorde a la marca de tiempo
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
-		La aplicacion de usuario debe estar previamente configurada el Caso de Uso \ref{} \\ \hline
+		La aplicacion de usuario debe estar previamente configurada (ver Caso de Uso \ref{}) \\ \hline
 	\textbf{Postcondiciones} &
 		Ninguna.\\ \hline
 	\textbf{Condiciones de término} & 
@@ -54,20 +54,20 @@ La gráfica de generación en tiempo real se realizará haciendo una petición d
     \label{SUB-U-CU1.5:TP}
 	\begin{enumerate}
 	    \item {[Usuario]} Inicia la aplicación de usuario dando clic en el icono correspondiente a la aplicación. \hyperref[SUB-U-CU1.5:TA]{[Trayectoria alternativa A]}
-	    \item {[Aplicación de Usuario]} Envía la marca de tiempo actual. \hyperref[SUB-U-CU1.5:TB]{[Trayectoria alternativa B]} 
+	    \item {[Aplicación de Usuario]} Envía la marca de tiempo actual, sin la hora actual. \hyperref[SUB-U-CU1.5:TB]{[Trayectoria alternativa B]} 
 	    \item {[Servidor]} Recibe la petición, busca los valores almacenados hasta el momento del día de la marca de tiempo. \hyperref[SUB-U-CU1.5:TC]{[Trayectoria alternativa C]}
 	    \item {[Servidor]} Envía los valores correspondientes \hyperref[SUB-U-CU1.5:TD]{[Trayectoria alternativa D]} 
-	    \item {[Aplicación de Usuario]} Recibe los valores de monitoreo, muestra la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} con los datos obtenidos. \hyperref[SUB-U-CU1.5:TE]{[Trayectoria alternativa E]}
+	    \item {[Aplicación de Usuario]} Recibe los valores de monitoreo, muestra la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} con los datos obtenidos. \hyperref[SUB-U-CU1.5:TE]{[Trayectoria alternativa E]}
 	\end{enumerate}
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.5:TA}
-	El usuario ya esta en la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]}
+	El usuario ya esta dentro de la aplicación de usuario
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo como petición al servidor. \hyperref[SUB-U-CU1.5:TF]{[Trayectoria alternativa F]} 
-		\item {[Servidor]} Recibe la petición, busca en sus registros por el valor correspondiente a la marca de tiempo. \hyperref[SUB-U-CU1.5:TC]{[Trayectoria alternativa C]} 
+		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo completa como petición al servidor. \hyperref[SUB-U-CU1.5:TF]{[Trayectoria alternativa F]} 
+		\item {[Servidor]} Recibe la petición, busca en sus registros por el valor correspondiente a la marca de tiempo. \hyperref[SUB-U-CU1.5:TI]{[Trayectoria alternativa I]} 
 		\item  {[Servidor]} Envía el valor correspondiente \hyperref[SUB-U-CU1.5:TG]{[Trayectoria alternativa G]}
-        \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} con el dato obtenido.
+        \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} con el dato obtenido.
         \hyperref[SUB-U-CU1.5:TH]{[Trayectoria alternativa H]}
         \item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
@@ -82,7 +82,7 @@ La gráfica de generación en tiempo real se realizará haciendo una petición d
 	Fin de la trayectoria alternativa.
 
 \paragraph{Trayectoria alternativa C} \label{SUB-U-CU1.5:TC}
-	La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
+	La marca de tiempo requerida tiene valor nulo.
 	\begin{enumerate}[label=C\arabic*.]
 		\item {[Servidor]} Asigna el valor -1 a la respuesta para la aplicación de usuario.
 		\item {[Aplicación de usuario]} Regresa al punto 4 de \hyperref[SUB-U-CU1.5:TP]{[Trayectoria Principal]}
@@ -109,7 +109,7 @@ La gráfica de generación en tiempo real se realizará haciendo una petición d
 \paragraph{Trayectoria alternativa F} \label{SUB-U-CU1.5:TF}
 	Sin conexión con el servidor.
 	\begin{enumerate}[label=F\arabic*.]
-		\item {[Aplicación de usuario]} Asigna 0 como valor de monitoreo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]}  y genera la notificación \hyperref[fig:Alerta Conexion]{[N1-Alerta de Conexión]}.
+		\item {[Aplicación de usuario]} Asigna 0 como valor de monitoreo y actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -118,7 +118,7 @@ La gráfica de generación en tiempo real se realizará haciendo una petición d
 	Sin conexión con el cliente.
 	\begin{enumerate}[label=G\arabic*.]
 		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y al no recibir respuesta del servidor en ese intervalo, asigna 0 como valor de generación de esa marca de tiempo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta Conexion]{[N1-Alerta de Conexión]}.
+		\item {[Aplicación de usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y al no recibir respuesta del servidor en ese intervalo, asigna 0 como valor de generación de esa marca de tiempo y actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
@@ -126,15 +126,16 @@ La gráfica de generación en tiempo real se realizará haciendo una petición d
 \paragraph{Trayectoria alternativa H} \label{SUB-U-CU1.5:TH}
 	El valor de generación es -1
 	\begin{enumerate}[label=H\arabic*.]
-		\item {[Aplicación de usuario]} Asigna como valor de generación 0, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta Servidor]{[N3-Alerta de Servidor]}.
+		\item {[Aplicación de usuario]} Asigna como valor de generación 0 y actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}.
 		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.5:TA]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
-	
+
 \paragraph{Trayectoria alternativa I} \label{SUB-U-CU1.5:TI}
-	El valor de generación es 0
+	La marca de tiempo requerida tiene valor nulo.
 	\begin{enumerate}[label=I\arabic*.]
-		\item {[Aplicación de usuario]}  Actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta Generacion]{[N2-Alerta de Generación]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.5:TA]{[Trayectoria alternativa A]}
+		\item {[Servidor]} Asigna el valor -1 a la respuesta para la aplicación de usuario.
+		\item {[Aplicación de usuario]} Regresa al punto 3 de \hyperref[SUB-U-CU1.5:TP]{[Trayectoria alternativa A]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
+
