@@ -1,13 +1,13 @@
-\subsubsection{SUB-U-CU1.5-Ver Monitoreo en Tiempo Real}\label{SUB-U-CU1.5}
-El monitoreo en tiempo real se realizará haciendo una petición de los valores del día actual que el servidor tiene almacenado para graficarlos en la aplicación de usuario y posteriormente actualizar la gráfica de lineas por medio de peticiones al servidor en el tiempo establecido en la Regla de Negocio \ref{RN6}.
+\subsubsection{SUB-U-CU1.5-Ver Gráfica de Generación de Energía en Tiempo Real}\label{SUB-U-CU1.5}
+La gráfica de generación en tiempo real se realizará haciendo una petición de los valores del día actual que el servidor tiene almacenado para graficarlos en la aplicación de usuario y posteriormente actualizar la gráfica de lineas por medio de peticiones al servidor en el tiempo establecido en la Regla de Negocio \ref{RN6}.
 \\ La comunicación se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11}. 
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-U-CU1.5-Ver monitoreo en Tiempo Real \\ \hline
+		SUB-U-CU1.5-Ver Gráfica de Generación en Tiempo Real \\ \hline
 	\textbf{Objetivo} &
-		Enviar y recibir muestras del monitoreo para que la aplicación de usuario pueda construir una gráfica de lineas en tiempo real. \\ \hline
+		Conseguir los valores del monitoreo para que la aplicación de usuario pueda construir una gráfica de lineas en tiempo real. \\ \hline
 	\textbf{Actores} &
 		\begin{itemize}
 		    \item Usuario
@@ -15,17 +15,17 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 			\item Aplicación de Usuario
 		\end{itemize} \\ \hline
 	\textbf{Disparador} & 
-	    El usuario inicia la aplicación de usuario dando clic en el icono \\ \hline 
+	    El usuario inicia la aplicación de usuario, dando clic en el icono correspondiente a la aplicacion\\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
 				\item{[Servidor]} Marca de tiempo
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
-			\item{[Servidor]} Valor de la muestra
+			\item{[Servidor]} Valor/Valores de generacion de energia acorde a la marca de tiempo
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
-		Ninguna. \\ \hline
+		La aplicacion de usuario debe estar previamente configurada el Caso de Uso \ref{} \\ \hline
 	\textbf{Postcondiciones} &
 		Ninguna.\\ \hline
 	\textbf{Condiciones de término} & 
@@ -48,15 +48,12 @@ El monitoreo en tiempo real se realizará haciendo una petición de los valores 
 			\item \ref{RN8}
 			\item \ref{RN11}
 		\end{itemize} \\ \hline
-
-	% \caption{}
-	%\label{desc:SUB-M-CU1}
 \end{longtable}
 
 \paragraph{Trayectoria principal}
     \label{SUB-U-CU1.5:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Inicia la aplicación de usuario dando clic en el icono. \hyperref[SUB-U-CU1.5:TA]{[Trayectoria alternativa A]}
+	    \item {[Usuario]} Inicia la aplicación de usuario dando clic en el icono correspondiente a la aplicación. \hyperref[SUB-U-CU1.5:TA]{[Trayectoria alternativa A]}
 	    \item {[Aplicación de Usuario]} Envía la marca de tiempo actual. \hyperref[SUB-U-CU1.5:TB]{[Trayectoria alternativa B]} 
 	    \item {[Servidor]} Recibe la petición, busca los valores almacenados hasta el momento del día de la marca de tiempo. \hyperref[SUB-U-CU1.5:TC]{[Trayectoria alternativa C]}
 	    \item {[Servidor]} Envía los valores correspondientes \hyperref[SUB-U-CU1.5:TD]{[Trayectoria alternativa D]} 
