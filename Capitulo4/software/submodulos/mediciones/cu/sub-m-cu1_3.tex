@@ -3,12 +3,12 @@
 %   *Errores checar si los 3 son correctos
 %   *Trayectoria principal
 % Agregar regla de negocio de IIC Time Out and Clock Stretching? Si se agrega, incluir la RN en la tabla
-\subsubsection{SUB-M-CU1.3-Enviar mediciones del sensor al microcontrolador en tiempo real}\label{SUB-M-CU1.3}
-El sensor MCP39F521 se encarga de obtener las mediciones en tiempo real del sistema fotovoltaico; dichas mediciones son enviadas al microcontrolador por medio del protocolo IIC.
+\subsubsection{SUB-M-CU1.3-Consultar medición del sensor en tiempo real}\label{SUB-M-CU1.3}
+El microcontrolador consulta la medición del sensor MCP39F521 que obtiene en tiempo real del sistema fotovoltaico de acuerdo a la \ref{RN1}; dichas mediciones son enviadas al microcontrolador por medio del protocolo IIC.
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-M-CU1.3-Enviar mediciones del sensor al microcontrolador en tiempo real \\ \hline
+		SUB-M-CU1.3-Consultar medición del sensor en tiempo real \\ \hline
 	\textbf{Objetivo} &
 		Enviar las mediciones obtenidas por el sensor hacia el microcontrolador por medio del protocolo IIC, para que éstas puedan ser procesadas por el Sistema embebido. \\ \hline
 	\textbf{Actores} &
