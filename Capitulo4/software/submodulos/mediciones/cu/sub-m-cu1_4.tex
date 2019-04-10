@@ -16,23 +16,23 @@ El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotov
 		    \item Servidor embebido
 		\end{itemize}\\ \hline 
 	\textbf{Disparador} & 
-		El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.\\ \hline 
+		El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.\\ \hline %RN cada segundo
 	\textbf{Entradas} & %Ninguna
-		\begin{itemize}
+		\begin{itemize}%especificar
 				\item Muestra obtenida del Sistema fotovoltaico
 		\end{itemize}
 		\\ \hline 
 	\textbf{Salidas} & 
-	    \begin{itemize}
+	    \begin{itemize}%Paquete TCP
 	        \item Trama UART.
 	    \end{itemize}\\ \hline
-	\textbf{Precondiciones} & 
+	\textbf{Precondiciones} &%RN de cada segundo 
 		\begin{itemize}
 		    \item El microcontrolador obtiene una medición del sensor por medio de IIC.
-		    \item El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.
+		    %\item El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.
 		\end{itemize}\\ \hline
 	\textbf{Postcondiciones} &
-		\begin{itemize}
+		\begin{itemize}%Servidor de IoT
 			\item La información de la muestra es recibida por el Servidor embebido.
 		\end{itemize} \\ \hline
 	\textbf{Condiciones de término} & 
@@ -42,7 +42,7 @@ El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotov
 		\\ \hline 
 	\textbf{Prioridad} & 
 		Alta. \\ \hline
-	\textbf{Errores} &
+	\textbf{Errores} &%No hay conexion con el servidor o la red, 
 		 \begin{itemize}
 		 	\item \label{SUB-M-CU1.4:Error1} Error 1: El servidor envía una trama de no acuse de recibo al módulo WiFi.
 		 	%\item \label{SUB-M-CU1.3:Error2} Error 2: La trama de respuesta de lectura de medición del sensor no fue recibida por el microcontrolador en el tiempo establecido.
