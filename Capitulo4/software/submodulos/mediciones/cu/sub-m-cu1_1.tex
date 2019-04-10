@@ -39,7 +39,7 @@ El promedio de energía que es sensada diariamente, es calculado tomando en cuen
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-M-CU1.1Calcular promedio diario de energía sensada \\ \hline
+		SUB-M-CU1.1 Calcular promedio diario de energía sensada \\ \hline
 	\textbf{Objetivo} &
 		Obtener el promedio diario del total de muestras tomadas durante el día para su posterior almacenamiento. \\ \hline
 	\textbf{Actores} &
@@ -69,9 +69,10 @@ El promedio de energía que es sensada diariamente, es calculado tomando en cuen
 	\textbf{Prioridad} & 
 		Alta. \\ \hline
 	\textbf{Errores} & 
-		\begin{itemize}
-			\item \label{SUB-M-CU1:Error1} Error 1: No se puede establecer una conexión WiFi inalámbrica entre el módulo del microcontrolador y el servidor embebido.
-		\end{itemize} \\ \hline
+	    Ninguno
+		%\begin{itemize}
+		%\end{itemize} 
+		\\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
 			\item \ref{RN5}
@@ -84,9 +85,10 @@ El promedio de energía que es sensada diariamente, es calculado tomando en cuen
 
 \paragraph{Trayectoria principal}
 	\begin{enumerate}
-		\item {[Sistema]} Recibe la trama con los datos de la medición, y al ser la última muestra del día.
+		\item {[Sistema]} Recibe la trama con los datos de la última muestra del día.
 		\item  {[Sistema]} Consulta de la base de datos las últimas 119 muestras, ya que son las que obtuvo durante el transcurso del día actual.
-		\item {[Sistema]} Habiendo obtenido las 119 muestras de la base de datos y la muestra que conserva actualmente de la última medición, realiza el promedio con las 120 muestras.
+		\item {[Sistema]} Valida que ninguna de las 120 muestras sea igual a 0. \hyperref[SUB-M-CU1.1:TA]{[Trayectoria Alternativa A]}
+		\item {[Sistema]} Realiza el promedio con las 120 muestras.
 		\item {[Sistema]} Obtiene la fecha actual
 		\item {[Sistema]} Almacena tanto el promedio, como la fecha actual y un estado de éxito.
 		%\item {[Sistema]} Incluye el caso de uso \hyperref[SUB-M-CU1.1]{SUB-M-CU1.1-Confirmar medición}.
@@ -94,11 +96,10 @@ El promedio de energía que es sensada diariamente, es calculado tomando en cuen
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-M-CU1:TA}
-	No se puede establecer conexión WiFi inalámbrica entre el módulo del sensor y el servidor embebido.
+	Al menos una de las 120 muestras es igual a 0
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Sistema]} Toma un 0 como última medición. 
-		\item {[Sistema]} Habiendo obtenido las 119 muestras de la base de datos y el 0 como última medición, realiza el promedio con las 120 muestras.
-		\item {[Sistema]} El sistema obtiene la fecha actual
+		\item {[Sistema]} Realiza el promedio con las 120 muestras.
+		\item {[Sistema]} Obtiene la fecha actual
 		\item {[Sistema]} Almacena tanto el promedio, la fecha actual y un estado de fallo.
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y fin de caso de uso.
