@@ -1,28 +1,27 @@
-\subsubsection{SUB-M-CU1.11-Almacenar Medición en el servidor}\label{SUB-M-CU1.11}
-El servidor añadirá en el archivo con las características descrita en la Regla de Negocio \ref{RN9} que almacena las muestras diarias en el formato de la Regla de Negocio \ref{RN10}, el dato de la trama que tiene los valores obtenidos por el sensor, en el tiempo establecido en la regla de negocio \ref{RN6} .
-
+\subsubsection{SUB-M-CU1.5-Almacenar Medición en el Servidor embebido}\label{SUB-M-CU1.5}
+El servidor añadirá en el archivo con las características descritas en la Regla de Negocio \ref{RN9} que almacena las muestras diarias en el formato de la Regla de Negocio \ref{RN10}, el dato de la trama que tiene los valores obtenidos por el sensor, en el tiempo establecido en la Regla de Negocio \ref{RN6} .
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-M-CU1.11-Almacenar Medición en el servidor \\ \hline
+		SUB-M-CU1.5-Almacenar Medición en el Servidor embebido\\ \hline
 	\textbf{Objetivo} &
-		Almacenar los datos entrantes del módulo Wi-Fi al servidor. \\ \hline
+		Almacenar los datos entrantes al Servidor embebido, que provienen del módulo Wi-Fi. \\ \hline
 	\textbf{Actores} &
 		\begin{itemize}
 			\item Servidor embebido
 		\end{itemize} \\ \hline
 	\textbf{Disparador} & 
-	    Termina el caso de uso \hyperref[SUB-M-CU1.4]{SUB-M-CU1.4 Enviar muestras del microcontrolador al Servidor embebido} \\ \hline 
+	    Termina el caso de uso \hyperref[SUB-M-CU1.4]{SUB-M-CU1.4 Enviar muestras al Servidor embebido} \\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-				\item{[Servidor]} Muestra
+				\item Paquete TCP
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
         Ninguna. \\ \hline
 	\textbf{Precondiciones} &
 	    Ninguna. \\ \hline
 	\textbf{Postcondiciones} &
-		Ninguna.\\ \hline
+		Se almacena un registro en la base de datos.\\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
 			\item El servidor almacena el valor en el archivo de muestras diarias.
@@ -31,11 +30,11 @@ El servidor añadirá en el archivo con las características descrita en la Regl
 		Alta. \\ \hline
 	\textbf{Errores} & 
 		\begin{itemize}
-		    \item \label{CU11:Error1} Error 1: El servidor recibe una trama con valor un no valido.
+		    \item \label{CU11:Error1} Error 1: El servidor recibe un paquete con un valor no valido.
 		\end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
-            \item RN6
+            \item \ref{RN6}
             \item RN9
             \item RN10
 		\end{itemize} \\ \hline

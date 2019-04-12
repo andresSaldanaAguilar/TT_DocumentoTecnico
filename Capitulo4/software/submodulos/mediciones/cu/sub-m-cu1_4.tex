@@ -3,7 +3,7 @@
 %   *Trayectoria Principal
 %   *Checar los errores
 \subsubsection{SUB-M-CU1.4-Enviar muestras al Servidor embebido}\label{SUB-M-CU1.4}
-El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotovoltaico a través del módulo WiFi como se especifica en la \ref{RN2} al Servidor embebido.
+El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotovoltaico a través del módulo WiFi como se especifica en las Reglas de Negocios \ref{RN2} y \ref{RN17} al Servidor embebido.
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
@@ -16,28 +16,27 @@ El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotov
 		    \item Servidor embebido
 		\end{itemize}\\ \hline 
 	\textbf{Disparador} & 
-		El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.\\ \hline %RN cada segundo
+		Conexión establecida entre nodo sensor y microcontrolador.\\ \hline
 	\textbf{Entradas} & %Ninguna
 		\begin{itemize}%especificar
-				\item Muestra obtenida del Sistema fotovoltaico
+				\item Muestra obtenida del Sistema fotovoltaico.
 		\end{itemize}
 		\\ \hline 
 	\textbf{Salidas} & 
 	    \begin{itemize}%Paquete TCP
-	        \item Trama UART.
+	        \item Paquete TCP.
 	    \end{itemize}\\ \hline
-	\textbf{Precondiciones} &%RN de cada segundo 
+	\textbf{Precondiciones} & 
 		\begin{itemize}
-		    \item El microcontrolador obtiene una medición del sensor por medio de IIC.
-		    %\item El periodo de toma de muestras especificado en la \ref{RN6} no ha culminado.
+		    \item El periodo de toma de muestras especificado en la Regla de Negocios \ref{RN6} no ha culminado.
 		\end{itemize}\\ \hline
 	\textbf{Postcondiciones} &
-		\begin{itemize}%Servidor de IoT
-			\item La información de la muestra es recibida por el Servidor embebido.
+		\begin{itemize}
+			\item El paquete TCP es recibido por el Servidor embebido.
 		\end{itemize} \\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-		    \item El Servidor embebido envía trama de acuse de recibo al módulo WiFi del microcontrolador.
+		    \item El Servidor embebido envía trama de acuse de recibo al módulo WiFi del microcontrolador.%preguntar por trama tcp del lado del servidor
 		\end{itemize} 
 		\\ \hline 
 	\textbf{Prioridad} & 
