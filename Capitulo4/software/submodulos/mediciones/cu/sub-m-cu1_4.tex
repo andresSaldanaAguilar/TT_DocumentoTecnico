@@ -13,6 +13,7 @@ El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotov
 	\textbf{Actores} &
 	    \begin{itemize}
 		    \item Microcontrolador
+		    \item Módulo WiFi Microcontrolador
 		    \item Servidor embebido
 		\end{itemize}\\ \hline 
 	\textbf{Disparador} & 
@@ -24,34 +25,28 @@ El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotov
 		\\ \hline 
 	\textbf{Salidas} & 
 	    \begin{itemize}%Paquete TCP
-	        \item Paquete TCP.
+	        \item {[Microcontrolador]} Paquete TCP.
 	    \end{itemize}\\ \hline
-	\textbf{Precondiciones} & 
-		\begin{itemize}
-		    \item El periodo de toma de muestras especificado en la Regla de Negocios \ref{RN6} no ha culminado.
-		\end{itemize}\\ \hline
+	\textbf{Precondiciones} & Ninguna
+		\\ \hline
 	\textbf{Postcondiciones} &
 		\begin{itemize}
 			\item El paquete TCP es recibido por el Servidor embebido.
 		\end{itemize} \\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-		    \item El Servidor embebido envía trama de acuse de recibo al módulo WiFi del microcontrolador.%preguntar por trama tcp del lado del servidor
+		    \item El microcontrolador envió paquete TCP por el módulo WiFi al Servidor embebido.
 		\end{itemize} 
 		\\ \hline 
 	\textbf{Prioridad} & 
 		Alta. \\ \hline
-	\textbf{Errores} &%No hay conexion con el servidor o la red, 
-		 \begin{itemize}
-		 	\item \label{SUB-M-CU1.4:Error1} Error 1: El servidor envía una trama de no acuse de recibo al módulo WiFi.
-		 	%\item \label{SUB-M-CU1.3:Error2} Error 2: La trama de respuesta de lectura de medición del sensor no fue recibida por el microcontrolador en el tiempo establecido.
-		 	%\item \label{SUB-M-CU1.3:Error3} Error 3: El checksum de la trama de respuesta de lectura de medición del sensor no es válido.
-		 \end{itemize} \\ 
-		 \hline
+	\textbf{Errores} &
+		 Ninguno 
+		 \\ \hline
 	\textbf{Reglas de negocio} & 
 	    \begin{itemize}
 	      \item  \ref{RN2}
-	      \item  \ref{RN6}
+	      \item  \ref{RN17}
 		 \end{itemize}%\\ \hline
 		 \hline
 	% \caption{}
@@ -64,29 +59,6 @@ El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotov
 	    \item {[Microcontrolador]} Envía la muestra de medición por medio de la interfaz UART al módulo WiFi del microcontrolador.
 	    \item {[Módulo WiFi Microcontrolador]} Recibe la muestra de medición por medio de la interfaz UART.
 	    \item {[Módulo WiFi Microcontrolador]} Envía la trama con la información de la muestra a través del protocolo TCP al módulo WiFi del Servidor embebido.
-	    \item {[Módulo WiFi Servidor Embebido]} Recibe la trama con la información de la muestra a través del protocolo TCP.\hyperref[SUB-M-CU1.4:TA]{[Trayectoria Alternativa A]}
-	    \item {[Módulo WiFi Servidor embebido]} Valida que la trama sea correcta. 
-	    \item {[Módulo WiFi Servidor embebido]} Envía trama de acuse de recibo al módulo WiFi del microcontrolador por medio del protocolo TCP. \hyperref[SUB-M-CU1.4:TB]{[Trayectoria Alternativa B]}
-	    \item {[Módulo WiFi Microcontrolador]} Recibe trama de acuse de recibo del módulo WiFi del Servidor embebido.
-	    %?
+	    \item {[Servidor Embebido]} Recibe la trama con la información de la muestra a través del protocolo TCP.
 	\end{enumerate}
 	Fin del caso de uso.
-
-
-\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.4:TA}
-	El módulo WiFi del Servidor Embebido no recibe la trama por lo que no envía acuse de recibo al módulo WiFi del microcontrolador
-	\begin{enumerate}[label=A\arabic*.]
-		\item {[Módulo WiFi Microcontrolador]} Reenvía la trama con la información de la muestra a través del protocolo TCP al módulo WiFi del Servidor embebido.
-		\item {[Módulo WiFi Servidor Embebido]} Continúa en el paso 4 de la \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
-
-\paragraph{Trayectoria alternativa B} \label{SUB-M-CU1.4:TB}
-	El Módulo WiFi del Servidor embebido envía trama de no acuse de recibo al módulo WiFi del microcontrolador.
-	\begin{enumerate}[label=B\arabic*.]
-		\item {[Módulo WiFi Servidor embebido]} Envía trama de no acuse de recibo al módulo WiFi del microcontrolador por medio del protocolo TCP.
-		\item {[Módulo WiFi Microcontrolador]} Recibe trama de no acuse de recibo del módulo WiFi del Servidor embebido.
-		\item {[Módulo WiFi Microcontrolador]} Reenvía la trama con la información de la muestra a través del protocolo TCP al módulo WiFi del Servidor embebido.
-		\item {[Módulo WiFi Servidor Embebido]} Continúa en el paso 4 de la \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
