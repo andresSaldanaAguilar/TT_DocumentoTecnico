@@ -14,7 +14,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 		\item[Nombre] RN2-Envío de muestras del sistema fotovoltaico en tiempo real.
 		\item[Tipo] Regla de operación.
 		\item[Objetivo] El envío de mediciones del microcontrolador por medio del módulo Wi-Fi se realizará en tiempo real.
-		\item[Descripción] El envío de muestras del microcontrolador por medio del módulo Wi-Fi dependerá de la velocidad de transmisión UART entre el microcontrolador y el módulo, que es de 115200 baudios. Un baudio es el número de unidades de información transmitidas por segundo que, dependiendo de la configuración, puede estar entre los 9600 a 11520 Bytes/seg.
+		\item[Descripción] El envío de muestras del microcontrolador por medio del módulo Wi-Fi dependerá de la velocidad de transmisión UART entre el microcontrolador y el módulo, que es de 115200 baudios. Un baudio es el número de unidades de información transmitidas por segundo ,que dependiendo de la configuración puede estar entre los 9600 a 11520 Bytes/seg.
 		\end{description}	
 		
     \item \label{RN3}
@@ -166,7 +166,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 
 \item \label{RN16}
 		\begin{description}
-			\item[Nombre] RN15-Formato de IP válido.
+			\item[Nombre] RN16-Formato de IP válido.
 			\item[Tipo] Regla de estructura.
 			\item[Objetivo] Definir el formato IP válido para poder hacer la conexión con el servidor.
 			\item[Descripción] El formato de IP válido será N.N.N.N
@@ -174,6 +174,14 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\begin{itemize}
 		 		\item N = numero entero menor a 255 y mayor o igual a 0
 		    \end{itemize}
+		\end{description}
+		
+\item \label{RN17}
+		\begin{description}
+			\item[Nombre] RN17-Periodo de lectura y envío de muestras en microcontrolador.
+			\item[Tipo] Operacional.
+			\item[Objetivo] Definir el periodo de tiempo en el que el microcontrolador hará lectura de la medición hecha por el nodo sensor para su posterior envío al sistema embebido.
+			\item[Descripción] La lectura de muestras al nodo sensor por parte del microcontrolador, se realizará cada segundo, inmediatamente se enviará la muestra al sistema embebido. 
 		\end{description}
 
 
