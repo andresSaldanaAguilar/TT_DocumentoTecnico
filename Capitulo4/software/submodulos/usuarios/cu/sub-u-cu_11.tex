@@ -1,17 +1,17 @@
-\subsubsection{SUB-U-CU1.8-Mediciones en tiempo real}\label{SUB-U-CU1.8}
-El monitoreo para saber qué es lo que el sensor está midiendo en ese momento se realizará siempre que la aplicación esté en tiempo de funcionamiento, el cual es igual al periodo de tiempo comprendido en la Regla de Negocios \ref{RN6}, esto se logrará gracias a un proceso que se mantendrá corriendo y realizará constantes peticiones al Servidor embebido embebido; el lapso que deberá trascurrir entre cada petición para saber las mediciones otorgadas por el sensor será especificado en la Regla de negocios \ref{RN17}, de esta manera se tendrá un mayor control sobre las posibles anomalías y de detectarse alguna, poder notificar lo antes posible.
+\subsubsection{SUB-U-CU1.8-Obtener mediciones en tiempo real}\label{SUB-U-CU1.8}
+El monitoreo para saber qué es lo que el sensor está midiendo en ese momento se realizará siempre que la aplicación esté en tiempo de funcionamiento, el cual es igual al periodo de tiempo comprendido en la Regla de Negocios \ref{RN6}, esto se logrará gracias a un proceso que se mantendrá corriendo y realizará constantes peticiones al Servidor embebido; el lapso que deberá trascurrir entre cada petición para saber las mediciones otorgadas por el sensor será especificado en la Regla de negocios \ref{RN17}, de esta manera se tendrá un mayor control sobre las posibles anomalías y de detectarse alguna, poder notificar lo antes posible.
 \\ La comunicación se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8} con el formato de datos establecido en la Regla de Negocios \ref{RN11}  
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-U-CU1.8-Mediciones en tiempo real \\ \hline
+		SUB-U-CU1.8-Obtener mediciones en tiempo real \\ \hline
 	\textbf{Objetivo} &
 		Monitorizar cada segundo los valores de generación de energía del día actual dentro del periodo de tiempo comprendido en la Regla de Negocios \ref{RN6}, detectar algún tipo de anomalía en dichas mediciones. \\ \hline
 	\textbf{Actores} &
 		\begin{itemize}
 		    \item Microcontrolador
-			\item Servidor embebido embebido
+			\item Servidor embebido
 			\item Aplicación de Usuario
 		    \item Usuario
 		\end{itemize} \\ \hline

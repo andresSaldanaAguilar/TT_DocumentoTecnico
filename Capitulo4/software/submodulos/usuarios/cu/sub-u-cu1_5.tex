@@ -1,5 +1,5 @@
 \subsubsection{SUB-U-CU1.2-Ver Gráfica de Generación de Energía en Tiempo Real}\label{SUB-U-CU1.2}
-La gráfica de generación en tiempo real es un componente de la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} y se realizará haciendo una petición de los valores del día actual que el servidor tiene almacenados para graficarlos en la aplicación de usuario y posteriormente actualizar la gráfica de líneas por medio de peticiones al servidor en el tiempo establecido en la Regla de Negocios \ref{RN6}.
+La gráfica de generación en tiempo real es un componente de la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generación Actual]} y se realizará haciendo una petición de los valores del día actual que el servidor tiene almacenados para graficarlos en la aplicación de usuario y posteriormente actualizar la gráfica de líneas por medio de peticiones al servidor en el tiempo establecido en la Regla de Negocios \ref{RN6}
 \\ La comunicación se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8} con el formato de datos establecido en la Regla de Negocios \ref{RN11}  
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
@@ -18,11 +18,11 @@ La gráfica de generación en tiempo real es un componente de la interfaz de usu
 	    El usuario inicia la aplicación de usuario, dando clic en el ícono correspondiente de la aplicación.\\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-				\item{[Servidor]} Marca de tiempo
+				\item{[Servidor embebido]} Marca de tiempo
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
-			\item{[Servidor]} Valor o valores de generación de energía previos a la marca de tiempo e incluyendo el ligado a la marca de tiempo.
+			\item{[Servidor embebido]} Valor o valores de generación de energía previos a la marca de tiempo e incluyendo el ligado a la marca de tiempo.
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
 		Debe estar establecida la conexión entre la Aplicación de usuario y el Servidor que atenderá las peticiones.
@@ -58,7 +58,7 @@ La gráfica de generación en tiempo real es un componente de la interfaz de usu
 	    \item {[Aplicación de Usuario]} Envía la marca de tiempo actual. \hyperref[SUB-U-CU1.2:TB]{[Trayectoria alternativa B]} 
 	    \item {[Servidor embebido]} Recibe la petición, busca los valores almacenados previos a la marca de tiempo, incluyendo el ligado a la marca de tiempo.
 	    \item {[Servidor embebido]} Envía los valores correspondientes. \hyperref[SUB-U-CU1.2:TC]{[Trayectoria alternativa C]} 
-	    \item {[Aplicación de Usuario]} Recibe los valores de monitoreo, muestra la pantalla \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} con los datos obtenidos. \hyperref[SUB-U-CU1.2:TD]{[Trayectoria alternativa D]}
+	    \item {[Aplicación de Usuario]} Recibe los valores de monitoreo, muestra la pantalla \hyperref[fig:monitoreo]{[IU1-Generación Actual]} con los datos obtenidos. \hyperref[SUB-U-CU1.2:TD]{[Trayectoria alternativa D]}
 	\end{enumerate}
 	Fin del caso de uso.
 
@@ -68,7 +68,7 @@ La gráfica de generación en tiempo real es un componente de la interfaz de usu
 		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo completa como petición al servidor. \hyperref[SUB-U-CU1.2:TB]{[Trayectoria alternativa B]} 
 		\item {[Servidor embebido]} Recibe la petición, busca los valores almacenados previos a la marca de tiempo, incluyendo el ligado a la marca de tiempo.
 		\item  {[Servidor embebido]} Envía el valor correspondiente \hyperref[SUB-U-CU1.2:TC]{[Trayectoria alternativa C]}
-        \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la pantalla \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} con el dato obtenido.
+        \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la pantalla \hyperref[fig:monitoreo]{[IU1-Generación Actual]} con el dato obtenido.
         \hyperref[SUB-U-CU1.2:TD]{[Trayectoria alternativa D]}.
 	\end{enumerate}
 	Fin de la trayectoria alternativa y fin del caso de uso.
@@ -93,9 +93,8 @@ La gráfica de generación en tiempo real es un componente de la interfaz de usu
 \paragraph{Trayectoria alternativa D} \label{SUB-U-CU1.2:TD}
 	El valor de generación es -1
 	\begin{enumerate}[label=D\arabic*.]
-		\item {[Aplicación de usuario]} Asigna como valor de generación 0 y actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.2:TA]{[Trayectoria alternativa A]}
+		\item {[Aplicación de usuario]} Asigna como valor de generación 0 y actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generación Actual]}.
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y fin de caso de uso.
 
 

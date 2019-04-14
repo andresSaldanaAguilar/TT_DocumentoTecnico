@@ -85,21 +85,21 @@ El promedio de energía que es sensada diariamente, es calculado tomando en cuen
 
 \paragraph{Trayectoria principal}
 	\begin{enumerate}
-		\item {[Sistema]} Recibe la trama con los datos de la última muestra del día.
-		\item  {[Sistema]} Consulta de la base de datos las últimas 119 muestras, ya que son las que obtuvo durante el transcurso del día actual.
-		\item {[Sistema]} Valida que ninguna de las 120 muestras sea igual a 0. \hyperref[SUB-M-CU1.1:TA]{[Trayectoria Alternativa A]}
-		\item {[Sistema]} Realiza el promedio con las 120 muestras.
-		\item {[Sistema]} Obtiene la fecha actual
-		\item {[Sistema]} Almacena tanto el promedio, como la fecha actual y un estado de éxito.
-		%\item {[Sistema]} Incluye el caso de uso \hyperref[SUB-M-CU1.1]{SUB-M-CU1.1-Confirmar medición}.
+		\item {[Servidor embebido]} Recibe la trama con los datos de la última muestra del día.
+		\item  {[Servidor embebido]} Consulta de la base de datos las últimas 119 muestras, ya que son las que obtuvo durante el transcurso del día actual.
+		\item {[Servidor embebido]} Valida que ninguna de las 120 muestras sea igual a 0. \hyperref[SUB-M-CU1.1:TA]{[Trayectoria Alternativa A]}
+		\item {[Servidor embebido]} Realiza el promedio con las 120 muestras.
+		\item {[Servidor embebido]} Obtiene la fecha actual
+		\item {[Servidor embebido]} Almacena tanto el promedio, como la fecha actual y un estado de éxito.
+		%\item {[Servidor embebido]} Incluye el caso de uso \hyperref[SUB-M-CU1.1]{SUB-M-CU1.1-Confirmar medición}.
 	\end{enumerate}
 	Fin del caso de uso.
 
-\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1:TA}
+\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.1:TA}
 	Al menos una de las 120 muestras es igual a 0
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Sistema]} Realiza el promedio con las 120 muestras.
-		\item {[Sistema]} Obtiene la fecha actual
-		\item {[Sistema]} Almacena tanto el promedio, la fecha actual y un estado de fallo.
+		\item {[Servidor embebido]} Realiza el promedio con las 120 muestras.
+		\item {[Servidor embebido]} Obtiene la fecha actual
+		\item {[Servidor embebido]} Almacena tanto el promedio, la fecha actual y un estado de fallo.
 	\end{enumerate}
 	Fin de la trayectoria alternativa y fin de caso de uso.

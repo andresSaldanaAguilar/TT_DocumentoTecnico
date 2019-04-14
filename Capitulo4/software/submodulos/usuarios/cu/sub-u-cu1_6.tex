@@ -17,7 +17,7 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 		El usuario selecciona del menú de navegación la sección de históricos. \\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-			\item{[Servidor embebido]} Periodo de tiempo seleccionado del menú desplegable.
+			\item{[Servidor embebido]} Periodo de tiempo seleccionado del menú desplegable de la pantalla \hyperref[fig:Opciones de Intervalo]{[IU2.4-Opciones de Intervalo]}.
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
@@ -50,7 +50,7 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 \paragraph{Trayectoria principal}
     \label{SUB-U-CU1.3:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Selecciona Históricos en el menú de navegación. \hyperref[SUB-U-CU1.3:TA]{[Trayectoria alternativa A]} 
+	    \item {[Usuario]} Selecciona Históricos en el menú de navegación de la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}. \hyperref[SUB-U-CU1.3:TA]{[Trayectoria alternativa A]} 
 		\item {[Aplicación de Usuario]} Envía el periodo de tiempo semanal como valor de petición por defecto. \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
 		\item {[Servidor embebido]} Recibe la petición, consigue los valores de acuerdo al periodo solicitado. 
 		\item {[Servidor embebido]} Envía los valores como respuesta a la aplicación de usuario. \hyperref[SUB-U-CU1.3:TC]{[Trayectoria alternativa C]}
@@ -65,7 +65,7 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 	    \item {[Usuario]} Selecciona una opción del menú desplegable de la pantalla de usuario \hyperref[fig:Opciones de Intervalo]{[IU2.4-Opciones de Intervalo]}
 	    \item {[Aplicación de Usuario]} Envía como petición el periodo de tiempo seleccionado por el usuario \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
 	\end{enumerate}
-	Fin de la trayectoria alternativa y retorna al paso 3 de la trayectoria principal.
+	Fin de la trayectoria alternativa. Regresa al paso 3 de la \hyperref[SUB-U-CU1.3:TP]{[Trayectoria Principal]}.
 	
 \paragraph{Trayectoria alternativa B} \label{SUB-U-CU1.3:TB}
 	Sin conexión con el servidor.
@@ -87,4 +87,4 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 	\begin{enumerate}[label=D\arabic*.]
 		\item {[Aplicación de usuario]} Asigna un 0 como valor de generación.
 	\end{enumerate}
-	Fin de la trayectoria alternativa y regresa al paso 6 de la trayectoria principal.
+	Fin de la trayectoria alternativa. Regresa al paso 6 de la \hyperref[SUB-U-CU1.3:TP]{[Trayectoria Principal]}.

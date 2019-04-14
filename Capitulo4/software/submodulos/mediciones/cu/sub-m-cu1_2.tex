@@ -53,9 +53,9 @@ periodos culmina y el promedio de energía sensada diariamente del día en curso
 \paragraph{Trayectoria principal}
 	\begin{enumerate}
 		\item {[Sensor]} El promedio diario del último día de uno de los periodos especificado en la regla de negocios \ref{RN4} para el cálculo bimestral es calculado como lo indica el caso de uso \hyperref[SUB-M-CU1.1]{SUB-M-CU1.1} y es almacenado.
-		\item  {[Sistema]} Consulta de la base de datos los promedios diarios de los días que abarca el periodo en curso, por ejemplo, si el día actual es 30 de Abril, se recuperarán los promedios diarios del 1 de Marzo al 30 de Abril.
-		\item {[Sistema]} Realiza el promedio con los promedios diarios consultados.
-		\item {[Sistema]} Obtiene la fecha actual
-		\item {[Sistema]} Almacena tanto el promedio como la fecha actual.
+		\item  {[Servidor embebido]} Consulta de la base de datos los promedios diarios de los días que abarca el periodo en curso, por ejemplo, si el día actual es 30 de Abril, se recuperarán los promedios diarios del 1 de Marzo al 30 de Abril.
+		\item {[Servidor embebido]} Realiza el promedio con los promedios diarios consultados.
+		\item {[Servidor embebido]} Obtiene la fecha actual
+		\item {[Servidor embebido]} Almacena tanto el promedio como la fecha actual.
 	\end{enumerate}
 	Fin del caso de uso.

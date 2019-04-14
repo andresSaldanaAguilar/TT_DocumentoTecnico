@@ -40,19 +40,19 @@ Una vez iniciada la aplicación deberá conectarse con el Servidor que atenderá
 	\begin{enumerate}
 		\item {[Usuario]} Inicia por primera vez la aplicación móvil \hyperref[SUB-U-CU1.4:TA]{[Trayectoria alternativa A]} 
 		\item {[Aplicación de usuario]} Muestra la pantalla \hyperref[fig:Emparejamiento Dispositivos]{[IU3.1-Emparejamiento de Dispositivos]}
-		\item  {[Usuario]} Selecciona del combo box una dirección IP disponible, como se muestra en el ejemplo de la pantalla \hyperref[fig:Seleccion de Disposotivo]{[IU3.2-Seleccíon de Dispositivo]}. \hyperref[SUB-U-CU1.4:TB]{[Trayectoria alternativa B]}
+		\item  {[Usuario]} Selecciona del combo box una dirección IP disponible, como se muestra en el ejemplo de la pantalla \hyperref[fig:Seleccion de Disposotivo]{[IU3.2-Selección de Dispositivo]}. \hyperref[SUB-U-CU1.4:TB]{[Trayectoria alternativa B]}
 		\item {[Aplicación de usuario]} Valida si la conexión con el servidor es posible. \hyperref[SUB-U-CU1.4:TC]{[Trayectoria alternativa C]}
 		\item {[Aplicación de usuario]} Almacena la dirección IP del nuevo servidor.
-		\item {[Aplicación de usuario]} Muestra un mensaje de conexión exitosa, como se muestra en la pantalla emergente \hyperref[fig:Exito Emparejamiento]{[PE3- ́Exito de Emparejamiento con Dispositivo]}.
+		\item {[Aplicación de usuario]} Muestra un mensaje de conexión exitosa, como se muestra en la pantalla emergente \hyperref[fig:Exito Emparejamiento]{[PE3- Éxito de Emparejamiento con Dispositivo]}.
 	\end{enumerate}
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.4:TA}
 	No es la primera vez que se accede a la aplicación, por lo tanto no pasamos por la etapa de configuración.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Usuario]} Da clic en el botón "Dispositivos" con el símbolo de configuración de la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}
+		\item {[Usuario]} Da clic en el botón 'Dispositivos' con el símbolo de configuración de la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}
 	\end{enumerate}
-	Fin de la trayectoria alternativa y retorna al paso 2 de la trayectoria principal.
+	Fin de la trayectoria alternativa. Regresa al paso 2 de la \hyperref[SUB-U-CU1.4:TP]{[Trayectoria Principal]}.
 	
 \paragraph{Trayectoria alternativa B} \label{SUB-U-CU1.4:TB}
 	No selecciona ninguna opción del combo box y en su lugar el usuario prefiere ingresar una dirección manualmente.
@@ -60,7 +60,7 @@ Una vez iniciada la aplicación deberá conectarse con el Servidor que atenderá
 		\item {[Usuario]}  Ingresa una dirección IP manualmente, en el campo de la pantalla \hyperref[fig:Seleccion de Disposotivo]{[IU3.2-Selección de Dispositivo]}.
 		\item {[Aplicación móvil]} Valida si lo ingresado tiene un formato de dirección IP válido, según la regla de negocios \ref{RN16} \hyperref[SUB-U-CU1.4:TC]{[Trayectoria alternativa C]} \hyperref[SUB-U-CU1.4:TD]{[Trayectoria alternativa D]} 
 	\end{enumerate}
-	Fin de la trayectoria alternativa y retorna al paso 4 de la trayectoria principal.
+	Fin de la trayectoria alternativa. Regresa al paso 4 de la \hyperref[SUB-U-CU1.4:TP]{[Trayectoria Principal]}.
 
 \paragraph{Trayectoria alternativa C} \label{SUB-U-CU1.4:TC}
     La IP cumple con el formato estipulado por la regla de negocios \ref{RN16}, sin embargo no es posible realizar la conexión con el servidor.
@@ -71,7 +71,7 @@ Una vez iniciada la aplicación deberá conectarse con el Servidor que atenderá
 	Fin de la trayectoria alternativa y fin del caso de uso.
 	
 \paragraph{Trayectoria alternativa D} \label{SUB-U-CU1.4:TD}
-    La IP no cumple con el formato estipulado por la regla de negocios \ref{RN16}.
+    La IP no cumple con el formato estipulado por la Regla de negocios \ref{RN16}
     \begin{enumerate}[label=D\arabic*.]
 		\item {[Aplicación móvil]} Muestra un mensaje de formato de IP inválido.
 		\item {[Aplicación de usuario]} Muestra la pantalla \hyperref[fig:Emparejamiento Dispositivos]{[IU3.1-Emparejamiento de Dispositivos]}
