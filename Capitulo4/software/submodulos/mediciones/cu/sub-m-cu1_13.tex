@@ -1,11 +1,9 @@
 \subsubsection{SUB-U-CU1.1-Ver estado de generación actual}\label{SUB-U-CU1.1}
-La barra de estado de generación actual es un componente de la interfaz \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}
-y es la encargada de mostrar el estado de generación actual del sistema fotovoltaico, evaluándolo con la Regla de Negocios \ref{RN12}, con actualizaciones en el tiempo establecido la Regla de Negocio \ref{}, la comunicación con el servidor se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11}   
-
+La barra de estado de generación actual es un componente de la interfaz \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} y es la encargada de mostrar el estado de generación actual del Sistema fotovoltaico, evaluándolo con la Regla de Negocios \ref{RN12}, con actualizaciones en el tiempo establecido la Regla de Negocios \ref{RN17}, la comunicación con el Servidor se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8} con el formato de datos establecido en la Regla de Negocios \ref{RN11}.   
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-U-CU1.13-Ver Estatus de Generación Actual \\ \hline
+		SUB-U-CU1.1-Ver estado de generación actual \\ \hline
 	\textbf{Objetivo} &
 		Conseguir el valor actual de generación de energía y mostrarlo al usuario. \\ \hline
 	\textbf{Actores} &
@@ -15,71 +13,72 @@ y es la encargada de mostrar el estado de generación actual del sistema fotovol
 			\item Aplicación de Usuario
 		\end{itemize} \\ \hline
 	\textbf{Disparador} & 
-	    El usuario inicia la aplicación de usuario, dando clic en el icono correspondiente a la aplicación\\ \hline 
+	    El usuario inicia la aplicación de usuario, dando clic en el ícono correspondiente de la aplicación.\\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-				\item{[Servidor]} Petición por el valor actual
+				\item{[Servidor]} Petición por el valor actual.
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
-			\item{[Servidor]} Respuesta con valor generación actual
+			\item Pantalla \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} indicando el estado de generación actual y el nivel en que se encuentra.
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
-		La aplicación de usuario debe estar previamente configurada (ver Caso de Uso \ref{}) \\ \hline
+		Debe estar establecida la conexión entre la Aplicación de usuario y el Servidor que atenderá las peticiones \\ \hline
 	\textbf{Postcondiciones} &
 		Ninguna.\\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-			\item La aplicación de usuario recibe el valor y muestra el estatus de generación actual.
+			\item La aplicación de usuario recibe el valor y muestra la pantalla \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} con el estado de generación actual.
 		\end{itemize} \\ \hline 
 	\textbf{Prioridad} & 
 		Media. \\ \hline
 	\textbf{Errores} & 
 		\begin{itemize}
-		    \item \label{CU13:Error1} Error 1: Sin conexión con el servidor.
-			\item \label{CU13:Error2} Error 2: La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
-		    \item \label{CU13:Error3} Error 3: Sin conexión con el cliente.
-		    \item \label{CU13:Error4} Error 4: El valor de generación es -1
+		    \item \label{CUU1.1:Error1} Error 1: Sin conexión con el servidor.
+			\item \label{CUU1.1:Error2} Error 2: La marca de tiempo requerida no existe en el servidor.
+		    \item \label{CUU1.1:Error3} Error 3: Sin conexión con el cliente.
+		    \item \label{CUU1.1:Error4} Error 4: El valor de generación es -1.
 		\end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
-		    \item \ref{}
-			\item \ref{RN8}
+		    \item \ref{RN8}
 			\item \ref{RN11}
+			\item \ref{RN12}
+			\item \ref{RN17}
 		\end{itemize} \\ \hline
 \end{longtable}
 
 \paragraph{Trayectoria principal}
-    \label{SUB-U-CU1.13:TP}
+    \label{SUB-U-CU1.1:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Inicia la aplicación de usuario dando clic en el icono correspondiente a la aplicación. \hyperref[SUB-U-CU1.13:TA]{[Trayectoria alternativa A]}
-	    \item {[Aplicación de Usuario]} Envía la petición para obtener el valor de generación actual. \hyperref[SUB-U-CU1.13:TB]{[Trayectoria alternativa B]} 
-	    \item {[Servidor]} Recibe la petición, busca el valor actual de generación almacenado. \hyperref[SUB-U-CU1.13:TC]{[Trayectoria alternativa C]}
-	    \item {[Servidor]} Envía el valor correspondiente \hyperref[SUB-U-CU1.13:TD]{[Trayectoria alternativa D]} 
-	    \item {[Aplicación de Usuario]} Recibe el valor de generación actual, se muestra la interfaz de usuario con el valor actualizado de estatus de generación actual \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}. \hyperref[SUB-U-CU1.13:TE]{[Trayectoria alternativa E]}
+	    \item {[Usuario]} Inicia la Aplicación de usuario dando clic en el ícono correspondiente de la aplicación. \hyperref[SUB-U-CU1.1:TA]{[Trayectoria alternativa A]}
+	    \item {[Aplicación de Usuario]} Envía la petición para obtener el valor de generación actual. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
+	    \item {[Servidor embebido]} Recibe la petición, busca el valor actual de generación almacenado. \hyperref[SUB-U-CU1.1:TC]{[Trayectoria alternativa C]}
+	    \item {[Servidor embebido]} Envía el valor correspondiente. \hyperref[SUB-U-CU1.1:TD]{[Trayectoria alternativa D]} 
+	    \item {[Aplicación de Usuario]} Recibe el valor de generación actual y valida que este no sea un número negativo.
+	    \item {[Aplicación de Usuario]} Muestra la pantalla \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} con el valor actualizado de estado de generación actual. \hyperref[SUB-U-CU1.1:TE]{[Trayectoria alternativa E]}
 	\end{enumerate}
 	Fin del caso de uso.
 
-\paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.13:TA}
-	El usuario ya esta dentro de la aplicación de usuario
+\paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.1:TA}
+	El usuario ya está dentro de la aplicación de usuario
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{} y envía la petición para obtener el valor de generación actual. \hyperref[SUB-U-CU1.13:TB]{[Trayectoria alternativa B]} 
-		\item {[Aplicación de usuario]} Regresa al punto 3 de la \hyperref[SUB-U-CU1.13:TP]{[Trayectoria Principal]}
+		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN17} y envía la petición para obtener el valor de generación actual. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
+		\item {[Aplicación de usuario]} Regresa al punto 3 de la \hyperref[SUB-U-CU1.1:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
 
-\paragraph{Trayectoria alternativa B} \label{SUB-U-CU1.13:TB}
+\paragraph{Trayectoria alternativa B} \label{SUB-U-CU1.1:TB}
 	Sin conexión con el servidor.
 	\begin{enumerate}[label=B\arabic*.]
-		\item {[Aplicación de usuario]} Actualiza como estatus actual la palabra ''desconectado'' en la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]},
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.13:TP]{[Trayectoria Principal]}
+		\item {[Aplicación de usuario]} Actualiza como estado actual la palabra ''desconectado'' en la pantalla \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}.
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y fin del caso de uso.
 
-\paragraph{Trayectoria alternativa C} \label{SUB-U-CU1.13:TC}
-	La marca de tiempo requerida tiene valor nulo.
+\paragraph{Trayectoria alternativa C} \label{SUB-U-CU1.1:TC}
+	La marca de tiempo requerida no existe en la base de datos del servidor.
 	\begin{enumerate}[label=C\arabic*.]
-		\item {[Servidor]} Asigna el valor -1 a la respuesta para la aplicación de usuario.
+		\item {[Servidor embebido]} Asigna el valor -1 a la respuesta para la Aplicación de usuario.
 		\item {[Aplicación de usuario]} Regresa al punto 4 de \hyperref[SUB-U-CU1.13:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
