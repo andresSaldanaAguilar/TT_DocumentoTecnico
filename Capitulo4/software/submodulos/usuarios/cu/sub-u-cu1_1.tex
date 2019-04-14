@@ -55,8 +55,8 @@ La barra de estado de generación actual es un componente de la interfaz \hyperr
 	    \item {[Aplicación de Usuario]} Envía la petición para obtener el valor de generación actual. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
 	    \item {[Servidor embebido]} Recibe la petición, busca el valor actual de generación almacenado. \hyperref[SUB-U-CU1.1:TC]{[Trayectoria alternativa C]}
 	    \item {[Servidor embebido]} Envía el valor correspondiente. \hyperref[SUB-U-CU1.1:TD]{[Trayectoria alternativa D]} 
-	    \item {[Aplicación de Usuario]} Recibe el valor de generación actual y valida que este no sea un número negativo.
-	    \item {[Aplicación de Usuario]} Muestra la pantalla \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} con el valor actualizado de estado de generación actual. \hyperref[SUB-U-CU1.1:TE]{[Trayectoria alternativa E]}
+	    \item {[Aplicación de Usuario]} Recibe el valor de generación actual y valida que este no sea un número negativo. \hyperref[SUB-U-CU1.1:TE]{[Trayectoria alternativa E]} 
+	    \item {[Aplicación de Usuario]} Muestra la pantalla \hyperref[fig:monitoreo]{[IU1-Generacion Actual]} con el valor actualizado de estado de generación actual.
 	\end{enumerate}
 	Fin del caso de uso.
 
@@ -79,23 +79,21 @@ La barra de estado de generación actual es un componente de la interfaz \hyperr
 	La marca de tiempo requerida no existe en la base de datos del servidor.
 	\begin{enumerate}[label=C\arabic*.]
 		\item {[Servidor embebido]} Asigna el valor -1 a la respuesta para la Aplicación de usuario.
-		\item {[Aplicación de usuario]} Regresa al punto 4 de \hyperref[SUB-U-CU1.13:TP]{[Trayectoria Principal]}
+		\item {[Aplicación de usuario]} Regresa al punto 4 de \hyperref[SUB-U-CU1.1:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin de la trayectoria alternativa.
 
-\paragraph{Trayectoria alternativa D} \label{SUB-U-CU1.13:TD}
+\paragraph{Trayectoria alternativa D} \label{SUB-U-CU1.1:TD}
 	Sin conexión con el cliente.
 	\begin{enumerate}[label=D\arabic*.]
-		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Al no recibir respuesta del servidor en el intervalo establecido, actualiza como estatus actual la palabra ''desconectado'' en la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]},
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.13:TP]{[Trayectoria Principal]}
+		\item {[Servidor embebido]} Aborta envió y espera por la siguiente petición.
+		\item {[Aplicación de usuario]} Al no recibir respuesta del servidor en el intervalo establecido, actualiza como estado actual la palabra ''desconectado'' en la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}.
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y fin del caso de uso.
 	
-\paragraph{Trayectoria alternativa E} \label{SUB-U-CU1.13:TE}
+\paragraph{Trayectoria alternativa E} \label{SUB-U-CU1.1:TE}
 	El valor de respuesta es -1
 	\begin{enumerate}[label=E\arabic*.]
-		\item {[Aplicación de usuario]} Actualiza como estatus actual la palabra ''error servidor'' en la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generacion Actual]},
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.13:TP]{[Trayectoria Principal]}
+		\item {[Aplicación de usuario]} Actualiza como estado actual la palabra ''error servidor'' en la interfaz de usuario. \hyperref[fig:monitoreo]{[IU1-Generacion Actual]}.
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y fin del caso de uso.

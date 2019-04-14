@@ -1,12 +1,12 @@
 %DUDAS:
 
-\subsubsection{SUB-U-CU1.9-Ver notificaciones}\label{SUB-U-CU1.9}
-El usuario puede consultar las notificaciones que ha recibido del sistema. Las notificaciones que puede visualizar deben cumplir con la \ref{RN13}, \ref{RN14} y \ref{RN15}
+\subsubsection{SUB-U-CU1.6-Ver notificaciones}\label{SUB-U-CU1.6}
+El usuario puede consultar las notificaciones que ha recibido del sistema. Las notificaciones que puede visualizar deben cumplir con las Reglas de negocio \ref{RN13}, \ref{RN14} y \ref{RN15}
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-U-CU1.9-Ver notificaciones \\ \hline
+		SUB-U-CU1.6-Ver notificaciones \\ \hline
 	\textbf{Objetivo} &
 		Permitirle al usuario consultar las notificaciones que ha recibido. \\ \hline
 	\textbf{Actores} &
@@ -22,64 +22,49 @@ El usuario puede consultar las notificaciones que ha recibido del sistema. Las n
 		 \end{itemize}
 		 \\ \hline 
 	\textbf{Entradas} & Ninguna.
-		% \begin{itemize}
-		% 		\item Nombre.
-		% 		\item Imagen de perfil.
-		% \end{itemize}
 		\\ \hline 
 	\textbf{Salidas} & 
 	    Registros de notificaciones:
 		\begin{itemize}
 			\item Descripción de la notificación.
 			\item Fecha y hora de la notificación con base a la \ref{RN14} y \ref{RN15}
-			\item Dirección IP del dispositivo que notificó.
+			\item Dirección IP del dispositivo que notificó \ref{RN16}.
 		\end{itemize} 
 		\\ \hline
 	\textbf{Precondiciones} &
-	    \begin{itemize}
-		    \item El actor debe haber recibido al menos una notificación.
-		\end{itemize}
+	    Ninguna
 		\\ \hline
 	\textbf{Postcondiciones} & Ninguna.
-		% \begin{itemize}
-		% 	\item El nombre e imagen de perfil son actualizados.
-		% \end{itemize} 
 		\\ \hline
 	\textbf{Condiciones de término} & Se muestran los registros de las notificaciones recibidas en la pantalla \hyperref[fig:Lista de Notificaciones]{[IU4-Lista de Notificaciones]}.
-		% \begin{itemize}
-		% 	\item Se muestra el mensaje de éxito al actor.
-		% \end{itemize} 
 		\\ \hline 
 	\textbf{Prioridad} & 
-		Baja. \\ \hline
-	\textbf{Errores} & Ninguno.
-		% \begin{itemize}
-		% 	\item \label{SUB-M-CU1:Error1} Error 1: .
-		% \end{itemize} 
+		Media. \\ \hline
+	\textbf{Errores} & Ninguno. 
 		\\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
 		 	\item \ref{RN13}
 		 	\item \ref{RN14}
 		 	\item \ref{RN15}
+		 	\item \ref{RN16}
 		\end{itemize}
 		 \\ \hline
 	% \caption{}
 	%\label{desc:SUB-M-CU1}
 \end{longtable}
 
-\paragraph{Trayectoria principal} \label{SUB-U-CU1.9:TP}
+\paragraph{Trayectoria principal} \label{SUB-U-CU1.6:TP}
 	\begin{enumerate}
-		\item {[Usuario]} Selecciona la opción de \textit{Notificaciones} que se muestra en la pantalla  \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}. \hyperref[SUB-U-CU1.9:TA]{[Trayectoria Alternativa A]}
-		\item {[Sistema]} Obtiene los registros de notificaciones enviadas al dispositivo.
-		\item {[Sistema]} Muestra la pantalla \hyperref[fig:Lista de Notificaciones]{[IU4-Lista de Notificaciones]}.
+		\item {[Usuario]} Selecciona la opción de \textit{Notificaciones} que se muestra en la pantalla  \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}. \hyperref[SUB-U-CU1.6:TA]{[Trayectoria Alternativa A]}
+		\item {[Aplicación de usuario]} Obtiene los registros de notificaciones generadas en el dispositivo.
+		\item {[Aplicación de usuario]} Muestra la pantalla \hyperref[fig:Lista de Notificaciones]{[IU4-Lista de Notificaciones]}.
 	\end{enumerate}
 	Fin del caso de uso.
 
-\paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.9:TA}
+\paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.6:TA}
  	El usuario abre el centro de notificaciones de su dispositivo móvil.
  	\begin{enumerate}[label=A\arabic*.]
- 	    \item {[Usuario]} Selecciona la notificación que recibió del Sistema desde el centro de notificaciones de su dispositivo móvil.
- 		\item {[Sistema]} Continúa en el paso 2 de la \hyperref[SUB-U-CU1.9:TP]{[Trayectoria Principal]}
+ 	    \item {[Usuario]} Selecciona la notificación que generó la aplicación desde el centro de notificaciones de su dispositivo móvil.
  	\end{enumerate}
- 	Fin de la trayectoria alternativa.
+ 	Fin de la trayectoria alternativa y retorna al paso 2 de la Trayectoria Principal.

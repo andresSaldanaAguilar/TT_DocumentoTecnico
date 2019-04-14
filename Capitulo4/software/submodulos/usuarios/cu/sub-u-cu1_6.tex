@@ -1,10 +1,10 @@
-\subsubsection{SUB-U-CU1.6-Ver Reporte de Históricos}\label{SUB-U-CU1.6}
-La visualización de reportes históricos tendrá lugar de acuerdo a los periodos establecidos en la Regla de Negocio \ref{RN4}, evaluándolo con la Regla de Negocio \ref{RN12} , donde se mostrará la gráfica de barras con las especificaciones de la Regla de Negocio \ref{RN12} correspondiente al  intervalo seleccionado, la comunicación se realizara mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11} .
+\subsubsection{SUB-U-CU1.3-Ver Reporte de Históricos}\label{SUB-U-CU1.3}
+La visualización de reportes históricos tendrá lugar de acuerdo a los periodos establecidos en la Regla de Negocios \ref{RN4}, donde se mostrará la gráfica de barras con las especificaciones de la Regla de Negocios \ref{RN12} correspondiente al intervalo seleccionado, la comunicación se realizará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8} con el formato de datos establecido en la Regla de Negocios \ref{RN11}
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-U-CU1.6-Ver Reporte de Históricos \\ \hline
+		SUB-U-CU1.3-Ver Reporte de Históricos \\ \hline
 	\textbf{Objetivo} &
 		Graficar el periodo seleccionado por el usuario en la sección de históricos, en formato de barras. \\ \hline
 	\textbf{Actores} &
@@ -17,11 +17,11 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 		El usuario selecciona del menú de navegación la sección de históricos. \\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-			\item{[Servidor]} Valor seleccionado del menú desplegable
+			\item{[Servidor embebido]} Periodo de tiempo seleccionado del menú desplegable.
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
-			\item{[Servidor]} Valores del Intervalo de tiempo requerido
+			\item{[Servidor embebido]} Valores históricos del intervalo de tiempo requerido.
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
 		Ninguna.\\ \hline
@@ -29,76 +29,62 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 		Ninguna.\\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-			\item La aplicación de usuario recibe los valores requeridos y los grafíca.
+			\item La aplicación de usuario recibe los valores históricos requeridos y los grafica.
 		\end{itemize} \\ \hline 
 	\textbf{Prioridad} & 
-		Alta. \\ \hline
+		Media. \\ \hline
 	\textbf{Errores} & 
 		\begin{itemize}
-		    \item \label{CU5:Error1} Error 1: Sin conexión con el servidor.
-			\item \label{CU5:Error2} Error 2: El promedio requerido no existe en el servidor o es nulo su valor asociado.
-		    \item \label{CU5:Error3} Error 3: Sin conexión con el cliente.
-			
+		    \item \label{CUU1.3:Error1} Error 1: Sin conexión con el servidor.
+		    \item \label{CUU1.3:Error2} Error 2: Sin conexión con el cliente.
 		\end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
 		    \item \ref{RN4}
-		    \item \ref{RN6}
-			\item \ref{RN8}
+		    \item \ref{RN8}
 			\item \ref{RN11}
+			\item \ref{RN12}
 		\end{itemize} \\ \hline
-
 \end{longtable}
 
 \paragraph{Trayectoria principal}
-    \label{SUB-M-CU1.5:TP}
+    \label{SUB-U-CU1.3:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Selecciona Históricos en el menú de navegación. \hyperref[SUB-U-CU1.6:TA]{[Trayectoria alternativa A]} 
-		\item {[Aplicación de Usuario]} Envía como el valor semanal como petición por defecto. \hyperref[SUB-U-CU1.6:TB]{[Trayectoria alternativa B]} 
-		\item {[Servidor]} Recibe la petición, consigue los valores semanales/mensuales/bimestrales tomando como intervalo la semana/mes/año en curso. \hyperref[SUB-U-CU1.6:TC]{[Trayectoria alternativa C]} 
-		\item {[Servidor]} Envía los valores como respuesta a la aplicación de usuario. \hyperref[SUB-U-CU1.6:TD]{[Trayectoria alternativa D]}
-        \item {[Aplicación de Usuario]} Recibe la respuesta del servidor, muestra la pantalla de usuario \hyperref[fig:Historial Semanal]{[IU2.1-Historial Semanal]} y gráfica el arreglo de valores obtenidos \ref{RN11} \hyperref[SUB-U-CU1.6:TE]{[Trayectoria alternativa E]}
+	    \item {[Usuario]} Selecciona Históricos en el menú de navegación. \hyperref[SUB-U-CU1.3:TA]{[Trayectoria alternativa A]} 
+		\item {[Aplicación de Usuario]} Envía el periodo de tiempo semanal como valor de petición por defecto. \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
+		\item {[Servidor embebido]} Recibe la petición, consigue los valores de acuerdo al periodo solicitado. 
+		\item {[Servidor embebido]} Envía los valores como respuesta a la aplicación de usuario. \hyperref[SUB-U-CU1.3:TC]{[Trayectoria alternativa C]}
+        \item {[Aplicación de Usuario]} Recibe la respuesta del servidor y valida los datos obtenidos.\hyperref[SUB-U-CU1.3:TD]{[Trayectoria alternativa D]}
+        \item {[Aplicación de Usuario]} muestra la pantalla \hyperref[fig:Historial Semanal]{[IU2.1-Historial Semanal]} y grafica el arreglo de valores obtenidos. 
 	\end{enumerate}
 	Fin del caso de uso.
 
-\paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.6:TA}
-    El usuario ya esta en la pantalla de usuario \hyperref[fig:Historial Semanal]{[IU2.1-Historial Semanal]}
+\paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.3:TA}
+    El usuario ya está en la pantalla de usuario \hyperref[fig:Historial Semanal]{[IU2.1-Historial Semanal]}
 	\begin{enumerate}[label=A\arabic*.]
 	    \item {[Usuario]} Selecciona una opción del menú desplegable de la pantalla de usuario \hyperref[fig:Opciones de Intervalo]{[IU2.4-Opciones de Intervalo]}
-	    \item {[Aplicación de Usuario]} Envía como petición el valor seleccionado por el usuario \hyperref[SUB-U-CU1.6:TB]{[Trayectoria alternativa B]} 
-	    \item Retorna al 3 de la trayectoria principal \hyperref[SUB-U-CU1.6:TP]{[Trayectoria Principal]}
+	    \item {[Aplicación de Usuario]} Envía como petición el periodo de tiempo seleccionado por el usuario \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y retorna al paso 3 de la trayectoria principal.
 	
-\paragraph{Trayectoria alternativa B} \label{SUB-U-CU1.6:TB}
+\paragraph{Trayectoria alternativa B} \label{SUB-U-CU1.3:TB}
 	Sin conexión con el servidor.
 	\begin{enumerate}[label=B\arabic*.]
 		\item {[Aplicación de usuario]} Genera una excepción, muestra la ventana emergente \hyperref[fig:Error de Conexion]{[PE1-Error de Conexión]}
-		\item {[Aplicación de usuario]} Retorna al final de \hyperref[SUB-U-CU1.6:TP]{[Trayectoria Principal]} 
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y fin del caso de uso.
 
-\paragraph{Trayectoria alternativa C} \label{SUB-U-CU1.6:TC}
-	El promedio requerido no existe en el servidor o es nulo su valor asociado.
-	\begin{enumerate}[label=C\arabic*.]
-		\item {[Servidor]} Asigna el valor -1 a la respuesta para el cliente.
-		\item {[Aplicación de usuario]} Retorna al punto 4 de \hyperref[SUB-U-CU1.6:TP]{[Trayectoria Principal]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
-
-\paragraph{Trayectoria alternativa D} \label{SUB-U-CU1.6:TD}
+\paragraph{Trayectoria alternativa C} \label{SUB-U-CU1.3:TC}
 	Sin conexión con el cliente.
-	\begin{enumerate}[label=D\arabic*.]
-		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
+	\begin{enumerate}[label=C\arabic*.]
+		\item {[Servidor embebido]} Aborta envió y espera por la siguiente petición.
 		\item {[Aplicación de usuario]} Expira el tiempo de respuesta y se muestra la ventana emergente \hyperref[fig:Error de Conexion]{[PE1-Error de Conexión]}
-		\item {[Aplicación de usuario]} Retorna al final de \hyperref[SUB-U-CU1.6:TP]{[Trayectoria Principal]} 
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y fin del caso de uso.
 	
-\paragraph{Trayectoria alternativa E} \label{SUB-U-CU1.6:TE}
-	El valor de la respuesta es -1
-	\begin{enumerate}[label=E\arabic*.]
-		\item {[Aplicación de usuario]} Muestra la ventana emergente \hyperref[fig:Error en el Servidor]{[PE2-Error en el Servidor]}
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-U-CU1.6:TA]{[Trayectoria alternativa A]}
+\paragraph{Trayectoria alternativa D} \label{SUB-U-CU1.3:TD}
+	Algún valor de la respuesta es -1
+	\begin{enumerate}[label=D\arabic*.]
+		\item {[Aplicación de usuario]} Asigna un 0 como valor de generación.
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa y regresa al paso 6 de la trayectoria principal.
