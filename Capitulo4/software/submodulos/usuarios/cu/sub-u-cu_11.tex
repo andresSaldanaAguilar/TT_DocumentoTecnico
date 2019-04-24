@@ -1,5 +1,5 @@
 \subsubsection{SUB-U-CU1.8-Obtener mediciones en tiempo real}\label{SUB-U-CU1.8}
-El monitoreo para saber qué es lo que el sensor está midiendo en ese momento se realizará siempre que la aplicación esté en tiempo de funcionamiento, el cual es igual al periodo de tiempo comprendido en la Regla de Negocios \ref{RN6}, esto se logrará gracias a un proceso que se mantendrá corriendo y realizará constantes peticiones al Servidor embebido; el lapso que deberá trascurrir entre cada petición para saber las mediciones otorgadas por el sensor será especificado en la Regla de negocios \ref{RN17}, de esta manera se tendrá un mayor control sobre las posibles anomalías y de detectarse alguna, poder notificar lo antes posible.
+El monitoreo para saber qué es lo que el sensor especificado está midiendo en ese momento se realizará siempre que la aplicación esté en tiempo de funcionamiento, el cual es igual al periodo de tiempo comprendido en la Regla de Negocios \ref{RN6}, esto se logrará gracias a un proceso que se mantendrá corriendo y realizará constantes peticiones al Servidor embebido; el lapso que deberá trascurrir entre cada petición para saber las mediciones otorgadas por el sensor será especificado en la Regla de negocios \ref{RN17}, de esta manera se tendrá un mayor control sobre las posibles anomalías y de detectarse alguna, poder notificar lo antes posible.
 \\ La comunicación se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8} con el formato de datos establecido en la Regla de Negocios \ref{RN11}  
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
@@ -26,6 +26,7 @@ El monitoreo para saber qué es lo que el sensor está midiendo en ese momento s
 			\item{[Servidor embebido]} Valor de generación de energía
 			\item{[Servidor embebido]} Fecha y hora actual
 			\item{[Aplicación de usuario]} Código de error
+			\item{[Servidor embebido]} Identificador de nodo sensor.
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
 		La aplicación de usuario ha logrado una conexión exitosa con el Servidor embebido que atenderá sus peticiones como se indica en el caso de uso \hyperref[SUB-U-CU1.4]{SUB-U-CU1.4} \\ \hline
@@ -57,10 +58,10 @@ El monitoreo para saber qué es lo que el sensor está midiendo en ese momento s
     \label{SUB-U-CU1.8:TP}
 	\begin{enumerate}
 	    \item {[Usuario]} Logra establecer una conexión con el Servidor embebido, seleccionando un Servidor embebido o ingresando su dirección, como se establece en el caso de uso \hyperref[SUB-U-CU1.6]{SUB-U-CU1.6}.
-	    \item {[Aplicación de Usuario]} Envía petición al Servidor embebido para conocer el valor actualmente sensado. \hyperref[SUB-U-CU1.8:TA]{[Trayectoria alternativa A]} 
+	    \item {[Aplicación de Usuario]} Envía petición al Servidor embebido con el identificador del nodo sensor que se desea, para conocer el valor actualmente sensado (esto para cada nodo sensor). \hyperref[SUB-U-CU1.8:TA]{[Trayectoria alternativa A]} 
 	    \item {[Servidor embebido]} Recibe la petición, y hace la lectura de los datos enviados por el módulo WiFi como se indica en el caso de uso  \hyperref[SUB-M-CU1.4]{SUB-M-CU1.4}. \hyperref[SUB-U-CU1.8:TB]{[Trayectoria alternativa B]}
 	    \item {[Servidor embebido]} Envía el valor correspondiente a la aplicación de usuario \hyperref[SUB-U-CU1.8:TC]{[Trayectoria alternativa C]} 
-	    \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, lo almacena en una tabla de la base de datos, la cual contiene únicamente una tupla donde se sobreescribirá el siguiente valor recibido y valida si este no es un 0. \hyperref[SUB-U-CU1.8:TD]{[Trayectoria alternativa D]}
+	    \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, lo almacena en una tabla de la base de datos, la cual contiene únicamente una tupla destinada a cada nodo sensor donde se sobreescribirá el siguiente valor recibido y valida si este no es un 0. \hyperref[SUB-U-CU1.8:TD]{[Trayectoria alternativa D]}
 	\end{enumerate}
 	Fin del caso de uso.
 

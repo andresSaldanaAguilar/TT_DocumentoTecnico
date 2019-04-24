@@ -18,7 +18,8 @@ La gráfica de generación en tiempo real es un componente de la interfaz de usu
 	    El usuario inicia la aplicación de usuario, dando clic en el ícono correspondiente de la aplicación.\\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-				\item{[Servidor embebido]} Marca de tiempo
+				\item{[Servidor embebido]} Marca de tiempo.
+				\item{[Aplicación de usuario]} Identificador de nodo sensor del que se desea conocer información.
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
@@ -54,7 +55,7 @@ La gráfica de generación en tiempo real es un componente de la interfaz de usu
 \paragraph{Trayectoria principal}
     \label{SUB-U-CU1.2:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Inicia la aplicación de usuario dando clic en el ícono correspondiente a la aplicación. \hyperref[SUB-U-CU1.2:TA]{[Trayectoria alternativa A]}
+	    \item {[Usuario]} Inicia la aplicación de usuario dando clic en el ícono correspondiente a la aplicación y se selecciona por defecto el nodo sensor denominado como 1. \hyperref[SUB-U-CU1.2:TA]{[Trayectoria alternativa A]}
 	    \item {[Aplicación de Usuario]} Envía la marca de tiempo actual. \hyperref[SUB-U-CU1.2:TB]{[Trayectoria alternativa B]} 
 	    \item {[Servidor embebido]} Recibe la petición, busca los valores almacenados previos a la marca de tiempo, incluyendo el ligado a la marca de tiempo.
 	    \item {[Servidor embebido]} Envía los valores correspondientes. \hyperref[SUB-U-CU1.2:TC]{[Trayectoria alternativa C]} 
@@ -63,9 +64,9 @@ La gráfica de generación en tiempo real es un componente de la interfaz de usu
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.2:TA}
-	El usuario ya está dentro de la aplicación de usuario.
+	El usuario ya está dentro de la aplicación de usuario e indica el nodo sensor del que desea conocer información.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo completa como petición al servidor. \hyperref[SUB-U-CU1.2:TB]{[Trayectoria alternativa B]} 
+		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo completa como petición al servidor, junto con el identificador del nodo sensor del que se desea conocer la información. \hyperref[SUB-U-CU1.2:TB]{[Trayectoria alternativa B]} 
 		\item {[Servidor embebido]} Recibe la petición, busca los valores almacenados previos a la marca de tiempo, incluyendo el ligado a la marca de tiempo.
 		\item  {[Servidor embebido]} Envía el valor correspondiente \hyperref[SUB-U-CU1.2:TC]{[Trayectoria alternativa C]}
         \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la pantalla \hyperref[fig:monitoreo]{[IU1-Generación Actual]} con el dato obtenido.

@@ -58,7 +58,7 @@ El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la R
 \paragraph{Trayectoria principal}
 \label{SUB-M-CU1.3:TP}
 	\begin{enumerate}
-	    \item {[Microcontrolador]} Envía una trama que contiene la instrucción de lectura de medición del sensor por medio del protocolo IIC.
+	    \item {[Microcontrolador]} Envía una trama que contiene la instrucción de lectura de medición del sensor que se desea por medio del protocolo IIC.
 	    \item {[Sensor]} Recibe la trama.
 	    \item {[Sensor]} Valida que la trama sea correcta. \hyperref[SUB-M-CU1.3:TA]{[Trayectoria Alternativa A]} %Error1
 		\item {[Sensor]} Envía la trama de respuesta de medición al microcontrolador por medio del protocolo de comunicación IIC.

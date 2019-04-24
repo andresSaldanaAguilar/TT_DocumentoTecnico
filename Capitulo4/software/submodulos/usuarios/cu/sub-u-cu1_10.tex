@@ -26,17 +26,19 @@ Partiendo del código de error generado por el caso de uso \hyperref[SUB-U-CU1.8
 		    \item Tipo de anomalía
 			\item Fecha y hora en que se detectó la anomalía.
 			\item Notificación con la información acerca del tipo de anomalía y hora en la que fue detectada, a través del dispositivo móvil.
+			\item Identificador del sensor que notificó.
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
 		El caso de uso \hyperref[SUB-U-CU1.8]{SUB-U-CU1.8} detectó un mal funcionamiento del sistema.\\ \hline
 	\textbf{Postcondiciones} &
 		\begin{itemize}
-			\item El tipo de anomalía junto con la fecha y hora del día en que fue detectada son almacenados.
+			\item El tipo de anomalía junto con la fecha,hora del día e identificador de nodo sensor en que fue detectada son almacenados.
 		\end{itemize}\\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
 			\item Se obtiene el motivo por el cuál se provocó una anomalía.
 			\item Se obtiene la fecha y hora del día en que la anomalía fue detectada.
+			\item Se obtiene el identificador de nodo sensor en el que se detectó la anomalía.
 		\end{itemize} \\ \hline 
 	\textbf{Prioridad} & 
 		Alta. \\ \hline
@@ -53,8 +55,8 @@ Partiendo del código de error generado por el caso de uso \hyperref[SUB-U-CU1.8
 	\begin{enumerate}
 		\item {[Usuario]} Monitorea en tiempo real a través de la aplicación móvil y genera el código de error para notificación a través de lo especificado en el caso de uso \hyperref[SUB-U-CU1.8]{SUB-U-CU1.8} 
 		\item {[Aplicación de usuario]} Valida qué número de código error se ha generado e identifica el tipo de anomalía, es decir, será "Sin conexión con el servidor" si el error tiene el código 1, "Sin conexión con el cliente" si tiene el código 2, "Valor de generación igual a -1" si tiene el código 3 y "Valor de generación igual a 0" si tiene el código 4.
-		\item {[Aplicación de usuario]} Obtiene la fecha y hora actual.
+		\item {[Aplicación de usuario]} Obtiene el identificador del nodo sensor, así como la fecha y hora actual.
 		\item {[Aplicación de usuario]} Alerta a través de una notificación del dispositivo móvil sobre el tipo de anomalía y la fecha y hora obtenida con anterioridad.
-		\item {[Aplicación de usuario]} Almacena tanto el tipo de anomalía, la fecha y hora actual y la dirección IP del servidor con un respectivo identificador de notificación.
+		\item {[Aplicación de usuario]} Almacena tanto el tipo de anomalía, el identificador del nodo sensor, la fecha y hora actual y la dirección IP del servidor con un respectivo identificador de notificación.
 	\end{enumerate}
 	Fin del caso de uso.
