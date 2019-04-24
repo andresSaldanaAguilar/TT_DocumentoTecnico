@@ -1,5 +1,5 @@
 \subsubsection{SUB-U-CU1.1-Ver estado de generación actual}\label{SUB-U-CU1.1}
-La barra de estado de generación actual es un componente de la interfaz \hyperref[fig:monitoreo]{[IU1-Generación Actual]} y es la encargada de mostrar el estado de generación actual de uno de los nodos sensores del Sistema fotovoltaico, evaluándolo con la Regla de Negocios \ref{RN12}, con actualizaciones en el tiempo establecido la Regla de Negocios \ref{RN17}, la comunicación con el Servidor se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8} con el formato de datos establecido en la Regla de Negocios \ref{RN11}   
+La barra de estado de generación actual es un componente de la interfaz \hyperref[fig:monitoreo]{[IU1-Generación Actual]} y es la encargada de mostrar el estado de generación actual de uno de los sensores del Sistema fotovoltaico, evaluándolo con la Regla de Negocios \ref{RN12}, con actualizaciones en el tiempo establecido en la Regla de Negocios \ref{RN17}, la comunicación con el Servidor se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8} con el formato de datos establecido en la Regla de Negocios \ref{RN11}   
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
@@ -17,7 +17,7 @@ La barra de estado de generación actual es un componente de la interfaz \hyperr
 	\textbf{Entradas} & 
 		\begin{itemize}
 				\item{[Servidor embebido]} Petición por el valor actual.
-				\item{[Aplicación de usuario]} Identificador de nodo sensor del que se desea conocer información.
+				\item{[Aplicación de usuario]} Identificador del sensor del cual se desea conocer información.
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
@@ -52,7 +52,7 @@ La barra de estado de generación actual es un componente de la interfaz \hyperr
 \paragraph{Trayectoria principal}
     \label{SUB-U-CU1.1:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Inicia la Aplicación de usuario dando clic en el ícono correspondiente de la aplicación. y po default se elige el nodo sensor denominado como 1. \hyperref[SUB-U-CU1.1:TA]{[Trayectoria alternativa A]}
+	    \item {[Usuario]} Inicia la Aplicación de usuario dando clic en el ícono correspondiente de la aplicación. y por defecto se elige el primer sensor o el único. \hyperref[SUB-U-CU1.1:TA]{[Trayectoria alternativa A]}
 	    \item {[Aplicación de Usuario]} Envía la petición para obtener el valor de generación actual. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
 	    \item {[Servidor embebido]} Recibe la petición, busca el valor actual de generación almacenado. \hyperref[SUB-U-CU1.1:TC]{[Trayectoria alternativa C]}
 	    \item {[Servidor embebido]} Envía el valor correspondiente. \hyperref[SUB-U-CU1.1:TD]{[Trayectoria alternativa D]} 
@@ -62,9 +62,9 @@ La barra de estado de generación actual es un componente de la interfaz \hyperr
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.1:TA}
-	El usuario ya está dentro de la aplicación de usuario y elige un nodo sensor a monitorear.
+	El usuario ya está dentro de la aplicación de usuario y elige un sensor a monitorear.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN17} y envía la petición para obtener el valor de generación actual, junto con el identificador de nodo sensor que se desea monitorear. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
+		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN17} y envía la petición para obtener el valor de generación actual, junto con el identificador del sensor que se desea monitorear. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
 	\end{enumerate}
 	Fin de la trayectoria alternativa. Regresa al paso 3 de la \hyperref[SUB-U-CU1.1:TP]{[Trayectoria Principal]}.
 
