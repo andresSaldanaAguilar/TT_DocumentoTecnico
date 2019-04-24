@@ -121,7 +121,44 @@ Diseñado específicamente para interconexiones en el sistema de distribución m
 	\caption{Microinversor M1-01-250}
 	\label{fig:diagrama_dispensador}
 \end{figure}
+
+
+\paragraph{Factor de Potencia}
+
+Para entender qué es el factor de potencia, primeramente vamos a definir una serie de conceptos básicos \citep{FP}.
+
+kW.- Potencia de trabajo, también llamada potencia activa, potencia real, etc. Es la potencia que se transforma en trabajo útil.
+
+kVAr.- Potencia reactiva. Es la potencia que los inductores necesitan para generar el flujo magnético y permitir crear un campo eléctrico.
+
+kVA.- Potencia aparente. Es la suma vectorial de los kVAr más los kW.
  
+El factor de potencia se define como la relación entre la potencia activa y la potencia aparente:
+
+\[ FP = kW / kVAr + kVA \]
+
+Esto quiere decir que, entre más potencia reactiva, menor factor de potencia, por lo tanto nuestro trabajo útil disminuirá y viceversa.\\
+
+La relación entre estos tres conceptos se materializa en el triángulo de potencias:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.50]{Capitulo2/images/triangulo-potencias.jpg}
+	\caption{Triangulo de Potencias}
+	\label{fig:diagrama_dispensador}
+\end{figure}
+
+\[ FP = kW / kVA = cos\theta \]
+\[ FP = kVar / kVA = sin\theta \]
+
+
+Por último, en este tema también es importante hablar de los tipos de cargas que existen:
+\\
+Resistencias.- Las resistencias se comportan como elementos no inerciales bajo el punto de vista de la relación tensión/intensidad, es decir, no se establece ninguna descoordinación temporal entre una y otra.\\
+
+Inductancias.- Las inductancias, por el contrario, se comportan como elementos con una inercia no despreciable desde el punto de vista de la relación tensión/intensidad, provocando una descoordinación temporal, un retraso en este caso, de la intensidad en relación a la tensión de alimentación.\\
+
+Capacitancias.- Finalmente las capacitancias, que se comportan también como elementos inerciales de naturaleza contraria a las inductancias, produciendo en este caso un adelanto de la intensidad en relación a la tensión de alimentación.
  
  \section{Wi-Fi}
  \paragraph{}
