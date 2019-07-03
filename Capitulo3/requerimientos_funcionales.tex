@@ -7,7 +7,7 @@ El listado de requerimientos funcionales se encuentra dividido de acuerdo con lo
 \paragraph{}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.5]{Capitulo3/img/diagramabloques.png}
+	\includegraphics[scale=.6]{Capitulo3/img/diagramabloques.png}
 	\caption{Diagrama a bloques del sistema}
 	\label{fig:diagrama_dispMonitoreo}
 \end{figure}
@@ -32,7 +32,7 @@ El listado de requerimientos funcionales se encuentra dividido de acuerdo con lo
  	    \item.
  	\end{enumerate}
  	& Comunicación sensor-microcontrolador
- 	& Proporcionar un mecanismo de comunicación vía IIC desde el sensor MCP39F521 hacia el microcontrolador DSPIC30F4013. \\
+ 	& Proporcionar un mecanismo de comunicación vía IIC desde el microcontrolador DSPIC30F4013 hacia el sensor MCP39F521. \\
     \hline
     \begin{enumerate}[label=RF\arabic*]
         \setcounter{enumi}{1}
@@ -67,8 +67,8 @@ El listado de requerimientos funcionales se encuentra dividido de acuerdo con lo
         \setcounter{enumi}{3}
  	    \item.
  	\end{enumerate}
- 	& Servicio de comunicación vía HTTP
- 	& Proporcionar un servicio de comunicación vía HTTP para el envío de la información almacenada para dar respuesta a las peticiones realizadas por el usuario desde la aplicación móvil. \\
+ 	& Servicio de comunicación vía TCP/IP
+ 	& Proporcionar un servicio de comunicación vía TCP/IP para el envío de la información almacenada para dar respuesta a las peticiones realizadas por el usuario desde la aplicación móvil. \\
     \hline
 \end{longtable}
 
@@ -100,7 +100,7 @@ El listado de requerimientos funcionales se encuentra dividido de acuerdo con lo
  	    \item.
  	\end{enumerate}
  	& Comunicación servidor-aplicación de usuario 
- 	& Proporcionar un servicio de comunicación vía HTTP para la generación de peticiones al servidor. \\
+ 	& Proporcionar un servicio de comunicación vía TCP/IP para la generación de peticiones al servidor. \\
     \hline
     \begin{enumerate}[label=RF\arabic*]
         \setcounter{enumi}{6}
