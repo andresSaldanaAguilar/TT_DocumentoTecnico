@@ -63,8 +63,8 @@ El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la R
 	    \item {[Sensor]} Valida que la trama sea correcta. \hyperref[SUB-M-CU1.3:TA]{[Trayectoria Alternativa A]} %Error1
 		\item {[Sensor]} Envía la trama de respuesta de medición al microcontrolador por medio del protocolo de comunicación IIC.
 		\item {[Microcontrolador]} Recibe la trama de respuesta de lectura de medición que solicitó al sensor.\hyperref[SUB-M-CU1.3:TB]{[Trayectoria Alternativa B]} %Error2
-		\item {[Microcontrolador]} Valida que la trama sea correcta. \hyperref[SUB-M-CU1.3:TC]{[Trayectoria Alternativa C]}%Error3 
-		%DUDA: \item {[Sensor]} Recibe trama de acuse de recibo por el microcontrolador. \hyperref[SUB-M-CU1.3:TA]{[Trayectoria Alternativa A]}
+		\item {[Microcontrolador]} Valida que la trama sea correcta por medio del acuse del sensor. \hyperref[SUB-M-CU1.3:TC]{[Trayectoria Alternativa C]}%Error3 
+		\item {[Microcontrolador]} Retorna al primer paso de \hyperref[SUB-M-CU1.3:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin del caso de uso.
 
@@ -86,6 +86,6 @@ El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la R
 \paragraph{Trayectoria alternativa C} \label{SUB-M-CU1.3:TC}
 	La trama de respuesta de medición del sensor no es válida.
 	\begin{enumerate}[label=C\arabic*.]
-		\item {[Microcontrolador]} Reenvía una trama que contiene la instrucción de lectura de medición del sensor por medio del protocolo IIC.  
+		\item {[Sensor]} Genera un código de error.
 	\end{enumerate}
-	Fin de la trayectoria alternativa. Regresa al paso 2 de \hyperref[SUB-M-CU1.3:TP]{[Trayectoria Principal]} 
+	Fin de la trayectoria alternativa y fin del caso de uso.  

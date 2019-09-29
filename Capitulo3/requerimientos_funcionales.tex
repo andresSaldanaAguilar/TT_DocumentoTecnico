@@ -7,7 +7,7 @@ El listado de requerimientos funcionales se encuentra dividido de acuerdo con lo
 \paragraph{}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.6]{Capitulo3/img/diagramabloques.png}
+	\includegraphics[scale=.4]{Capitulo3/img/diagramabloques.png}
 	\caption{Diagrama a bloques del sistema}
 	\label{fig:diagrama_dispMonitoreo}
 \end{figure}
@@ -39,7 +39,7 @@ El listado de requerimientos funcionales se encuentra dividido de acuerdo con lo
  	    \item.
  	\end{enumerate}
  	& Comunicación microcontrolador-módulo WiFi
- 	& Proporcionar un mecanismo de comunicación vía UART desde el microcontrolador DSPIC30F4013 hacia el módulo Wi-Fi MIKROE-2542. \\
+ 	& Proporcionar un mecanismo de comunicación vía UART desde el microcontrolador DSPIC30F4013 hacia el módulo Wi-Fi MIKROE-2542 para el envio de muestras en paquetes UDP. \\
     \hline
 \end{longtable}
 
@@ -61,7 +61,7 @@ El listado de requerimientos funcionales se encuentra dividido de acuerdo con lo
  	    \item.
  	\end{enumerate}
  	& Servicio para la recepción de paquetes del módulo Wi-Fi
- 	& Proporcionar un servicio para la recepción de los paquetes enviados por el módulo Wi-Fi MIKROE-2542 y su almacenamiento en un archivo de formato de texto.\\
+ 	& Proporcionar un servicio para la recepción de los paquetes UDP enviados por el módulo Wi-Fi MIKROE-2542 y su almacenamiento en un archivo de formato JSON.\\
     \hline
     \begin{enumerate}[label=RF\arabic*]
         \setcounter{enumi}{3}

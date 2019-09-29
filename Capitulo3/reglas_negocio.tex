@@ -6,15 +6,15 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN1-Obtención de muestras del sistema fotovoltaico en tiempo real.
 			\item[Tipo] Regla de operación.
 			\item[Objetivo] La obtención de mediciones del sistema fotovoltaico se realizará en tiempo real.
-			\item[Descripción] La obtención de mediciones del sistema fotovoltaico dependerá del dispositivo de monitoreo empleado, en este caso, se trata del MCP39F521, y está determinada por la frecuencia de reloj de IIC de 400 Khz.
+			\item[Descripción] La obtención de mediciones del sistema fotovoltaico dependerá del dispositivo de monitoreo empleado, en este caso, se trata del MCP39F521, y está determinada por la frecuencia de reloj de IIC de 400 Khz, sin embargo nuestro sistema trabajará a una frecuencia de 1 segundo.
     		\end{description}
     		
 \item \label{RN2}
 	\begin{description}
 		\item[Nombre] RN2-Envío de muestras del sistema fotovoltaico en tiempo real.
 		\item[Tipo] Regla de operación.
-		\item[Objetivo] El envío de mediciones del microcontrolador por medio del módulo Wi-Fi se realizará en tiempo real.
-		\item[Descripción] El envío de muestras del microcontrolador por medio del módulo Wi-Fi dependerá de la velocidad de transmisión UART entre el microcontrolador y el módulo, que es de 115200 baudios. Un baudio es el número de unidades de información transmitidas por segundo ,que dependiendo de la configuración puede estar entre los 9600 a 11520 Bytes/seg.
+		\item[Objetivo] Establecer el tiempo y frecuencia de envío de mediciones del microcontrolador por medio del módulo Wi-Fi.
+		\item[Descripción] El envío de muestras del microcontrolador por medio del módulo Wi-Fi dependerá de la velocidad de transmisión UART entre el microcontrolador y el módulo, que es de 115200 baudios. Un baudio es el número de unidades de información transmitidas por segundo ,que dependiendo de la configuración puede estar entre los 9600 a 11520 Bytes/Segundo, la frecuencia de envío de muestras hacia el servidor será de 1 segundo, obteniendo así una resolución de la unidad de generación de energía en Kilowatt Segundo para después ser convertida a Kilowatt Hora.
 		\end{description}	
 		
     \item \label{RN3}
@@ -22,31 +22,31 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN3-Creación de alertas cuando se detecta que el sistema fotovoltaico dejó de producir energía.
 			\item[Tipo] Regla de estímulo y respuesta.
 			\item[Objetivo] Crear alertas que le informen al usuario el momento exacto en que el sistema fotovoltaico ha dejado de producir energía.
-			\item[Descripción] La alerta será creada y enviada como notificación al usuario de forma inmediata si y sólo si en el proceso de monitoreo se ha detectado que la medición de energía producida es de 0 volts.  
+			\item[Descripción] La alerta será creada y enviada como notificación al usuario de forma inmediata si y sólo si en el proceso de monitoreo se ha detectado que la medición de energía producida es de 0 volts, si se pierde conexión con el microcontrolador o servidor.  
     		\end{description}
     		
 \item \label{RN4}
 		\begin{description}
-			\item[Nombre] RN4-Calcular promedio de energía sensada historicamente.
+			\item[Nombre] RN4-Calcular producción de energía historicamente.
 			\item[Tipo] Derivadora.
-			\item[Objetivo] Calcular el promedio del intervalo de tiempo requerido.
-			\item[Descripción] El informe de históricos al usuario mediante la aplicación móvil puede ser el promedio de la energía sensada semanal, mensual o bimestralmente y se realizará el cálculo de este promedio con los siguientes periodos:
+			\item[Objetivo] Calcular la producción de energía del intervalo de tiempo requerido.
+			\item[Descripción] El informe de históricos al usuario mediante la aplicación móvil puede ser la producción de la energía semanal, mensual o bimestral, este se calcula sumando la producción de Watts por Segundo del muestreo definido en la Regla de Negocio \ref{RN2} en los periodos ya mencionados y se realizará el reporte de los siguientes periodos:
 			\\ Semanalmente: 
 			\begin{itemize}
-				\item La media de los promedios diarios de la semana, es decir, siete promedios.
+				\item La producción diaria de una semana, es decir, siete valores de producción.
 			\end{itemize}
 			\\ Mensualmente: 
 			\begin{itemize}
-				\item La media de los promedios diarios de todo el mes.
+				\item La producción de cada semana que constituye un mes.
 			\end{itemize}
 			\\ Bimestralmente: 
 			\begin{itemize}
-				\item La media de los promedios diarios en el periodo de tiempo comprendido del 1 de Enero al 28 o 29 de Febrero (dependiendo de si el año es bisiesto)
-				\item La media de los promedios diarios en el periodo de tiempo comprendido del 1 de Marzo al 30 de Abril
-				\item La media de los promedios diarios en el periodo de tiempo comprendido del 1 de Mayo al 30 de Junio
-				\item La media de los promedios diarios en el periodo de tiempo comprendido del 1 de Julio al 31 de Agosto
-				\item La media de los promedios diarios en el periodo de tiempo comprendido del 1 de Septiembre al 31 de Octubre
-				\item La media de los promedios diarios en el periodo de tiempo comprendido del 1 de Noviembre al 31 de Diciembre
+				\item La producción en el periodo de tiempo comprendido del 1 de Enero al 28 o 29 de Febrero (dependiendo de si el año es bisiesto)
+				\item La producción en el periodo de tiempo comprendido del 1 de Marzo al 30 de Abril
+				\item La producción en el periodo de tiempo comprendido del 1 de Mayo al 30 de Junio
+				\item La producción en el periodo de tiempo comprendido del 1 de Julio al 31 de Agosto
+				\item La producción en el periodo de tiempo comprendido del 1 de Septiembre al 31 de Octubre
+				\item La producción en el periodo de tiempo comprendido del 1 de Noviembre al 31 de Diciembre
 			\end{itemize}
 		\end{description}
 
@@ -55,16 +55,14 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN5-Calcular promedio de energía sensada diariamente.
 			\item[Tipo] Derivadora.
 			\item[Objetivo] Calcular promedio de energía sensada diariamente
-			\item[Descripción] La cantidad promedio de las 120 muestras tomadas diariamente como lo especifica la regla de negocio \ref{RN6}.
-		\end{description}
+			\item[Descripción] El promedio es igual a la suma de las 288 muestras tomadas  diariamente como lo especifica la regla de negocio \ref{RN6} entre este mismo número.	\end{description}
 
 \item \label{RN6}
 		\begin{description}
-			\item[Nombre] RN6-Periodo de toma de muestras para cálculo de promedio diario de energía sensada.
+			\item[Nombre] RN6-Periodo de toma de muestras.
 			\item[Tipo] Operacional.
-			\item[Objetivo] Establecer el periodo de tiempo en el que las muestras para cálculo de promedio diario de energía sensada serán tomadas.
-			\item[Descripción] Las muestras comenzarán a tomarse y serán almacenadas a partir de las 8:00 a.m. hasta las 6:00 p.m. cada 5 minutos.
-		\end{description}
+			\item[Objetivo] Establecer el periodo de tiempo en el que las muestras serán tomadas.
+			\item[Descripción] Las muestras comenzarán a tomarse a partir de las 0:00 hrs hasta las 23:59 c en la frecuencia indicada en la \ref{RN2}, adicionalmente se guardara cada 5 minutos el valor de la energía actual para la graficacion en tiempo real, dando un total de 288 muestras diarias para la gráfica en tiempo real		\end{description}
 		
 %Checar tipo
 \item \label{RN7}
@@ -72,7 +70,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN7-Estándar de comunicación.
 			\item[Tipo] Derivación.
 			\item[Objetivo] Establecer el estándar de comunicación entre microcontrolador-servidor y servidor-aplicación de usuario.
-			\item[Descripción] El estándar de comunicación es el IEEE 802.11 que proporciona la base para los productos con redes inalámbricas que hacen uso de la marca Wi-Fi.
+			\item[Descripción] El estándar de comunicación entre el servidor y la aplicación de usuario sera por medio de TCP, y para la comunicación entre microcontrolador y servidor será por medio de UDP, ambos proporcionan la base para los productos con redes inalámbricas que hacen uso de la marca Wi-Fi.
 		\end{description}
 		
 %Checar tipo		
@@ -81,7 +79,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN8-Patrón de intercambio de mensajes.
 			\item[Tipo] Derivación.
 			\item[Objetivo] Establecer el patrón de intercambio de información entre módulos.
-			\item[Descripción] El patrón de intercambio de información a utilizar entre módulos será petición-respuesta.
+			\item[Descripción] El patrón de intercambio de información a utilizar entre módulos será petición-respuesta para el caso del protocolo TCP, para UDP solamente se hace el envío del paquete.
 		\end{description}
 		
 %Después definir los datos exactos? o en req técnicos		
@@ -90,8 +88,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN9-Almacenamiento de datos de monitoreo.
 			\item[Tipo] Regla de operación.
 			\item[Objetivo] Establecer el método de almacenamiento de la información.
-			\item[Descripción] El almacenamiento en el servidor está limitado por la memoria externa con capacidad de N GB de espacio que le es agregada, por lo que usaremos una herramienta que trabaja con una cantidad de datos fija, definida en el momento de crear el archivo contenedor, y un puntero al elemento actual.
-		\end{description}
+			\item[Descripción] El almacenamiento en el servidor está limitado por la memoria externa con capacidad desde 8GB de espacio que le es agregada, por lo que usaremos una herramienta que trabaja con una cantidad de datos fija, sobreescribiendo la información cuando terminan e inician nuevamente los periodos definidos en la Regla de Negocio \ref{RN4}		\end{description}
 
 %Preguntar request-reply si es RN8?
 
@@ -102,16 +99,14 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN10-Formato de datos almacenados.
 			\item[Tipo] Regla de restricción.
 			\item[Objetivo] Definir el formato en que serán almacenados los datos sensados.
-			\item[Descripción] El formato en que serán almacenados los datos sensados está definido por un archivo con extensión XML/JSON. 
-		\end{description}
+			\item[Descripción] El formato en que serán almacenados los datos sensados está definido por un archivo con extensión JSON, estos archivos estarán contenidos dentro de la carpeta del numero de sensor esclavo correspondiente y a su vez dentro de la carpeta con el numero de serie del microcontrolador correspondiente, que esta identificado por dos letras alfabéticas, por ejemplo, AC.		\end{description}
 		
 \item \label{RN11}
 		\begin{description}
 			\item[Nombre] RN11-Formato de datos de respuesta para la aplicación de usuario.
 			\item[Tipo] Regla de operación.
 			\item[Objetivo] Definir el formato de los datos en que se enviarán las respuestas a las peticiones del cliente.
-			\item[Descripción] El formato de los datos que se darán como respuesta a la aplicación será en texto plano mediante una cadena o en un arreglo de cadenas.
-		\end{description}
+			\item[Descripción] El formato de los datos que se darán como respuesta a la aplicación será en formato JSON, donde se tiene que especificar si se va a requerir información del servidor o datos almacenados, de ser así, se debe especificar de que archivo(s), microcontrolador y sensor se pide la información separando con saltos de linea estas especificaciones		\end{description}
 		
 \item \label{RN12}
 		\begin{description}
@@ -140,12 +135,12 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN14-Formato de fecha de notificaciones.
 			\item[Tipo] Regla de estructura.
 			\item[Objetivo] Definir el formato de fecha de las notificaciones para la aplicación móvil.
-			\item[Descripción] El formato de fecha en que serán almacenadas las notificaciones del sistema en la aplicación móvil es: dd/mm/aaaa.
+			\item[Descripción] El formato de fecha en que serán almacenadas las notificaciones del sistema en la aplicación móvil es: dd/mm/aa.
 			Donde:
 			\begin{itemize}
 		 		\item dd = Corresponde al número de día del mes.
 		 		\item mm = Corresponde al número de mes del año.
-		 		\item aaaa = Corresponde al año
+		 		\item aa = Corresponde al año
 		    \end{itemize}
 		\end{description}
 		
@@ -175,14 +170,5 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 		 		\item N = numero entero menor a 255 y mayor o igual a 0
 		    \end{itemize}
 		\end{description}
-		
-\item \label{RN17}
-		\begin{description}
-			\item[Nombre] RN17-Periodo de lectura y envío de muestras en microcontrolador.
-			\item[Tipo] Operacional.
-			\item[Objetivo] Definir el periodo de tiempo en el que el microcontrolador hará lectura de la medición hecha por el nodo sensor para su posterior envío al sistema embebido.
-			\item[Descripción] La lectura de muestras al nodo sensor por parte del microcontrolador, se realizará cada segundo, inmediatamente se enviará la muestra al sistema embebido. 
-		\end{description}
-
 
 \end{enumerate}

@@ -101,9 +101,9 @@ Los paneles fotovoltaicos se clasifican en función del tipo de célula que los 
 El costo de los paneles fotovoltaicos se ha reducido de forma constante desde que se fabricaron las primeras células solares comerciales y su costo promedio de generación eléctrica ya es competitivo con las fuentes de energía convencionales en un creciente número de regiones geográficas.
 Los paneles fotovoltaicos pueden generar una gran cantidad de energía ya que en un día soleado, el Sol puede irradiar alrededor de 1kw por metro cuadrado a la superficie de la tierra, que sumado a la eficacia de estos paneles puede generar entre 120 y 250 w de manera constante por metro cuadrado, siempre dependiendo del tipo de panel y de su nivel de eficiencia.
 
-\paragraph{Módulo Fotovoltaico 250W Policristalino IUSA}
+\paragraph{Módulo Fotovoltaico 200W Policristalino IUSA}
 Módulo fotovoltaico al estándar de las normas mexicanas NMX-J-643 y NMX-J-618, se muestra en la siguiente imagen, con 60 celdas en silicio policristalino, vidrio templado anti reflejante de 3.2 mm, caja de conexión IP67 con 3 diodos bypass y conectores compatibles con MC4.
-Tiene una potencia máxima de 250W y un voltaje máximo de 30.6V, con una eficiencia del 15.1\% y temperatura de operación entre los -40ºC a los 85ºC. \citep{MarcoTeorico3}.
+Tiene una potencia máxima de 200W y un voltaje máximo de 30.6V, con una eficiencia del 15.1\% y temperatura de operación entre los -40ºC a los 85ºC. \citep{MarcoTeorico3}.
 
 \begin{figure}[H]
 	\centering
@@ -305,29 +305,51 @@ La realidad es que el IoT permite oportunidades y conexiones virtualmente infini
 \section{Demonio / Servicio}
 Un demonio o servicio es un programa que se ejecuta en segundo plano, fuera del control interactivo de los usuarios del sistema, ya que carecen de interfaz con estos. El término demonio se usa fundamentalmente en sistemas UNIX y basados en UNIX, como GNU/Linux o Mac OS X \citep{MarcoTeorico4}.
 
-\section{Yocto}
-Yocto Project (YP) es un proyecto de colaboración de código abierto que ayuda a los desarrolladores a crear sistemas personalizados basados en Linux, independientemente de la arquitectura del hardware.
+
+\section{Ubuntu Core}
+
+El sistema Operativo Ubuntu es largamente distribuido a través de distintos sectores privados y públicos por millones de personas y organizaciones por su fiabilidad y tiempo en el campo de servidores de información.
+
+Ubuntu Core es un sistema operativo basado en UNIX enfocado para dispositivos IoT, siendo una versión mínima y de gran rendimiento de Ubuntu, altamente segura con actualizaciones aseguradas por los próximos 10 años.
 \paragraph{}
-El proyecto proporciona un conjunto flexible de herramientas y un espacio donde desarrolladores de todo el mundo pueden compartir tecnologías, pilas de software, configuraciones y mejores prácticas que se pueden usar para crear imágenes de Linux personalizadas para dispositivos IoT e integrados, o en cualquier lugar donde se necesite un sistema operativo Linux personalizado \citep{MarcoTeoricoYocto}.
+Ubuntu Core tiene como características mayor rapidez, confiabilidad por medio de uso de actualizaciones transaccionales, lo cual significa que cada acción se realiza con éxito o no se realiza, teniendo la posibilidad de hacer un rollback si es necesario, características que una distribución de Linux tradicional no ofrece.
 \paragraph{}
-De igual manera proporciona un estándar para entregar soporte de hardware y pilas de software, permitiendo el intercambio de configuraciones y compilaciones de software. Las herramientas permiten a los usuarios crear y admitir personalizaciones para múltiples plataformas de hardware y pilas de software de una manera mantenible y escalable.
+La tabla \ref{UbuntuCore} nos muestra una comparativa que permite ver que, gracias a su necesidad de poco uso de procesamiento y almacenamiento, es indicado para usasr como servidor embebido.
 \paragraph{}
-Un conjunto de herramientas integradas para que el trabajo con Linux incorporado sea exitoso, que incluye herramientas para la creación y prueba automatizadas, procesos para el soporte de la placa y el cumplimiento de licencias e información de componentes para sistemas operativos integrados basados en Linux personalizados.
-\paragraph{OpenEmbedded}
-El sistema de compilación OpenEmbedded, mantenido conjuntamente con el proyecto OpenEmbedded, que es donde se derivan el sistema de compilación y algunos de los metadatos, los cuales se usan para construir una distribución de Linux, contenida en los archivos que el sistema de compilación analiza al crear una imagen. En general, los metadatos incluyen archivos de configuración y otra información relacionada con las propias instrucciones de compilación, así como los datos utilizados para controlar qué cosas se construyen y cómo se construyen. Los metadatos también incluyen comandos y datos utilizados para indicar qué versiones de software se utilizan y de dónde se obtienen, así como cambios o adiciones al software en sí (parches o archivos auxiliares) que se utilizan para corregir errores o personalizarlos.
-\paragraph{}
-A continuación, mencionamos algunas de las características de Yocto Project:
-\begin{itemize}
-	\item El proyecto Yocto se adopta ampliamente en toda la industria integrada / IoT.
-    \item Yocto Project funciona en cualquier arquitectura.
-    \item No está limitado a ningún proveedor ya que Yocto Project es tanto de código abierto como compatible con muchas arquitecturas.
-    \item La salida de Yocto Project es fácilmente transferible a otra arquitectura, lo que le permite tener líneas de productos que utilizan diversas arquitecturas sin obligarlo a intercambiar entornos de desarrollo.
-    \item El Proyecto Yocto se valida constantemente al probar todas las versiones con la distribución de referencia (Poky) en cada arquitectura compatible.
-\end{itemize}
-\paragraph{}
-Yocto Project tiene un modelo de desarrollo IoT de Linux que lo distingue de otros sistemas de compilación simple. Se llama el modelo de capa.
-\paragraph{}
-El modelo de capa está diseñado para admitir la colaboración y la personalización al mismo tiempo. Las capas son repositorios que contienen conjuntos de instrucciones relacionados que le indican al sistema de compilación qué hacer. Los usuarios pueden colaborar, compartir y reutilizar capas. Las capas pueden contener cambios a las instrucciones o configuraciones anteriores en cualquier momento \citep{MarcoTeoricoYocto2}.
+\begin{longtable}{|M{3.2cm}|M{4.0cm}|M{4.0cm}|M{4.0cm}|}
+    \caption{Comparativa del sistema operativo Ubuntu Core con su versión clásica}
+    \label{UbuntuCore}
+	%\centering
+	%\begin{tabular}
+	\hline
+	\textbf{Característica} & \textbf{Ubuntu Core} & \textbf{Ubuntu Clásico} \\ \hline
+ 	 
+    Requerimientos Mínimos
+    
+    &
+    
+    \newline  -500 MHz single core processor
+    \newline  -256 MB RAM
+    \newline  -512 MB storage
+
+	&
+	
+    \newline  -1 GHz dual core processor
+    \newline  -512 MB RAM
+    \newline  -1.5 GB storage
+    \hline
+        
+	Interfaz Gráfica
+    &
+	\newline Ninguna por default pero pueden descargarse en caso de ser necesario
+    &
+	\newline Xorg y GNOME Shell o Wayland y GNOME Shell
+	\hline
+	
+	
+	% \end{tabular}
+	%\label{tabla_riesgos}
+\end{longtable}
 
 
 \section{Red de sensores}
@@ -473,7 +495,7 @@ A continuación, se muestra una comparativa entre la Raspberry Pi 3B y la Banana
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.8]{Capitulo2/images/bananaPi.jpg}
+	\includegraphics[scale=.3]{Capitulo2/images/bananaPi.png}
 	\caption{Banana Pi M2 Berry}
 	\label{fig:}
 \end{figure}
@@ -636,9 +658,40 @@ En la siguiente tabla, se muestra una comparativa entre los microcontroladores d
 	
 	% \end{tabular}
 	
-	\label{tabla_riesgos}
+	% \label{tabla_riesgos}
 \end{longtable}
 
-\pagebreak
+
+\section{Sistemas de tiempo real}
+
+Los sistemas de tiempo real se dan en entornos en donde deben ser aceptados y procesados gran cantidad de sucesos, la mayoría externos al sistema computacional, en breve tiempo o dentro de ciertos plazos.
+Se utilizan en control industrial, conmutación telefónica, control de vuelo, simulaciones en tiempo real, aplicaciones militares, etc.
+Su objetivo es proporcionar rápidos tiempos de respuesta.
+Poco movimiento de programas entre almacenamiento secundario y memoria.
+La gestión de archivos se orienta más a velocidad de acceso que a utilización eficiente del recurso.
+
+
+\section{JSON}
+
+JSON es un formato de datos basado en texto que sigue la sintaxis de objeto de JavaScript. Aunque es muy parecido a la sintaxis de objeto literal de JavaScript, puede ser utilizado independientemente de JavaScript, y muchos ambientes de programación poseen la capacidad de leer y generar JSON.
+
+\paragraph{}JSON está constituído por dos estructuras, una colección de pares de nombre/valor. En varios lenguajes esto es conocido como un objeto, registro, estructura, diccionario, tabla hash, lista de claves o un arreglo asociativo.
+Una lista ordenada de valores. En la mayoría de los lenguajes, esto se implementa como arreglos, vectores, listas o sequencias.
+Estas son estructuras universales; virtualmente todos los lenguajes de programación las soportan de una forma u otra. Es razonable que un formato de intercambio de datos que es independiente del lenguaje de programación se base en estas estructuras, a continucacion, se muestra un ejemplo de un objeto JSON:
+
+
+\lstset{
+    string=[s]{"}{"},
+    stringstyle=\color{blue},
+    comment=[l]{:},
+    commentstyle=\color{black},
+}
+\begin{lstlisting}
+{
+  "nombrePila": "Armando",
+  "apellidoPaterno": "Aguilera",
+  "edad": 22
+}
+\end{lstlisting}
 
 
