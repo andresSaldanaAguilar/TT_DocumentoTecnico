@@ -2,696 +2,427 @@
 %                           Marco Conceptual                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Marco conceptual}\label{chapter2}
+\chapter{Desarrollo del Sitema}\label{chapter5}
 
-Dado que este trabajo terminal emplea conceptos de diversas áreas de la Ingeniería en Sistemas Computacionales, resulta fundamental abordar una serie de definiciones previas que permitirán un mejor entendimiento del documento.
+En este capitulo se cubre el desarrollo del sistema descrito en capítulos anteriores tomando como referencia los casos de uso, abarcando cada uno de los módulos que lo componen.
 
+\section{Módulo del Microcontrolador}
 
-\section{Sistema Fotovoltaico}
-Un sistema fotovoltaico es un conjunto de dispositivos que aprovechan la energía producida por el Sol y la convierten en energía eléctrica \citep{MarcoTeorico1}. Un sistema fotovoltaico puede ser “interconectado” para residencias o negocios con acceso a la red eléctrica. 
+\subsection{Objetivo}
+El caso de uso \ref{SUB-M-CU1.3} nos indica que el microcontrolador debe consultar el dispositivo de adquisicion MCP39F521 para conseguir el valor de potencia activa por medio del protocolo IIC, para lograr esta tarea, nos apoyamos en las hojas de datos de los fabricantes, debemos programar el microcontrolador DSPIC30F4013, para ello ocupamos el entorno de desarrollo del fabricante (mplab de Microchip) para crear un proyecto en lenguaje C e interfaz con ensamblador, el entorno de desarrollo de microchip facilita la programación de sus microcontroladores gracias a que tiene bibliotecas y compiladores listos para usarse.
+
+\subsection{Configurando conexión con el dispositivo de adquisición}
+Lo primero que debemos conocer es cual es el registro de control de IIC en el microcontrolador, esto podemos encontrarlo en la hoja técnica del microcontrolador, el registro de control, entre otras funciones, habilita la comunicación IIC, configura la velocidad del reloj IIC, recordando que es un protocolo de transmisión de información síncrona por el uso de una linea de reloj, que en la hoja técnica del dispositivo de adquisición nos indica que es de 400KHz.
 
 \paragraph{}
-Con este sistema la energía generada se inyecta a la red eléctrica, disminuyendo así el consumo de energía de la compañía de luz. La otra opción es un sistema “isla” que permite el suministro de energía eléctrica en lugares inaccesibles para la red eléctrica. Estos sistemas son usados principalmente en casas de campo o en antenas de telecomunicación.
-\paragraph{}
-La particularidad de la corriente eléctrica generada por el efecto fotovoltaico es que esta corriente es continua, por lo cual el inversor transforma la corriente continua en alterna al estándar de la Norma Oficial Mexicana NOM-001-SEDE-2012 de Instalaciones Eléctricas (127 Volts a 60 Hertz) \citep{NORMA-Electrica} para ser alimentada a la red eléctrica, en la figura \ref{fig:sistema fotovoltaicoa IUSA} se muestra la típica configuración de un sistema fotovoltaico:
+Una ves configurados esos dos parámetros, físicamente solamente necesitamos conectar los pines de SDA (linea de datos), SCL (linea de reloj), VCC y GND de ambos, este dispositivo de adquisición ya contiene en sus registros los valores de potencia, voltaje y corriente entre otros, que son convertidos y acondicionados automáticamente con el ADC y Filtro Digital que tiene integrado como se muestra en la figura \ref{fig:Diagrama funcional} .
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.4]{Capitulo2/images/sistema-fotovoltaico.png}
-	\caption{Sistema Fotovoltaico Propuesto por el Fabricante IUSA}
-	\label{fig:sistema fotovoltaicoa IUSA}
+	\includegraphics[scale=.4]{Capitulo5/images/MCP_diagrama_funcional.png}
+	\caption{Diagrama funcional del dispositivo de adquisición}
+	\label{fig:Diagrama funcional}
 \end{figure}
-
-Simbología y componentes básicos:
-\begin{itemize}
-	\item 1. Acometida
-	\item 2. Medidor Bidireccional IUSA
-	\item 2* Medidor Bidireccional IUSA (opcional)
-	\item 3. Interruptor principal
-	\item 4. Módulo fotovoltaico policristalino de 250 W
-	\item 5. Microinversor C.D a C.A IUSA
-	\item 6. Alimentador del sistema fotovoltaico
-	\item 7. Tablero de distribución existente
-	\item 8. Instalación eléctrica existente
-	\item 9. Bases de madera sintética
-	\item 10. Caja plexo
-	\item 11. Interruptor del sistema fotovoltaico
-	\item 12. Protección a tierra
-\end{itemize}
-
-\paragraph{Ley para el Aprovechamiento de Energías Renovables}
-Las fuentes de energía renovables y las tecnologías limpias para generar electricidad se convierten en parte medular de un proceso de transición energética con la publicación de la
-Ley para el Aprovechamiento de Energías Renovables y el Financiamiento de la Transición
-Energética el 28 de noviembre de 2008, así como el Reglamento de la citada Ley el 2 de septiembre de 2009, además se resalta la importancia de establecer un programa de normalización en la
-materia, que provea de las regulaciones y normas necesarias \citep{LeyAprovechamiento}.
-
-
-
-\paragraph{NMX-J-643/1}
-Esta Norma Mexicana establece los procedimientos para la medición de las
-características corriente-tensión de dispositivos fotovoltaicos,
-con luz solar natural o con un simulador solar. Estos
-procedimientos son aplicables a una celda solar fotovoltaica
-individual o un conjunto ensamblado de celdas solares
-fotovoltaicas que forman un módulo fotovoltaico \citep{NMX-J-643/1}.
-
-\paragraph{NMX-J-618/1}
-Establece los requisitos de construcción para módulos fotovoltaicos (FV), con la finalidad de proporcionar operación mecánica y eléctrica segura, durante su vida útil. Se mencionan recomendaciones específicas para la prevención de choque eléctrico, riesgo de incendio y lesiones personales, que se originan por esfuerzos mecánicos y ambientales \citep{NMX-J-618/1}.
-
-\paragraph{Contrato de interconexión para paneles solares}
-
-Una vez que instalas tu sistema solar en tu casa o negocio es necesario realizar un contrato de interconexión con CFE. La finalidad del contrato de interconexión es que CFE reconozca tu sistema solar y te acredite los kWh generados y enviados a la red eléctrica. CFE no te pagará de forma directa por la energía generada por tu sistema solar fotovoltaico. En su lugar, te darán un medidor bidireccional que registra tanto la energía consumida en tu casa habitación como la energía generada por tu sistema solar \citep{ContratoSolar}.
-\paragraph{}
-Realizar un contrato de interconexión en el cual CFE te autoriza utilizar la red eléctrica y darte crédito por los kWh generados por tu sistema solar suena complicado y hasta improbable. Sin embargo, CFE ha realizado un serie de cambios administrativos y realizar el contrato de interconexión resulta muy sencillo. A continuación, explicamos algunos de los requisitos para concretar dicho contrato.
-\paragraph{}
-El primero paso es llenar la solicitud de conexión, la información solicitada incluye la dirección donde se instala el sistema solar, la tarifa de consumo eléctrica actual y el RPU que es el número de cliente del contrato actual. También piden información más técnica en referencia al sistema solar tales como tamaño del sistema, la marcas y capacidades de los equipos, etc.
-\paragraph{}
-El contrato tiene costo que incluye el cambio de tu medidor actual a un medidor bidireccional. Es importante destacar que este no es el costo del medidor, ni tampoco se está comprando el medidor. Este le pertenece siempre a CFE y el monto a pagar solo incluye la programación e instalación del mismo.
-\paragraph{}
-Unos de los requisitos más importantes de la instalación que cabe mencionar aquí es que la conexión del sistema solar debe hacerse a baja tensión. Además, en el caso de instalaciones residenciales, el sistema fotovoltaico no puede exceder los 10kW de potencia pico. Para servicio de uso general o sistemas comerciales, el sistema solar puede ser de hasta 30kW de potencia.
-\paragraph{}
-
-\paragraph{Panel fotovoltaico}
-Los paneles fotovoltaicos, llamados comúnmente paneles solares, están formados por un conjunto de células fotovoltaicas que producen electricidad a partir de la luz que incide sobre ellos mediante el efecto fotoeléctrico.
-\paragraph{}
-En la figura \ref{fig:Efecto Fotoelectrico} se ilustra el efecto que consiste en la capacidad de algunos materiales (llamados semiconductores) de captar una parte de la energía de la luz para generar corriente eléctrica. En concreto, son los fotones los cuales transmiten una parte de su energía a ciertos electrones del material semiconductor. Estos electrones se “excitan”, y empiezan a fluir debido a la diferencia de potencial creando así corriente eléctrica \citep{MarcoTeorico2}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.50]{Capitulo2/images/celula-fotovoltaica.jpg}
-	\caption{Efecto Fotoeléctrico}
-	\label{fig:Efecto Fotoelectrico}
+	\includegraphics[scale=.5]{Capitulo5/images/register_map.png}
+	\caption{Mapa de registros del MCP39F521}
+	\label{fig:Mapa de registros del MCP39F521}
 \end{figure}
 
-\paragraph{}
-Los paneles fotovoltaicos se clasifican en función del tipo de célula que los forman, hay células cristalinas y amorfas, las células cristalinas se dividen de la siguiente forma :
+\subsection{Comunicación con el dispositivo de adquisición vía software}
 
-\begin{itemize}
-	\item Monocristalinas: se componen de secciones de un único cristal de silicio reconocibles por su forma circular u octogonal.
-	\item Policristalinas: cuando están formadas por pequeñas partículas cristalizadas.
-\end{itemize}
+La comunicación IIC con el dispositivo de adquisicion se realiza, principalmente con los siguientes comandos definidos por el protocolo:
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.50]{Capitulo2/images/tipospaneles.png}
-	\caption{A: célula monocristalina ; B: célula policristalina}
-	\label{fig:diagrama_dispensador}
-\end{figure}
+\begin{enumerate}
+    \item Inicio de comunicación (START)
+    \item Fin de comunicación (STOP)
+    \item Acuse de recibo (ACK)
+    \item No acuse de recibo (NACK)
+    \item Envió de información
+    \item Recibo de información
+\end{enumerate}
 
-El costo de los paneles fotovoltaicos se ha reducido de forma constante desde que se fabricaron las primeras células solares comerciales y su costo promedio de generación eléctrica ya es competitivo con las fuentes de energía convencionales en un creciente número de regiones geográficas.
-Los paneles fotovoltaicos pueden generar una gran cantidad de energía ya que en un día soleado, el Sol puede irradiar alrededor de 1kw por metro cuadrado a la superficie de la tierra, que sumado a la eficacia de estos paneles puede generar entre 120 y 250 w de manera constante por metro cuadrado, siempre dependiendo del tipo de panel y de su nivel de eficiencia.
+Estas funciones ya están implementadas en lenguaje ensamblador, en una biblioteca denominada I2C.s y nosotros las ocupamos en el programa principal en lenguaje C por medio de su declaración global, en el código siguiente se muestran las rutinas para el comando de inicio de comunicación y envió de datos.
 
-\paragraph{Módulo Fotovoltaico 200W Policristalino IUSA}
-Módulo fotovoltaico al estándar de las normas mexicanas NMX-J-643 y NMX-J-618, se muestra en la siguiente imagen, con 60 celdas en silicio policristalino, vidrio templado anti reflejante de 3.2 mm, caja de conexión IP67 con 3 diodos bypass y conectores compatibles con MC4.
-Tiene una potencia máxima de 200W y un voltaje máximo de 30.6V, con una eficiencia del 15.1\% y temperatura de operación entre los -40ºC a los 85ºC. \citep{MarcoTeorico3}.
+\begin{lstlisting}[language={[x86masm]Assembler}]
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.25]{Capitulo2/images/panel.png}
-	\caption{Módulo Fotovoltaico 250W Policristalino IUSA}
-	\label{fig:diagrama_dispensador}
-\end{figure}
+;****DECLARACION DE METODOS GLOBALMENTE PARA SU USO EN C*****
+.GLOBAL	_START_I2C
+.GLOBAL	_ENVIA_DATO_I2C
 
-\paragraph{Microinversor de corriente CC/CA para módulo fotovoltaico M1-01-250}
-Diseñado específicamente para interconexiones en el sistema de distribución mexicano, con una salida de 127 V a 60 Hz CA y conector MC4 para conectar el panel solar \citep{MarcoTeorico3}.
+;************************************************************
+ESTA RUTINA GENERA LA CONDICION DE START AL BUS I2C
+ENVIANDO CON EL REGISTRO DE CONTROL AL ESCLAVO LA SEÑAL
+Y ESPERANDO SU RESPUESTA
+;************************************************************
+_START_I2C:
+	BCLR		IFS0,			#MI2CIF
+	BSET		I2CCON,			#SEN
+ESPERA_START:
+	BTSS		IFS0,			#MI2CIF
+	GOTO		ESPERA_START
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.20]{Capitulo2/images/microinversor.png}
-	\caption{Microinversor M1-01-250}
-	\label{fig:diagrama_dispensador}
-\end{figure}
-
-
-\paragraph{Factor de Potencia}
-
-Para entender qué es el factor de potencia, primeramente vamos a definir una serie de conceptos básicos \citep{FP}.
-
-kW.- Potencia de trabajo, también llamada potencia activa, potencia real, etc. Es la potencia que se transforma en trabajo útil.
-
-kVAr.- Potencia reactiva. Es la potencia que los inductores necesitan para generar el flujo magnético y permitir crear un campo eléctrico.
-
-kVA.- Potencia aparente. Es la suma vectorial de los kVAr más los kW.
- 
-El factor de potencia se define como la relación entre la potencia activa y la potencia aparente:
-
-\[ FP = kW / kVAr + kVA \]
-
-Esto quiere decir que, entre más potencia reactiva, menor factor de potencia, por lo tanto nuestro trabajo útil disminuirá y viceversa.\\
-
-La relación entre estos tres conceptos se materializa en el triángulo de potencias:
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.50]{Capitulo2/images/triangulo-potencias.jpg}
-	\caption{Triangulo de Potencias}
-	\label{fig:diagrama_dispensador}
-\end{figure}
-
-\[ FP = kW / kVA = cos\theta \]
-\[ FP = kVar / kVA = sin\theta \]
-
-
-Por último, en este tema también es importante hablar de los tipos de cargas que existen:
-\\
-Resistencias.- Las resistencias se comportan como elementos no inerciales bajo el punto de vista de la relación tensión/intensidad, es decir, no se establece ninguna descoordinación temporal entre una y otra.\\
-
-Inductancias.- Las inductancias, por el contrario, se comportan como elementos con una inercia no despreciable desde el punto de vista de la relación tensión/intensidad, provocando una descoordinación temporal, un retraso en este caso, de la intensidad en relación a la tensión de alimentación.\\
-
-Capacitancias.- Finalmente las capacitancias, que se comportan también como elementos inerciales de naturaleza contraria a las inductancias, produciendo en este caso un adelanto de la intensidad en relación a la tensión de alimentación.
- 
- \section{Wi-Fi}
- \paragraph{}
- Según la Real Academia Española es un sistema de conexión inalámbrica, dentro de un área determinada, entre dispositivos electrónicos, y frecuentemente para acceso a internet. En un sentido literal Wi-Fi no significa nada, es una marca comercial que también es usada para designar a las tecnologías de red sin cable.
- \paragraph{}
- En la actualidad es la que ofrece la mayor cantidad de beneficios al costo más bajo entre todas las tecnologías inalámbricas. Es económica, interoperable con equipos de diferentes fabricantes y puede ser extendida para ofrecer funcionalidades mucho más allá de las previstas originalmente por los fabricantes.
- 
- \paragraph{Estándares 802.11}Los estándares inalámbricos son la base de muchos productos inalámbricos, lo que asegura su interoperabilidad y su usabilidad por parte de los que desarrollan, instalan y gestionan redes inalámbricas. Los estándares usados en la mayoría de las redes fueron establecidos por los grupos de trabajo 802 del IEEE. Los equipos de la familia de estándares 802.11 son, con mucho, los más fabricados e instalados para enlaces inalámbricos tanto de interiores como de exteriores. Las interfaces inalámbricas deben concordar en un canal común. Si un dispositivo está sintonizado en el canal 2, mientras que otra lo está en el canal 11, los radios no se podrán comunicar; de esto es lo que se encarga la familia de estándares 802.11 \citep{MarcoTeoricoWifi}.
-\paragraph{}
-Las redes Wi-Fi poseen una serie de ventajas, entre las cuales podemos destacar:
-\begin{itemize}
-	\item Al ser redes inalámbricas, la comodidad que ofrecen es muy superior a las redes cableadas porque cualquiera que tenga acceso a la red puede conectarse desde distintos puntos dentro de un espacio lo bastante amplio.
-    \item Una vez configuradas, las redes Wi-Fi permiten el acceso de múltiples dispositivos sin ningún problema ni gasto en infraestructura, ni gran cantidad de cables.
-    \item Asegura que la compatibilidad entre dispositivos es total, con lo que en cualquier parte del mundo podremos utilizar la tecnología Wi-Fi con una compatibilidad absoluta. 
-\end{itemize}
- 
- 
- 
-\section{Módulo Wi-Fi MIKROE-2542}
-
-MIKROE-2542 es una placa con un adaptador tipo mikroBUS que integra el módulo ESP-WROOM-02, este último está compuesto por una antena PCB y el chip ESP8266EX \citep{MarcoTeorico5}.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.4]{Capitulo2/images/mikroe.png}
-	\caption{Placa MIKROE-2542, A:frontal; B:posterior}
-	\label{fig:diagrama_dispensador}
-\end{figure}
-\paragraph{}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.2]{Capitulo2/images/wroom.png}
-	\caption{Módulo ESP-WROOM-02, A:frontal; B:posterior}
-	\label{fig:diagrama_dispensador}
-\end{figure}
-
-
-\paragraph{MikroBUS}
-Es un estándar de distribución de los pines para la conexión y comunicación entre un microcontrolador o microprocesador con circuitos integrados o módulos, permitiendo así extender las capacidades de los mismos, este estándar incluye los pines requeridos por las tarjetas de desarrollo más actuales \citep{MarcoTeorico5}.
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.25]{Capitulo2/images/mikrobus.png}
-	\caption{Distribución de pines tipo MikroBUS}
-	\label{fig:diagrama_dispensador}
-\end{figure}
-\paragraph{}
-
-\paragraph{ESP8266}
-El ESP8266 es un SoC Wi-Fi \citep{MarcoTeorico7} (System on Chip: integra todos o gran parte de los módulos que componen un sistema electrónico en un único circuito integrado) compuesto por una pila TCP/IP y un microcontrolador \citep{MarcoTeorico8}.
-\paragraph{}
-
-Este módulo permite a otros microcontroladores conectarse a un red inalámbrica Wi-Fi y realizar conexiones simples con TCP/IP haciendo uso eficiente de energía, lo cual lo hace ideal para proyectos de IoT. A continuación, se muestra una comparativa con otros módulos WiFi, la elección de este módulo es debido a que tiene solamente las características de comunicación WiFi necesarias y suficientes para la aplicación a desarrollar.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.3]{Capitulo2/images/esp8266.png}
-	\caption{Diagrama esquemático del chip ESP8266}
-	\label{fig:diagrama_dispensador}
-\end{figure}
-
-\pagebreak
-
-\begin{longtable}{|M{2.2cm}|M{4.0cm}|M{4.0cm}|M{4.0cm}|}
-    \caption{Comparativa módulos WiFi}
-    \label{tabla_modulosWiFi}
-	%\centering
-	%\begin{tabular}
-	\hline
-	\textbf{Categoría} & \textbf{MIKROE-2542} & \textbf{356-ESP32-PICO-KIT} & \textbf{GPy 1.0} \\ \hline
+	RETURN
 	
- 	Fabricante & MikroElektronika & Espressif Systems & Pycom
- 	\hline
- 	 
-    Wi-Fi 
-    &
-    \newline  -Protocolo estándar IEEE 802.11
-    \newline  -Rango de frecuencia 2.4G ~ 2.5G 
-    \newline  -Antena PCB
-	& 
-    \newline  -Protoloco estándar IEEE 802.11
-    \newline  -Rango de frecuencia 2.4G ~ 2.5G 
-    \newline  -Antena 3D
-	&   	    
-    \newline  -Protoloco estándar IEEE 802.11
-    \newline  -Rango de frecuencia 2.4G ~ 2.5G 
-    \newline  -Antena Bluetooth y WiFi interna
-    \newline  -Conector para antena LTE CAT M1 / NB1
-    \newline  -Transceiver LTE CAT M1/ NB1 	
-    \hline
-
-	Bluetooth 
-    &
-	---
-    &
-	\newline Protocolo Bluetooth V4.2
-	&
-	\newline Protocolo Bluetooth V4.2 
-	\hline
+;************************************************************
+ESTA RUTINA GENERA LA CONDICION DE ENVIO DE DATO AL BUS I2C
+EN ESTE CASO, COPIAMOS LO QUE ESTA EN EL REGISTRO W0 AL 
+REGISTRO DE TRANSMISION DE I2C ESPERANDO LA RESPUESTA DEL
+ESCLAVO
+;************************************************************
+_ENVIA_DATO_I2C:
+	BCLR		IFS0,			#MI2CIF
+	MOV.B		WREG,			I2CTRN
+ESPERA_ENVIA_DATO_I2C:
+	BTSS		IFS0,			#MI2CIF
+	GOTO		ESPERA_ENVIA_DATO_I2C
 	
-	Hardware &
-    \newline  -CPU Tensilica L106 32-bit processor
-    \newline  -Interfaz Periférica UART/SDIO/SPI/IIC/I2S/IR Control Remoto
-    \newline  -Intefaces GPIO/ADC/PWM/LED Light
-    \newline  -Voltaje de operación entre 2.5V ~ 3.6V
-    &
-    \newline  -CPU ESP32-PICO-D4
-    \newline  -Interfaz Periférica ADC, DAC, sensor touch, SD/SDIO/MMC Host Controller, SPI, SDIO/SPI Controlador Esclavo, EMAC, motor PWM, LED PWM, UART, IIC, I2S, Control Remoto Infrarojo 
-    \newline  -Voltaje de operación entre 2.5V ~ 3.6V
-    \newline  -Sensor Hall integrado
-    \newline  -Cristal de 40 MHz
-    \newline  -SPI flash de 4MB integrada
-    &
-    \newline  - CPU Espressif ESP32 SoC
-    \newline  - Coprocesador ULP
-    \newline  - Interfaz Periférica ADC Controller
-    \newline  - Voltaje de operación entre 2.5V ~ 3.6V
-    \newline  - Memoria flash de 8MB integrada
-    &
-	\hline
+	RETURN
 	
-    Precio (USD) & \$ 19.50 & \$ 13.00 & \$ 71.40
-    \hline
-	
-	% \end{tabular}
-	%\label{tabla_riesgos}
-\end{longtable}
+\end{lstlisting}
 
-\pagebreak
+\subsection{Escritura de comandos para el dispositivo de adquisición}
 
-\paragraph{}
-
-\section{IoT (Internet de las cosas)}
-De acuerdo con la definición otorgada por la IEEE, el internet de las cosas o IoT, es un dominio de aplicación que integra diferentes tecnologías y campos sociales, a pesar de la diversidad de las investigaciones sobre IoT \citep{MarcoTeoricoIoT}. El Internet de las cosas (IoT) se está convirtiendo en un tema de conversación cada vez más creciente tanto en el lugar de trabajo como fuera de él. Es un concepto que no sólo tiene el potencial de impactar cómo vivimos, sino también cómo trabajamos. 
-\paragraph{}
-El Internet de banda ancha está cada vez más disponible, el costo de la conexión reduciendo, se están creando más dispositivos con capacidades Wi-Fi y sensores integrados, los costos de la tecnología están disminuyendo y la penetración de los teléfonos inteligentes disparando. En pocas palabras, este es el concepto de conectar básicamente cualquier dispositivo con un interruptor de encendido y apagado a Internet. Esto incluye todo, desde teléfonos celulares, cafeteras, lavadoras, audífonos, lámparas, dispositivos portátiles y casi cualquier otra cosa que se pueda imaginar. Esto también se aplica a los componentes de las máquinas. La firma de analistas Gartner dice que para 2020 habrá más de 26 mil millones de dispositivos conectados. El IoT es una red gigante de cosas conectadas (que también incluye a las personas). La relación será entre personas-personas, personas-cosas y cosas-cosas.
-\paragraph{}
-Hay muchos ejemplos de cómo podría verse esto o cuál podría ser el valor potencial. Digamos, por ejemplo si se está en camino a una reunión; el automóvil podría tener acceso a su calendario y ya sabe cuál es la mejor ruta a seguir. Si el tráfico es intenso, el automóvil podría enviar un mensaje de texto a la otra parte notificándole que llegará tarde. 
-\paragraph{}
-La realidad es que el IoT permite oportunidades y conexiones virtualmente infinitas, muchas de las cuales ni siquiera podemos pensar o entender completamente su impacto. Ciertamente abre la puerta a muchas oportunidades pero también a muchos desafíos. La seguridad es un gran problema que a menudo se plantea. Luego tenemos el tema de la privacidad y el intercambio de datos. Este es un tema candente incluso hoy en día, por lo que sólo se puede imaginar cómo la conversación y las preocupaciones aumentarán cuando se habla de la conexión de muchos miles de millones de dispositivos \citep{MarcoTeoricoIoT2}. 
-
-
-
-\section{Demonio / Servicio}
-Un demonio o servicio es un programa que se ejecuta en segundo plano, fuera del control interactivo de los usuarios del sistema, ya que carecen de interfaz con estos. El término demonio se usa fundamentalmente en sistemas UNIX y basados en UNIX, como GNU/Linux o Mac OS X \citep{MarcoTeorico4}.
-
-
-\section{Ubuntu Core}
-
-El sistema Operativo Ubuntu es largamente distribuido a través de distintos sectores privados y públicos por millones de personas y organizaciones por su fiabilidad y tiempo en el campo de servidores de información.
-
-Ubuntu Core es un sistema operativo basado en UNIX enfocado para dispositivos IoT, siendo una versión mínima y de gran rendimiento de Ubuntu, altamente segura con actualizaciones aseguradas por los próximos 10 años.
-\paragraph{}
-Ubuntu Core tiene como características mayor rapidez, confiabilidad por medio de uso de actualizaciones transaccionales, lo cual significa que cada acción se realiza con éxito o no se realiza, teniendo la posibilidad de hacer un rollback si es necesario, características que una distribución de Linux tradicional no ofrece.
-\paragraph{}
-La tabla \ref{UbuntuCore} nos muestra una comparativa que permite ver que, gracias a su necesidad de poco uso de procesamiento y almacenamiento, es indicado para usasr como servidor embebido.
-\paragraph{}
-\begin{longtable}{|M{3.2cm}|M{4.0cm}|M{4.0cm}|M{4.0cm}|}
-    \caption{Comparativa del sistema operativo Ubuntu Core con su versión clásica}
-    \label{UbuntuCore}
-	%\centering
-	%\begin{tabular}
-	\hline
-	\textbf{Característica} & \textbf{Ubuntu Core} & \textbf{Ubuntu Clásico} \\ \hline
- 	 
-    Requerimientos Mínimos
-    
-    &
-    
-    \newline  -500 MHz single core processor
-    \newline  -256 MB RAM
-    \newline  -512 MB storage
-
-	&
-	
-    \newline  -1 GHz dual core processor
-    \newline  -512 MB RAM
-    \newline  -1.5 GB storage
-    \hline
-        
-	Interfaz Gráfica
-    &
-	\newline Ninguna por default pero pueden descargarse en caso de ser necesario
-    &
-	\newline Xorg y GNOME Shell o Wayland y GNOME Shell
-	\hline
-	
-	
-	% \end{tabular}
-	%\label{tabla_riesgos}
-\end{longtable}
-
-
-\section{Red de sensores}
-Una red de sensores consiste en un conjunto de dispositivos denominados sensores que están conectados entre sí, para el monitoreo y sensado de condiciones físicas y/o ambientales en áreas remotas; dichos sensores pueden estar distribuidos físicamente y para referirnos a un sensor en específico como parte de la red, se le denomina nodo sensor. 
-\paragraph{}
-El propósito de una red de sensores es el de recolectar información de interés, es decir, la variable física sensada o monitoreada, para posteriormente transmitir dicha información con el objeto de ser procesada y analizada. 
-\paragraph{}
-Dado que existen una gran cantidad de dispositivos sensores implica que pueden implementarse diferentes tipos de redes de sensores de acuerdo al uso o aplicación que se le quiera dar, como por ejemplo: fenómenos meteorológicos, sistemas de emergencia o de cuidados médicos, por mencionar algunos \citep{MarcoTeorico16}.
-
-\paragraph{Sensor}
-Un sensor es un dispositivo que es capaz de transformar una señal o variable proveniente de fenómenos físicos, como pueden ser: temperatura, presión, humedad, aceleración, entre otros; en una señal de salida transducible a una señal eléctrica \citep{MarcoTeorico20} .
-\paragraph{}
-Existe una variedad de sensores, y pueden ser clasificados bajo diferentes criterios (principio de funcionamiento, señal de salida, rango de valores, nivel de integración, variable física de entrada).
-
-\paragraph{MCP39F521}
-Este sensor, el cual se define como un dispositivo de alta integración de monitoreo de energía de fase completa, diseñado para realizar medición en tiempo real de la energía de entrada para las fuentes de alimentación de corriente directa o alterna, unidades de distribución de energía y aplicaciones de consumidor e industriales. Una de las características de este dispositivo que importa señalar, es que cuenta con una interfaz IIC, como se puede observar en la figura \ref{fig:Diagrama a bloques del MCP39F521}, dicha interfaz tiene una velocidad de reloj de hasta 400 kHz \citep{MarcoTeorico13}; de esta forma es como se realizará la comunicación que permita el intercambio de la información monitoreada con el microcontrolador. 
-\paragraph{}
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.9]{Capitulo2/images/DiagramaDispMonitoreo.JPG}
-	\caption{Diagrama a bloques del MCP39F521}
-	\label{fig:Diagrama a bloques del MCP39F521}
-\end{figure}
-
-\begin{longtable}{|M{2.2cm}|M{4.0cm}|M{4.0cm}|M{4.0cm}|}
-    \caption{Comparativa de Monitores de Potencia y Corriente}
-    \label{tabla_modulosWiFi}
-	%\centering
-	%\begin{tabular}
-	\hline
-	\textbf{Categoría} & \textbf{MCP39F521} & \textbf{ISL28025} \\ \hline
-	
- 	Fabricante & Microchip & Renesas Electronics
- 	\hline
- 	 
-    Protocolo de Comunicación 
-    &
-    \newline  I2C
-	& 
-    \newline  I2C
-    \hline
-
-	Características
-
-    &
-	\newline -Monitoreo de potencia activa, potencia reactiva, potencia aparente, voltaje RMS, corriente RMS, factor de potencia y linea de frecuencia. 
-	\newline -Precisión del 99.99\%
-	\newline -Rutina de calibración rápida y comandos simplificados
-	\newline -Detector de cruce en cero
-
-	&
-	\newline -Monitoreo de voltaje, corriente y potencia 
-	\newline -Precisión del 99.99\%
-	\newline -Sensado de corriente bidireccional
-	\hline
-	
-	Precio (USD) 
-	
-	&
-	\newline \$ 3.37
-	&
-	\newline \$ 5.59
-	\hline
-
-\end{longtable}
-
-
-\paragraph{IIC}
-IIC es una interfaz serial síncrona de comunicación, la cual es útil para comunicarse  con otros periféricos y microcontroladores, fue desarrollada por Philips Semiconductors.
-Estos periféricos pueden ser: Memorias seriales EEPROMS, registros de corrimiento, expansores de puerto, ADC's, DAC's, entre otros \citep{MarcoTeorico17}.
-\paragraph{}
-Sólo se utilizan dos líneas para comunicación:
-\begin{itemize}
-	\item Una línea de datos serial (SDA)
-    \item Una línea de reloj serial (SCL), que siempre es generada por el maestro.
-\end{itemize}
-
-Cada dispositivo conectado al bus es reconocido por una única dirección, el bus maneja una arquitectura maestro-esclavo, el maestro trabaja como transmisor o receptor, donde el maestro inicia y termina la transferencia de información.
+En la figura \ref{fig:Comando de escritura} se muestra la estructura de un byte de control para la escritura de un comando, con un bit de inicio, un byte de control que indica hacia qué dispositivo nos dirigiremos, A1 y A0 son los bits de direccionamiento, podemos dirigirnos hacia 4 diferentes esclavos, en este caso al tener solo uno, la dirección será “00”, seguido del bit que indica si será una operación de lectura o escritura, al ser escritura toma el valor de cero, formando como byte de control “11101000”.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.35]{Capitulo2/images/I2C-Interface.png}
-	\caption{Diagrama ejemplificativo de interfaz IIC}
-	\label{fig:}
+	\includegraphics[scale=.4]{Capitulo5/images/write_command.png}
+	\caption{Comando de escritura de comando para el dispositivo de adquisición MCP39F521}
+	\label{fig:Comando de escritura}
 \end{figure}
 
-Entre las características principales están:
-\begin{itemize}
-	\item Se realizan transferencias seriales bidireccionales de 8 bits.
-    \item Se proporciona filtrado en Chip para eliminar picos en la línea de datos y preservar integridad de datos.
-    \item El número de circuitos integrados que pueden ser conectados al bus está limitado a la capacitancia máxima del bus.
-    \item Modo estándar de operación (Standard Mode). Con velocidad de hasta 100 kbps.
-    \item Modo rápido de operación  (Fast mode). Con velocidad de hasta 400 kbps. \item Modo más rápido de operación (Fast mode plus). Con velocidad de hasta 1 Mbps.
-\end{itemize}
-
-Para que la transferencia de información pueda ser iniciada, el bus debe estar libre. Todas las transacciones comienzan con START y pueden ser terminadas por un STOP.
-Una transición de alto a bajo en la línea SDA mientras SCL es alto, define una condición de START.
-Una transición de bajo a alto en la línea SDA mientras SCL es alto, define una condición de STOP.
+El byte de control, indica al dispositivo de adquisición que vamos a iniciar una lectura, este es seguido por un marco o marcos de comandos a ejecutar como sse muestra en la figura \ref{fig:Marco de escritura de lectura} , están compuestos por una cabecera, cuantos bytes se recibirán, el o los comandos a ejecutar y un checksum para verificar que la información llego completa y correcta, éste se calcula sumando los datos mencionados y dividiéndolos entre 256, el residuo de esta división es el checksum.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.25]{Capitulo2/images/startstop.png}
-	\caption{Protocolo de START y STOP}
-	\label{fig:}
+	\includegraphics[scale=.4]{Capitulo5/images/marco_write_command.png}
+	\caption{Marco lectura}
+	\label{fig:Marco de escritura de lectura }
 \end{figure}
 
+Traducido a código en lenguaje c, la rutina que escribe un comando de lectura de registro se ve de la siguiente forma:
 
+\begin{lstlisting}[language=C]
 
-
-\section{Dispositivo de monitoreo de energía}
-En este trabajo se plantea el uso de un dispositivo de monitoreo de energía que permita supervisar de manera constante la energía producida por un sistema fotovoltaico; es por ello que a continuación definiremos algunos conceptos importantes.
-\paragraph{}
-Inicialmente, un dispositivo puede ser definido como un mecanismo dispuesto para obtener un resultado automático \citep{MarcoTeorico11}; es decir, un conjunto de elementos bien definidos, que entre sí, realizan acciones conforme la información recibida (entrada) para poder transformarla (salida).
-Existe una amplia gama de clasificación de dispositivos de acuerdo al propósito para el que es empleado, sin embargo, para fines de este trabajo, el dispositivo de interés entra en la categoría de aquellos que se encargan de monitorear. 
-\paragraph{}
-De acuerdo a la Real Academia Española, la palabra monitorear, se define como la acción de observar, supervisar o controlar mediante aparatos especiales, el curso de uno o varios parámetros fisiológicos o de otra naturaleza para detectar posibles anomalías \citep{MarcoTeorico12}.
-\paragraph{}
-Teniendo en cuenta los 2 conceptos anteriores, podemos definir a un dispositivo de monitoreo de energía como: un mecanismo que recibe como entrada energía e internamente procesa dicha información para finalmente arrojar datos de monitoreo.
-
-
-\section{Sistema Embebido}
-Un sistema embebido es un dispositivo diseñado para un propósito en específico, el cual abarca desde una operación hasta un conjunto pequeño de operaciones en tiempo real, a diferencia de una PC, la cual puede realizar una gran cantidad de tareas de acuerdo a los programas que se ejecuten. 
-\paragraph{}
-El uso de los sistemas embebidos ha cobrado gran importancia debido a los usos y aplicaciones que se le han dado, como son: hornos de microondas, máquinas expendedoras, routers, cámaras digitales, reproductores MP3, entre otros. 
-\paragraph{}
-Algunas de las características principales de los sistemas embebidos son: que tienden a ser de dimensiones pequeñas, son considerados económicos o de bajo costo, su nivel de consumo eléctrico es bajo, poseen recursos limitados de memoria así como de dispositivos de entrada/salida \citep{MarcoTeorico14}.
-\paragraph{}
-Por lo general, los sistemas embebidos al ofrecer como ventaja la realización de operaciones en tiempo real, suelen ser empleados en ambientes físicos donde se hace uso de sensores y actuadores. Se dice que son sistemas reactivos, pues están en interacción continua con su entorno y el ritmo de su ejecución está coordinada con dicho entorno. 
-\paragraph{}
-Los sistemas embebidos suelen tener en una de sus partes una computadora con características especiales conocida como microcontrolador que viene a ser el cerebro del sistema, el cual incluye interfaces de entrada/salida en el mismo chip. Normalmente estos sistemas poseen una interfaz externa para efectuar un monitoreo del estado y hacer un diagnóstico del sistema \citep{MarcoTeorico15}.
-\paragraph{}
-Los sistemas embebidos pueden ser implementados en placas únicas (SBC) y sobre estas se encuentran integrados los recursos de hardware como el microprocesador, la memoria RAM, controladores Ethernet, etc \citep{MarcoTeorico14}.
-\paragraph{SBC}
-SBC por sus siglas en inglés, Single Board Computer es, como su nombre lo indica, una Computadora de Placa Única, lo cual implica que tiene la totalidad o cumple con la mayoría de las características que tienen las computadoras personales pero en una placa de circuito; sin embargo al tratarse de una placa, es de menores dimensiones así como de un precio relativamente más bajo.
-\paragraph{}
-Dependiendo el tipo de SBC, pueden llegar a ejecutar como Sistema Operativo Linux, Android o Windows. También cuentan con puertos de Entrada/Salida de propósito general, los cuales permiten la comunicación con otros dispositivos \citep{MarcoTeorico18}. 
-\paragraph{}
-Algunos ejemplos de SBC son la Raspberry Pi, Banana Pi, BeagleBone Black, PcDuino, entre otros.
-\paragraph{Raspberry Pi}
-En este trabajo, haremos uso de la Raspberry Pi. Como se menciona en el párrafo anterior, es una SBC. Fue desarrollada en el Reino Unido por la fundación Raspberry Pi con el propósito de promover la educación informática en las escuelas. Algunas de sus principales características son: corre en el sistema operativo Linux así como en Raspbian y Pidora, las cuales son distribuciones de Linux; además tiene conexión a monitor, teclado y mouse \citep{MarcoTeorico19}.   
-
-A continuación, se muestra una comparativa entre la Raspberry Pi 3B y la Banana Pi M2 Berry \citep{MarcoTeorico21}\citep{MarcoTeorico22}.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.3]{Capitulo2/images/bananaPi.png}
-	\caption{Banana Pi M2 Berry}
-	\label{fig:}
-\end{figure}
-
-\paragraph{}
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.23]{Capitulo2/images/raspberry.png}
-	\caption{Raspberry Pi 3B}
-	\label{fig:}
-\end{figure}
-
-\pagebreak
-\begin{longtable}{|M{3.0cm}|M{4.5cm}|M{4.5cm}|}
-    \caption{Comparativa entre Banana Pi M2 Berry y Raspberry Pi 3B}
-%\begin{table}[!hbt]
-	% \centering
-	 %\begin{tabular}{|M{3.0cm}|M{4.5cm}|M{4.5cm}|}
-	\hline
-	\textbf{Característica} & \textbf{Banana Pi M2 Berry} & \textbf{Raspberry Pi 3B} \\ 
-	\hline
- 	Procesador & Quad Core ARM Cortex A7 V40 & Quad Core 64bit ARM Cortex A53 1.2GHz \\
- 	\hline
-    GPU & 500 MHz Mali-400 MP2 & 400 MHz VideoCore IV multimedia\\
-    \hline
-    RAM & 1GB DDR3 SDRAM & 1GB LPDDR2-900 SDRAM \\
-	\hline
-	Tarjeta de Red & 10/100/1000 Mbps Ethernet y 802.11 b/g/n & 10/100 Mbps Ethernet y 802.11n Wireless LAN\\
-	\hline
-	Almacenamiento & Micro SD (hasta 64 GB) & Micro SD\\
-	\hline
-	Salida Video & HDMI, MIPI DSI para paneles LCD & HDMI\\
-    \hline
-    Salida Audio 
-    & 
-    \newline - HDMI 
-    \newline - Jack 3.5 mm 
-    & 
-    \newline - HDMI
-    \newline - Jack 3.5 estéreo \\
-    \hline
-    USB & 
-    \newline - 4x USB 2.0 
-    \newline - USB OTG(Micro USB) 
-    & 
-    \newline - 4x USB 2.0
-    \newline - 1x micro USB alimentación \\
-    \hline
-    Sistema Operativo 
-    & 
-    \newline - Raspbian
-    \newline - NetBSD
-    \newline - Android
-    \newline - Debian 
-    &
-    \newline - Linux
-    \newline - Raspbian
-    \newline - Pidora \\
-    \hline
-    Precio & \$3,359 MX & \$900 MX \\
-    %https://articulo.mercadolibre.com.mx/MLM-632513569-raspberry-pi-3-model-b-3b-_JM?quantity=1
-    %https://articulo.mercadolibre.com.mx/MLM-648967037-quad-core-cortex-a7-cpu-1g-ddr-banana-pi-bpi-m2-berry-same-_JM?quantity=1
-	\hline
-	%\end{tabular}
-	
-	%\label{tabla_riesgos}
-\end{longtable}
-
-
-
-\section{Microcontroladores}
-Hoy en día, los conteos de producción de microcontroladores son de miles de millones por año, y los controladores están integrados en muchos dispositivos a los que nos hemos acostumbrado, como electrodomésticos (microondas, lavadora, cafetera, etc.), telecomunicaciones (teléfonos móviles), industria automotriz (inyección de combustible, frenado ABS, etc.), industria aeroespacial, automatización industrial, entre otros.
-\paragraph{}
-Un Microcontrolador es un circuito integrado que es el componente principal de una aplicación embebida. Es como una pequeña computadora que incluye sistemas para controlar elementos de entrada/salida. También incluye a un procesador y por supuesto memoria que puede guardar el programa y sus variables (flash y RAM).  Funciona como una mini PC. Su función es la de automatizar procesos y procesar información.
-El microcontrolador se aplica en toda clase de inventos y productos donde se requiere seguir un proceso automático dependiendo de las condiciones de distintas entradas.
-\paragraph{}
-Los diseños internos básicos de los microcontroladores son bastante similares. La figura \ref{fig:diagrama_micro} muestra el esquema de un microcontrolador típico. Todos los componentes están conectados a través de un bus interno y son todos integrados en un chip. Los módulos están conectados al mundo exterior a través de pines de E/S.
-\paragraph{}
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.5]{Capitulo2/images/microcontrolador.png}
-	\caption{Diagrama de un microcontrolador básico}
-	\label{fig:diagrama_micro}
-\end{figure}
-\paragraph{}
-En la siguiente lista mostramos los módulos que normalmente se encuentran en un microcontrolador \citep{MarcoTeoricoMicrocontrolador}:
-\begin{itemize}
-	\item Procesador Core: La CPU del controlador. Contiene la unidad lógica aritmética, la unidad de control y los registros (puntero de pila, contador de programa, registro de acumulador, archivo de registro, ...).
-    \item Memoria: La memoria a veces se divide en memoria de programa y memoria de datos. En los controladores más grandes, un controlador DMA maneja las transferencias de datos entre los componentes periféricos y la memoria.
-    \item Controlador de interrupciones: Las interrupciones son útiles para interrumpir el flujo normal del programa en caso de (importantes) eventos externos o internos. En conjunción con los modos de sueño, ayudan a conservar energía.
-    \item Temporizador o contador: La mayoría de los controladores tienen entre uno y tres temporizadores o contadores, que se pueden usar para marcar la hora de eventos, medir intervalos o contar eventos.
-    \item E / S digital: Los puertos de E / S digitales paralelos son una de las características principales de los microcontroladores. La cantidad de pines de E / S varía de 3 a más de 90.
-    \item E / S analógicas: Aparte de unos pocos controladores pequeños, la mayoría de los microcontroladores tienen integrado convertidores analógico - digital, que difieren en el número de canales (2-16). 
-    \item Interfaces: Los controladores generalmente tienen al menos una interfaz en serie que se puede utilizar para descargar el programa y para la comunicación con la PC de desarrollo en general. Dado que las interfaces seriales también pueden usarse para comunicarse con dispositivos periféricos externos, la mayoría de los controladores ofrecen varias y variadas interfaces como SPI y SCI.
-    \item Temporizador de vigilancia: Dado que los sistemas críticos para la seguridad forman un área importante de aplicación de los microcontroladores, es importante protegerse contra errores en el programa y / o el hardware. El temporizador de vigilancia se usa para reiniciar el controlador en caso de que el software se "bloquee".
-    \item Unidad de depuración: Algunos controladores están equipados con hardware adicional para permitir la depuración remota del chip desde la PC. Así que no hay necesidad de descargar un software especial de depuración.
-\end{itemize}
-
-\paragraph{}
-En la siguiente tabla, se muestra una comparativa entre los microcontroladores dsPIC30F3014/4013 y dsPIC30F1010/202X.
-
-
-\pagebreak
-\begin{longtable}{|M{2.2cm}|M{6.0cm}|M{6.0cm}|}
-    \caption{Comparativa entre microcontroladores}
-	% \centering
-	% \begin{tabular}
-	\hline
-	\textbf{ Parámetro } & \textbf{Microcontrolador} & \textbf{Microcontrolador} \\ \hline
-	
- 	- & dsPIC30F3014/4013 & dsPIC30F1010/202X \\\hline
- 	 
- 	Conjunto de instrucciones  &
-    84 & 83 \\ \hline
-    Arquitectura   &
-    Harvard & Harvard \\ \hline
-    Bits en formato de instrucción  &
-    24 & 24 \\ \hline
-    Bits en la ruta de datos  &
-    16 & 16 \\ \hline
-    MIPS  &
-    30 & 30 \\ \hline
-    Fuentes de instrucción  &
-    33 & 32 \\ \hline
-    
- 	 
-    Características especiales del microcontrolador
-    &
-    -Memoria del programa Flash mejorada: 10.000 ciclos de borrado / escritura (min.) Para rango de temperatura industrial, 100k (usualmente)
-    \newline-Auto-reprogramable bajo control de software
-    \newline-Reinicio de encendido (POR), temporizador de encendido (PWRT) y temporizador de arranque del oscilador (OST)
-    \newline-Temporizador de vigilancia flexible (WDT) con bajo en chip
-    \newline-Oscilador de potencia RC para un funcionamiento confiable
-    \newline-Operación de monitor de reloj a prueba de fallos
-    \newline-Detecta fallas de reloj y cambia a bajo en chip oscilador de potencia RC
-    \newline-Código de protección programable
-    \newline-Programación Serial en Circuito (ICSP)
-    \newline-Modos de gestión de energía seleccionables
-    \newline-Modos Sleep, Idle y Alternate Clock
-	& 
-    -Memoria del programa Flash mejorada: 10.000 ciclos de borrado / escritura (min.) Para rango de temperatura industrial, 100K (usualmente)
-    \newline-Memoria de datos EEPROM: 100.000 ciclos de borrado / escritura (min.) Para rango de temperatura industrial, 1M (usualmente)
-    \newline-Auto-reprogramable bajo control de software
-    \newline-Reinicio de encendido (POR), temporizador de encendido (PWRT) y temporizador de arranque del oscilador (OST)
-    \newline-Temporizador de vigilancia flexible (WDT) 
-    \newline-Detecta fallas de reloj y cambia a chip
-    \newline-Oscilador RC de baja potencia
-    \\ \hline
-
-	Características periféricas  
-    &
-	-Hasta cinco temporizadores/contadores de 16 bits; temporizadores de 16 bits opcionalmente emparejados en módulos temporizadores de 32 bits
-	\newline-Una función de entrada de captura de 16 bits
-	\newline-Dos funciones de salida de comparación / PWM de 16 bits
-    &
-	-Tres temporizadores/contadores de 16 bits; temporizadores de 16 bits opcionalmente emparejados en módulos temporizadores de 32 bits
-	\newline-Hasta cuatro funciones de entrada de captura de 16 bits
-	\newline-Hasta cuatro funciones de salida de 16 bits de comparación / PWM
-	\hline
-	
-	% \end{tabular}
-	
-	% \label{tabla_riesgos}
-\end{longtable}
-
-
-\section{Sistemas de tiempo real}
-
-Los sistemas de tiempo real se dan en entornos en donde deben ser aceptados y procesados gran cantidad de sucesos, la mayoría externos al sistema computacional, en breve tiempo o dentro de ciertos plazos.
-Se utilizan en control industrial, conmutación telefónica, control de vuelo, simulaciones en tiempo real, aplicaciones militares, etc.
-Su objetivo es proporcionar rápidos tiempos de respuesta.
-Poco movimiento de programas entre almacenamiento secundario y memoria.
-La gestión de archivos se orienta más a velocidad de acceso que a utilización eficiente del recurso.
-
-
-\section{JSON}
-
-JSON es un formato de datos basado en texto que sigue la sintaxis de objeto de JavaScript. Aunque es muy parecido a la sintaxis de objeto literal de JavaScript, puede ser utilizado independientemente de JavaScript, y muchos ambientes de programación poseen la capacidad de leer y generar JSON.
-
-\paragraph{}JSON está constituído por dos estructuras, una colección de pares de nombre/valor. En varios lenguajes esto es conocido como un objeto, registro, estructura, diccionario, tabla hash, lista de claves o un arreglo asociativo.
-Una lista ordenada de valores. En la mayoría de los lenguajes, esto se implementa como arreglos, vectores, listas o sequencias.
-Estas son estructuras universales; virtualmente todos los lenguajes de programación las soportan de una forma u otra. Es razonable que un formato de intercambio de datos que es independiente del lenguaje de programación se base en estas estructuras, a continucacion, se muestra un ejemplo de un objeto JSON:
-
-
-\lstset{
-    string=[s]{"}{"},
-    stringstyle=\color{blue},
-    comment=[l]{:},
-    commentstyle=\color{black},
-}
-\begin{lstlisting}
+unsigned char enviaComando ( 
+  unsigned char direccion, unsigned char registro, 
+  unsigned char bytes, unsigned char checksum )
 {
-  "nombrePila": "Armando",
-  "apellidoPaterno": "Aguilera",
-  "edad": 22
+    START_I2C();
+ 
+    //Control byte, write command
+    
+    ENVIA_DATO_I2C(direccion); //11101000   
+    
+    if( I2CSTATbits.ACKSTAT == 1 ){ //NACK del sensor
+        return NANCK;
+    }
+
+    // Inicio del I2C Command Write Frame.
+    
+    ENVIA_DATO_I2C(0xA5); //header byte
+        
+    ENVIA_DATO_I2C(0x08); //no. bytes in frame
+    
+    ENVIA_DATO_I2C(0x41); //command set address pointer
+   
+    ENVIA_DATO_I2C(0x00); //addr high
+     
+    ENVIA_DATO_I2C(registro); //addr low 
+
+    ENVIA_DATO_I2C(0x4E); //command read register
+    
+    ENVIA_DATO_I2C(bytes); //number of bytes to read 
+    
+    ENVIA_DATO_I2C(checksum); //checksum   
+   
+    if( I2CSTATbits.ACKSTAT == 1 ){ //NACK del sensor
+        return NANCK;
+    }
+          
+    STOP_I2C();
+    return EXITO;
+}
+
+\end{lstlisting}
+
+\subsection{Lectura de respuesta del dispositivo de adquisición}
+
+Ahora que logramos comunicarnos con el sensor para requerir la lectura de su o sus registros, necesitamos conocer la respuesta resultante, para ello tenemos que seguir el formato del byte de control de lectura de respuesta del dispositivo esclavo que el fabricante indica en la figura \ref{fig:Comando de lectura de respuesta} , tiene un bit de inicio, un byte de control, que nos indica a qué dispositivo esclavo nos dirigimos, en este caso una vez más al “00”, seguido del bit que indica si será una operación de lectura o escritura, al ser lectura toma el valor de uno, formando como byte de control “11101001” seguido de los marcos de respuesta.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.7]{Capitulo5/images/read_command.png}
+	\caption{Comando de lectura para el dispositivo de adquisición MCP39F521}
+	\label{fig:Comando de lectura de respuesta}
+\end{figure}
+
+Después del envió del byte de control, recibimos los marcos de respuesta que se muestran en la figura \ref{fig:Marco de respuesta del Dispositivo de Adquisición MCP39F521} , que nos indican un acuse especial con valor de 6 hexadecimal, seguido de el numero de bytes que lo conforman, los bytes de información y finalmente un checksum.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.7]{Capitulo5/images/responde_frame.png}
+	\caption{Marco de respuesta para el dispositivo de adquisición MCP39F521}
+	\label{fig:Marco de respuesta del Dispositivo de Adquisición MCP39F521}
+\end{figure}
+
+Traducido a código en lenguaje c, la rutina que escribe un comando de lectura de respuesta se ve de la siguiente forma:
+
+\begin{lstlisting}[language=C]
+
+unsigned char leeRespuesta(unsigned char direccion)
+{   
+    
+    START_I2C();
+    
+    //control byte, read response
+    
+    ENVIA_DATO_I2C(direccion+0x01); //11101001   
+    
+    if( I2CSTATbits.ACKSTAT == 1 ){ //NACK del sensor
+        return NANCK;
+    }
+
+    //ack (0x06)
+    RECIBE_DATO_I2C();
+    ACK_MST_I2C();
+    
+    //number of bytes 
+    int no_bytes = RECIBE_DATO_I2C();
+    ACK_MST_I2C();
+    
+    int i;
+    
+    //data bytes
+    for(i = 0 ; i < no_bytes-3 ; i++){
+        U2TXREG = RECIBE_DATO_I2C();
+        ACK_MST_I2C();
+    }
+    
+    //checksum
+    RECIBE_DATO_I2C();
+    NACK_MST_I2C();
+    
+    STOP_I2C();  
+    return EXITO;
+}
+
+\end{lstlisting}
+
+\subsection{Envío de muestras al servidor vía Wi-Fi}
+
+Con estas éstas dos rutinas, conseguimos en bytes, la información del voltaje, corriente, factor de potencia, frecuencia, potencia aparente, activa y reactiva de un panel solar, estos bytes los enviamos por medio del módulo Wi-Fi por medio de la interfaz de comunicación UART, la conexión física de este módulo Wi-Fi es senculla, usa un estandarde pines para su montura llamado mikrobus \ref{fig:Mikrobus}, que principalmente tiene un transmisor (TX), receptor (RX), ChipSelect (CS) así como GND y VCC. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.7]{Capitulo5/images/read_command.png}
+	\caption{Estándar de Pines Mikrobus}
+	\label{fig:Mikrobus}
+\end{figure}
+
+Para poder usar el modulo WiFi a nivel programación, debemos primero, configurar sus los registros de configuración del modulo UART, el MCP30F4013 tiene 2 interfaces UART, pero la segunda es la que tiene el acomodo para el estándar mikrobus, debemos activar la interfaz UART, configurar la velocidad de transición de información, esto se calcula dividiendo la frecuencia de trabajo de nuestro microcontrolador (1.8*10\^6) entre el Baudaje del modulo Wi-FI, que es de 115200 Baudios.
+
+Después, debemos configurar las interrupciones, de manera que cuando se coloque un dato en el registro que envia datos del modulo Wi-Fi, este automáticamente lo envíe.
+
+
+\begin{lstlisting}[language=C]
+
+void iniprograma(){
+    
+    CONTRX = 0;
+    
+    iniPerifericos();
+    
+    //UART2 BAUDIOS:115200 mikrobus2 (WIFI)
+    U2MODE = 0X0020; //uart disable ,no usa los alternos, autobaudaje
+    U2STA  = 0X8000;
+    U2BRG  = 0; // (1.8432*10^6)/(16*115200) = 0
+
+    //Interrupciones de uart2 (Modulo wifi))
+    IFS1bits.U2RXIF= 0;
+    //U2RX interrupts ENABLE
+    IEC1bits.U2RXIE= 1;
+    
+    //Habilitamos el uart2 (Modulo wifi)
+    U2MODEbits.UARTEN = 1;
+    U2STAbits.UTXEN = 1;
+    
+    //habilitando el registro de control sensor
+    I2CCONbits.I2CEN = 1;
+    
+    //Inicializamos el modulo wifi
+    iniWIFI();
+    configWIFI();
+}
+
+\end{lstlisting}
+
+Lo que prosigue una vez configurada la comunicación UART con el módulo Wi-Fi, es configurar la red del mismo, esto se realiza con comandos AT, dónde configuramos la red a la que nos conectaremos, el protocolo de envió de paquetes, en este caso UDP, a que IP y Puerto nos dirigimos, donde indico la dirección del servidor y cuantos bytes de información se enviaran.
+
+\begin{lstlisting}[language=C]
+//Configuracion del modulo WIFI
+void configWIFI(void){  
+    
+    comandoAT("ATE0\r\n"); //echo off
+    sendOK();
+    comandoAT("AT+RST\r\n");
+    sendOK();
+    comandoAT("AT+CWMODE=1\r\n"); //wifi-mode: softAP + station mode
+    sendOK();
+    comandoAT("AT+CIPMUX=0\r\n"); //disable multiple connections
+    sendOK();
+    comandoAT("AT+CWJAP=\"CELECSIS\",\"PIC18f2550\"\r\n");
+    sendOK();
+    comandoAT("AT+CIFSR\r\n"); //get local ip address 
+}
+
+//Envio de paquetes
+void enviaWIFI(void){
+    
+    comandoAT("AT+CIPSTART=\"UDP\",\"104.198.212.166\",4000\r\n");
+    sendOK();
+    comandoAT("AT+CIPSEND=21\r\n");
+    sendOK();
+    
+    //---Colocar aquí los nodos existentes---//
+    
+    //---Enviando numero de serie de microcontolador (AA)
+    numero de sensor (0) y su informacion ---//
+    U2TXREG = 'A';
+    U2TXREG = 'A';
+
+    U2TXREG = 0x00;
+
+    leeTransmiteSensor(0xE8);
+    sendOK();
+    //----------------------------------------//   
+    
+    
+    comandoAT("AT+CIPCLOSE\r\n");
+    sendOK();
+    
 }
 \end{lstlisting}
+
+En la función principal, se envían muestras al servidor, no exactamente cada segundo, hicimos pruebas y cubre 50 muestras al minuto y hacemos un reinicio cada 30 minutos por si hay algún tipo de falla con la conexión de red.
+
+\begin{lstlisting}[language=C]
+//programa principal
+int main (void)
+{     
+    iniprograma();
+
+    //reinicio del programa cada media hora
+    int counter = 0;
+    
+    //enviamos muestras cada segundo y reiniciamos el sistema cada media hora
+    for(;EVER;)
+    {           
+        enviaWIFI();
+        
+        counter = counter+1;
+        
+        if(counter == 900){
+            iniprograma();
+            counter = 0;
+        }
+        
+        __delay_ms(500);
+    }
+    
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Resultado final}
+
+Físicamente, la figura \ref{fig:conexion hardware} muestra como se hace la conexión entre microcontrolador con dispositivo de adquisición, el montaje del modulo Wi-Fi, la conexión del panel solar a la carga y su inyección a la linea eléctrica.
+    
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/conexion_fisica.png}
+	\caption{Conexión de hardware del sistema}
+	\label{fig:conexion hardware}
+\end{figure} 
+
+Para probar el funcionamiento de la comunicación con el dispositivo de adquisición via IIC, se conecto un cable USB con comunicación UART al microcontrolador, que copia los mismos datos que se envían al modulo Wi-Fi, a una computadora, solamente agregamos los pines del UART1 en la configuración del programa y copiamos en su registro de transmisión los datos conseguidos, nos basamos en el ejemplo de la hoja técnica para comparar el resultado conseguido.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/respuesta_sensor.png}
+	\caption{Respuesta del sensor a un comando de lectura determinado}
+	\label{fig:respuesta sensor}
+\end{figure} 
+
+En la consola de la computadora, vemos la siguiente información impresa en pantalla,  podemos interpretarla de la siguiente forma:
+
+\begin{itemize}
+    \item Los dos primeros valores 255 nos marcan el fin de la transmisión
+    \item ACK de la respuesta del esclavo (6 en ascii).
+    \item Número de bytes (35)
+    \item Los siguientes 32 datos son los datos enviados por el dispositivo esclavo del estado del sistema segun el mapa de registros \ref{fig:Mapa de registros del MCP39F521} .
+    \item El 170 es el checksum del envío de la trama, podemos comprobarlo sumando desde el valor del acuse (6) hasta el penúltimo dato, dando un total de 1706 decimal, si dividimos esto entre 256, el valor del checksum será igual al residuo de la división, que es igual a 170.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/consola.png}
+	\caption{R}
+	\label{fig:consola}
+\end{figure} 
+
+La ultima funcionalidad por probar es el envió de muestras al servidor, lo único que tenemos que hacer, es crear un servidor UDP en la IP y Puerto indicados en el programa del microcontrolador para la captura de los paquetes:
+
+
+\begin{lstlisting}[language=Python]
+import socket
+import sys
+import datetime, time
+import os
+import struct
+
+#---------------Variables de configuracion-----------------
+server_ip = '10.128.0.2'
+port = 4000
+#----------------------------------------------------------
+
+# Creando socket UDP
+sock = socket.socket(socket.SOCK_DGRAM, socket.SOCK_DGRAM)
+
+# Relacionar direccion IP con puerto
+server_address = (server_ip, port)
+sock.bind(server_address)
+
+print ('Starting up server on %s port %s' % server_address)
+
+# Esperando por conexion
+while True:
+
+    print('Waiting for a connection...')
+    
+    pack, client_connection = sock.recvfrom(21)
+
+    #Recibiendo paquete de 21 bytes
+    pack = struct.unpack('21B',pack)
+
+    packet = pack
+
+    #Imprimir paquete recibido
+    print(packet)
+
+\end{lstlisting}
+
+Y el resultado de este programa, es la captura de paquetes que tienen una longitud de 21 Bytes:
+
+Byte 1 y 2: El numero de serie del microcontrolador en código ASCII
+
+Byte 3: El numero de esclavo en valor decimal
+
+Byte 4 y 5 : El valor del voltaje actual, esta dividido en dos bytes, consiguiendo el byte menos significativo, de esta forma conseguimos un valor flotante.
+
 
 
