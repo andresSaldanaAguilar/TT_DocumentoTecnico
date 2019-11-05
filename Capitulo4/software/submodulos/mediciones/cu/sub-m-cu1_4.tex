@@ -1,73 +1,115 @@
-%Dudas:
-%   *Condición de término
-%   *Trayectoria Principal
-%   *Checar los errores
-\subsubsection{SUB-M-CU1.4-Enviar muestras al Servidor embebido}\label{SUB-M-CU1.4}
-El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotovoltaico a través del módulo WiFi como se especifica en la Regla de Negocio \ref{RN2} y \ref{RN7} al Servidor embebido por medio de el patrón mencionado en la Regla de Negocio \ref{RN8}.
+\subsubsection{SUB-M-CU1.4-Respuesta a petición de cliente}\label{SUB-M-CU1.4}
+La respuesta a cada petición del cliente será en con los estándares especificados en las Reglas de Negocio \ref{RN7} y \ref{RN11} en el formato de la Regla de Negocio \ref{RN10} bajo el patrón de comunicación de la Regla de Negocio \ref{RN8}.
+
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-M-CU1.4-Enviar muestras al Servidor embebido \\ \hline
+		SUB-M-CU1.4 Respuesta a petición de cliente\\ \hline
 	\textbf{Objetivo} &
-		Enviar las muestras obtenidas por el microcontrolador al Servidor embebido para su posterior procesamiento. \\ \hline
+		Dar respuesta a las peticiones del o los clientes, ya sea brindándole la información del servidor o los datos almacenados que requiera. \\ \hline
 	\textbf{Actores} &
-	    \begin{itemize}
-		    \item Microcontrolador
-		    \item Módulo WiFi Microcontrolador
+		\begin{itemize}
 		    \item Servidor embebido
-		\end{itemize} \hline 
+		\end{itemize}\\ \hline 
 	\textbf{Disparador} & 
-		Conexión establecida entre sensor y microcontrolador.\\ \hline
-	\textbf{Entradas} & %Ninguna
-		\begin{itemize}%especificar
-				\item Muestra obtenida del Sistema fotovoltaico.
-		\end{itemize}
-		\\ \hline 
+	     {[Servidor embebido]} Recibe una petición\\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Petición proveniente de la aplicación de usuario.
+		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
-	    \begin{itemize}%Paquete TCP
-	        \item {[Microcontrolador]} Arreglo de bytes.
-	    \end{itemize}\\ \hline
-	\textbf{Precondiciones} & Ninguna
-		\\ \hline
+		\begin{itemize}
+			\item {[Servidor embebido]} Respuesta a la petición de la aplicación de usuario.
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		Ninguna.\\ \hline
 	\textbf{Postcondiciones} &
 		\begin{itemize}
-			\item El arreglo de bytes es recibido por el Servidor embebido.
-		\end{itemize} \\ \hline
+			Ninguna.
+		\end{itemize}\\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-		    \item El microcontrolador envió el arreglo de Bytes por el módulo Wi-Fi al Servidor embebido.
-		\end{itemize} 
-		\\ \hline 
+			\item {[Servidor embebido]} Envío de respuesta a la petición de la aplicación de usuario.
+		\end{itemize} \\ \hline 
 	\textbf{Prioridad} & 
 		Alta. \\ \hline
-	\textbf{Errores} &
-        \item \label{SUB-M-CU1.4:Error1} Error 1: Error en envío de trama, conexión con servidor no disponible o cerrada.
-		 \\ \hline
+	\textbf{Errores} & 
+	    \item {[Servidor embebido]} Falla la conexión para respuesta a la Aplicación de Usuario
+		\\ \hline
 	\textbf{Reglas de negocio} & 
-	    \begin{itemize}
-	      \item  \ref{RN2}
-	      \item  \ref{RN7}
-	      \item  \ref{RN8}
-		 \end{itemize}%\\ \hline
-		 \hline
-	% \caption{}
-	%\label{desc:SUB-M-CU1}
+		\begin{itemize}
+			\item \ref{RN7}
+			\item \ref{RN8}
+			\item \ref{RN10}
+			\item \ref{RN11}
+		\end{itemize} \\ \hline
+
 \end{longtable}
 
 \paragraph{Trayectoria principal}
 \label{SUB-M-CU1.4:TP}
 	\begin{enumerate}
-    	\item {[Microcontrolador]} Configura el módulo Wi-Fi para el envío de tramas a la IP y puerto especificado por medio de comandos AT.
-	    \item {[Microcontrolador]} Envía la muestra que contiene el numero de serie del microcontrolador, numero de esclavo y medición de potencia por medio de la interfaz UART al módulo WiFi del microcontrolador.
-	    \item {[Módulo WiFi Microcontrolador]} Recibe la muestra de medición por medio de la interfaz UART.
-	    \item {[Módulo WiFi Microcontrolador]} Envía la trama con la información de la muestra a través del protocolo UDP al módulo WiFi del Servidor embebido. \hyperref[SUB-M-CU1.4:TA]{[Trayectoria Alternativa A]}
-	    \item {[Servidor Embebido]} Recibe la trama con la información de la muestra.
-	    \item {[Microcontrolador] Retorna al primer paso de  \hyperref[SUB-M-CU1.3:TP]{[Trayectoria Principal]}.
+		\item {[Servidor embebido]} Crea una nueva conexión con un cliente y recibe una petición proveniente de la aplicación de Usuario
+		
+		\item {[Servidor embebido]} Recibe la cadena 'get data'
+		\hyperref[SUB-M-CU1.4:TA]{[Trayectoria Alternativa A]}
+		\hyperref[SUB-M-CU1.4:TB]{[Trayectoria Alternativa B]}
+		\hyperref[SUB-M-CU1.4:TC]{[Trayectoria Alternativa C]}
+		\hyperref[SUB-M-CU1.4:TD]{[Trayectoria Alternativa D]}
+		\hyperref[SUB-M-CU1.4:TE]{[Trayectoria Alternativa E]}
+		
+		\item {[Servidor embebido]} Desarma la petición consiguiendo la dirección IP del servidor, el numero de serie del microcontrolador, el número de esclavo y que archivos se van a acceder.
+		
+		\item {[Servidor embebido]} Envía la respuesta de los datos en formato JSON codificado como un arreglo de bytes con la información extraída del archivo o archivos \hyperref[SUB-M-CU1.4:TF]{[Trayectoria Alternativa F]}.
+		
+		\item {[Servidor embebido]} Cierra la conexión existente con el cliente.
+	
 	\end{enumerate}
 	Fin del caso de uso.
 
-\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.3:TA}
-	Error en envío de trama al servidor embebido, conexión con servidor no disponible o cerrada.
+\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.4:TA}
+	Recibe la cadena 'get info'.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Microcontrolador]} Salta al ultimo paso de la trayectoria principal	\end{enumerate}
-	Fin de trayectoria alternativa.
+		\item {[Servidor embebido]} Envía la información de los microcontroladores y sus nodos de cada uno, existentes en sus registros.
+		\hyperref[SUB-M-CU1.4:TA]{[Trayectoria Alternativa A]}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa, retorna al paso 4 de  \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}.
+	
+\paragraph{Trayectoria alternativa B} \label{SUB-M-CU1.4:TB}
+	Recibe la cadena 'connect'.
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Servidor embebido]} Envía 'get password' si no hay una contraseña guardada en el sercidor, de lo contrario encia 'set password'.
+		\hyperref[SUB-M-CU1.4:TB]{[Trayectoria Alternativa B]}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa, retorna al paso 4 de  \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}.
+	
+\paragraph{Trayectoria alternativa C} \label{SUB-M-CU1.4:TC}
+	Recibe la cadena 'set passsowrd'.
+	\begin{enumerate}[label=C\arabic*.]
+		\item {[Servidor embebido]} Guarda la contraseña y correo que se le envían en la peticion, retorna un 'ok', si ocurre un problema,retorna un 'error'.
+		\hyperref[SUB-M-CU1.4:TC]{[Trayectoria Alternativa C]}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa, retorna al paso 4 de  \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}.
+	
+\paragraph{Trayectoria alternativa D} \label{SUB-M-CU1.4:TD}
+	Recibe la cadena 'get passsowrd'.
+	\begin{enumerate}[label=D\arabic*.]
+		\item {[Servidor embebido]} Verifica la contraseña en el servidor, mandando un 'ok' si es correcta y 'error' de lo contrario.
+		\hyperref[SUB-M-CU1.4:TD]{[Trayectoria Alternativa D]}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa, retorna al paso 4 de  \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}.
+	
+\paragraph{Trayectoria alternativa E} \label{SUB-M-CU1.4:TE}
+	Recibe la cadena 'forgot passsword'.
+	\begin{enumerate}[label=E\arabic*.]
+		\item {[Servidor embebido]} Envía un mensaje al correo configurado para recordarle la contraseña para emparejar al servidor.
+		\hyperref[SUB-M-CU1.4:TE]{[Trayectoria Alternativa E]}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa, retorna al paso 4 de  \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}.
+	
+\paragraph{Trayectoria alternativa F} \label{SUB-M-CU1.4:TF}
+	Falla la conexión para respuesta a la Aplicación de Usuario
+	\begin{enumerate}[label=F\arabic*.]
+		\item {[Servidor embebido]} Cierra la conexión existente con el cliente.
+	\end{enumerate}
+	Fin de la trayectoria alternativa y fin de caso de uso.

@@ -1,143 +1,76 @@
-\subsubsection{SUB-M-CU1.5-Ver Monitoreo en Tiempo Real}\label{SUB-M-CU1.5}
-El monitoreo en tiempo real se realizará haciendo una petición de los valores del día actual que el servidor tiene almacenado para graficarlos en la aplicación de usuario y posteriormente actualizar la gráfica de lineas por medio de peticiones al servidor en el tiempo establecido en la Regla de Negocio \ref{RN6}.
-\\ La comunicación se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocio \ref{RN8} con el formato de datos establecido en la Regla de Negocio \ref{RN11}. 
-
+%Dudas para revisión:
+%   *Condiciones de término
+%   *Errores checar si los 3 son correctos
+%   *Trayectoria principal
+% Agregar regla de negocio de IIC Time Out and Clock Stretching? Si se agrega, incluir la RN en la tabla
+\subsubsection{SUB-M-CU1.5-Crear gráficas de tiempo real}\label{SUB-M-CU1.5}
+El servidor consultará el archivo de tiempo real en el tiempo definido en la regla de negocio \ref{RN6} con el propósito de crear una gráfica que represente la producción de energía a lo largo de un día.
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-M-CU1.5-Ver monitoreo en Tiempo Real \\ \hline
+		SUB-M-CU1.5-Crear graficas de tiempo real \\ \hline
 	\textbf{Objetivo} &
-		Enviar y recibir muestras del monitoreo para que la aplicación de usuario pueda construir una gráfica de lineas en tiempo real. \\ \hline
+		Guardar las muestras en el tiempo establecido en la regla de negocio \ref{RN6} en un archivo para generar una gráfica de energia en el tiempo \\ \hline
 	\textbf{Actores} &
-		\begin{itemize}
-		    \item Usuario
-			\item Servidor embebido
-			\item Aplicación de Usuario
-		\end{itemize} \\ \hline
+	    \begin{itemize}
+		    \item Servidor Embebido
+		\end{itemize}\\ \hline 
 	\textbf{Disparador} & 
-	    El usuario inicia la aplicación de usuario dando clic en el icono \\ \hline 
+		Transcurre el tiempo indicado en la regla de negocio \ref{RN6} \\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-				\item{[Servidor embebido]} Marca de tiempo
+				\item {[Servidor Embebido]} Muestra del archivo de tiempo real
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
-		\begin{itemize}
-			\item{[Servidor]} Valor de la muestra
-		\end{itemize} \\ \hline
-	\textbf{Precondiciones} &
-		Ninguna. \\ \hline
+	    \begin{itemize}
+	        \item {[Sensor]} Archivo de muestras del dia actualizado
+	    \end{itemize}\\ \hline
+	\textbf{Precondiciones} & 
+		Ninguna \\ \hline
 	\textbf{Postcondiciones} &
-		Ninguna.\\ \hline
+		Ninguna \\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-			\item La aplicación de usuario recibe el valor o valores y construye la gráfica de lineas correspondiente.
-		\end{itemize} \\ \hline 
+		    \item {[Servidor Embebido]} Guardado de la muestra obtenida del archivo de tiempo real en archivo de muestras del día.
+		\end{itemize} 
+		\\ \hline 
 	\textbf{Prioridad} & 
 		Alta. \\ \hline
-	\textbf{Errores} & 
-		\begin{itemize}
-		    \item \label{CU5:Error1} Error 1: Sin conexión con el servidor.
-			\item \label{CU5:Error2} Error 2: La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
-		    \item \label{CU5:Error3} Error 3: Sin conexión con el cliente.
-		    \item \label{CU5:Error4} Error 4: El valor de generación es -1
-		    \item \label{CU5:Error5} Error 5: El valor de generación es 0
-		\end{itemize} \\ \hline
+	\textbf{Errores} &
+		 \begin{itemize}
+		 %DUDA: tiempo establecido por I2C Time Out and Clock Stretching?
+		 	\item \label{SUB-M-CU1.5:Error1} Error 1: El archivo de tiempo real no existe.
+		 	\item \label{SUB-M-CU1.5:Error2} Error 2: El archivo de tiempo real tiene una hora atrasada.
+		 \end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
-		\begin{itemize}
-		    \item \ref{RN6}
-			\item \ref{RN8}
-			\item \ref{RN11}
-		\end{itemize} \\ \hline
-
+	    \begin{itemize}
+	      \item  \ref{RN1}
+		 \end{itemize}\\ \hline
 	% \caption{}
 	%\label{desc:SUB-M-CU1}
 \end{longtable}
 
 \paragraph{Trayectoria principal}
-    \label{SUB-M-CU1.5:TP}
+\label{SUB-M-CU1.5:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Inicia la aplicación de usuario dando clic en el icono. \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
-	    \item {[Aplicación de Usuario]} Envía la marca de tiempo actual. \hyperref[SUB-M-CU5:TB]{[Trayectoria alternativa B]} 
-	    \item {[Servidor]} Recibe la petición, busca los valores almacenados hasta el momento del día de la marca de tiempo. \hyperref[SUB-M-CU5:TC]{[Trayectoria alternativa C]}
-	    \item {[Servidor]} Envía los valores correspondientes \hyperref[SUB-M-CU5:TD]{[Trayectoria alternativa D]} 
-	    \item {[Aplicación de Usuario]} Recibe los valores de monitoreo, muestra la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} con los datos obtenidos. \hyperref[SUB-M-CU5:TE]{[Trayectoria alternativa E]}
+	    \item {[Servidor Embebido]} Transcurre el tiempo establecido en la regla de negocio \ref{RN6}.
+	    \item {[Servidor Embebido]} Obtiene por cada nodo de cada microcontrolador su valor en tiempo real. \hyperref[SUB-M-CU1.5:TB]{[Trayectoria Alternativa A]} \hyperref[SUB-M-CU1.5:TB]{[Trayectoria Alternativa B]}
+	    \item {[Servidor Embebido]} Espera al término del minuto cuando sea propicio.
+		\item {[Servidor Embebido]} Retorna al primer paso de \hyperref[SUB-M-CU1.5:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin del caso de uso.
 
-\paragraph{Trayectoria alternativa A} \label{SUB-M-CU5:TA}
-	El usuario ya esta en la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]}
+%TA? El sensor recibe una trama de no acuse de recibo por el microcontrolador. \hyperref[SUB-M-CU1.5:TP]{[Trayectoria Principal]}
+\paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.5:TA}
+	El archivo de tiempo real no existe.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y envía la marca de tiempo como petición al servidor. \hyperref[SUB-M-CU5:TF]{[Trayectoria alternativa F]} 
-		\item {[Servidor]} Recibe la petición, busca en sus registros por el valor correspondiente a la marca de tiempo. \hyperref[SUB-M-CU5:TC]{[Trayectoria alternativa C]} 
-		\item  {[Servidor]} Envía el valor correspondiente \hyperref[SUB-M-CU5:TG]{[Trayectoria alternativa G]}
-        \item {[Aplicación de Usuario]} Recibe el valor de monitoreo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} con el dato obtenido.
-        \hyperref[SUB-M-CU5:TH]{[Trayectoria alternativa H]}
-        \item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
+		\item {[Servidor Embebido]} Guarda como valor de producción en el archivo de tiempo real y de muestras del dia -1, que indica error con el servicio del microcontrolador.
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa. Regresa al paso 3 de \hyperref[SUB-M-CU1.5:TP]{[Trayectoria Principal]}  
 
-\paragraph{Trayectoria alternativa B} \label{SUB-M-CU5:TB}
-	Sin conexión con el servidor.
+\paragraph{Trayectoria alternativa B} \label{SUB-M-CU1.5:TB}
+	El archivo de tiempo real tiene una hora atrasada.
 	\begin{enumerate}[label=B\arabic*.]
-		\item {[Aplicación de usuario]} Muestra la pantalla emergente \hyperref[fig:Error de Conexion]{[PE1-Error de Conexión]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
+		\item {[Servidor Embebido]} Guarda como valor de producción en el archivo de tiempo real y de muestras del dia -1, que indica error con el servicio del microcontrolador.  
 	\end{enumerate}
-	Fin de la trayectoria alternativa.
-
-\paragraph{Trayectoria alternativa C} \label{SUB-M-CU5:TC}
-	La marca de tiempo requerida no existe en el servidor o es nulo su valor asociado.
-	\begin{enumerate}[label=C\arabic*.]
-		\item {[Servidor]} Asigna el valor -1 a la respuesta para la aplicación de usuario.
-		\item {[Aplicación de usuario]} Regresa al punto 4 de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
-
-\paragraph{Trayectoria alternativa D} \label{SUB-M-CU5:TD}
-	Sin conexión con el cliente.
-	\begin{enumerate}[label=D\arabic*.]
-		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Al no recibir respuesta del servidor en ese intervalo, muestra la pantalla emergente \hyperref[fig:Error de Conexion]{[PE1-Error de Conexión]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
-	
-\paragraph{Trayectoria alternativa E} \label{SUB-M-CU5:TE}
-	El valor de respuesta es -1
-	\begin{enumerate}[label=E\arabic*.]
-		\item {[Aplicación de usuario]} Muestra la pantalla emergente \hyperref[fig:Error en el Servidor]{[PE2-Error en el Servidor]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TP]{[Trayectoria Principal]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
-	
-\paragraph{Trayectoria alternativa F} \label{SUB-M-CU5:TF}
-	Sin conexión con el servidor.
-	\begin{enumerate}[label=F\arabic*.]
-		\item {[Aplicación de usuario]} Asigna 0 como valor de monitoreo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]}  y genera la notificación \hyperref[fig:Alerta Conexion]{[N1-Alerta de Conexión]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
-	
-\paragraph{Trayectoria alternativa G} \label{SUB-M-CU5:TG}
-	Sin conexión con el cliente.
-	\begin{enumerate}[label=G\arabic*.]
-		\item {[Servidor]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN6} y al no recibir respuesta del servidor en ese intervalo, asigna 0 como valor de generación de esa marca de tiempo, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta Conexion]{[N1-Alerta de Conexión]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
-	
-\paragraph{Trayectoria alternativa H} \label{SUB-M-CU5:TH}
-	El valor de generación es -1
-	\begin{enumerate}[label=H\arabic*.]
-		\item {[Aplicación de usuario]} Asigna como valor de generación 0, actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta Servidor]{[N3-Alerta de Servidor]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
-	
-\paragraph{Trayectoria alternativa I} \label{SUB-M-CU5:TI}
-	El valor de generación es 0
-	\begin{enumerate}[label=I\arabic*.]
-		\item {[Aplicación de usuario]}  Actualiza la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Monitoreo En Tiempo real]} y genera la notificación \hyperref[fig:Alerta Generacion]{[N2-Alerta de Generación]}.
-		\item {[Aplicación de usuario]} Regresa al final de \hyperref[SUB-M-CU5:TA]{[Trayectoria alternativa A]}
-	\end{enumerate}
-	Fin de la trayectoria alternativa.
+	Fin de la trayectoria alternativa. Regresa al paso 3 de \hyperref[SUB-M-CU1.5:TP]{[Trayectoria Principal]}  

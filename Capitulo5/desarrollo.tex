@@ -2,20 +2,20 @@
 %                           Marco Conceptual                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Desarrollo del Sitema}\label{chapter5}
+\chapter{Desarrollo del Sistema}\label{chapter5}
 
 En este capitulo se cubre el desarrollo del sistema descrito en capítulos anteriores tomando como referencia los casos de uso, abarcando cada uno de los módulos que lo componen.
 
 \section{Módulo del Microcontrolador}
 
 \subsection{Objetivo}
-El caso de uso \ref{SUB-M-CU1.3} nos indica que el microcontrolador debe consultar el dispositivo de adquisicion MCP39F521 para conseguir el valor de potencia activa por medio del protocolo IIC, para lograr esta tarea, nos apoyamos en las hojas de datos de los fabricantes, debemos programar el microcontrolador DSPIC30F4013, para ello ocupamos el entorno de desarrollo del fabricante (mplab de Microchip) para crear un proyecto en lenguaje C e interfaz con ensamblador, el entorno de desarrollo de microchip facilita la programación de sus microcontroladores gracias a que tiene bibliotecas y compiladores listos para usarse.
+Implementar los casos de uso \ref{SUB-M-CU1.1} (SUB-M-CU1.1) y \ref{SUB-M-CU1.2} (SUB-M-CU1.2), que nos indican que el microcontrolador debe consultar el dispositivo de adquisición MCP39F521 para conseguir el valor de potencia activa por medio del protocolo IIC y enviar esta información hacia el servidor embebido por medio del módulo WiFi, para lograr estas tareas, nos apoyamos en las hojas de datos de los fabricantes, debemos programar el microcontrolador DSPIC30F4013, para ello ocupamos el entorno de desarrollo del fabricante (mplab de Microchip) para crear un proyecto en lenguaje C y ensamblador, el entorno de desarrollo de microchip facilita la programación de sus microcontroladores gracias a que tiene bibliotecas y compiladores listos para usarse.
 
-\subsection{Configurando conexión con el dispositivo de adquisición}
-Lo primero que debemos conocer es cual es el registro de control de IIC en el microcontrolador, esto podemos encontrarlo en la hoja técnica del microcontrolador, el registro de control, entre otras funciones, habilita la comunicación IIC, configura la velocidad del reloj IIC, recordando que es un protocolo de transmisión de información síncrona por el uso de una linea de reloj, que en la hoja técnica del dispositivo de adquisición nos indica que es de 400KHz.
+\subsection{Configurando la comunicación con el dispositivo de adquisición}
+Lo primero que debemos conocer es como configurar la comunicación IIC del dispositivo de adquisición, el registro de control de IIC en el microcontrolador podemos encontrarlo en su hoja técnica (Página 89) \citep{DatasheetDSPIC30F4013}, el registro de control, entre sus funciones, habilita la comunicación IIC y configura la velocidad del reloj IIC, en la hoja técnica del dispositivo de adquisición nos indica que esta frecuencia es de 400KHz (Página 1) \citep{DatasheetDSPIC30F4013} y por lo tanto el microcontrolador debe trabajar a esta velocidad para poder lograr la comunicación, recordando que es un protocolo de transmisión de información síncrona por el uso de una linea de reloj.
 
 \paragraph{}
-Una ves configurados esos dos parámetros, físicamente solamente necesitamos conectar los pines de SDA (linea de datos), SCL (linea de reloj), VCC y GND de ambos, este dispositivo de adquisición ya contiene en sus registros los valores de potencia, voltaje y corriente entre otros, que son convertidos y acondicionados automáticamente con el ADC y Filtro Digital que tiene integrado como se muestra en la figura \ref{fig:Diagrama funcional} .
+Una ves configurada la comunicación, físicamente solamente necesitamos interconectar los pines de SDA (linea de datos), SCL (linea de reloj), VCC y GND de microcontrolador con dispositivo, este dispositivo ya contiene en sus registros los valores de potencia, voltaje y corriente entre otros que se pueden encontrar en el mapa de registros \ref{fig:Mapa de registros del MCP39F521}, que son convertidos y acondicionados automáticamente con el ADC y Filtro Digital que tiene ya integrado \ref{fig:Diagrama funcional} .
 
 \begin{figure}[H]
 	\centering
@@ -33,7 +33,7 @@ Una ves configurados esos dos parámetros, físicamente solamente necesitamos co
 
 \subsection{Comunicación con el dispositivo de adquisición vía software}
 
-La comunicación IIC con el dispositivo de adquisicion se realiza, principalmente con los siguientes comandos definidos por el protocolo:
+La comunicación IIC con el dispositivo de adquisición a nivel software se realiza, principalmente con los siguientes comandos definidos por el protocolo:
 
 \begin{enumerate}
     \item Inicio de comunicación (START)
@@ -85,7 +85,7 @@ ESPERA_ENVIA_DATO_I2C:
 
 \subsection{Escritura de comandos para el dispositivo de adquisición}
 
-En la figura \ref{fig:Comando de escritura} se muestra la estructura de un byte de control para la escritura de un comando, con un bit de inicio, un byte de control que indica hacia qué dispositivo nos dirigiremos, A1 y A0 son los bits de direccionamiento, podemos dirigirnos hacia 4 diferentes esclavos, en este caso al tener solo uno, la dirección será “00”, seguido del bit que indica si será una operación de lectura o escritura, al ser escritura toma el valor de cero, formando como byte de control “11101000”.
+En la figura \ref{fig:Comando de escritura} se muestra la estructura de un byte de control para la escritura de un comando, contiene un bit de inicio, un byte de control que indica hacia qué dispositivo nos dirigiremos, A1 y A0 son los bits de direccionamiento, podemos dirigirnos hacia 4 diferentes dispositivos esclavos, en este caso al tener solo uno, la dirección será “00”, seguido del bit que indica si será una operación de lectura o escritura, al ser escritura toma el valor de cero, formando como byte de control “11101000”.
 
 \begin{figure}[H]
 	\centering
@@ -94,13 +94,13 @@ En la figura \ref{fig:Comando de escritura} se muestra la estructura de un byte 
 	\label{fig:Comando de escritura}
 \end{figure}
 
-El byte de control, indica al dispositivo de adquisición que vamos a iniciar una lectura, este es seguido por un marco o marcos de comandos a ejecutar como sse muestra en la figura \ref{fig:Marco de escritura de lectura} , están compuestos por una cabecera, cuantos bytes se recibirán, el o los comandos a ejecutar y un checksum para verificar que la información llego completa y correcta, éste se calcula sumando los datos mencionados y dividiéndolos entre 256, el residuo de esta división es el checksum.
+Este byte de control, indica al dispositivo de adquisición que vamos a iniciar una lectura, este es seguido por un marco o marcos de comandos a ejecutar como se muestra en la figura \ref{fig:Marco de escritura de lectura} , están compuestos por una cabecera, cuantos bytes se recibirán, el o los comandos a ejecutar y un checksum para verificar que la información llego completa y correcta, éste se calcula sumando los datos descritos y dividiéndolos entre 256, el residuo de esta división es el checksum.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.4]{Capitulo5/images/marco_write_command.png}
-	\caption{Marco lectura}
-	\label{fig:Marco de escritura de lectura }
+	\caption{Marco para la escritura de un comando de lectura}
+	\label{fig:Marco de escritura de lectura}
 \end{figure}
 
 Traducido a código en lenguaje c, la rutina que escribe un comando de lectura de registro se ve de la siguiente forma:
@@ -149,9 +149,14 @@ unsigned char enviaComando (
 
 \end{lstlisting}
 
+Por ejemplo, si queremos conocer el valor de la frecuencia, debemos mandar con la función definida, la señal de inicio de comunicación START y el byte de control de escritura hacia el sensor cero (0xE8), esperar a recibir el acuse de recibo (ACK), enviar la cabecera del marco (A5), el número de bytes que tendrá el marco (contando desde la cabecera hasta el checksum: 0x08), la dirección del registro a leer del mapa, separado en la parte alta y baja (0x00 , 0x08), el comando de lectura de registro (0x4E), el número de bytes a leer, el registro de voltaje tiene una longitud de dos bytes (0x02) y el checksum (0x46), sumado desde el byte de cabecera del marco (0x44) por ultimo, recibiremos el acuse de recibo (ACK) y terminamos la comunicación con un STOP:
+
+\paragraph{}
+\framebox[\linewidth]{START() 0xE8 ACK() 0xA5 0x08 0x41 0x00 0x08 0x4E 0x02 0x46 ACK() STOP()}\par
+
 \subsection{Lectura de respuesta del dispositivo de adquisición}
 
-Ahora que logramos comunicarnos con el sensor para requerir la lectura de su o sus registros, necesitamos conocer la respuesta resultante, para ello tenemos que seguir el formato del byte de control de lectura de respuesta del dispositivo esclavo que el fabricante indica en la figura \ref{fig:Comando de lectura de respuesta} , tiene un bit de inicio, un byte de control, que nos indica a qué dispositivo esclavo nos dirigimos, en este caso una vez más al “00”, seguido del bit que indica si será una operación de lectura o escritura, al ser lectura toma el valor de uno, formando como byte de control “11101001” seguido de los marcos de respuesta.
+Ahora que logramos comunicarnos con el sensor para requerir la lectura de su o sus registros, necesitamos conocer la respuesta resultante, para ello tenemos que seguir el formato del byte de control de lectura de respuesta del dispositivo esclavo como el fabricante indica y se muestra en la figura \ref{fig:Comando de lectura de respuesta} , tiene un bit de inicio, un byte de control, que nos indica a qué dispositivo esclavo nos dirigimos, en este caso una vez más al “00”, seguido del bit que indica si será una operación de lectura o escritura, al ser lectura toma el valor de uno, formando como byte de control “11101001” seguido de los marcos de respuesta.
 
 \begin{figure}[H]
 	\centering
@@ -160,13 +165,13 @@ Ahora que logramos comunicarnos con el sensor para requerir la lectura de su o s
 	\label{fig:Comando de lectura de respuesta}
 \end{figure}
 
-Después del envió del byte de control, recibimos los marcos de respuesta que se muestran en la figura \ref{fig:Marco de respuesta del Dispositivo de Adquisición MCP39F521} , que nos indican un acuse especial con valor de 6 hexadecimal, seguido de el numero de bytes que lo conforman, los bytes de información y finalmente un checksum.
+Después del envió del byte de control, recibimos los marcos de respuesta que se muestran en la figura \ref{fig:Marco de respuesta} , que nos indican un acuse especial con valor de 6 hexadecimal, seguido de el numero de bytes que lo conforman, los bytes de información y finalmente un checksum.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.7]{Capitulo5/images/responde_frame.png}
 	\caption{Marco de respuesta para el dispositivo de adquisición MCP39F521}
-	\label{fig:Marco de respuesta del Dispositivo de Adquisición MCP39F521}
+	\label{fig:Marco de respuesta}
 \end{figure}
 
 Traducido a código en lenguaje c, la rutina que escribe un comando de lectura de respuesta se ve de la siguiente forma:
@@ -212,22 +217,26 @@ unsigned char leeRespuesta(unsigned char direccion)
 
 \end{lstlisting}
 
+
+Por ejemplo, si queremos leer la respuesta a la lectura del registro de frecuencia, se envia la señal de inicio de comunicación START y el byte de control de lectura hacia el dispositivo cero (0xE9), esperar a leer el acuse de recibo (ACK), el numero de bytes que se reciben del dispositivo esclavo, al valor que se recibe se restan tres bytes: acuse, checksum y numero de bytes (0x05). A continuación de reciben los bytes de datos (0x66 , 0xEA) que finalizan con un checksum y terminamos la comunicación con un STOP:
+
+\paragraph{}
+\framebox[\linewidth]{START() 0xE9 ACK() 0x05 0x66 0xEA 0x55 ACK() STOP()}\par
+
 \subsection{Envío de muestras al servidor vía Wi-Fi}
 
-Con estas éstas dos rutinas, conseguimos en bytes, la información del voltaje, corriente, factor de potencia, frecuencia, potencia aparente, activa y reactiva de un panel solar, estos bytes los enviamos por medio del módulo Wi-Fi por medio de la interfaz de comunicación UART, la conexión física de este módulo Wi-Fi es senculla, usa un estandarde pines para su montura llamado mikrobus \ref{fig:Mikrobus}, que principalmente tiene un transmisor (TX), receptor (RX), ChipSelect (CS) así como GND y VCC. 
-
+Con estas éstas dos rutinas, conseguimos en bytes, la información de los registros que requiramos con el comando de lectura de registro, para nuestro caso, traeremos el valor del voltaje, corriente, factor de potencia, frecuencia, potencia aparente, activa y reactiva de un panel solar, estos bytes los enviamos por medio del módulo Wi-Fi por medio de la interfaz de comunicación UART, la conexión física de este módulo Wi-Fi es sencilla, usa un estándar de pines para su montura llamado mikrobus (\ref{fig:Mikrobus}), que principalmente tiene un transmisor (TX), receptor (RX), ChipSelect (CS) así como GND y VCC. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.7]{Capitulo5/images/read_command.png}
+	\includegraphics[scale=.2]{Capitulo2/images/mikrobus.png}
 	\caption{Estándar de Pines Mikrobus}
 	\label{fig:Mikrobus}
 \end{figure}
 
-Para poder usar el modulo WiFi a nivel programación, debemos primero, configurar sus los registros de configuración del modulo UART, el MCP30F4013 tiene 2 interfaces UART, pero la segunda es la que tiene el acomodo para el estándar mikrobus, debemos activar la interfaz UART, configurar la velocidad de transición de información, esto se calcula dividiendo la frecuencia de trabajo de nuestro microcontrolador (1.8*10\^6) entre el Baudaje del modulo Wi-FI, que es de 115200 Baudios.
+Para poder usar el modulo WiFi a nivel programación, debemos primero, configurar los registros de configuración del modulo UART, el MCP30F4013 tiene 2 interfaces UART, pero la segunda es la que tiene el acomodo para el estándar mikrobus, debemos activar la interfaz UART por medio de su registro de configuracion en el microcontrolador, configurar la velocidad de transición de información, esto se calcula dividiendo la frecuencia de trabajo de nuestro microcontrolador (1.8 MHz) entre el Baudaje del módulo Wi-FI, que es de 115200 Baudios.
 
-Después, debemos configurar las interrupciones, de manera que cuando se coloque un dato en el registro que envia datos del modulo Wi-Fi, este automáticamente lo envíe.
-
+Después, debemos configurar la interrupción del transmisor UART, de manera que cuando se reciba un dato en el registro receptor, podamos proseguir con otras operaciones sin tener que retardar el proceso de configuracion o envío.
 
 \begin{lstlisting}[language=C]
 
@@ -261,7 +270,7 @@ void iniprograma(){
 
 \end{lstlisting}
 
-Lo que prosigue una vez configurada la comunicación UART con el módulo Wi-Fi, es configurar la red del mismo, esto se realiza con comandos AT, dónde configuramos la red a la que nos conectaremos, el protocolo de envió de paquetes, en este caso UDP, a que IP y Puerto nos dirigimos, donde indico la dirección del servidor y cuantos bytes de información se enviaran.
+Una vez configurada la comunicación UART con el módulo Wi-Fi, es configurar la red del mismo, esto se realiza con comandos AT, dónde configuramos la red a la que nos conectaremos, el protocolo de envió de paquetes, en este caso UDP, a que IP y Puerto nos dirigimos, donde indico la dirección del servidor y cuantos bytes de información se enviarán.
 
 \begin{lstlisting}[language=C]
 //Configuracion del modulo WIFI
@@ -371,7 +380,7 @@ En la consola de la computadora, vemos la siguiente información impresa en pant
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=.3]{Capitulo5/images/consola.png}
-	\caption{R}
+	\caption{Respuesta proveniente del sensor a un comando de lectura de su registro}
 	\label{fig:consola}
 \end{figure} 
 
@@ -417,12 +426,311 @@ while True:
 \end{lstlisting}
 
 Y el resultado de este programa, es la captura de paquetes que tienen una longitud de 21 Bytes:
+\begin{itemize}
+    \item Byte 1 y 2: El numero de serie del microcontrolador en código ASCII.
+    \item Byte 3: El numero de esclavo.
+    \item Byte 4 y 5 : El valor del voltaje.
+    \item Byte 6 y 7 : El valor de la frecuencia.
+    \item Byte 8 y 9 : El valor de la corriente.
+    \item Byte 10,11,12 y 13 : El valor de la potencia aparente.
+    \item Byte 14,15,16 y 17 : El valor de la potencia activa.
+    \item Byte 18,19,20 y 21 : El valor del factor de potencia.
+\end{itemize}
 
-Byte 1 y 2: El numero de serie del microcontrolador en código ASCII
+Los valores que tienen mas de un byte, son enviados empezando por el byte menos significativo y terminando con el byte más significativo, esto es porque son valores decimales, a los bytes que se consiguen se les hace un corrimiento de bits para conseguir el valor original.
+A continuación se muestra la captura de paquetes UDP procedentes del microcontrolador, cada paquete trae 21 bytes que se muestran en valor decimal en consola:
 
-Byte 3: El numero de esclavo en valor decimal
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/paquetes_recibidos.png}
+	\caption{Programa capturador de paquetes enviados por el microcontrolador en valor decimal}
+	\label{fig:respuesta sensor}
+\end{figure} 
 
-Byte 4 y 5 : El valor del voltaje actual, esta dividido en dos bytes, consiguiendo el byte menos significativo, de esta forma conseguimos un valor flotante.
+
+De está manera se concluye la funcionalidad de la obtención y envió vía Wi-Fi de mediciones de potencia producida por un panel solar.
+
+\section{Módulo del Servidor Embebido}
+
+\subsection{Objetivo}
+Implementar la funcionalidad descrita en los casos de uso \ref{SUB-M-CU1.3} (SUB-M-CU1.3), \ref{SUB-M-CU1.4} (SUB-M-CU1.4) y \ref{SUB-M-CU1.5} (SUB-M-CU1.5), dónde indicamos que nuestros servicios estarán alojados en un servidor web en el sistema embebido RaspBerry Pi 3. Los servicios que este ofrecerá son:
+
+\begin{itemize}
+    \item Configurar el entorno del servidor embebido
+    \item Capturar y consumir paquetes UDP provenientes de los distintos microcontroladores para el calculo de producción de energía, monitoreo y gráficas \ref{SUB-M-CU1.3} (SUB-M-CU1.3).
+    \item Consultar y almacenar cada minuto la generación de cada nodo \ref{SUB-M-CU1.5} (SUB-M-CU1.5).
+    \item Atender a las peticiones de la aplicación móvil sobre la información de un nodo o de la red de sensores \ref{SUB-M-CU1.4} (SUB-M-CU1.4).
+\end{itemize}
+
+\subsection{Configurar el servidor embebido}
+
+Utilizaremos el SBC Raspberry Pi 3 \citep{MarcoTeorico19} como servidor de aplicaciones y almacén de datos, para poder lograr esto, usaremos como sistema operativo Ubuntu Core de Linux, especialmente hecha para esta tarjeta, los pasos para cargar la imagen del sistema se describen en \citep{InstallUbuntuCore}, los pasos son:
+
+\begin{itemize}
+    \item Descargar la imagen de Ubuntu Core (2.42 GB) de la página oficial de Canonical.
+    \item Formatear una memoria MicroSD (en nuestro caso con una capacidad de 16GB) y copiar en el la imagen de Ubuntu Core en él.
+    \item Introducir la memoria en la ranura de la Raspberry Pi 3, conectar a el un cable Ethernet un teclado y monitor.
+\end{itemize}
+
+Para formatear la memoria, utilizamos la herramienta de MacOS de gestión de discos, que nos permite formatear volúmenes en el formato DOS FAT 32 que requiere la imagen, debemos asignarle un nombre al volumen que deberemos recordar para el siguiente paso, el resultado del formato se muestra en la figura \ref{fig:formato}.
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/format.png}
+	\caption{Dando formato a la tarjeta SD}
+	\label{fig:formato}
+\end{figure} 
+
+Ahora debemos desmontar el volumen y copiar en el la imagen descargada, para conocer el nombre del volumen de la memoria usamos el comando \hl{diskutil list}, buscando la ruta con el nombre de nuestro volumen y lo desmontamos con el comando \hl{diskutil unmountDisk rutaVolumen} el resultado de estos dos comandos se muestra en la figura \ref{fig:desmonataje}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.4]{Capitulo5/images/unmount.png}
+	\caption{Desmontando volumen de memoria SD}
+	\label{fig:desmonataje}
+\end{figure} 
+
+Copiamos la imagen del sistema operativo a la memoria con el comando \hl{lsudo sh -c 'gunzip -c ~/rutaImagen.img.xz   | sudo dd of=rutaVolumen bs=32m} y nos debe dar una salida en consola como la que se muestra en la figura \ref{fig:copia}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/copyimg.png}
+	\caption{Copiando imagen de sistema operativo a memoria SD}
+	\label{fig:copia}
+\end{figure} 
 
 
+Ahora conectamos la Raspberry un monitor con un cable HDMI, un cable ethernet hacia el módem telefónico, un teclado y a la fuente de alimentación como se muestra en la figura \ref{fig:conexion}, debemos crear una cuenta en Ubuntu para asociar un correo electrónico a una llave pública para poder hacer el inicio de sesión remotamente vía ssh, la llave publica se genera con el comando \hl{ssh-keygen -t rsa -b 4096 -C correoasociado@gmail.com} que nos generará dos llaves como se muestra en la figura \ref{fig:llave}, debemos copiar el contenido de la llave pública a el llavero de Ubuntu en su página como se muestra en la figura \ref{fig:ubuntullave}, finalmente, el sistema embebido nos mostrará un mensaje como el de la figura \ref{fig:primer arranque} con el que nos indicara como iniciar sesion vía SSH, ingresando ese comando en una computadora podemos acceder al sistema embebido remotamente \ref{fig:login} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.25]{Capitulo5/images/rasp.png}
+	\caption{Conexión de Raspberry}
+	\label{fig:conexion}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/ssh_keygen.png}
+	\caption{Generando llave pública}
+	\label{fig:llave}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/sshkey.png}
+	\caption{Agregando la llave pública a la cuenta asociada a Ubuntu}
+	\label{fig:ubuntullave}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.15]{Capitulo5/images/first_boot.jpg}
+	\caption{Primer arranque del sistema listo para ser utilizado}
+	\label{fig:primer arranque}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/login.png}
+	\caption{Acceso al servidor embebido de manera remota via SSH}
+	\label{fig:login}
+\end{figure} 
+
+
+Con estos pasos, ya tenemos un servidor que es capaz de correr aplicaciones, almacenar hasta 13GB de información en nuestro caso por la capacidad de la memoria SD y con conexión a la red local o inclusive pública si contamos con un proveedor de internet que nos proporcione una IP pública.
+
+
+\subsection{Creando servicios en Ubuntu Linux}
+
+Todos los programas a implementar serán ejecutados en el sistema embebido como servicios, para ello debemos crear un archivo de configuración por cada uno de los servicios que se ofrecerán con el comando \hl{sudo vi /lib/systemd/system/nombreServicio.service} en el que escribiremos la siguiente configuración:
+
+\begin{lstlisting}
+[Unit]
+Description=Dummy Service
+After=multi-user.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /direccion/de/programa.py
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target
+\end{lstlisting}
+
+Reiniciamos el contenedor de demonios del sistema con \hl{sudo systemctl daemon-reload} , habilitamos el servicio que creamos con \hl{sudo systemctl enable nombreServicio.service} e iniciamos su ejecución con \hl{sudo systemctl start nombreServicio.service}.
+
+\subsection{Implementando el servicio de captura y consumo de paquetes UDP provenientes de los microcontroladores}
+
+Este servicio está implementado en el lenguaje de programación Python en su versión 3.0, su propósito es capturar y almacenar en archivos en formato JSON la información proveniente de los sensores de los microcontroladores como indica el caso de uso \ref{SUB-M-CU1.9}, elaboramos un diagrama de flujo para simplificar la explicación de la lógica del programa \ref{fig:programa del servidor microcontrolador}, es importante destacar que estamos usando la técnica de duplicación de procesos (fork en inglés) para duplicar el proceso principal (padre) que conecta y recibe el paquete proveniente de un microcontrolador, delegándole las tareas consecuentes al proceso derivado (hijo), de manera que, el servidor es capaz de conectar más clientes sin tener que perder tiempo en su atención, este programa corre como un servicio en nuestro servidor Linux, es decir, está en ejecución de manera independiente y continua en segundo plano siempre y cuando el servidor no sea reiniciado o apagado.
+
+Para poder identificar bien en el diagrama siguiente que información se esta manipulando, nos apoyamos del modelo de información del servidor embebido  \ref{fig:Base_ServidorEmbebido} enfatizándolo con negritas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/logica_server_udp.png}
+	\caption{Lógica del programa del servidor del microcontrolador}
+	\label{fig:programa del servidor microcontrolador}
+\end{figure} 
+
+Para poder comprobar su funcionamiento, redirigimos los paquetes del programa del microcontrolador hacia la IP y puerto 4000 UDP del servidor, teniendo como resultado en consola lo que se muestra en la figura \ref{fig:consola server udp}, donde se muestran las conexiones del microcontrolador, estos mensajes llegan aproximadamente cada segundo más décimas de segundo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/udp_server_console.png}
+	\caption{Salida de consola del servicio servidor UDP}
+	\label{fig:consola server udp}
+\end{figure} 
+
+Los archivos que consume este servicio dan como resultado lo mostrado en las siguientes imágenes.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/dirlist.png}
+	\caption{Listado de archivos creados por el servicio de de captura}
+	\label{fig:}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/real_time.png}
+	\caption{Archivo con la muestra de tiempo real}
+	\label{fig:}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/daily.png}
+	\caption{Extracto de las 31 muestras de producción de energía acumulada por cada día de un mes}
+	\label{fig:}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/monthly.png}
+	\caption{Extracto de las 12 muestras de producción de energía acumulada por cada mes del año}
+	\label{fig:}
+\end{figure} 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/yesterday.png}
+	\caption{Extracto del archivo de 1440 con las muestras de producción de energía para la gráfica de cada minuto del día de ayer}
+	\label{fig:}
+\end{figure} 
+
+A continuación, se realizaron pruebas de estrés al servicio para conocer que tanta carga soporta una instancia del servidor
+
+
+\subsection{Implementando el servicio de creación de gráficas del día actual}
+
+Identificamos que lo mas conveniente sería independizar este proceso de la captura de paquetes para con el propósito de modularizar el sistema y lograr un bajo acoplamiento, implementando la lógica como se muestra en la figura \ref{fig:programa graficador}, la información de gráficas también se guarda en formato JSON, que nos permite hacer mas sencillo la compatibilidad con distintos lenguajes.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/logica_graficador.png}
+	\caption{Lógica del programa graficador}
+	\label{fig:programa graficador}
+\end{figure} 
+
+El resultado de este programa se ve reflejado en los archivos de muestras diarias, como se muestra en la figura \ref{fig:muestras diarias}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/today.png}
+	\caption{Extracto del archivo de 1440 con las muestras de producción de energía para la gráfica de cada minuto del día de hoy}
+	\label{fig:muestras diarias}
+\end{figure} 
+
+\subsection{Implementando el servicio de atención a clientes de aplicación móvil}
+
+Este servicio esta implementado en el lenguaje de programación Python en su versión 3.0, su propósito es atender las peticiones provenientes de la aplicación móvil como indica el caso de uso \ref{SUB-M-CU1.10}, elaboramos un diagrama de flujo para simplificar la explicación de la lógica del programa \ref{fig:programa del servidor aplicacion}, también hicimos uso de la duplicación de procesos para aumentar el rendimiento del programa, este programa corre como un servicio en nuestro servidor Linux.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.4]{Capitulo5/images/logica_server_tcp.png}
+	\caption{Lógica del programa del servidor de la aplicación}
+	\label{fig:programa del servidor aplicacion}
+\end{figure} 
+
+Para probar su funcionamiento, se realizaron las peticiones posibles hacia el servidor:
+
+Comando: \hl{getdata AA 0 realtime}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/get_data.png}
+	\caption{Respuesta del comando para conseguir la información del el archivo de tiempo real}
+	\label{fig:}
+\end{figure} 
+
+Comando: \hl{getinfo}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/get_info.png}
+	\caption{Respuesta del comando que trae la información del árbol de información del servidor}
+	\label{fig:}
+\end{figure} 
+
+Comando: \hl{connect}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/connect.png}
+	\caption{Respuesta a conocer si el servidor tiene ya una contraseña, nos indica que no hay contraseña}
+	\label{fig:}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.35]{Capitulo5/images/listconfig.png}
+	\caption{Ubicación del archivo de configuración, en el directorio raíz con el nombre de config.json}
+	\label{fig:}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/nullconfig.png}
+	\caption{Archivo de configuración con variables sin asignar}
+	\label{fig:}
+\end{figure} 
+
+Comando: \hl{setpassword Secret1 smonitorp@gmail.com}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/set_password.png}
+	\caption{Respuesta al comando que configura la contraseña}
+	\label{fig:}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.6]{Capitulo5/images/setconfig.png}
+	\caption{Archivo de configuración con variables asignadas después del setpassword}
+	\label{fig:}
+\end{figure} 
+
+Comando: \hl{getpassword Secret1}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/forgot_pass.png}
+	\caption{Respuesta a verificación de constraseña}
+	\label{fig:}
+\end{figure} 
+
+Comando: \hl{forgotpassword}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/forgot_pass.png}
+	\caption{Respuesta del envió del correo, 'ok' si es exitoso, 'error' si el envió fue fallido}
+	\label{fig:}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.2]{Capitulo5/images/correo.jpg}
+	\caption{Correo resultado del comando forgotpassword}
+	\label{fig:}
+\end{figure}
 

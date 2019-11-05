@@ -1,49 +1,56 @@
-\subsubsection{SUB-M-CU1.1-Calcular promedio diario de energía sensada}\label{SUB-M-CU1.1}
-El promedio de energía que es sensada diariamente, es calculado tomando en cuenta las especificaciones de la Regla de Negocio \ref{RN5}, este cálculo se realiza diariamente cuando el periodo diario de toma de muestras especificado en la Regla de Negocio \ref{RN6} culmina.
-
+%Dudas para revisión:
+%   *Condiciones de término
+%   *Errores checar si los 3 son correctos
+%   *Trayectoria principal
+% Agregar regla de negocio de IIC Time Out and Clock Stretching? Si se agrega, incluir la RN en la tabla
+\subsubsection{SUB-M-CU1.1-Consultar medición del sensor en tiempo real}\label{SUB-M-CU1.1}
+El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la Regla de Negocio \ref{RN1}; dichas mediciones son enviadas al microcontrolador por medio del protocolo IIC.
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
-		SUB-M-CU1.1 Calcular promedio diario de energía sensada \\ \hline
+		SUB-M-CU1.1-Consultar medición del sensor en tiempo real \\ \hline
 	\textbf{Objetivo} &
-		Obtener el promedio diario del total de muestras tomadas durante el día para su posterior almacenamiento. \\ \hline
+		Enviar las mediciones obtenidas por el sensor hacia el microcontrolador por medio del protocolo IIC, para que estas puedan ser procesadas por el sistema embebido. \\ \hline
 	\textbf{Actores} &
-		Servidor embebido \\ \hline 
+	    \begin{itemize}
+		    \item Microcontrolador
+		    \item Sensor
+		\end{itemize}\\ \hline 
 	\textbf{Disparador} & 
-		La última muestra del día fue tomada y el periodo de toma de muestras especificado en la Regla de Negocio \ref{RN6} ha culminado. \\ \hline 
+		El sensor recibe por medio del protocolo IIC, una trama que contiene la instrucción de lectura solicitada por el microcontrolador, para obtener los valores de la medición realizada por el sensor. \\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-				\item Muestras almacenadas del sistema fotovoltaico de acuerdo con la Regla de Negocio \ref{RN6} durante el día.
+				\item {[Microcontrolador]} Trama que contiene la instrucción de lectura de medición del sensor.
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
-		\begin{itemize}
-			\item Cantidad promedio de muestras sensadas diariamente por el sistema fotovoltaico.
-			\item Fecha del día actual en la que se realiza el cálculo.
-		\end{itemize} \\ \hline
-	\textbf{Precondiciones} &
-		Ninguna.\\ \hline
+	    \begin{itemize}
+	        \item {[Sensor]} Trama de respuesta de lectura de medición del sensor.
+	    \end{itemize}\\ \hline
+	\textbf{Precondiciones} & 
+		Ninguna \\ \hline
 	\textbf{Postcondiciones} &
 		\begin{itemize}
-			\item El promedio calculado junto con la fecha del día en curso son almacenados.
-		\end{itemize}\\ \hline
+			\item La trama de respuesta que contiene la información de la medición obtenida es recibida por el microcontrolador.
+		\end{itemize} \\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-			\item Se obtiene un número flotante que representa el promedio diario de energía que ha sido sensada.
-			\item Se obtiene la fecha del día en curso del cual se realiza el promedio.
-		\end{itemize} \\ \hline 
+		    \item El microcontrolador valida la trama de respuesta enviada por el sensor.
+			%DUDA:\item El sensor recibe la trama de acuse de recibido por el microcontrolador.
+		\end{itemize} 
+		\\ \hline 
 	\textbf{Prioridad} & 
 		Alta. \\ \hline
-	\textbf{Errores} & 
-	    Ninguno
-		%\begin{itemize}
-		%\end{itemize} 
-		\\ \hline
+	\textbf{Errores} &
+		 \begin{itemize}
+		 %DUDA: tiempo establecido por I2C Time Out and Clock Stretching?
+		 	\item \label{SUB-M-CU1.1:Error1} Error 1: La trama de lectura de medición del sensor no es válida.
+		 	\item \label{SUB-M-CU1.1:Error2} Error 2: La trama de respuesta del sensor no fue recibida por el microcontrolador.
+		 	\item \label{SUB-M-CU1.1:Error3} Error 3: La trama de respuesta de medición del sensor no es válido.
+		 \end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
-		\begin{itemize}
-			\item \ref{RN5}
-			\item \ref{RN6}
-		\end{itemize} \\ \hline
-
+	    \begin{itemize}
+	      \item  \ref{RN1}
+		 \end{itemize}\\ \hline
 	% \caption{}
 	%\label{desc:SUB-M-CU1}
 \end{longtable}
@@ -51,17 +58,34 @@ El promedio de energía que es sensada diariamente, es calculado tomando en cuen
 \paragraph{Trayectoria principal}
 \label{SUB-M-CU1.1:TP}
 	\begin{enumerate}
-		\item {[Servidor embebido]} Recibe la trama con los datos de la última muestra del día.
-        \hyperref[SUB-M-CU1.1:TA]{[Trayectoria Alternativa A]}
-		\item {[Servidor embebido]} Realiza el promedio de las 120 muestras.
-		\item {[Servidor embebido]} Obtiene la fecha actual
-		\item {[Servidor embebido]} Almacena tanto el promedio, como la fecha actual.
+	    \item {[Microcontrolador]} Envía una trama que contiene la instrucción de lectura de medición del sensor que se desea por medio del protocolo IIC.
+	    \item {[Sensor]} Recibe la trama.
+	    \item {[Sensor]} Valida que la trama sea correcta. \hyperref[SUB-M-CU1.1:TA]{[Trayectoria Alternativa A]} %Error1
+		\item {[Sensor]} Envía la trama de respuesta de medición al microcontrolador por medio del protocolo de comunicación IIC.
+		\item {[Microcontrolador]} Recibe la trama de respuesta de lectura de medición que solicitó al sensor.\hyperref[SUB-M-CU1.1:TB]{[Trayectoria Alternativa B]} %Error2
+		\item {[Microcontrolador]} Valida que la trama sea correcta por medio del acuse del sensor. \hyperref[SUB-M-CU1.1:TC]{[Trayectoria Alternativa C]}%Error3 
+		\item {[Microcontrolador]} Retorna al primer paso de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]}
 	\end{enumerate}
 	Fin del caso de uso.
 
+%TA? El sensor recibe una trama de no acuse de recibo por el microcontrolador. \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]}
 \paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.1:TA}
-	Al menos una de las 120 muestras es nula
+	La trama que contiene la instrucción de lectura de medición del sensor no es válida.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Servidor embebido]} Realiza el promedio con las 120 muestras, ignorando los valores nulos.
+		\item {[Sensor]} Envía una trama para notificar el error al microcontrolador.  
 	\end{enumerate}
-	Fin de la trayectoria alternativa. Regresa al paso 2 de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]} .
+	Fin de trayectoria y retorno al ultimo paso de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]}  
+
+\paragraph{Trayectoria alternativa B} \label{SUB-M-CU1.1:TB}
+	La trama de respuesta de lectura de medición del sensor no fue recibida por el microcontrolador.
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Microcontrolador]} Reenvía una trama que contiene la instrucción de lectura de medición del sensor por medio del protocolo IIC.  
+	\end{enumerate}
+	Fin de la trayectoria alternativa. Regresa al paso 2 de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]}  
+	
+\paragraph{Trayectoria alternativa C} \label{SUB-M-CU1.1:TC}
+	La trama de respuesta de medición del sensor no es válida.
+	\begin{enumerate}[label=C\arabic*.]
+		\item {[Sensor]} Genera un código de error.
+	\end{enumerate}
+	Fin de la trayectoria alternativa y retorno al ultimo paso de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]} 
