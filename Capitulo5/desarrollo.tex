@@ -2,9 +2,9 @@
 %                           Marco Conceptual                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Desarrollo del Sistema}\label{chapter5}
+\chapter{Desarrollo y Pruebas del Sistema}\label{chapter5}
 
-En este capitulo se cubre el desarrollo del sistema descrito en capítulos anteriores tomando como referencia los casos de uso, abarcando cada uno de los módulos que lo componen.
+En este capitulo se cubre el desarrollo y pruebas del sistema descrito en capítulos anteriores tomando como referencia los casos de uso para su implementación, abarcando cada uno de los módulos que lo componen.
 
 \section{Módulo del Microcontrolador}
 
@@ -347,7 +347,14 @@ int main (void)
 }
 \end{lstlisting}
 
-\subsection{Resultado final}
+Si queremos verlo en un plano mas general o como lógica pura, nos podemos apoyar en el diagrama de flujo \ref{fig:logica micro} que sintetiza el trabajo del microcontrolador.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.5]{Capitulo5/images/logica_micro.png}
+	\caption{Lógica programada en el microcontrolador}
+	\label{fig:logica micro}
+\end{figure} 
 
 Físicamente, la figura \ref{fig:conexion hardware} muestra como se hace la conexión entre microcontrolador con dispositivo de adquisición, el montaje del modulo Wi-Fi, la conexión del panel solar a la carga y su inyección a la linea eléctrica.
     
@@ -595,7 +602,7 @@ Los archivos que consume este servicio dan como resultado lo mostrado en las sig
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.3]{Capitulo5/images/real_time.png}
+	\includegraphics[scale=.25]{Capitulo5/images/real_time.png}
 	\caption{Archivo con la muestra de tiempo real}
 	\label{fig:}
 \end{figure} 
