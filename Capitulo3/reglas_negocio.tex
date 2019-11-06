@@ -32,18 +32,18 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Tipo] Derivadora.
 			\item[Objetivo] Calcular la producción de energía en el intervalo de tiempo especificado por cada nodo.
 			\item[Descripción] La producción histórica de energía de un nodo es la suma de la potencia activa de cada una de las muestras obtenidas de acuerdo a la frecuencia de muestreo definida en la Regla de Negocio \ref{RN2}  
-			Las opciones de periodos históricos son: última semana, último mes, mensual, bimestral y anual. Los reportes para los correspondientes periodos son:
+			Las opciones de periodos históricos son: última semana, mes actual, mensual, bimestral, anual y última década. Los reportes para los correspondientes periodos son:
 			\\ Última semana: 
 			\begin{itemize}
-				\item La producción por cada día de la última semana, es decir: Lunes, Martes, Miércoles, Jueves, Viernes, Sábado y Domingo.
+				\item La producción por cada día de la última semana, es decir, a partir del día actual, 6 días anteriores.
 			\end{itemize}
-			Último mes: 
+			Mes actual: 
 			\begin{itemize}
-				\item La producción por cada día del último mes.
+				\item La producción por cada día del mes actual.
 			\end{itemize}
 			Mensual: 
 			\begin{itemize}
-				\item La producción por cada mes del año.
+				\item La producción por cada mes del año actual.
 			\end{itemize}
 			Bimestral: 
 			\begin{itemize}
@@ -56,20 +56,24 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\end{itemize}
 			Anual: 
 			\begin{itemize}
-				\item La producción por mes del año seleccionado.
+				\item La producción en meses del año seleccionado.Se conservarán registros de los últimos 10 años.
+			\end{itemize}
+			Última década:
+			\begin{itemize}
+			\item La producción por año de los últimos 10 años.
 			\end{itemize}
 		\end{description}
 
 \item \label{RN5}
 		\begin{description}
-			\item[Nombre] RN5- Agrupar muestras tomadas en un día por intervalos.
+			\item[Nombre] RN5-Agrupar muestras tomadas en un día por intervalos de producción.
 			\item[Tipo] Derivadora.
-			\item[Objetivo] Agrupar las muestras tomadas en un día por cada nodo en intervalos.
+			\item[Objetivo] Agrupar las muestras tomadas en un día por cada nodo en intervalos de producción tomando como referencia la máxima generación de potencia del sistema fotovoltaico. 
 			\item[Descripción] Las muestras diarias de cada nodo serán agrupadas en los siguientes intervalos:
 			\begin{itemize}
-				\item Muestras mayores o iguales al 50\% de la máxima generación del sistema fotovoltaico. Estarán representadas de color verde.  
-				\item Muestras menores que el 50\% y mayores o iguales al 20\% de la máxima generación del sistema fotovoltaico. Estarán representadas de color naranja. 
-				\item Muestras menores al 20\% de la máxima generación del sistema fotovoltaico. Estarán representadas de color rojo. 
+				\item Muestras mayores o iguales al 50\% de la máxima generación del sistema fotovoltaico.  
+				\item Muestras menores que el 50\% y mayores o iguales al 20\% de la máxima generación del sistema fotovoltaico. 
+				\item Muestras menores al 20\% de la máxima generación del sistema fotovoltaico. 
 			\end{itemize}
 		\end{description}
 
@@ -126,18 +130,22 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Objetivo] Definir el formato de los datos que se enviarán como respuestas a las peticiones del cliente.
 			\item[Descripción] El formato de los datos que se darán como respuesta del servidor a la aplicación móvil será en formato JSON.
 			\end{description}
-		
+			
+%Checar referencias a lo largo del documento		
 \item \label{RN12}
 		\begin{description}
-			\item[Nombre] RN12-Umbrales de generación
-			\item[Tipo] Regla de operación.
-			\item[Objetivo] Definir los umbrales de generación de energía de acuerdo a la generación en tiempo real y los intervalos definidos 
-			\item[Descripción] Los umbrales se dividirán  en tres para todos los casos, generación óptima, intermedia y baja.
-			El criterio a comparar será el valor de generación obtenido contra el valor de generación esperado por un panel solar, que es de 250 Watts/Hora, donde el porcentaje obtenido por la relación se clasificará de la siguiente manera:
+			\item[Nombre] RN12-Agrupar muestras tomadas en un día por código de colores. 
+			\item[Tipo] Derivadora.
+			\item[Objetivo] Agrupar las muestras tomadas en un día por cada nodo de acuerdo a un color para ser representado en una gráfica.
+			\item[Descripción] Las muestras tomadas en un día para la gráfica en tiempo real y la de ayer de acuerdo a la \ref{RN6} serán agrupadas de acuerdo al siguiente código de colores:
 			\begin{itemize}
-			    \item 80\% - 100\% Generación Óptima, representado con el color verde.
-			    \item 50\% - 79\% Generación Intermedia, representado con el color amarillo.
-			    \item 0\% - 49\% Generación Baja, representado con el color rojo.
+			    \item Muestras null: Estas muestras aparecen cuando el servidor es levantado por primera vez, por lo tanto no tiene las muestras completas del día. Se identificarán con el color gris.
+			    \item Muestras de ayer: Estas muestras aparecen cuando por algún motivo una o más muestras no se sobreescriben con el valor del día de hoy, por lo tanto conservan el valor del día anterior. Se identificarán con el color azul.
+			    \item Muestras perdidas: Estas muestras aparecen cuando el servidor no pudo leer la información del nodo en un momento en específico. Se identificarán con el color negro.
+			    \item Mejores muestras: Estas muestras indican el valor más alto de potencia activa registrado durante el día. Se identificarán con el color morado.
+			    \item Muestras mayores o iguales al 50\% de la máxima generación del sistema fotovoltaico. Se identificarán con el color verde  
+				\item Muestras menores que el 50\% y mayores o iguales al 20\% de la máxima generación del sistema fotovoltaico. Se identificarán con el color naranja.
+				\item Muestras menores al 20\% de la máxima generación del sistema fotovoltaico. Se identificarán con el color rojo.
 			\end{itemize}
 		\end{description}
 	
@@ -189,5 +197,66 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 		 		\item N = número entero menor a 255 y mayor o igual a 0
 		    \end{itemize}
 		\end{description}
+
+%Checar tipo 
+\item \label{RN17}
+		\begin{description}
+			\item[Nombre] RN17-Tipos de peticiones de cliente a servidor.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Definir los tipos de peticiones que el usuario puede realizar desde la aplicación móvil a servidor.
+			\item[Descripción] El usuario de la aplicación móvil puede realizar las siguientes peticiones al servidor.
+			\begin{itemize}
+		 		\item Connect: Esta petición se lanza cuando el usuario desea conectarse por primera vez al servidor.
+		 		\item Set\_password: Esta petición se lanza cuando es el primer usuario en conectarse al servidor y tiene que establecer un correo electrónico y una contraseña.
+		 		\item Get\_password: Esta petición se lanza cuando otros usuarios desean conectarse al servidor ingresando la contraseña establecida por el primer usuario.
+		 		\item Forgot\_password: Esta petición se lanza cuando alguno de los usuario quiere recuperar la contraseña del servidor por medio del correo electrónico establecido por el primer usuario.
+		 		\item Get\_info: Esta petición se lanza cuando se requiere obtener información sobre los microcontroladores y nodos conectados al servidor especificado.
+		 		\item Get\_data: Esta petición se lanza cuando se requiere obtener el contenido de alguno de los archivos del nodo especificado.
+		    \end{itemize}
+		\end{description}
+
+
+\item \label{RN18}
+		\begin{description}
+			\item[Nombre] RN18-Monitoreo para crear notificaciones.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Indicar bajo que condición se pueden obtener notificaciones del sistema.
+			\item[Descripción] El usuario de la aplicación móvil puede permitir el monitoreo de los nodos en segundo plano, con el objetivo de poder recibir notificaciones cuando ocurran algunas de las condiciones establecidas en la \ref{RN3}, siempre y cuando lo solicite en la configuración de la aplicación.
+		\end{description}
+%checar		
+\item \label{RN19}
+		\begin{description}
+			\item[Nombre] RN19-Monitoreo de nodos en la aplicación móvil.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Indicar bajo que condición se puede obtener información de los nodos en la aplicación móvil.
+			\item[Descripción] El usuario de la aplicación móvil puede obtener información de los nodos sensores siempre y cuando estén conectados al servidor y las lecturas de las muestras sean almacenadas en los archivos del servidor.
+		\end{description}
+		
+\item \label{RN20}
+		\begin{description}
+			\item[Nombre] RN20-Gestión de servidores en la aplicación móvil.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Indicar las opciones que tiene el usuario sobre los servidores registrados.
+			\item[Descripción] El usuario de la aplicación móvil puede realizar las siguientes acciones en los servidores que ha registrado:
+			\begin{itemize}
+		 		\item Recuperar contraseña por medio del correo electrónico establecido por el primer usuario
+		 		\item Editar el nombre del servidor.
+		 		\item Eliminar el servidor para dejar de monitorearlo en la aplicación móvil.
+		    \end{itemize}
+		\end{description}
+
+\item \label{RN21}
+		\begin{description}
+			\item[Nombre] RN21-Gestión de servidores.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Indicar las opciones que tiene el usuario sobre los servidores registrados.
+			\item[Descripción] El usuario de la aplicación móvil puede realizar las siguientes acciones en los servidores que ha registrado:
+			\begin{itemize}
+		 		\item Recuperar contraseña por medio del correo electrónico establecido por el primer usuario
+		 		\item Editar el nombre del servidor.
+		 		\item Eliminar el servidor para dejar de monitorearlo en la aplicación móvil.
+		    \end{itemize}
+		\end{description}
 \end{enumerate}
+
 
