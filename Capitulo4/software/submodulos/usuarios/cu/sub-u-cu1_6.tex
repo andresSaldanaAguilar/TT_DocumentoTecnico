@@ -53,7 +53,8 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 \paragraph{Trayectoria principal}
     \label{SUB-U-CU1.3:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Selecciona Históricos en el menú de navegación de la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}. \hyperref[SUB-U-CU1.3:TA]{[Trayectoria alternativa A]} 
+	    \item {[Usuario]} Selecciona Históricos en el menú de navegación de la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}. \hyperref[SUB-U-CU1.3:TA]{[Trayectoria alternativa A]} \hyperref[SUB-U-CU1.3:TE]{[Trayectoria alternativa E]} 
+	    \hyperref[SUB-U-CU1.3:TF]{[Trayectoria alternativa F]} 
 		\item {[Aplicación de Usuario]} Envía el periodo de tiempo que comprende al día anterior y el identificador de servidor, microcontrolador y nodo, siendo los primeros los que se tomen como valores por defecto. \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
 		\item {[Servidor embebido]} Recibe la petición, consigue los valores de acuerdo al periodo solicitado. 
 		\item {[Servidor embebido]} Envía los valores como respuesta a la aplicación de usuario. \hyperref[SUB-U-CU1.3:TC]{[Trayectoria alternativa C]}
@@ -66,14 +67,14 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
     El usuario ya está en la pantalla de usuario \hyperref[fig:Historial Semanal]{[IU2.1-Historial Semanal]} y selecciona el sensor del que desea conocer información.
 	\begin{enumerate}[label=A\arabic*.]
 	    \item {[Usuario]} Selecciona una opción del menú desplegable destinado a los periodos y otra destinada a los identificadores de los sensores de la pantalla de usuario \hyperref[fig:Opciones de Intervalo]{[IU2.4-Opciones de Intervalo]} 
-	    \item {[Aplicación de Usuario]} Envía como petición el periodo de tiempo seleccionado por el usuario y el identificador del sensor del que se desea obtener información \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
+	    \item {[Aplicación de Usuario]} Envía como petición el periodo de tiempo seleccionado por el usuario y el identificador del servidor, micro-controlador y nodo del que se desea obtener información \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
 	\end{enumerate}
 	Fin de la trayectoria alternativa. Regresa al paso 3 de la \hyperref[SUB-U-CU1.3:TP]{[Trayectoria Principal]}.
 	
 \paragraph{Trayectoria alternativa B} \label{SUB-U-CU1.3:TB}
 	Sin conexión con el servidor.
 	\begin{enumerate}[label=B\arabic*.]
-		\item {[Aplicación de usuario]} Genera una excepción, muestra la ventana emergente \hyperref[fig:Error de Conexion]{[PE1-Error de Conexión]}
+		\item {[Aplicación de usuario]} Al no obtener respuesta, se muestra en el área de graficación una etiqueta con la leyenda ''Información no disponible''
 	\end{enumerate}
 	Fin de la trayectoria alternativa y fin del caso de uso.
 
@@ -81,13 +82,27 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 	Sin conexión con el cliente.
 	\begin{enumerate}[label=C\arabic*.]
 		\item {[Servidor embebido]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Expira el tiempo de respuesta y se muestra la ventana emergente \hyperref[fig:Error de Conexion]{[PE1-Error de Conexión]}
+		\item {[Aplicación de usuario]} Al no obtener respuesta, se muestra en el área de graficación una etiqueta con la leyenda ''Información no disponible''
 	\end{enumerate}
 	Fin de la trayectoria alternativa y fin del caso de uso.
 	
 \paragraph{Trayectoria alternativa D} \label{SUB-U-CU1.3:TD}
 	Algún valor de la respuesta es -1
 	\begin{enumerate}[label=D\arabic*.]
-		\item {[Aplicación de usuario]} Asigna un 0 como valor de generación.
+		\item {[Aplicación de usuario]} Conserva ese valor como valor de generación para que se pueda visualizar en la gráfica, asignando un color distinto como se menciona en la \ref{RN12}.
 	\end{enumerate}
 	Fin de la trayectoria alternativa. Regresa al paso 6 de la \hyperref[SUB-U-CU1.3:TP]{[Trayectoria Principal]}.
+	
+\paragraph{Trayectoria alternativa E} \label{SUB-U-CU1.3:TE}
+	El periodo seleccionado es ''Año''
+	\begin{enumerate}[label=E\arabic*.]
+		\item {[Aplicación de usuario]} Habilita el selector con la leyenda ''Año'' el cual permite navegar entre los ultimos 10 años transcurridos.
+	\end{enumerate}
+	Fin de la trayectoria alternativa. Regresa al paso 2 de la \hyperref[SUB-U-CU1.3:TP]{[Trayectoria Principal]}.
+
+\paragraph{Trayectoria alternativa F} \label{SUB-U-CU1.3:TF}
+	El periodo seleccionado no es ''Año''
+	\begin{enumerate}[label=F\arabic*.]
+		\item {[Aplicación de usuario]} El selector con la leyenda ''Año'' permanecerá inhabilitado puesto que no tiene ninguna funcionalidad para cualquier periodo que no sea ''Año''
+	\end{enumerate}
+	Fin de la trayectoria alternativa. Regresa al paso 2 de la \hyperref[SUB-U-CU1.3:TP]{[Trayectoria Principal]}.
