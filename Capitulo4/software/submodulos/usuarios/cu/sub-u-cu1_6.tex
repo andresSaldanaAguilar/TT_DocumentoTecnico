@@ -18,11 +18,11 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 	\textbf{Entradas} & 
 		\begin{itemize}
 			\item{[Servidor embebido]} Periodo de tiempo seleccionado del menú desplegable de la pantalla \hyperref[fig:Opciones de Intervalo]{[IU2.4-Opciones de Intervalo]}.
-			\item{[Aplicación de usuario]} Identificador del sensor del cual se desea conocer información.
+			\item{[Aplicación de usuario]} Identificador de servidor, microcontrolador y nodo seleccionado en la pantalla.
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
-			\item{[Servidor embebido]} Valores históricos del intervalo de tiempo requerido.
+			\item{[Servidor embebido]} Valores históricos del intervalo de tiempo requerido de acuerdo a la \ref{RN6} y clasificándolos de acuerdo a la \ref{RN12}.
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
 		Ninguna.\\ \hline
@@ -42,6 +42,8 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
 		    \item \ref{RN4}
+		    \item \ref{RN5}
+		    \item \ref{RN6}
 		    \item \ref{RN8}
 			\item \ref{RN11}
 			\item \ref{RN12}
@@ -52,7 +54,7 @@ La visualización de reportes históricos tendrá lugar de acuerdo a los periodo
     \label{SUB-U-CU1.3:TP}
 	\begin{enumerate}
 	    \item {[Usuario]} Selecciona Históricos en el menú de navegación de la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}. \hyperref[SUB-U-CU1.3:TA]{[Trayectoria alternativa A]} 
-		\item {[Aplicación de Usuario]} Envía el periodo de tiempo que comprende al día anterior y el identificador del primer sensor como valores de petición por defecto. \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
+		\item {[Aplicación de Usuario]} Envía el periodo de tiempo que comprende al día anterior y el identificador de servidor, microcontrolador y nodo, siendo los primeros los que se tomen como valores por defecto. \hyperref[SUB-U-CU1.3:TB]{[Trayectoria alternativa B]} 
 		\item {[Servidor embebido]} Recibe la petición, consigue los valores de acuerdo al periodo solicitado. 
 		\item {[Servidor embebido]} Envía los valores como respuesta a la aplicación de usuario. \hyperref[SUB-U-CU1.3:TC]{[Trayectoria alternativa C]}
         \item {[Aplicación de Usuario]} Recibe la respuesta del servidor y valida los datos obtenidos.\hyperref[SUB-U-CU1.3:TD]{[Trayectoria alternativa D]}
