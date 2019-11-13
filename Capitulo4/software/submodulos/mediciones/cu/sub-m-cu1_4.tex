@@ -1,5 +1,5 @@
 \subsubsection{SUB-M-CU1.4-Respuesta a petición de cliente}\label{SUB-M-CU1.4}
-La respuesta a cada petición del cliente será en con los estándares especificados en las Reglas de Negocio \ref{RN7} y \ref{RN11} en el formato de la Regla de Negocio \ref{RN10} bajo el patrón de comunicación de la Regla de Negocio \ref{RN8}.
+La respuesta a cada petición del cliente será con los estándares especificados en las Reglas de Negocio \ref{RN7} y \ref{RN11} en el formato de la Regla de Negocio \ref{RN10} bajo el patrón de comunicación de la Regla de Negocio \ref{RN8}
 
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
@@ -58,7 +58,7 @@ La respuesta a cada petición del cliente será en con los estándares especific
 		\hyperref[SUB-M-CU1.4:TD]{[Trayectoria Alternativa D]}
 		\hyperref[SUB-M-CU1.4:TE]{[Trayectoria Alternativa E]}
 		
-		\item {[Servidor embebido]} Desarma la petición consiguiendo la dirección IP del servidor, el numero de serie del microcontrolador, el número de esclavo y que archivos se van a acceder.
+		\item {[Servidor embebido]} Desarma la petición consiguiendo la dirección IP del servidor, el número de serie del microcontrolador, el número de esclavo y que archivos se van a acceder.
 		
 		\item {[Servidor embebido]} Envía la respuesta de los datos en formato JSON codificado como un arreglo de bytes con la información extraída del archivo o archivos \hyperref[SUB-M-CU1.4:TF]{[Trayectoria Alternativa F]}.
 		
@@ -78,29 +78,28 @@ La respuesta a cada petición del cliente será en con los estándares especific
 \paragraph{Trayectoria alternativa B} \label{SUB-M-CU1.4:TB}
 	Recibe la cadena 'connect'.
 	\begin{enumerate}[label=B\arabic*.]
-		\item {[Servidor embebido]} Envía 'get password' si no hay una contraseña guardada en el sercidor, de lo contrario encia 'set password'.
+		\item {[Servidor embebido]} Envía 'get password' si no hay una contraseña guardada en el servidor, de lo contrario envía 'set password'.
 		\hyperref[SUB-M-CU1.4:TB]{[Trayectoria Alternativa B]}.
 	\end{enumerate}
 	Fin de la trayectoria alternativa, retorna al paso 4 de  \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}.
 	
 \paragraph{Trayectoria alternativa C} \label{SUB-M-CU1.4:TC}
-	Recibe la cadena 'set passsowrd'.
+	Recibe la cadena 'set password'.
 	\begin{enumerate}[label=C\arabic*.]
-		\item {[Servidor embebido]} Guarda la contraseña y correo que se le envían en la peticion, retorna un 'ok', si ocurre un problema,retorna un 'error'.
-		\hyperref[SUB-M-CU1.4:TC]{[Trayectoria Alternativa C]}.
+		\item {[Servidor embebido]} Guarda la contraseña y correo que se le envían en la petición, retorna un 'ok'; si ocurre un problema retorna un 'error'.
 	\end{enumerate}
 	Fin de la trayectoria alternativa, retorna al paso 4 de  \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}.
 	
 \paragraph{Trayectoria alternativa D} \label{SUB-M-CU1.4:TD}
-	Recibe la cadena 'get passsowrd'.
+	Recibe la cadena 'get password'.
 	\begin{enumerate}[label=D\arabic*.]
-		\item {[Servidor embebido]} Verifica la contraseña en el servidor, mandando un 'ok' si es correcta y 'error' de lo contrario.
+		\item {[Servidor embebido]} Verifica la contraseña en el servidor, mandando un 'ok' si es correcta y 'error' en caso contrario.
 		\hyperref[SUB-M-CU1.4:TD]{[Trayectoria Alternativa D]}.
 	\end{enumerate}
 	Fin de la trayectoria alternativa, retorna al paso 4 de  \hyperref[SUB-M-CU1.4:TP]{[Trayectoria Principal]}.
 	
 \paragraph{Trayectoria alternativa E} \label{SUB-M-CU1.4:TE}
-	Recibe la cadena 'forgot passsword'.
+	Recibe la cadena 'forgot password'.
 	\begin{enumerate}[label=E\arabic*.]
 		\item {[Servidor embebido]} Envía un mensaje al correo configurado para recordarle la contraseña para emparejar al servidor.
 		\hyperref[SUB-M-CU1.4:TE]{[Trayectoria Alternativa E]}.

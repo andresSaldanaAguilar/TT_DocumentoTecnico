@@ -471,6 +471,8 @@ Implementar la funcionalidad descrita en los casos de uso \ref{SUB-M-CU1.3} (SUB
 
 \subsection{Configurar el servidor embebido}
 
+\subsubsection{Desarrollo}
+
 Utilizaremos el SBC Raspberry Pi 3 \citep{MarcoTeorico19} como servidor de aplicaciones y almacén de datos, para poder lograr esto, usaremos como sistema operativo Ubuntu Core de Linux, especialmente hecha para esta tarjeta, los pasos para cargar la imagen del sistema se describen en \citep{InstallUbuntuCore}, los pasos son:
 
 \begin{itemize}
@@ -506,6 +508,7 @@ Copiamos la imagen del sistema operativo a la memoria con el comando \hl{lsudo s
 	\label{fig:copia}
 \end{figure} 
 
+\subsubsection{Pruebas}
 
 Ahora conectamos la Raspberry un monitor con un cable HDMI, un cable ethernet hacia el módem telefónico, un teclado y a la fuente de alimentación como se muestra en la figura \ref{fig:conexion}, debemos crear una cuenta en Ubuntu para asociar un correo electrónico a una llave pública para poder hacer el inicio de sesión remotamente vía ssh, la llave publica se genera con el comando \hl{ssh-keygen -t rsa -b 4096 -C correoasociado@gmail.com} que nos generará dos llaves como se muestra en la figura \ref{fig:llave}, debemos copiar el contenido de la llave pública a el llavero de Ubuntu en su página como se muestra en la figura \ref{fig:ubuntullave}, finalmente, el sistema embebido nos mostrará un mensaje como el de la figura \ref{fig:primer arranque} con el que nos indicara como iniciar sesion vía SSH, ingresando ese comando en una computadora podemos acceder al sistema embebido remotamente \ref{fig:login} 
 
@@ -567,9 +570,18 @@ StandardInput=tty-force
 WantedBy=multi-user.target
 \end{lstlisting}
 
-Reiniciamos el contenedor de demonios del sistema con \hl{sudo systemctl daemon-reload} , habilitamos el servicio que creamos con \hl{sudo systemctl enable nombreServicio.service} e iniciamos su ejecución con \hl{sudo systemctl start nombreServicio.service}.
+Reiniciamos el contenedor de demonios del sistema con \hl{sudo systemctl daemon-reload} , habilitamos el servicio que creamos con \hl{sudo systemctl enable nombreServicio.service} e iniciamos su ejecución con \hl{sudo systemctl start nombreServicio.service}, por ultimo podemos usar el comando \hl{sudo systemctl status nombreServicio.service} para conocer el estado del servicio como se muestra en la figura \ref{fig:systemctl}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.35]{Capitulo5/images/systemctl_tests.png}
+	\caption{Resultado de los comandos de manejo de servicios en Linux Ubuntu}
+	\label{fig:systemctl}
+\end{figure} 
 
 \subsection{Implementando el servicio de captura y consumo de paquetes UDP provenientes de los microcontroladores}
+
+\subsubsection{Desarrollo}
 
 Este servicio está implementado en el lenguaje de programación Python en su versión 3.0, su propósito es capturar y almacenar en archivos en formato JSON la información proveniente de los sensores de los microcontroladores como indica el caso de uso \ref{SUB-M-CU1.9}, elaboramos un diagrama de flujo para simplificar la explicación de la lógica del programa \ref{fig:programa del servidor microcontrolador}, es importante destacar que estamos usando la técnica de duplicación de procesos (fork en inglés) para duplicar el proceso principal (padre) que conecta y recibe el paquete proveniente de un microcontrolador, delegándole las tareas consecuentes al proceso derivado (hijo), de manera que, el servidor es capaz de conectar más clientes sin tener que perder tiempo en su atención, este programa corre como un servicio en nuestro servidor Linux, es decir, está en ejecución de manera independiente y continua en segundo plano siempre y cuando el servidor no sea reiniciado o apagado.
 
@@ -581,6 +593,8 @@ Para poder identificar bien en el diagrama siguiente que información se esta ma
 	\caption{Lógica del programa del servidor del microcontrolador}
 	\label{fig:programa del servidor microcontrolador}
 \end{figure} 
+
+\subsubsection{Pruebas}
 
 Para poder comprobar su funcionamiento, redirigimos los paquetes del programa del microcontrolador hacia la IP y puerto 4000 UDP del servidor, teniendo como resultado en consola lo que se muestra en la figura \ref{fig:consola server udp}, donde se muestran las conexiones del microcontrolador, estos mensajes llegan aproximadamente cada segundo más décimas de segundo.
 
@@ -629,10 +643,50 @@ Los archivos que consume este servicio dan como resultado lo mostrado en las sig
 	\label{fig:}
 \end{figure} 
 
-A continuación, se realizaron pruebas de estrés al servicio para conocer que tanta carga soporta una instancia del servidor
+Una prueba primordial en este sistema que consta de una red de sensores, es conocer cuantos nodos sensores soporta el servidor embebido, por lo que utilizamos una herramienta de prueba de cargas hacia el servidor llamada JMeter \citep{JMeter}, a continuación se describe como se realizo esta prueba.
 
+Indicar cuantas peticiones simultaneas se realizarán en un lapso de tiempo, en la figura \ref{fig:threadgroup} indicamos que se realizaran 1950 en 2 minutos y medio, es decir, 13 nodos enviando información cada segundo, elegimos que la prueba durara este tiempo porque el comportamiento se vuelve constante después de un minuto.
 
-\subsection{Implementando el servicio de creación de gráficas del día actual}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/tread_group.png}
+	\caption{Configuración en JMeter de grupo de hilos}
+	\label{fig:threadgroup}
+\end{figure} 
+
+Esta cifra se escogió porque realizando pruebas con distintas cargas, descubrimos que con esta frecuencia de actividad el sistema mantiene su rendimiento constante en el tiempo sin fallar \ref{fig:udpsummary}, al tratarse de comunicación UDP, no podemos contar con la respuesta de servidor, por lo que mandamos el valor de uno como valor de potencia activa, de manera que si mandamos un total de 1950 muestras, debe guardarse esa cantidad menos uno (porque el contador inicia en cero) en el servidor como la producción acumulada como se muestra en la figura \ref{fig:udptestjson} teniendo como tiempo de conexión promedio menor a los 3ms \ref{fig:udpconnect}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/udp_test_config.png}
+	\caption{Configuración en JMeter de IP, puerto y mensaje a enviar en valor Hexadecimal}
+	\label{fig:uddpconfig}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/udp_test_production.png}
+	\caption{Producción acumulada durante la prueba en el servidor}
+	\label{fig:udptestjson}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/udp_test_connect.png}
+	\caption{Gráfica de tiempo de conexión en el tiempo de prueba}
+	\label{fig:udpconnect}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/udp_test_summary.png}
+	\caption{Resumen de la prueba realizada}
+	\label{fig:udpsummary}
+\end{figure} 
+
+\subsection{Implementando el servicio de creación de muestras para  gráficas del día actual}
+
+\subsubsection{Desarrollo}
 
 Identificamos que lo mas conveniente sería independizar este proceso de la captura de paquetes para con el propósito de modularizar el sistema y lograr un bajo acoplamiento, implementando la lógica como se muestra en la figura \ref{fig:programa graficador}, la información de gráficas también se guarda en formato JSON, que nos permite hacer mas sencillo la compatibilidad con distintos lenguajes.
 
@@ -642,6 +696,8 @@ Identificamos que lo mas conveniente sería independizar este proceso de la capt
 	\caption{Lógica del programa graficador}
 	\label{fig:programa graficador}
 \end{figure} 
+
+\subsubsection{Pruebas}
 
 El resultado de este programa se ve reflejado en los archivos de muestras diarias, como se muestra en la figura \ref{fig:muestras diarias}.
 
@@ -654,6 +710,8 @@ El resultado de este programa se ve reflejado en los archivos de muestras diaria
 
 \subsection{Implementando el servicio de atención a clientes de aplicación móvil}
 
+\subsubsection{Desarrollo}
+
 Este servicio esta implementado en el lenguaje de programación Python en su versión 3.0, su propósito es atender las peticiones provenientes de la aplicación móvil como indica el caso de uso \ref{SUB-M-CU1.10}, elaboramos un diagrama de flujo para simplificar la explicación de la lógica del programa \ref{fig:programa del servidor aplicacion}, también hicimos uso de la duplicación de procesos para aumentar el rendimiento del programa, este programa corre como un servicio en nuestro servidor Linux.
 
 \begin{figure}[H]
@@ -662,6 +720,8 @@ Este servicio esta implementado en el lenguaje de programación Python en su ver
 	\caption{Lógica del programa del servidor de la aplicación}
 	\label{fig:programa del servidor aplicacion}
 \end{figure} 
+
+\subsubsection{Pruebas}
 
 Para probar su funcionamiento, se realizaron las peticiones posibles hacia el servidor:
 
@@ -741,3 +801,36 @@ Comando: \hl{forgotpassword}
 	\label{fig:}
 \end{figure}
 
+Una vez más, al tratarse de una red de sensores, probaremos cuantos usuarios podemos atender y cuantos nodos pueden tener en su aplicación, utilizaremos una vez más JMeter \citep{JMeter} para ello, a continuación se describe como se realizo esta prueba.
+
+Indicar cuantas peticiones simultaneas se realizarán en un lapso de tiempo, en la figura \ref{fig:threadgroup} indicamos que se realizaran 1950 en 2 minutos y medio, es decir, 13 nodos enviando información cada segundo, elegimos que la prueba durara este tiempo porque el comportamiento se vuelve constante después de un minuto una vez más.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/tread_group.png}
+	\caption{Configuración en JMeter de grupo de hilos}
+	\label{fig:threadgroup}
+\end{figure} 
+
+Esta cifra se escogió porque realizando pruebas con distintas cargas, descubrimos que con esta frecuencia de actividad el sistema mantiene su rendimiento constante en el tiempo sin fallar \ref{fig:tcpsummary}, en este caso podemos conocer automáticamente si la petición fue exitosa y cuanto tardo gracias a que implementa el protocolo TCP, enviamos una petición para traer la información del archivo de tiempo real \ref{fig:tcpconfig}, que es el que se consulta para monitoreo cada 10 segundos esperando su respuesta en máximo 2.1 segundos como nos indica el requerimiento no funcional RNF1, teniendo como tiempo promedio de conexión menor a 10ms \ref{fig:tcpconnect} y concluyendo que, podemos atender hasta 130 nodos en total, (13 muestras por segundo = 130 cada 10 segundos), ejemplificando tener 13 nodos siendo consultados por 10 celulares. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/real_time_test_config.png}
+	\caption{Configuración en JMeter de IP, puerto y mensaje a enviar en texto plano}
+	\label{fig:tcpconfig}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/real_time_test_connect.png}
+	\caption{Gráfica de tiempo de conexión en el tiempo de prueba}
+	\label{fig:tcpconnect}
+\end{figure} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{Capitulo5/images/real_time_test_summary.png}
+	\caption{Resumen de la prueba realizada}
+	\label{fig:tcpsummary}
+\end{figure} 

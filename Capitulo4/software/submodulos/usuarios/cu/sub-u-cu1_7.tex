@@ -1,27 +1,28 @@
 \subsubsection{SUB-U-CU1.4-Emparejar dispositivo}\label{SUB-U-CU1.4}
-Una vez iniciada la aplicación deberá conectarse con el Servidor que atenderá todas las peticiones que esta haga, y de ser necesaria la configuración de dicho servidor, se podrán realizar cambios para poder establecer una nueva conexión.
+Una vez iniciada la aplicación, el usuario deberá conectarse con el servidor que atenderá todas las peticiones que haga desde su dispositivo móvil.
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
 		SUB-U-CU1.4-Emparejar dispositivo \\ \hline
 	\textbf{Objetivo} &
-		Establecer una conexión con el servidor que es capaz de atender todas las peticiones que la aplicación móvil pueda hacer como cliente. \\ \hline
+		Establecer una conexión con el servidor para poder almacenarlo en el dispositivo móvil y que posteriormente se configuren las peticiones hacia su dirección IP. \\ \hline
 	\textbf{Actores} &
 	    \begin{itemize}
 			\item Aplicación de usuario
-			\item Usuario
+			\item Usuario administrador
+			\item Usuario cliente
 		    \item Servidor embebido
 		\end{itemize}\\ \hline 
 	\textbf{Disparador} & 
-		El usuario inicia por primera vez la aplicación de usuario o desea hacer alguna modificación con respecto al servidor al cual quiere conectarse. \\ \hline 
+		El usuario administrador o usuario cliente inicia por primera vez la aplicación desde su dispositivo móvil. \\ \hline 
 	\textbf{Entradas} & 
-		Dirección IP del servidor con el cual se realizará la conexión, puede que se encuentre como opción predefinida o que deba ingresarse por el usuario de acuerdo con la Regla de negocios \ref{RN16}\\ \hline 
+		Dirección IP del servidor con el cual se realizará la conexión, de acuerdo con la Regla de negocios \ref{RN16}\\ \hline 
 	\textbf{Salidas} & 
-		Pantalla \hyperref[fig:Emparejamiento Dispositivos]{[IU3.1-Emparejamiento de Dispositivos]} \\ \hline
+		Servidor agregado que se mostrará en la pantalla \hyperref[fig:Emparejamiento Dispositivos]{[IU3.1-Emparejamiento de Dispositivos]} \\ \hline
 	\textbf{Precondiciones} &
-		Se inicia por primera vez la aplicación de usuario o se ha dado clic en el botón Dispositivos con el símbolo de configuración de la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}.\\ \hline 
+		El usuario administrador o cliente presiona el botón de Configuraciones que se muestra en la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]}.\\ \hline 
 	\textbf{Postcondiciones} &
-		La nueva dirección IP del servidor con el que se desea tener comunicación es modificada.\\ \hline 
+		La nueva dirección IP del servidor con el que se desea tener comunicación es almacenada dentro de la aplicación móvil.\\ \hline 
 	\textbf{Condiciones de término} & 
 		Se logra una conexión exitosa con el nuevo servidor. \\ \hline
 	\textbf{Prioridad} & 
@@ -38,7 +39,7 @@ Una vez iniciada la aplicación deberá conectarse con el Servidor que atenderá
 
 \paragraph{Trayectoria principal} \label{SUB-U-CU1.4:TP}
 	\begin{enumerate}
-		\item {[Usuario]} Inicia por primera vez la aplicación móvil \hyperref[SUB-U-CU1.4:TA]{[Trayectoria alternativa A]} 
+		\item {[Usuario administrador o Usuario cliente]} Inicia por primera vez la aplicación móvil, selecciona en el menú de la aplicación la opción de Configuraciones que se muestra en la pantalla \hyperref[fig:Barra de navegacion]{[IU5-Barra de Navegación]} \hyperref[SUB-U-CU1.4:TA]{[Trayectoria alternativa A]} %Hasta aquí me quedé
 		\item {[Aplicación de usuario]} Muestra la pantalla \hyperref[fig:Emparejamiento Dispositivos]{[IU3.1-Emparejamiento de Dispositivos]}
 		\item  {[Usuario]} Selecciona del combo box una dirección IP disponible, como se muestra en el ejemplo de la pantalla \hyperref[fig:Seleccion de Disposotivo]{[IU3.2-Selección de Dispositivo]}. \hyperref[SUB-U-CU1.4:TB]{[Trayectoria alternativa B]}
 		\item {[Aplicación de usuario]} Valida si la conexión con el servidor es posible. \hyperref[SUB-U-CU1.4:TC]{[Trayectoria alternativa C]}

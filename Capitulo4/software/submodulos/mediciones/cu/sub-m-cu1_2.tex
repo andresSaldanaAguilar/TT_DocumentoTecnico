@@ -3,7 +3,7 @@
 %   *Trayectoria Principal
 %   *Checar los errores
 \subsubsection{SUB-M-CU1.2-Enviar muestras al Servidor embebido}\label{SUB-M-CU1.2}
-El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotovoltaico a través del módulo WiFi como se especifica en la Regla de Negocio \ref{RN2} y \ref{RN7} al Servidor embebido por medio de el patrón mencionado en la Regla de Negocio \ref{RN8}.
+El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotovoltaico a través del módulo WiFi como se especifica en la Regla de Negocio \ref{RN2} y \ref{RN7} al Servidor embebido por medio del patrón mencionado en la Regla de Negocio \ref{RN8}
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
@@ -58,7 +58,7 @@ El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotov
 \label{SUB-M-CU1.2:TP}
 	\begin{enumerate}
     	\item {[Microcontrolador]} Configura el módulo Wi-Fi para el envío de tramas a la IP y puerto especificado por medio de comandos AT.
-	    \item {[Microcontrolador]} Envía la muestra que contiene el numero de serie del microcontrolador, numero de esclavo y medición de potencia por medio de la interfaz UART al módulo WiFi del microcontrolador.
+	    \item {[Microcontrolador]} Envía la muestra que contiene el número de serie del microcontrolador, número de esclavo y medición de potencia por medio de la interfaz UART al módulo WiFi del microcontrolador.
 	    \item {[Módulo WiFi Microcontrolador]} Recibe la muestra de medición por medio de la interfaz UART.
 	    \item {[Módulo WiFi Microcontrolador]} Envía la trama con la información de la muestra a través del protocolo UDP al módulo WiFi del Servidor embebido. \hyperref[SUB-M-CU1.2:TA]{[Trayectoria Alternativa A]}
 	    \item {[Servidor Embebido]} Recibe la trama con la información de la muestra.
@@ -69,5 +69,5 @@ El microcontrolador DSPIC30F4013 envía las muestras obtenidas del Sistema fotov
 \paragraph{Trayectoria alternativa A} \label{SUB-M-CU1.3:TA}
 	Error en envío de trama al servidor embebido, conexión con servidor no disponible o cerrada.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Microcontrolador]} Salta al ultimo paso de la trayectoria principal	\end{enumerate}
+		\item {[Microcontrolador]} Salta al último paso de la trayectoria principal	\end{enumerate}
 	Fin de trayectoria alternativa.

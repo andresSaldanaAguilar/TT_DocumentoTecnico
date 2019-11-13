@@ -4,13 +4,13 @@
 %   *Trayectoria principal
 % Agregar regla de negocio de IIC Time Out and Clock Stretching? Si se agrega, incluir la RN en la tabla
 \subsubsection{SUB-M-CU1.1-Consultar medición del sensor en tiempo real}\label{SUB-M-CU1.1}
-El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la Regla de Negocio \ref{RN1}; dichas mediciones son enviadas al microcontrolador por medio del protocolo IIC.
+El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la Regla de Negocio \ref{RN1} Dichas mediciones son enviadas al microcontrolador por medio del protocolo IIC.
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
 		SUB-M-CU1.1-Consultar medición del sensor en tiempo real \\ \hline
 	\textbf{Objetivo} &
-		Enviar las mediciones obtenidas por el sensor hacia el microcontrolador por medio del protocolo IIC, para que estas puedan ser procesadas por el sistema embebido. \\ \hline
+		Enviar las mediciones obtenidas por el sensor hacia el microcontrolador por medio del protocolo IIC, para que éstas puedan ser procesadas por el sistema embebido. \\ \hline
 	\textbf{Actores} &
 	    \begin{itemize}
 		    \item Microcontrolador
@@ -45,7 +45,7 @@ El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la R
 		 %DUDA: tiempo establecido por I2C Time Out and Clock Stretching?
 		 	\item \label{SUB-M-CU1.1:Error1} Error 1: La trama de lectura de medición del sensor no es válida.
 		 	\item \label{SUB-M-CU1.1:Error2} Error 2: La trama de respuesta del sensor no fue recibida por el microcontrolador.
-		 	\item \label{SUB-M-CU1.1:Error3} Error 3: La trama de respuesta de medición del sensor no es válido.
+		 	\item \label{SUB-M-CU1.1:Error3} Error 3: La trama de respuesta de medición del sensor no es válida.
 		 \end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 	    \begin{itemize}
@@ -74,7 +74,7 @@ El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la R
 	\begin{enumerate}[label=A\arabic*.]
 		\item {[Sensor]} Envía una trama para notificar el error al microcontrolador.  
 	\end{enumerate}
-	Fin de trayectoria y retorno al ultimo paso de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]}  
+	Fin de la trayectoria alternativa y retorno al último paso de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]}  
 
 \paragraph{Trayectoria alternativa B} \label{SUB-M-CU1.1:TB}
 	La trama de respuesta de lectura de medición del sensor no fue recibida por el microcontrolador.
@@ -88,4 +88,4 @@ El microcontrolador consulta la medición del sensor MCP39F521 de acuerdo a la R
 	\begin{enumerate}[label=C\arabic*.]
 		\item {[Sensor]} Genera un código de error.
 	\end{enumerate}
-	Fin de la trayectoria alternativa y retorno al ultimo paso de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]} 
+	Fin de la trayectoria alternativa y retorno al último paso de \hyperref[SUB-M-CU1.1:TP]{[Trayectoria Principal]} 

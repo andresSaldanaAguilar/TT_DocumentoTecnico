@@ -1,98 +1,75 @@
 \subsubsection{SUB-U-CU1.1-Ver estado de generación actual}\label{SUB-U-CU1.1}
-La barra de estado de generación actual es un componente de la interfaz \hyperref[fig:monitoreo]{[IU1-Generación Actual]} y es la encargada de mostrar el estado de generación actual de uno de los sensores del Sistema fotovoltaico, evaluándolo con la Regla de Negocios \ref{RN12}, con actualizaciones en el tiempo establecido en la Regla de Negocios \ref{RN17}, la comunicación con el Servidor se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8} con el formato de datos establecido en la Regla de Negocios \ref{RN11}   
+La barra de estado de generación actual se trata de un componente de la interfaz \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]} y es la encargada de mostrar el estado de generación actual de uno de los nodos que está conectado al servidor, evaluándolo con la Regla de Negocios \ref{RN12}, con actualizaciones en el tiempo establecido en la Regla de Negocios \ref{RN22}, la comunicación con el servidor se logrará mediante el patrón de intercambio de mensajes de la Regla de Negocios \ref{RN8}, con el formato de datos establecido en la Regla de Negocios \ref{RN11}   
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
 	\textbf{Nombre del caso de uso} &
 		SUB-U-CU1.1-Ver estado de generación actual \\ \hline
 	\textbf{Objetivo} &
-		Conseguir el valor actual de generación de energía y mostrarlo al usuario. \\ \hline
+		Conseguir la muestra que contiene el valor actual de generación de energía de un nodo y mostrarlo al usuario. \\ \hline
 	\textbf{Actores} &
 		\begin{itemize}
 		    \item Usuario
 			\item Servidor embebido
-			\item Aplicación de Usuario
+			\item Aplicación móvil
 		\end{itemize} \\ \hline
 	\textbf{Disparador} & 
-	    El usuario inicia la aplicación de usuario, dando clic en el ícono correspondiente de la aplicación.\\ \hline 
+	    El usuario inicia la aplicación desde su dispositivo móvil.\\ \hline 
 	\textbf{Entradas} & 
 		\begin{itemize}
-				\item{[Servidor embebido]} Petición por el valor actual.
-				\item{[Aplicación de usuario]} Identificador del sensor del cual se desea conocer información.
+				\item{[Aplicación móvil]} Identificador de servidor, microcontrolador y nodo seleccionado en la pantalla.
 		\end{itemize}\\ \hline 
 	\textbf{Salidas} & 
 		\begin{itemize}
-			\item Pantalla \hyperref[fig:monitoreo]{[IU1-Generación Actual]} indicando el estado de generación actual y el nivel en que se encuentra.
+			\item Pantalla \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]} con la información de la muestra del nodo seleccionado obtenida en tiempo real.
 		\end{itemize} \\ \hline
 	\textbf{Precondiciones} &
-		Debe estar establecida la conexión entre la Aplicación de usuario y el Servidor que atenderá las peticiones. \\ \hline
+		Debe estar establecida la conexión entre la aplicación móvil y el servidor que atenderá las peticiones. \\ \hline
 	\textbf{Postcondiciones} &
 		Ninguna.\\ \hline
 	\textbf{Condiciones de término} & 
 		\begin{itemize}
-			\item La aplicación de usuario recibe el valor y muestra la pantalla \hyperref[fig:monitoreo]{[IU1-Generación Actual]} con el estado de generación actual.
+			\item La aplicación móvil presenta la pantalla \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]} con la información de la muestra obtenida en tiempo real.
 		\end{itemize} \\ \hline 
 	\textbf{Prioridad} & 
 		Media. \\ \hline
 	\textbf{Errores} & 
 		\begin{itemize}
 		    \item \label{CUU1.1:Error1} Error 1: Sin conexión con el servidor.
-			\item \label{CUU1.1:Error2} Error 2: La marca de tiempo requerida no existe en el servidor.
-		    \item \label{CUU1.1:Error3} Error 3: Sin conexión con el cliente.
-		    \item \label{CUU1.1:Error4} Error 4: El valor de generación es -1.
 		\end{itemize} \\ \hline
 	\textbf{Reglas de negocio} & 
 		\begin{itemize}
 		    \item \ref{RN8}
 			\item \ref{RN11}
 			\item \ref{RN12}
-			\item \ref{RN17}
+			\item \ref{RN22}
 		\end{itemize} \\ \hline
 \end{longtable}
 
 \paragraph{Trayectoria principal}
     \label{SUB-U-CU1.1:TP}
 	\begin{enumerate}
-	    \item {[Usuario]} Inicia la Aplicación de usuario dando clic en el ícono correspondiente de la aplicación. y por defecto se elige el primer sensor o el único. \hyperref[SUB-U-CU1.1:TA]{[Trayectoria alternativa A]}
-	    \item {[Aplicación de Usuario]} Envía la petición para obtener el valor de generación actual. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
-	    \item {[Servidor embebido]} Recibe la petición, busca el valor actual de generación almacenado. \hyperref[SUB-U-CU1.1:TC]{[Trayectoria alternativa C]}
-	    \item {[Servidor embebido]} Envía el valor correspondiente. \hyperref[SUB-U-CU1.1:TD]{[Trayectoria alternativa D]} 
-	    \item {[Aplicación de Usuario]} Recibe el valor de generación actual y valida que este no sea un número negativo. \hyperref[SUB-U-CU1.1:TE]{[Trayectoria alternativa E]} 
-	    \item {[Aplicación de Usuario]} Muestra la pantalla \hyperref[fig:monitoreo]{[IU1-Generación Actual]} con el valor actualizado de estado de generación actual.
+	    \item {[Usuario]} Inicia la aplicación desde su dispositivo móvil y visualiza la pantalla \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]}. \hyperref[SUB-U-CU1.1:TA]{[Trayectoria alternativa A]}
+	    \item {[Aplicación móvil]} Envía una petición al servidor seleccionado; éste se carga por defecto en el primer selector que muestra la pantalla \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]} para conocer la estructura de microcontroladores y nodos que posee dicho servidor.\hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]}
+	    \item {[Servidor embebido]} Recibe la petición y manda como respuesta la estructura de microcontroladores y nodos que existen.
+	    \item {[Aplicación móvil]} Recibe la respuesta del servidor y carga la información en los selectores de microcontroladores y nodos, mostrando el primer resultado de cada uno por defecto en su correspondiente selector de la pantalla \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]} 
+	    \item {[Aplicación móvil]} Envía la petición al servidor especificando el microcontrolador y nodo seleccionado en cada uno de los selectores para obtener el valor de generación actual del nodo. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
+	    \item {[Servidor embebido]} Recibe la petición, busca el valor actual de generación almacenado del nodo solicitado. 
+	    \item {[Servidor embebido]} Envía la respuesta de la petición.
+	    \item {[Aplicación móvil]} Recibe el valor de generación actual del nodo y lo clasifica de acuerdo a la Regla de Negocios \ref{RN12}. 
+	    \item {[Aplicación móvil]} Muestra la pantalla \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]} con el valor actualizado de estado de generación actual.
 	\end{enumerate}
 	Fin del caso de uso.
 
 \paragraph{Trayectoria alternativa A} \label{SUB-U-CU1.1:TA}
-	El usuario ya está dentro de la aplicación de usuario y elige un sensor a monitorear.
+	El usuario ya está dentro de la aplicación móvil y elige un nodo diferente al que se carga por defecto en los selectores de la pantalla \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]}.
 	\begin{enumerate}[label=A\arabic*.]
-		\item {[Aplicación de Usuario]} Transcurre el tiempo marcado por la Regla de Negocio \ref{RN17} y envía la petición para obtener el valor de generación actual, junto con el identificador del sensor que se desea monitorear. \hyperref[SUB-U-CU1.1:TB]{[Trayectoria alternativa B]} 
+		\item {[Aplicación móvil]} Regresa al paso 5 de la \hyperref[SUB-U-CU1.1:TP]{[Trayectoria Principal]}.
 	\end{enumerate}
-	Fin de la trayectoria alternativa. Regresa al paso 3 de la \hyperref[SUB-U-CU1.1:TP]{[Trayectoria Principal]}.
+	Fin de la trayectoria alternativa.
 
 \paragraph{Trayectoria alternativa B} \label{SUB-U-CU1.1:TB}
 	Sin conexión con el servidor.
 	\begin{enumerate}[label=B\arabic*.]
-		\item {[Aplicación de usuario]} Actualiza como estado actual la palabra ''desconectado'' en la pantalla \hyperref[fig:monitoreo]{[IU1-Generación Actual]}.
-	\end{enumerate}
-	Fin de la trayectoria alternativa y fin del caso de uso.
-
-\paragraph{Trayectoria alternativa C} \label{SUB-U-CU1.1:TC}
-	La marca de tiempo requerida no existe en la base de datos del servidor.
-	\begin{enumerate}[label=C\arabic*.]
-		\item {[Servidor embebido]} Asigna el valor -1 a la respuesta para la Aplicación de usuario.
-	\end{enumerate}
-	Fin de la trayectoria alternativa. Regresa al punto 4 de la  \hyperref[SUB-U-CU1.1:TP]{[Trayectoria Principal]}
-
-\paragraph{Trayectoria alternativa D} \label{SUB-U-CU1.1:TD}
-	Sin conexión con el cliente.
-	\begin{enumerate}[label=D\arabic*.]
-		\item {[Servidor embebido]} Aborta envió y espera por la siguiente petición.
-		\item {[Aplicación de usuario]} Al no recibir respuesta del servidor en el intervalo establecido, actualiza como estado actual la palabra ''desconectado'' en la interfaz de usuario \hyperref[fig:monitoreo]{[IU1-Generación Actual]}.
-	\end{enumerate}
-	Fin de la trayectoria alternativa y fin del caso de uso.
-	
-\paragraph{Trayectoria alternativa E} \label{SUB-U-CU1.1:TE}
-	El valor de respuesta es -1
-	\begin{enumerate}[label=E\arabic*.]
-		\item {[Aplicación de usuario]} Actualiza como estado actual la palabra ''error servidor'' en la interfaz de usuario. \hyperref[fig:monitoreo]{[IU1-Generación Actual]}.
+		\item {[Aplicación móvil]} Muestra el mensaje "Consulta fallida" en la pantalla \hyperref[fig:monitoreoReal]{[IU1-Generación Actual]}.
 	\end{enumerate}
 	Fin de la trayectoria alternativa y fin del caso de uso.

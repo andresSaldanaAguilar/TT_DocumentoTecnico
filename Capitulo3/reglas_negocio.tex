@@ -82,7 +82,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN6-Periodo de toma de muestras.
 			\item[Tipo] Operación.
 			\item[Objetivo] Establecer el periodo de tiempo en el que las muestras serán tomadas para cada nodo.
-			\item[Descripción] Las muestras para obtener el resultado de la producción de energía comenzarán a tomarse a partir de las 0:00:00 hrs hasta las 23:59:59 en la frecuencia indicada en la \ref{RN2}; adicionalmente se guardará cada minuto el valor de la potencia activa de cada nodo para la generación de la gráfica en tiempo real, dando un total de 1440 muestras diarias.		
+			\item[Descripción] Las muestras para obtener el resultado de la producción de energía comenzarán a tomarse a partir de las 0:00:00 hrs hasta las 23:59:59 hrs en la frecuencia indicada en la \ref{RN2} Adicionalmente se guardará cada minuto el valor de la potencia activa de cada nodo para la generación de la gráfica en tiempo real, dando un total de 1440 muestras diarias.		
 		\end{description}
 		
 %Checar tipo
@@ -257,6 +257,26 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 		 		\item Eliminar el servidor para dejar de monitorearlo en la aplicación móvil.
 		    \end{itemize}
 		\end{description}
+		
+\item \label{RN22}
+		\begin{description}
+			\item[Nombre] RN22-Tiempo de obtención de muestra actual en tiempo real.
+			\item[Tipo] Operación.
+			\item[Objetivo] Establecer la frecuencia con la que se enviarán peticiones al servidor para obtener el valor actualizado de la muestra de un nodo en tiempo real.
+			\item[Descripción] El usuario de la aplicación móvil puede observar el valor actualizado de la muestra de producción en tiempo real de un nodo cada 2 segundos.
+		\end{description}
+		
+\item \label{RN23}
+		\begin{description}
+			\item[Nombre] RN23-Tiempo de obtención de muestras de hoy en tiempo real.
+			\item[Tipo] Operación.
+			\item[Objetivo] Establecer la frecuencia con la que se enviarán peticiones al servidor para obtener la información actualizada del archivo que contiene las muestras de un nodo durante el día en curso.
+			\item[Descripción] El usuario de la aplicación móvil puede observar el valor actualizado de las muestras de producción durante el día en curso de un nodo cada 1 minuto.
+		\end{description}
+		
+		
+		
+		
 \end{enumerate}
 
 
