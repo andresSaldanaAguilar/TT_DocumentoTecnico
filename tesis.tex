@@ -56,6 +56,10 @@
 
 
 
+
+
+
+
 %% Opciones del posgrado (descomentar si las necesitan)
 	%\posgradotrue                                                    
 	%\programa{programa de maestría y doctorado en ingeniería}
@@ -81,14 +85,15 @@
 \begin{document}
 
 \maketitle	% Se redefinió este comando en el archivo de la clase para generar automáticamente la portada a partir de los datos
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                  PRÓLOGO                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frontmatter
-% \include{Agradecimientos/Dedicatoria}       % Comentar línea si no se usa
-% \include{Agradecimientos/Agradecimientos}   % Comentar línea si no se usa 
-% \include{Declaracion/Declaracion}           % Comentar línea si no se usa
+
+
+%\include{Declaracion/Declaracion}           % Comentar línea
+
+%\include{Agradecimientos/Dedicatoria}       % Comentar línea si no se usa
 % \include{Resumen/Resumen}                   % Comentar línea si no se usa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,12 +114,12 @@
 % the main text starts here with the introduction, 1st chapter,...
 \mainmatter
 \def\baselinestretch{1.5}                   % Interlineado de 1.5
-%\include{Capitulo1/introduccion}
-%\include{Capitulo2/marco_teorico}
+\include{Capitulo1/introduccion}
+\include{Capitulo2/marco_teorico}
 \include{Capitulo3/analisis_sistema}
 \include{Capitulo4/diseno_sistema}
 \include{Capitulo5/desarrollo}
-%\include{Capitulo7/conclusiones}
+\include{Capitulo7/conclusiones}
 
 %DESCOMENTAR CONFORME AVANCEMOS
 \include{Extras/trabajo_futuro}

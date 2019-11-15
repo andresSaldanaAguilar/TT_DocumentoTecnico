@@ -7,7 +7,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN1-Obtención de muestras del sistema fotovoltaico en tiempo real.
 			\item[Tipo] Operación.
 			\item[Objetivo] La obtención de mediciones del sistema fotovoltaico se realizará en tiempo real.
-			\item[Descripción] La obtención de mediciones del sistema fotovoltaico dependerá del dispositivo de monitoreo empleado, en este caso, se trata del MCP39F521, y está determinada por la frecuencia de reloj de IIC de 400 Khz, sin embargo nuestro sistema trabajará a una frecuencia de 1 segundo.
+			\item[Descripción] La obtención de mediciones del sistema fotovoltaico dependerá del dispositivo de monitoreo empleado, en este caso, se trata del MCP39F521, y está determinada por la frecuencia de reloj de IIC de 400 Khz, sin embargo nuestro sistema trabajará a una frecuencia de 1 Hz.
     		\end{description}
     		
 \item \label{RN2}
@@ -15,7 +15,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 		\item[Nombre] RN2-Envío de muestras del sistema fotovoltaico en tiempo real.
 		\item[Tipo] Operación.
 		\item[Objetivo] Establecer el tiempo y frecuencia de envío de mediciones del microcontrolador por medio del módulo Wi-Fi.
-		\item[Descripción] El envío de muestras del microcontrolador por medio del módulo Wi-Fi dependerá de la velocidad de transmisión UART entre el microcontrolador y el módulo, que es de 115200 baudios. Un baudio es el número de unidades de información transmitidas por segundo, que dependiendo de la configuración puede estar entre los 9600 a 11520 Bytes/Segundo, la frecuencia de envío de muestras hacia el servidor será de 1 segundo, obteniendo así una resolución de la unidad de generación de energía en Kilowatt Segundo para después ser convertida a Kilowatt Hora.
+		\item[Descripción] El envío de muestras del microcontrolador por medio del módulo Wi-Fi dependerá de la velocidad de transmisión UART entre el microcontrolador y el módulo, que es de 115200 baudios. Un baudio es el número de unidades de información transmitidas por segundo, que dependiendo de la configuración puede estar entre los 9600 a 11520 Bytes/Segundo, la frecuencia de envío de muestras hacia el servidor será de 1 Hz, obteniendo así una resolución de la unidad de generación de energía en watt Segundo para después ser convertida a watt Hora.
 		\end{description}	
 		
     \item \label{RN3}
@@ -162,12 +162,12 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN14-Formato de fecha de notificaciones.
 			\item[Tipo] Estructura.
 			\item[Objetivo] Definir el formato de fecha de las notificaciones para la aplicación móvil.
-			\item[Descripción] El formato de fecha en que serán almacenadas las notificaciones del sistema en la aplicación móvil es: dd/mm/aa.
+			\item[Descripción] El formato de fecha en que serán almacenadas las notificaciones del sistema en la aplicación móvil es: mm/dd/aa.
 			Donde:
 			\begin{itemize}
+			    \item mm = Corresponde al número de mes del año.
 		 		\item dd = Corresponde al número de día del mes.
-		 		\item mm = Corresponde al número de mes del año.
-		 		\item aa = Corresponde al año
+		 		\item aa = Corresponde al año.
 		    \end{itemize}
 		\end{description}
 		
@@ -194,7 +194,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Descripción] El formato de IP válido será N.N.N.N
 			Donde:
 			\begin{itemize}
-		 		\item N = número entero menor a 255 y mayor o igual a 0
+		 		\item N = número entero menor o igual a 255 y mayor o igual a 0
 		    \end{itemize}
 		\end{description}
 
@@ -221,7 +221,7 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Nombre] RN18-Monitoreo para crear notificaciones.
 			\item[Tipo] Habilitadora de acción.
 			\item[Objetivo] Indicar bajo que condición se pueden obtener notificaciones del sistema.
-			\item[Descripción] El usuario de la aplicación móvil puede permitir el monitoreo de los nodos en segundo plano, con el objetivo de poder recibir notificaciones cuando ocurran algunas de las condiciones establecidas en la \ref{RN3}, siempre y cuando lo solicite en la configuración de la aplicación.
+			\item[Descripción] El usuario de la aplicación móvil puede permitir el monitoreo de los nodos en segundo plano lanzando peticiones cada 10 segundos, con el objetivo de poder recibir notificaciones cuando ocurran algunas de las condiciones establecidas en la \ref{RN3}, siempre y cuando lo solicite en la configuración de la aplicación.
 		\end{description}
 %checar		
 \item \label{RN19}
@@ -239,24 +239,20 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Objetivo] Indicar las opciones que tiene el usuario sobre los servidores registrados.
 			\item[Descripción] El usuario de la aplicación móvil puede realizar las siguientes acciones en los servidores que ha registrado:
 			\begin{itemize}
-		 		\item Recuperar contraseña por medio del correo electrónico establecido por el primer usuario
+		 		\item Recuperar contraseña por medio del correo electrónico establecido por el primer usuario.
 		 		\item Editar el nombre del servidor.
 		 		\item Eliminar el servidor para dejar de monitorearlo en la aplicación móvil.
 		    \end{itemize}
 		\end{description}
-
+%AQUI PON UNA RN SAM PLEASE RN21
 \item \label{RN21}
 		\begin{description}
-			\item[Nombre] RN21-Gestión de servidores.
-			\item[Tipo] Habilitadora de acción.
-			\item[Objetivo] Indicar las opciones que tiene el usuario sobre los servidores registrados.
-			\item[Descripción] El usuario de la aplicación móvil puede realizar las siguientes acciones en los servidores que ha registrado:
-			\begin{itemize}
-		 		\item Recuperar contraseña por medio del correo electrónico establecido por el primer usuario
-		 		\item Editar el nombre del servidor.
-		 		\item Eliminar el servidor para dejar de monitorearlo en la aplicación móvil.
-		    \end{itemize}
+			\item[Nombre] RN21-Tiempo que debe transcurrir para generar una nueva notificación por el mismo evento.
+			\item[Tipo] Operación.
+			\item[Objetivo] Establecer la frecuencia con la que se notificará un evento del mismo tipo, que proviene del mismo nodo, microcontrolador y servidor.
+			\item[Descripción] La aplicación dará aviso sobre un evento proveniente del mismo nodo, microcontrolador y servidor con una nueva notificación siempre y cuando haya transcurrido 1 hora desde la última vez que se notificó un evento de la misma índole, a excepción del evento en el que no se obtiene respuesta del servidor, en este caso se creará la notificación nueva pasados únicamente 10 minutos. 
 		\end{description}
+
 		
 \item \label{RN22}
 		\begin{description}
@@ -274,6 +270,46 @@ En la presente sección, se muestran las reglas de negocio del sistema.
 			\item[Descripción] El usuario de la aplicación móvil puede observar el valor actualizado de las muestras de producción durante el día en curso de un nodo cada 1 minuto.
 		\end{description}
 		
+\item \label{RN24}
+		\begin{description}
+			\item[Nombre] RN24-Tipos de usuario.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir los tipos de usuario que pueden hacer peticiones al servidor desde la aplicación móvil. 
+			\item[Descripción] 
+			Para algunos casos de uso se hará la distinción entre los siguientes tipos de usuario: 
+			\begin{itemize}
+		 		\item Usuario administrador: Es el primer usuario en conectarse al servidor. Tiene que registrar un correo para recuperación de contraseña y una contraseña para poder almacenar al servidor en el dispositivo móvil.
+		 		\item Usuario cliente: Son el resto de usuarios que se conectaron después del usuario administrador. Este usuario únicamente ingresa la contraseña que estableció el usuario administrador para dicho servidor.
+		 		\item Usuario: Para el resto de casos de uso en los que no se especifica el tipo de usuario, se considerarán como un mismo usuario pues son acciones que tienen permitidas tanto el usuario administrador como el usuario cliente.
+		    \end{itemize}
+		\end{description}
+		
+\item \label{RN25}
+		\begin{description}
+			\item[Nombre] RN25-Formato de contraseña.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato de la contraseña que se almacenará en el servidor 
+			\item[Descripción] 
+			El formato de la contraseña debe de cumplir con la siguiente expresión regular, la cual indica que la contraseña debe de tener al menos un dígito, al menos una minúscula, al menos una mayúscula, al menos un caracter especial (@\#\$\%	\textasciicircum{}\&+=-\_.) 
+			No debe de incluir espacios en blanco y debe de tener entre 8 y 10 caracteres: \textasciicircum{}.*[0-9].*[a-z].*[A-Z].*[@\#\$\%	\textasciicircum{}\&+=-\_.]\textbackslash{}S\$.\{8,10\}
+			\begin{itemize}
+		 		\item Contraseña que cumple con la expresión regular: Pa55word@
+		 		\item Contraseña que no cumple con la expresión regular: Password
+		    \end{itemize}
+		\end{description}
+		
+\item \label{RN26}
+		\begin{description}
+			\item[Nombre] RN26-Formato de correo electrónico.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato del correo electrónico que se almacenará en el servidor 
+			\item[Descripción] 
+			El formato del correo electrónico debe de cumplir con la siguiente expresión regular, la cual indica que se forma por caracteres alfanuméricos y se excluyen los siguientes caracteres especiales \#\&\textasciitilde{}!\textasciicircum{}`\{\}/=\$*?| del correo [a-zA-Z0-9\textbackslash{}+\textbackslash{}.\textbackslash{}\_\textbackslash{}\%\textbackslash{}-\textbackslash{}+]{1,256}\textbackslash{}@[a-zA-Z0-9][a-zA-Z0-9\textbackslash{}-]{0,64}\textbackslash{}.[a-zA-Z0-9][a-zA-Z0-9\textbackslash{}-]{0,25}
+			\begin{itemize}
+		 		\item Correo electrónico que cumple con la expresión regular: solarmonitorproject@gmail.com
+		 		\item Correo electrónico que no cumple con la expresión regular: @hotmail.com
+		    \end{itemize}
+		\end{description}
 		
 		
 		

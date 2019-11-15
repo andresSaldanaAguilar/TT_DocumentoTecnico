@@ -3,7 +3,7 @@
 %   *Errores checar si los 3 son correctos
 %   *Trayectoria principal
 % Agregar regla de negocio de IIC Time Out and Clock Stretching? Si se agrega, incluir la RN en la tabla
-\subsubsection{SUB-M-CU1.5-Crear gráficas de tiempo real}\label{SUB-M-CU1.5}
+\subsubsection{SUB-M-CU1.5-Crear muestras para gráficas del día actual}\label{SUB-M-CU1.5}
 El servidor consultará el archivo de tiempo real en el tiempo definido en la regla de negocio \ref{RN6}, con el propósito de crear una gráfica que represente la producción de energía a lo largo de un día.
 \begin{longtable}{|J{5cm}|J{10.3cm}|}
 	\hline
@@ -55,6 +55,7 @@ El servidor consultará el archivo de tiempo real en el tiempo definido en la re
 	\begin{enumerate}
 	    \item {[Servidor Embebido]} Transcurre el tiempo establecido en la regla de negocio \ref{RN6}
 	    \item {[Servidor Embebido]} Obtiene por cada nodo de cada microcontrolador su valor en tiempo real. \hyperref[SUB-M-CU1.5:TB]{[Trayectoria Alternativa A]} \hyperref[SUB-M-CU1.5:TB]{[Trayectoria Alternativa B]}
+	    \item {[Servidor Embebido]} Guarda el valor obtenido en las muestras del día de hoy.
 	    \item {[Servidor Embebido]} Espera al término del minuto cuando sea propio.
 		\item {[Servidor Embebido]} Retorna al paso 1 de \hyperref[SUB-M-CU1.5:TP]{[Trayectoria Principal]}
 	\end{enumerate}

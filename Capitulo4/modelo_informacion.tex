@@ -1,7 +1,8 @@
 \section{Modelo de información del sistema}
 En la Figura \ref{fig:Base_ServidorEmbebido} se observa un diagrama del modelo de información correspondiente al repositorio de datos almacenado en el servidor embebido, se puede observar que las tablas no se encuentran relacionadas porque no existe relación alguna entre los datos, cada tabla representa un archivo JSON, cada nodo sensor tiene este conjunto de archivos en una carpeta contenedora, esto ayuda a identificar entre los 4 diferentes direcciones de sensores posibles, donde el sensor es identificado por su número de esclavo (0 al 3), los microcontroladores se identifican por su número de serie, contienen a los sensores esclavos pertenecientes al microcontrolador y este a su vez está contenido por una carpeta que indica a que IP pertenece el microcontrolador, por dar un ejemplo, 192.168.0.3/AA/0 indicaría que el servidor con IP 192.168.0.3 contiene al microcontrolador con número de serie AA y tiene un sensor con número de esclavo 0. 
 \paragraph{}
-Cada archivo JSON representa un arreglo de objetos con los atributos como se especifican en la figura \ref{fig:Base_ServidorEmbebido}\\
+Cada archivo JSON representa un arreglo de objetos con los atributos como se especifican en la figura \ref{fig:Base_ServidorEmbebido} y en conjunto tendrán un peso total de 1MB.
+\\
 En el archivo de tiempo real se guarda el valor de los parámetros obtenidos cada segundo, sobrescribiéndolo en ese mismo tiempo.
 \\
 En las muestras del día, se almacenarán un total de 1440 objetos con los atributos especificados, es decir se almacenará una muestra por minuto para poder generar la gráfica de producción del día.
