@@ -1,0 +1,267 @@
+\babel@toc {spanish}{}
+\contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {v}}{chapter*.2}
+\contentsline {chapter}{\'{I}ndice de tablas}{\es@scroman {x}}{chapter*.3}
+\contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Resumen}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Palabras clave}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}Descripci\IeC {\'o}n del documento}{1}{section.1.3}
+\contentsline {section}{\numberline {1.4}Antecedentes}{2}{section.1.4}
+\contentsline {paragraph}{}{2}{paragraph*.4}
+\contentsline {paragraph}{}{2}{paragraph*.5}
+\contentsline {paragraph}{}{3}{paragraph*.6}
+\contentsline {section}{\numberline {1.5}Justificaci\IeC {\'o}n}{3}{section.1.5}
+\contentsline {section}{\numberline {1.6}Planteamiento del problema}{3}{section.1.6}
+\contentsline {section}{\numberline {1.7}Objetivos}{3}{section.1.7}
+\contentsline {subsection}{\numberline {1.7.1}Objetivo general}{3}{subsection.1.7.1}
+\contentsline {subsection}{\numberline {1.7.2}Objetivos espec\IeC {\'\i }ficos}{4}{subsection.1.7.2}
+\contentsline {section}{\numberline {1.8}Estado del arte}{4}{section.1.8}
+\contentsline {chapter}{\numberline {2}Marco conceptual}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Sistema Fotovoltaico}{6}{section.2.1}
+\contentsline {paragraph}{}{6}{paragraph*.7}
+\contentsline {paragraph}{}{6}{paragraph*.8}
+\contentsline {paragraph}{Ley para el Aprovechamiento de Energ\IeC {\'\i }as Renovables}{8}{paragraph*.10}
+\contentsline {paragraph}{NMX-J-643/1}{8}{paragraph*.11}
+\contentsline {paragraph}{NMX-J-618/1}{8}{paragraph*.12}
+\contentsline {paragraph}{Contrato de interconexi\IeC {\'o}n para paneles solares}{8}{paragraph*.13}
+\contentsline {paragraph}{}{8}{paragraph*.14}
+\contentsline {paragraph}{}{8}{paragraph*.15}
+\contentsline {paragraph}{}{8}{paragraph*.16}
+\contentsline {paragraph}{}{8}{paragraph*.17}
+\contentsline {paragraph}{}{9}{paragraph*.18}
+\contentsline {paragraph}{Panel fotovoltaico}{9}{paragraph*.19}
+\contentsline {paragraph}{}{9}{paragraph*.20}
+\contentsline {paragraph}{}{9}{paragraph*.22}
+\contentsline {paragraph}{M\IeC {\'o}dulo Fotovoltaico 200W Policristalino IUSA}{10}{paragraph*.24}
+\contentsline {paragraph}{Microinversor de corriente CC/CA para m\IeC {\'o}dulo fotovoltaico M1-01-250}{10}{paragraph*.26}
+\contentsline {paragraph}{Factor de Potencia}{11}{paragraph*.28}
+\contentsline {section}{\numberline {2.2}Wi-Fi}{12}{section.2.2}
+\contentsline {paragraph}{}{12}{paragraph*.30}
+\contentsline {paragraph}{}{12}{paragraph*.31}
+\contentsline {paragraph}{Est\IeC {\'a}ndares 802.11}{12}{paragraph*.32}
+\contentsline {paragraph}{}{12}{paragraph*.33}
+\contentsline {section}{\numberline {2.3}M\IeC {\'o}dulo Wi-Fi MIKROE-2542}{13}{section.2.3}
+\contentsline {paragraph}{}{13}{paragraph*.35}
+\contentsline {paragraph}{MikroBUS}{13}{paragraph*.37}
+\contentsline {paragraph}{}{14}{paragraph*.39}
+\contentsline {paragraph}{ESP8266}{14}{paragraph*.40}
+\contentsline {paragraph}{}{14}{paragraph*.41}
+\contentsline {paragraph}{}{16}{paragraph*.43}
+\contentsline {section}{\numberline {2.4}IoT (Internet de las cosas)}{16}{section.2.4}
+\contentsline {paragraph}{}{16}{paragraph*.44}
+\contentsline {paragraph}{}{16}{paragraph*.45}
+\contentsline {paragraph}{}{16}{paragraph*.46}
+\contentsline {section}{\numberline {2.5}Demonio / Servicio}{16}{section.2.5}
+\contentsline {section}{\numberline {2.6}Ubuntu Core}{17}{section.2.6}
+\contentsline {paragraph}{}{17}{paragraph*.47}
+\contentsline {paragraph}{}{17}{paragraph*.48}
+\contentsline {paragraph}{}{17}{paragraph*.49}
+\contentsline {section}{\numberline {2.7}Red de sensores}{17}{section.2.7}
+\contentsline {paragraph}{}{17}{paragraph*.50}
+\contentsline {paragraph}{}{18}{paragraph*.51}
+\contentsline {paragraph}{Sensor}{18}{paragraph*.52}
+\contentsline {paragraph}{}{18}{paragraph*.53}
+\contentsline {paragraph}{MCP39F521}{18}{paragraph*.54}
+\contentsline {paragraph}{}{18}{paragraph*.55}
+\contentsline {paragraph}{IIC}{19}{paragraph*.57}
+\contentsline {paragraph}{}{19}{paragraph*.58}
+\contentsline {section}{\numberline {2.8}Dispositivo de monitoreo de energ\IeC {\'\i }a}{20}{section.2.8}
+\contentsline {paragraph}{}{21}{paragraph*.61}
+\contentsline {paragraph}{}{21}{paragraph*.62}
+\contentsline {paragraph}{}{21}{paragraph*.63}
+\contentsline {section}{\numberline {2.9}Sistema Embebido}{21}{section.2.9}
+\contentsline {paragraph}{}{21}{paragraph*.64}
+\contentsline {paragraph}{}{21}{paragraph*.65}
+\contentsline {paragraph}{}{21}{paragraph*.66}
+\contentsline {paragraph}{}{21}{paragraph*.67}
+\contentsline {paragraph}{}{21}{paragraph*.68}
+\contentsline {paragraph}{SBC}{22}{paragraph*.69}
+\contentsline {paragraph}{}{22}{paragraph*.70}
+\contentsline {paragraph}{}{22}{paragraph*.71}
+\contentsline {paragraph}{Raspberry Pi}{22}{paragraph*.72}
+\contentsline {paragraph}{}{23}{paragraph*.74}
+\contentsline {section}{\numberline {2.10}Microcontroladores}{24}{section.2.10}
+\contentsline {paragraph}{}{24}{paragraph*.76}
+\contentsline {paragraph}{}{25}{paragraph*.77}
+\contentsline {paragraph}{}{25}{paragraph*.78}
+\contentsline {paragraph}{}{25}{paragraph*.80}
+\contentsline {paragraph}{}{26}{paragraph*.81}
+\contentsline {section}{\numberline {2.11}Sistemas de tiempo real}{28}{section.2.11}
+\contentsline {section}{\numberline {2.12}JSON}{28}{section.2.12}
+\contentsline {paragraph}{}{28}{paragraph*.82}
+\contentsline {section}{\numberline {2.13}JMeter}{29}{section.2.13}
+\contentsline {chapter}{\numberline {3}An\IeC {\'a}lisis del sistema}{30}{chapter.3}
+\contentsline {section}{\numberline {3.1}Factibilidad}{30}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Factibilidad t\IeC {\'e}cnica}{30}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Factibilidad operativa}{31}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Factibilidad econ\IeC {\'o}mica}{31}{subsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.3.1}Hardware}{32}{subsubsection.3.1.3.1}
+\contentsline {paragraph}{Unidad de medici\IeC {\'o}n}{32}{paragraph*.83}
+\contentsline {paragraph}{Precio unitaria por unidad de medici\IeC {\'o}n}{32}{paragraph*.84}
+\contentsline {subsubsection}{\numberline {3.1.3.2}Software}{32}{subsubsection.3.1.3.2}
+\contentsline {paragraph}{Estimaciones del proyecto}{33}{paragraph*.85}
+\contentsline {paragraph}{M\IeC {\'e}tricas}{33}{paragraph*.86}
+\contentsline {paragraph}{Estimaci\IeC {\'o}n por el Modelo COCOMO II}{33}{paragraph*.87}
+\contentsline {subsection}{\numberline {3.1.4}An\IeC {\'a}lisis de factibilidad}{33}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}Requerimientos funcionales}{34}{section.3.2}
+\contentsline {paragraph}{}{34}{paragraph*.88}
+\contentsline {paragraph}{M\IeC {\'o}dulo de Microcontrolador}{35}{paragraph*.90}
+\contentsline {paragraph}{M\IeC {\'o}dulo de Servidor}{35}{paragraph*.91}
+\contentsline {paragraph}{M\IeC {\'o}dulo de Aplicaci\IeC {\'o}n de usuario}{35}{paragraph*.92}
+\contentsline {section}{\numberline {3.3}Requerimientos no funcionales}{37}{section.3.3}
+\contentsline {section}{\numberline {3.4}Requerimientos t\IeC {\'e}cnicos}{38}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Requerimientos m\IeC {\'\i }nimos de software del m\IeC {\'o}dulo de aplicaci\IeC {\'o}n de usuario}{38}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Requerimientos m\IeC {\'\i }nimos de hardware del m\IeC {\'o}dulo de aplicaci\IeC {\'o}n de usuario}{38}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Reglas de negocio}{38}{section.3.5}
+\contentsline {section}{\numberline {3.6}Descripci\IeC {\'o}n del software}{45}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Android}{45}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Java}{47}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Spring 4}{48}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.4}Servidor}{49}{subsection.3.6.4}
+\contentsline {section}{\numberline {3.7}Descripci\IeC {\'o}n del hardware}{53}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Sensor}{53}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Microcontrolador}{54}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}Comunicaci\IeC {\'o}n inal\IeC {\'a}mbrica}{55}{subsection.3.7.3}
+\contentsline {section}{\numberline {3.8}Herramientas de desarrollo del sistema}{57}{section.3.8}
+\contentsline {subsection}{\numberline {3.8.1}Herramientas de desarrollo de software}{57}{subsection.3.8.1}
+\contentsline {subsection}{\numberline {3.8.2}Herramientas de desarrollo de hardware}{58}{subsection.3.8.2}
+\contentsline {section}{\numberline {3.9}Metodolog\IeC {\'\i }a}{58}{section.3.9}
+\contentsline {section}{\numberline {3.10}Costo de desarrollo}{60}{section.3.10}
+\contentsline {chapter}{\numberline {4}Dise\IeC {\~n}o del sistema}{62}{chapter.4}
+\contentsline {section}{\numberline {4.1}Diagrama del proceso general del sistema}{62}{section.4.1}
+\contentsline {section}{\numberline {4.2}Modelo de informaci\IeC {\'o}n del sistema}{63}{section.4.2}
+\contentsline {paragraph}{}{63}{paragraph*.101}
+\contentsline {section}{\numberline {4.3}Hardware}{65}{section.4.3}
+\contentsline {section}{\numberline {4.4}Software}{66}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Diagrama de Casos de Uso general}{66}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Subm\IeC {\'o}dulo Sistema de monitoreo}{66}{subsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.2.1}Diagrama de casos de uso}{66}{subsubsection.4.4.2.1}
+\contentsline {subsubsection}{\numberline {4.4.2.2}SUB-M-CU1.1-Consultar medici\IeC {\'o}n del sensor en tiempo real}{67}{subsubsection.4.4.2.2}
+\contentsline {paragraph}{Trayectoria principal}{68}{paragraph*.107}
+\contentsline {paragraph}{Trayectoria alternativa A}{69}{paragraph*.108}
+\contentsline {paragraph}{Trayectoria alternativa B}{69}{paragraph*.109}
+\contentsline {paragraph}{Trayectoria alternativa C}{69}{paragraph*.110}
+\contentsline {subsubsection}{\numberline {4.4.2.3}SUB-M-CU1.2-Enviar muestras al Servidor embebido}{69}{subsubsection.4.4.2.3}
+\contentsline {paragraph}{Trayectoria principal}{70}{paragraph*.111}
+\contentsline {paragraph}{Trayectoria alternativa A}{70}{paragraph*.112}
+\contentsline {subsubsection}{\numberline {4.4.2.4}SUB-M-CU1.3-Calcular la producci\IeC {\'o}n de energ\IeC {\'\i }a}{71}{subsubsection.4.4.2.4}
+\contentsline {paragraph}{Trayectoria principal}{71}{paragraph*.113}
+\contentsline {paragraph}{Trayectoria alternativa A}{72}{paragraph*.114}
+\contentsline {subsubsection}{\numberline {4.4.2.5}SUB-M-CU1.4-Respuesta a petici\IeC {\'o}n de cliente}{72}{subsubsection.4.4.2.5}
+\contentsline {paragraph}{Trayectoria principal}{73}{paragraph*.115}
+\contentsline {paragraph}{Trayectoria alternativa A}{73}{paragraph*.116}
+\contentsline {paragraph}{Trayectoria alternativa B}{73}{paragraph*.117}
+\contentsline {paragraph}{Trayectoria alternativa C}{74}{paragraph*.118}
+\contentsline {paragraph}{Trayectoria alternativa D}{74}{paragraph*.119}
+\contentsline {paragraph}{Trayectoria alternativa E}{74}{paragraph*.120}
+\contentsline {paragraph}{Trayectoria alternativa F}{74}{paragraph*.121}
+\contentsline {subsubsection}{\numberline {4.4.2.6}SUB-M-CU1.5-Crear muestras para gr\IeC {\'a}ficas del d\IeC {\'\i }a actual}{74}{subsubsection.4.4.2.6}
+\contentsline {paragraph}{Trayectoria principal}{75}{paragraph*.122}
+\contentsline {paragraph}{Trayectoria alternativa A}{75}{paragraph*.123}
+\contentsline {paragraph}{Trayectoria alternativa B}{75}{paragraph*.124}
+\contentsline {subsection}{\numberline {4.4.3}Subm\IeC {\'o}dulo Usuario}{76}{subsection.4.4.3}
+\contentsline {subsubsection}{\numberline {4.4.3.1}Diagrama de casos de uso}{76}{subsubsection.4.4.3.1}
+\contentsline {subsubsection}{\numberline {4.4.3.2}SUB-U-CU1.1-Ver estado de generaci\IeC {\'o}n actual}{76}{subsubsection.4.4.3.2}
+\contentsline {paragraph}{Trayectoria principal}{77}{paragraph*.126}
+\contentsline {paragraph}{Trayectoria alternativa A}{78}{paragraph*.127}
+\contentsline {paragraph}{Trayectoria alternativa B}{78}{paragraph*.128}
+\contentsline {subsubsection}{\numberline {4.4.3.3}SUB-U-CU1.2-Ver gr\IeC {\'a}fica de generaci\IeC {\'o}n de energ\IeC {\'\i }a en tiempo real}{79}{subsubsection.4.4.3.3}
+\contentsline {paragraph}{Trayectoria principal}{80}{paragraph*.129}
+\contentsline {paragraph}{Trayectoria alternativa A}{80}{paragraph*.130}
+\contentsline {paragraph}{Trayectoria alternativa B}{81}{paragraph*.131}
+\contentsline {subsubsection}{\numberline {4.4.3.4}SUB-U-CU1.3-Ver Reporte de Hist\IeC {\'o}ricos}{81}{subsubsection.4.4.3.4}
+\contentsline {paragraph}{Trayectoria principal}{82}{paragraph*.132}
+\contentsline {paragraph}{Trayectoria alternativa A}{83}{paragraph*.133}
+\contentsline {paragraph}{Trayectoria alternativa B}{83}{paragraph*.134}
+\contentsline {paragraph}{Trayectoria alternativa C}{83}{paragraph*.135}
+\contentsline {paragraph}{Trayectoria alternativa D}{83}{paragraph*.136}
+\contentsline {paragraph}{Trayectoria alternativa E}{83}{paragraph*.137}
+\contentsline {paragraph}{Trayectoria alternativa F}{83}{paragraph*.138}
+\contentsline {subsubsection}{\numberline {4.4.3.5}SUB-U-CU1.4-Almacenar servidor en el dispositivo m\IeC {\'o}vil}{83}{subsubsection.4.4.3.5}
+\contentsline {paragraph}{Trayectoria principal}{84}{paragraph*.139}
+\contentsline {paragraph}{Trayectoria alternativa A}{86}{paragraph*.140}
+\contentsline {paragraph}{Trayectoria alternativa B}{86}{paragraph*.141}
+\contentsline {paragraph}{Trayectoria alternativa C}{86}{paragraph*.142}
+\contentsline {paragraph}{Trayectoria alternativa D}{87}{paragraph*.143}
+\contentsline {paragraph}{Trayectoria alternativa E}{87}{paragraph*.144}
+\contentsline {paragraph}{Trayectoria alternativa F}{87}{paragraph*.145}
+\contentsline {paragraph}{Trayectoria alternativa G}{87}{paragraph*.146}
+\contentsline {paragraph}{Trayectoria alternativa H}{87}{paragraph*.147}
+\contentsline {paragraph}{Trayectoria alternativa I}{87}{paragraph*.148}
+\contentsline {paragraph}{Trayectoria alternativa J}{87}{paragraph*.149}
+\contentsline {paragraph}{Trayectoria alternativa K}{88}{paragraph*.150}
+\contentsline {subsubsection}{\numberline {4.4.3.6}SUB-U-CU1.5-Ver men\IeC {\'u}}{88}{subsubsection.4.4.3.6}
+\contentsline {paragraph}{Trayectoria principal}{88}{paragraph*.151}
+\contentsline {subsubsection}{\numberline {4.4.3.7}SUB-U-CU1.6-Ver notificaciones}{89}{subsubsection.4.4.3.7}
+\contentsline {paragraph}{Trayectoria principal}{90}{paragraph*.152}
+\contentsline {paragraph}{Trayectoria alternativa A}{90}{paragraph*.153}
+\contentsline {subsubsection}{\numberline {4.4.3.8}SUB-U-CU1.7-Generar notificaciones}{90}{subsubsection.4.4.3.8}
+\contentsline {paragraph}{Trayectoria principal}{92}{paragraph*.154}
+\contentsline {subsubsection}{\numberline {4.4.3.9}SUB-U-CU1.8-Ver mejor marca del d\IeC {\'\i }a}{92}{subsubsection.4.4.3.9}
+\contentsline {paragraph}{Trayectoria principal}{94}{paragraph*.155}
+\contentsline {subsubsection}{\numberline {4.4.3.10}SUB-U-CU1.9-Gestionar servidores almacenados}{94}{subsubsection.4.4.3.10}
+\contentsline {paragraph}{Trayectoria principal}{95}{paragraph*.156}
+\contentsline {paragraph}{Trayectoria alternativa A}{95}{paragraph*.157}
+\contentsline {paragraph}{Trayectoria alternativa B}{96}{paragraph*.158}
+\contentsline {paragraph}{Trayectoria alternativa C}{96}{paragraph*.159}
+\contentsline {paragraph}{Trayectoria alternativa D}{96}{paragraph*.160}
+\contentsline {paragraph}{Trayectoria alternativa E}{96}{paragraph*.161}
+\contentsline {paragraph}{Trayectoria alternativa F}{96}{paragraph*.162}
+\contentsline {subsection}{\numberline {4.4.4}Dise\IeC {\~n}o de aplicaci\IeC {\'o}n de usuario}{96}{subsection.4.4.4}
+\contentsline {subsubsection}{\numberline {4.4.4.1}Interfaces de Usuario}{96}{subsubsection.4.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.4.2}Notificaciones}{113}{subsubsection.4.4.4.2}
+\contentsline {chapter}{\numberline {5}Desarrollo y Pruebas del Sistema}{115}{chapter.5}
+\contentsline {section}{\numberline {5.1}M\IeC {\'o}dulo del Microcontrolador}{115}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Objetivo}{115}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Configurando la comunicaci\IeC {\'o}n con el dispositivo de adquisici\IeC {\'o}n}{115}{subsection.5.1.2}
+\contentsline {paragraph}{}{115}{paragraph*.181}
+\contentsline {subsection}{\numberline {5.1.3}Comunicaci\IeC {\'o}n con el dispositivo de adquisici\IeC {\'o}n v\IeC {\'\i }a software}{117}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Escritura de comandos para el dispositivo de adquisici\IeC {\'o}n}{118}{subsection.5.1.4}
+\contentsline {paragraph}{}{120}{paragraph*.186}
+\contentsline {subsection}{\numberline {5.1.5}Lectura de respuesta del dispositivo de adquisici\IeC {\'o}n}{120}{subsection.5.1.5}
+\contentsline {paragraph}{}{121}{paragraph*.189}
+\contentsline {subsection}{\numberline {5.1.6}Env\IeC {\'\i }o de muestras al servidor v\IeC {\'\i }a Wi-Fi}{122}{subsection.5.1.6}
+\contentsline {subsubsection}{\numberline {5.1.6.1}Pruebas}{126}{subsubsection.5.1.6.1}
+\contentsline {subsubsection}{\numberline {5.1.6.2}Pruebas}{127}{subsubsection.5.1.6.2}
+\contentsline {section}{\numberline {5.2}M\IeC {\'o}dulo del Servidor Embebido}{129}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Objetivo}{129}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Configurar el servidor embebido}{129}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Desarrollo}{129}{subsubsection.5.2.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Pruebas}{131}{subsubsection.5.2.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Creando servicios en Ubuntu Linux}{133}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Implementando el servicio de captura y consumo de paquetes UDP provenientes de los microcontroladores}{134}{subsection.5.2.4}
+\contentsline {subsubsection}{\numberline {5.2.4.1}Desarrollo}{134}{subsubsection.5.2.4.1}
+\contentsline {subsubsection}{\numberline {5.2.4.2}Pruebas}{135}{subsubsection.5.2.4.2}
+\contentsline {subsubsection}{\numberline {5.2.4.3}Pruebas}{138}{subsubsection.5.2.4.3}
+\contentsline {subsection}{\numberline {5.2.5}Implementando el servicio de creaci\IeC {\'o}n de muestras para gr\IeC {\'a}ficas del d\IeC {\'\i }a actual}{140}{subsection.5.2.5}
+\contentsline {subsubsection}{\numberline {5.2.5.1}Desarrollo}{140}{subsubsection.5.2.5.1}
+\contentsline {subsubsection}{\numberline {5.2.5.2}Pruebas}{141}{subsubsection.5.2.5.2}
+\contentsline {subsection}{\numberline {5.2.6}Implementando el servicio de atenci\IeC {\'o}n a clientes de aplicaci\IeC {\'o}n m\IeC {\'o}vil}{142}{subsection.5.2.6}
+\contentsline {subsubsection}{\numberline {5.2.6.1}Desarrollo}{142}{subsubsection.5.2.6.1}
+\contentsline {subsubsection}{\numberline {5.2.6.2}Pruebas}{143}{subsubsection.5.2.6.2}
+\contentsline {subsubsection}{\numberline {5.2.6.3}Pruebas}{145}{subsubsection.5.2.6.3}
+\contentsline {subsection}{\numberline {5.2.7}Integraci\IeC {\'o}n del modulo del microcontrolador y m\IeC {\'o}dulo del servidor embebido}{147}{subsection.5.2.7}
+\contentsline {subsubsection}{\numberline {5.2.7.1}Pruebas}{147}{subsubsection.5.2.7.1}
+\contentsline {section}{\numberline {5.3}M\IeC {\'o}dulo del la aplicaci\IeC {\'o}n de usuario}{148}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Objetivo}{148}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Calculando periodos para los Hist\IeC {\'o}ricos}{149}{subsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.2.1}Desarrollo}{149}{subsubsection.5.3.2.1}
+\contentsline {subsubsection}{\numberline {5.3.2.2}Pruebas}{149}{subsubsection.5.3.2.2}
+\contentsline {subsection}{\numberline {5.3.3}Creando notificaciones y sus distintos tipos}{158}{subsection.5.3.3}
+\contentsline {subsubsection}{\numberline {5.3.3.1}Desarrollo}{160}{subsubsection.5.3.3.1}
+\contentsline {subsubsection}{\numberline {5.3.3.2}Pruebas}{161}{subsubsection.5.3.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3.3}Desarrollo}{165}{subsubsection.5.3.3.3}
+\contentsline {subsubsection}{\numberline {5.3.3.4}Pruebas}{166}{subsubsection.5.3.3.4}
+\contentsline {subsection}{\numberline {5.3.4}Clasificando muestras de acuerdo al c\IeC {\'o}digo de colores establecido}{174}{subsection.5.3.4}
+\contentsline {subsubsection}{\numberline {5.3.4.1}Desarrollo}{174}{subsubsection.5.3.4.1}
+\contentsline {subsubsection}{\numberline {5.3.4.2}Pruebas}{175}{subsubsection.5.3.4.2}
+\contentsline {subsection}{\numberline {5.3.5}Clasificando muestras de acuerdo al valor de m\IeC {\'a}xima generaci\IeC {\'o}n del panel}{180}{subsection.5.3.5}
+\contentsline {subsubsection}{\numberline {5.3.5.1}Desarrollo}{180}{subsubsection.5.3.5.1}
+\contentsline {subsubsection}{\numberline {5.3.5.2}Pruebas}{181}{subsubsection.5.3.5.2}
+\contentsline {subsection}{\numberline {5.3.6}Graficando muestras (Generaci\IeC {\'o}n Actual e Hist\IeC {\'o}ricos)}{185}{subsection.5.3.6}
+\contentsline {subsubsection}{\numberline {5.3.6.1}Desarrollo}{185}{subsubsection.5.3.6.1}
+\contentsline {subsubsection}{\numberline {5.3.6.2}Pruebas}{187}{subsubsection.5.3.6.2}
+\contentsline {subsection}{\numberline {5.3.7}Obteniendo muestras provenientes del servidor dada una petici\IeC {\'o}n}{204}{subsection.5.3.7}
+\contentsline {subsubsection}{\numberline {5.3.7.1}Desarrollo}{204}{subsubsection.5.3.7.1}
+\contentsline {subsubsection}{\numberline {5.3.7.2}Pruebas}{206}{subsubsection.5.3.7.2}
+\contentsline {chapter}{\numberline {6}Conclusiones}{212}{chapter.6}
+\contentsline {chapter}{\numberline {7}Trabajo futuro}{213}{chapter.7}
