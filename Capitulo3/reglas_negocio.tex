@@ -1,0 +1,318 @@
+\section{Reglas de negocio}
+Las reglas de negocio sirven para definir o restringir acciones que serán implementadas en funcionalidad. 
+En la presente sección, se muestran las reglas de negocio del sistema.
+\begin{enumerate}[label=RN\arabic*.]
+    \item \label{RN1}
+		\begin{description}
+			\item[Nombre] RN1-Obtención de muestras del sistema fotovoltaico en tiempo real.
+			\item[Tipo] Operación.
+			\item[Objetivo] La obtención de mediciones del sistema fotovoltaico se realizará en tiempo real.
+			\item[Descripción] La obtención de mediciones del sistema fotovoltaico dependerá del dispositivo de monitoreo empleado, en este caso, se trata del MCP39F521, y está determinada por la frecuencia de reloj de IIC de 400 Khz, sin embargo nuestro sistema trabajará a una frecuencia de 1 Hz.
+    		\end{description}
+    		
+\item \label{RN2}
+	\begin{description}
+		\item[Nombre] RN2-Envío de muestras del sistema fotovoltaico en tiempo real.
+		\item[Tipo] Operación.
+		\item[Objetivo] Establecer el tiempo y frecuencia de envío de mediciones del microcontrolador por medio del módulo Wi-Fi.
+		\item[Descripción] El envío de muestras del microcontrolador por medio del módulo Wi-Fi dependerá de la velocidad de transmisión UART entre el microcontrolador y el módulo, que es de 115200 baudios. Un baudio es el número de unidades de información transmitidas por segundo, que dependiendo de la configuración puede estar entre los 9600 a 11520 Bytes/Segundo, la frecuencia de envío de muestras hacia el servidor será de 1 Hz, obteniendo así una resolución de la unidad de generación de energía en watt Segundo para después ser convertida a watt Hora.
+		\end{description}	
+		
+    \item \label{RN3}
+		\begin{description}
+			\item[Nombre] RN3-Creación de notificaciones por comportamiento inesperado.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Crear alertas que le informen al usuario el momento exacto en que el sistema fotovoltaico ha dejado de producir energía, el sistema ha dejado de obtener información de un nodo o el servidor no responde las peticiones.
+			\item[Descripción] La alerta será creada y enviada como notificación al usuario de forma inmediata si y sólo si en el proceso de monitoreo para notificaciones se ha detectado alguno de los siguientes casos: la potencia activa de una muestra de un nodo es de 0 watts, si se pierde conexión con el microcontrolador o servidor.  
+    		\end{description}
+    		
+\item \label{RN4}
+		\begin{description}
+			\item[Nombre] RN4-Calcular producción de energía histórica.
+			\item[Tipo] Derivadora.
+			\item[Objetivo] Calcular la producción de energía en el intervalo de tiempo especificado por cada nodo.
+			\item[Descripción] La producción histórica de energía de un nodo es la suma de la potencia activa de cada una de las muestras obtenidas de acuerdo a la frecuencia de muestreo definida en la Regla de Negocio \ref{RN2}  
+			Las opciones de periodos históricos son: última semana, mes actual, mensual, bimestral, anual y última década. Los reportes para los correspondientes periodos son:
+			\\ Última semana: 
+			\begin{itemize}
+				\item La producción por cada día de la última semana, es decir, a partir del día actual, 6 días anteriores.
+			\end{itemize}
+			Mes actual: 
+			\begin{itemize}
+				\item La producción por cada día del mes actual.
+			\end{itemize}
+			Mensual: 
+			\begin{itemize}
+				\item La producción por cada mes del año actual.
+			\end{itemize}
+			Bimestral: 
+			\begin{itemize}
+				\item La producción en el periodo de tiempo comprendido del 1 de Enero al 28 o 29 de Febrero (dependiendo de si el año es bisiesto)
+				\item La producción en el periodo de tiempo comprendido del 1 de Marzo al 30 de Abril
+				\item La producción en el periodo de tiempo comprendido del 1 de Mayo al 30 de Junio
+				\item La producción en el periodo de tiempo comprendido del 1 de Julio al 31 de Agosto
+				\item La producción en el periodo de tiempo comprendido del 1 de Septiembre al 31 de Octubre
+				\item La producción en el periodo de tiempo comprendido del 1 de Noviembre al 31 de Diciembre
+			\end{itemize}
+			Anual: 
+			\begin{itemize}
+				\item La producción en meses del año seleccionado.Se conservarán registros de los últimos 10 años.
+			\end{itemize}
+			Última década:
+			\begin{itemize}
+			\item La producción por año de los últimos 10 años.
+			\end{itemize}
+		\end{description}
+
+\item \label{RN5}
+		\begin{description}
+			\item[Nombre] RN5-Agrupar muestras tomadas en un día por intervalos de producción.
+			\item[Tipo] Derivadora.
+			\item[Objetivo] Agrupar las muestras tomadas en un día por cada nodo en intervalos de producción tomando como referencia la máxima generación de potencia del sistema fotovoltaico. 
+			\item[Descripción] Las muestras diarias de cada nodo serán agrupadas en los siguientes intervalos:
+			\begin{itemize}
+				\item Muestras mayores o iguales al 50\% de la máxima generación del sistema fotovoltaico.  
+				\item Muestras menores que el 50\% y mayores o iguales al 20\% de la máxima generación del sistema fotovoltaico. 
+				\item Muestras menores al 20\% de la máxima generación del sistema fotovoltaico. 
+			\end{itemize}
+		\end{description}
+
+\item \label{RN6}
+		\begin{description}
+			\item[Nombre] RN6-Periodo de toma de muestras.
+			\item[Tipo] Operación.
+			\item[Objetivo] Establecer el periodo de tiempo en el que las muestras serán tomadas para cada nodo.
+			\item[Descripción] Las muestras para obtener el resultado de la producción de energía comenzarán a tomarse a partir de las 0:00:00 hrs hasta las 23:59:59 hrs en la frecuencia indicada en la \ref{RN2} Adicionalmente se guardará cada minuto el valor de la potencia activa de cada nodo para la generación de la gráfica en tiempo real, dando un total de 1440 muestras diarias.		
+		\end{description}
+		
+%Checar tipo
+\item \label{RN7}
+		\begin{description}
+			\item[Nombre] RN7-Estándar de comunicación.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Establecer el estándar de comunicación entre microcontrolador-servidor y servidor-aplicación de usuario.
+			\item[Descripción] El estándar de comunicación entre el servidor y la aplicación de usuario será por medio de TCP, y para la comunicación entre microcontrolador y servidor será por medio de UDP, ambos proporcionan la base para los productos con redes inalámbricas que hacen uso de la marca Wi-Fi.
+		\end{description}
+		
+%Checar tipo		
+\item \label{RN8}
+		\begin{description}
+			\item[Nombre] RN8-Patrón de intercambio de mensajes.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Establecer el patrón de intercambio de información entre módulos.
+			\item[Descripción] El patrón de intercambio de información a utilizar entre módulos será petición-respuesta para el caso del protocolo TCP, para UDP solamente se hace el envío del paquete.
+		\end{description}
+		
+%Después definir los datos exactos? o en req técnicos		
+\item \label{RN9}
+		\begin{description}
+			\item[Nombre] RN9-Almacenamiento de datos de monitoreo.
+			\item[Tipo] Operación.
+			\item[Objetivo] Establecer el método de almacenamiento de la información.
+			\item[Descripción] El almacenamiento en el servidor está limitado por la memoria externa con capacidad desde 8GB de espacio que le es agregada, por lo que usaremos una herramienta que trabaja con una cantidad de datos fija, sobreescribiendo la información cuando terminan e inician nuevamente los periodos definidos en la Regla de Negocio \ref{RN4}		\end{description}
+
+%Preguntar request-reply si es RN8?
+
+%Definí como tipo, preguntar si otra regla debemos poner el formato (bien conformado con un xsd)?
+%Checar si será XML o JSON
+\item \label{RN10}
+		\begin{description}
+			\item[Nombre] RN10-Formato de archivo para almacenamiento de datos.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato de archivo en que serán almacenados los datos sensados.
+			\item[Descripción] El formato en que serán almacenados los datos sensados está definido por un archivo con extensión JSON, estos archivos estarán contenidos dentro de la carpeta que corresponde al número de sensor esclavo correspondiente y a su vez dentro de la carpeta con el número de serie del microcontrolador correspondiente, que está identificado por dos letras alfabéticas, por ejemplo, AC.		
+		\end{description}
+		
+\item \label{RN11}
+		\begin{description}
+			\item[Nombre] RN11-Formato de datos de respuesta para la aplicación de usuario.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato de los datos que se enviarán como respuestas a las peticiones del cliente.
+			\item[Descripción] El formato de los datos que se darán como respuesta del servidor a la aplicación móvil será en formato JSON.
+			\end{description}
+			
+%Checar referencias a lo largo del documento		
+\item \label{RN12}
+		\begin{description}
+			\item[Nombre] RN12-Agrupar muestras tomadas en un día por código de colores. 
+			\item[Tipo] Derivadora.
+			\item[Objetivo] Agrupar las muestras tomadas en un día por cada nodo de acuerdo a un color para ser representado en una gráfica.
+			\item[Descripción] Las muestras tomadas en un día para la gráfica en tiempo real y la de ayer de acuerdo a la \ref{RN6} serán agrupadas de acuerdo al siguiente código de colores:
+			\begin{itemize}
+			    \item Muestras null: Estas muestras aparecen cuando el servidor es levantado por primera vez, por lo tanto no tiene las muestras completas del día. Se identificarán con el color gris.
+			    \item Muestras de ayer: Estas muestras aparecen cuando por algún motivo una o más muestras no se sobreescriben con el valor del día de hoy, por lo tanto conservan el valor del día anterior. Se identificarán con el color azul.
+			    \item Muestras perdidas: Estas muestras aparecen cuando el servidor no pudo leer la información del nodo en un momento en específico. Se identificarán con el color negro.
+			    \item Mejores muestras: Estas muestras indican el valor más alto de potencia activa registrado durante el día. Se identificarán con el color morado.
+			    \item Muestras mayores o iguales al 50\% de la máxima generación del sistema fotovoltaico. Se identificarán con el color verde  
+				\item Muestras menores que el 50\% y mayores o iguales al 20\% de la máxima generación del sistema fotovoltaico. Se identificarán con el color naranja.
+				\item Muestras menores al 20\% de la máxima generación del sistema fotovoltaico. Se identificarán con el color rojo.
+			\end{itemize}
+		\end{description}
+	
+\item \label{RN13}
+		\begin{description}
+			\item[Nombre] RN13-Número de registros de notificaciones.
+			\item[Tipo] Restricción.
+			\item[Objetivo] Definir la cantidad máxima de registros de notificaciones a conservar en la aplicación móvil.
+			\item[Descripción] El número máximo de registros de notificaciones que se permitirán conservar en la aplicación móvil tiene que ser menor o igual a 100 notificaciones. El criterio para conservar las notificaciones dependerá únicamente del tiempo de llegada, es decir, se conservarán las notificaciones más recientes, sobreescribiendo el archivo cuando se llegue al límite.   
+		\end{description}
+		
+\item \label{RN14}
+		\begin{description}
+			\item[Nombre] RN14-Formato de fecha de notificaciones.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato de fecha de las notificaciones para la aplicación móvil.
+			\item[Descripción] El formato de fecha en que serán almacenadas las notificaciones del sistema en la aplicación móvil es: mm/dd/aa.
+			Donde:
+			\begin{itemize}
+			    \item mm = Corresponde al número de mes del año.
+		 		\item dd = Corresponde al número de día del mes.
+		 		\item aa = Corresponde al año.
+		    \end{itemize}
+		\end{description}
+		
+\item \label{RN15}
+		\begin{description}
+			\item[Nombre] RN15-Formato de hora de notificaciones.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato de hora de las notificaciones para la aplicación móvil.
+			\item[Descripción] El formato de hora en que serán almacenadas las notificaciones del sistema en la aplicación móvil es: hh:mm.
+			Donde:
+			\begin{itemize}
+		 		\item hh = Corresponde a la hora del día en formato de 24 horas.
+		 		\item mm = Corresponde al minuto de la hora.
+		    \end{itemize}
+		\end{description}
+%Estipular cuantas muestras se tomaran por dia y bimestralmente y si se deshecharán,
+%Tipo de archivo en el que se almacenarán los datos
+
+\item \label{RN16}
+		\begin{description}
+			\item[Nombre] RN16-Formato de IP válido.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato IP válido para poder hacer la conexión con el servidor.
+			\item[Descripción] El formato de IP válido será N.N.N.N
+			Donde:
+			\begin{itemize}
+		 		\item N = número entero menor o igual a 255 y mayor o igual a 0
+		    \end{itemize}
+		\end{description}
+
+%Checar tipo 
+\item \label{RN17}
+		\begin{description}
+			\item[Nombre] RN17-Tipos de peticiones de cliente a servidor.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Definir los tipos de peticiones que el usuario puede realizar desde la aplicación móvil a servidor.
+			\item[Descripción] El usuario de la aplicación móvil puede realizar las siguientes peticiones al servidor.
+			\begin{itemize}
+		 		\item Connect: Esta petición se lanza cuando el usuario desea conectarse por primera vez al servidor.
+		 		\item Set\_password: Esta petición se lanza cuando es el primer usuario en conectarse al servidor y tiene que establecer un correo electrónico y una contraseña.
+		 		\item Get\_password: Esta petición se lanza cuando otros usuarios desean conectarse al servidor ingresando la contraseña establecida por el primer usuario.
+		 		\item Forgot\_password: Esta petición se lanza cuando alguno de los usuario quiere recuperar la contraseña del servidor por medio del correo electrónico establecido por el primer usuario.
+		 		\item Get\_info: Esta petición se lanza cuando se requiere obtener información sobre los microcontroladores y nodos conectados al servidor especificado.
+		 		\item Get\_data: Esta petición se lanza cuando se requiere obtener el contenido de alguno de los archivos del nodo especificado.
+		    \end{itemize}
+		\end{description}
+
+
+\item \label{RN18}
+		\begin{description}
+			\item[Nombre] RN18-Monitoreo para crear notificaciones.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Indicar bajo que condición se pueden obtener notificaciones del sistema.
+			\item[Descripción] El usuario de la aplicación móvil puede permitir el monitoreo de los nodos en segundo plano lanzando peticiones cada 10 segundos, con el objetivo de poder recibir notificaciones cuando ocurran algunas de las condiciones establecidas en la \ref{RN3}, siempre y cuando lo solicite en la configuración de la aplicación.
+		\end{description}
+%checar		
+\item \label{RN19}
+		\begin{description}
+			\item[Nombre] RN19-Monitoreo de nodos en la aplicación móvil.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Indicar bajo que condición se puede obtener información de los nodos en la aplicación móvil.
+			\item[Descripción] El usuario de la aplicación móvil puede obtener información de los nodos sensores siempre y cuando estén conectados al servidor y las lecturas de las muestras sean almacenadas en los archivos del servidor.
+		\end{description}
+		
+\item \label{RN20}
+		\begin{description}
+			\item[Nombre] RN20-Gestión de servidores en la aplicación móvil.
+			\item[Tipo] Habilitadora de acción.
+			\item[Objetivo] Indicar las opciones que tiene el usuario sobre los servidores registrados.
+			\item[Descripción] El usuario de la aplicación móvil puede realizar las siguientes acciones en los servidores que ha registrado:
+			\begin{itemize}
+		 		\item Recuperar contraseña por medio del correo electrónico establecido por el primer usuario.
+		 		\item Editar el nombre del servidor.
+		 		\item Eliminar el servidor para dejar de monitorearlo en la aplicación móvil.
+		    \end{itemize}
+		\end{description}
+%AQUI PON UNA RN SAM PLEASE RN21
+\item \label{RN21}
+		\begin{description}
+			\item[Nombre] RN21-Tiempo que debe transcurrir para generar una nueva notificación por el mismo evento.
+			\item[Tipo] Operación.
+			\item[Objetivo] Establecer la frecuencia con la que se notificará un evento del mismo tipo, que proviene del mismo nodo, microcontrolador y servidor.
+			\item[Descripción] La aplicación dará aviso sobre un evento proveniente del mismo nodo, microcontrolador y servidor con una nueva notificación siempre y cuando haya transcurrido 1 hora desde la última vez que se notificó un evento de la misma índole, a excepción del evento en el que no se obtiene respuesta del servidor, en este caso se creará la notificación nueva pasados únicamente 10 minutos. 
+		\end{description}
+
+		
+\item \label{RN22}
+		\begin{description}
+			\item[Nombre] RN22-Tiempo de obtención de muestra actual en tiempo real.
+			\item[Tipo] Operación.
+			\item[Objetivo] Establecer la frecuencia con la que se enviarán peticiones al servidor para obtener el valor actualizado de la muestra de un nodo en tiempo real.
+			\item[Descripción] El usuario de la aplicación móvil puede observar el valor actualizado de la muestra de producción en tiempo real de un nodo cada 2 segundos.
+		\end{description}
+		
+\item \label{RN23}
+		\begin{description}
+			\item[Nombre] RN23-Tiempo de obtención de muestras de hoy en tiempo real.
+			\item[Tipo] Operación.
+			\item[Objetivo] Establecer la frecuencia con la que se enviarán peticiones al servidor para obtener la información actualizada del archivo que contiene las muestras de un nodo durante el día en curso.
+			\item[Descripción] El usuario de la aplicación móvil puede observar el valor actualizado de las muestras de producción durante el día en curso de un nodo cada 1 minuto.
+		\end{description}
+		
+\item \label{RN24}
+		\begin{description}
+			\item[Nombre] RN24-Tipos de usuario.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir los tipos de usuario que pueden hacer peticiones al servidor desde la aplicación móvil. 
+			\item[Descripción] 
+			Para algunos casos de uso se hará la distinción entre los siguientes tipos de usuario: 
+			\begin{itemize}
+		 		\item Usuario administrador: Es el primer usuario en conectarse al servidor. Tiene que registrar un correo para recuperación de contraseña y una contraseña para poder almacenar al servidor en el dispositivo móvil.
+		 		\item Usuario cliente: Son el resto de usuarios que se conectaron después del usuario administrador. Este usuario únicamente ingresa la contraseña que estableció el usuario administrador para dicho servidor.
+		 		\item Usuario: Para el resto de casos de uso en los que no se especifica el tipo de usuario, se considerarán como un mismo usuario pues son acciones que tienen permitidas tanto el usuario administrador como el usuario cliente.
+		    \end{itemize}
+		\end{description}
+		
+\item \label{RN25}
+		\begin{description}
+			\item[Nombre] RN25-Formato de contraseña.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato de la contraseña que se almacenará en el servidor 
+			\item[Descripción] 
+			El formato de la contraseña debe de cumplir con la siguiente expresión regular, la cual indica que la contraseña debe de tener al menos un dígito, al menos una minúscula, al menos una mayúscula, al menos un caracter especial (@\#\$\%	\textasciicircum{}\&+=-\_.) 
+			No debe de incluir espacios en blanco y debe de tener entre 8 y 10 caracteres: \textasciicircum{}.*[0-9].*[a-z].*[A-Z].*[@\#\$\%	\textasciicircum{}\&+=-\_.]\textbackslash{}S\$.\{8,10\}
+			\begin{itemize}
+		 		\item Contraseña que cumple con la expresión regular: Pa55word@
+		 		\item Contraseña que no cumple con la expresión regular: Password
+		    \end{itemize}
+		\end{description}
+		
+\item \label{RN26}
+		\begin{description}
+			\item[Nombre] RN26-Formato de correo electrónico.
+			\item[Tipo] Estructura.
+			\item[Objetivo] Definir el formato del correo electrónico que se almacenará en el servidor 
+			\item[Descripción] 
+			El formato del correo electrónico debe de cumplir con la siguiente expresión regular, la cual indica que se forma por caracteres alfanuméricos y se excluyen los siguientes caracteres especiales \#\&\textasciitilde{}!\textasciicircum{}`\{\}/=\$*?| del correo [a-zA-Z0-9\textbackslash{}+\textbackslash{}.\textbackslash{}\_\textbackslash{}\%\textbackslash{}-\textbackslash{}+]{1,256}\textbackslash{}@[a-zA-Z0-9][a-zA-Z0-9\textbackslash{}-]{0,64}\textbackslash{}.[a-zA-Z0-9][a-zA-Z0-9\textbackslash{}-]{0,25}
+			\begin{itemize}
+		 		\item Correo electrónico que cumple con la expresión regular: solarmonitorproject@gmail.com
+		 		\item Correo electrónico que no cumple con la expresión regular: @hotmail.com
+		    \end{itemize}
+		\end{description}
+		
+		
+		
+\end{enumerate}
+
+
